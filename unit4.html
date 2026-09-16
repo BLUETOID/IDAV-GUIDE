@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Unit IV — Frequent Itemsets and Clustering. Comprehensive textbook guide on Apriori, PCY, SON, Toivonen, Lossy Counting, K-Means, Hierarchical, CLIQUE, ProCLUS, BFR, CURE, and CluStream.">
+    <title>Unit IV — Frequent Itemsets and Clustering | IDAV Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Merriweather:wght@400;700&family=Outfit:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=Space+Grotesk:wght@400;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="unit1.html">Unit I</a></li>
+        <li><a href="unit2.html">Unit II</a></li>
+        <li><a href="unit3.html">Unit III</a></li>
+        <li><a href="unit4.html" class="active">Unit IV</a></li>
+        <li><a href="unit5.html">Unit V</a></li>
+        <li><a href="short-answers.html">Short Answers</a></li>
+        <li><a href="long-answers.html">Long Answers</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1>Unit IV: Frequent Itemsets &amp; Clustering</h1>
+    <p>08 Lectures &nbsp;|&nbsp; Comprehensive Reference Guide</p>
+</div>
+
+<div class="note-banner">
+    <strong>ST-1 Exam Coverage Notice</strong>
+    No ST-1 exam questions in the provided question bank are drawn from this unit. This page provides exhaustive, textbook-grade coverage of every topic in the syllabus for complete course preparation and comprehensive university exams.
+</div>
+
+<!-- ===================================================================
+     1. MINING FREQUENT ITEMSETS
+     =================================================================== -->
+<h2>1. Mining Frequent Itemsets &amp; Market Basket Analysis</h2>
+
+<h3>Definition and the Market Basket Model</h3>
+<p><strong>Frequent itemset mining</strong> is an unsupervised exploratory data mining technique designed to discover co-occurrence relationships and associations among items in large transaction datasets. Originally formulated by Agrawal, Imieliński, and Swami (1993) for retail market basket analysis, the model abstracts a general relationship between two sets of entities:</p>
+<ul>
+    <li><strong>Items:</strong> A universe of distinct entities \(\mathcal{I} = \{i_1, i_2, \dots, i_m\}\) (e.g., supermarket products, web pages, medical symptoms).</li>
+    <li><strong>Transactions:</strong> A database \(\mathcal{D} = \{T_1, T_2, \dots, T_n\}\), where each transaction \(T_j \subseteq \mathcal{I}\) is a subset of items purchased together, associated with a unique transaction identifier (TID).</li>
+    <li><strong>Itemset:</strong> Any subset \(X \subseteq \mathcal{I}\). An itemset containing \(k\) items is termed a <strong>\(k\)-itemset</strong>.</li>
+</ul>
+
+<h3>Core Association Measures</h3>
+<p>An association rule is an implication expression of the form \(X \implies Y\), where \(X, Y \subset \mathcal{I}\) and \(X \cap Y = \emptyset\). Here, \(X\) is the antecedent (body) and \(Y\) is the consequent (head). The strength and interestingness of itemsets and rules are governed by mathematical metrics:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Measure</th>
+            <th>Formula</th>
+            <th>Interpretation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Support (Itemset)</strong></td>
+            <td>\(\text{supp}(X) = \frac{|\{T \in \mathcal{D} \mid X \subseteq T\}|}{|\mathcal{D}|}\)</td>
+            <td>Fraction of total transactions in database \(\mathcal{D}\) that contain itemset \(X\). Measures statistical significance.</td>
+        </tr>
+        <tr>
+            <td><strong>Support (Rule)</strong></td>
+            <td>\(\text{supp}(X \implies Y) = \text{supp}(X \cup Y)\)</td>
+            <td>Fraction of transactions that contain both antecedent \(X\) and consequent \(Y\) simultaneously.</td>
+        </tr>
+        <tr>
+            <td><strong>Confidence</strong></td>
+            <td>\(\text{conf}(X \implies Y) = \frac{\text{supp}(X \cup Y)}{\text{supp}(X)} = P(Y \mid X)\)</td>
+            <td>Conditional probability that a transaction contains \(Y\) given that it contains \(X\). Measures reliability of the rule.</td>
+        </tr>
+        <tr>
+            <td><strong>Lift</strong></td>
+            <td>\(\text{lift}(X \implies Y) = \frac{\text{conf}(X \implies Y)}{\text{supp}(Y)} = \frac{\text{supp}(X \cup Y)}{\text{supp}(X) \times \text{supp}(Y)}\)</td>
+            <td>Ratio of observed joint support to expected support under statistical independence:
+                <ul>
+                    <li>\(\text{lift} = 1\): \(X\) and \(Y\) are independent (no association).</li>
+                    <li>\(\text{lift} &gt; 1\): Positive association (\(X\) encourages purchase of \(Y\)).</li>
+                    <li>\(\text{lift} &lt; 1\): Negative association / substitute products.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Conviction</strong></td>
+            <td>\(\text{conv}(X \implies Y) = \frac{1 - \text{supp}(Y)}{1 - \text{conf}(X \implies Y)}\)</td>
+            <td>Measures degree of implication dependency. A value of \(\infty\) indicates a logical implication with zero exceptions.</td>
+        </tr>
+        <tr>
+            <td><strong>Leverage</strong></td>
+            <td>\(\text{lev}(X \implies Y) = \text{supp}(X \cup Y) - (\text{supp}(X) \times \text{supp}(Y))\)</td>
+            <td>Difference between observed frequency and expected frequency under independence. Ranges from \([-0.25, 0.25]\).</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- ===================================================================
+     2. APRIORI ALGORITHM
+     =================================================================== -->
+<h2>2. The Apriori Algorithm</h2>
+
+<h3>The Apriori Property (Anti-Monotonicity Principle)</h3>
+<p>The search space of candidate itemsets for a universe of \(m\) items is the power set \(\mathcal{P}(\mathcal{I})\), which contains \(2^m - 1\) non-empty itemsets. For a retail catalog with \(m = 10,000\) items, exhaustive counting is computationally impossible. The <strong>Apriori Algorithm</strong> makes this search tractable by exploiting the fundamental anti-monotonicity property of support:</p>
+
+<div class="note-banner">
+    <strong>The Apriori Principle (Anti-Monotone Property of Support)</strong>
+    If an itemset \(X\) is frequent, then all of its non-empty subsets must also be frequent.<br>
+    <em>Contrapositive (Pruning Rule):</em> If an itemset \(X\) is infrequent (\(\text{supp}(X) &lt; \text{min\_sup}\)), then any of its supersets \(Y \supset X\) is guaranteed to be infrequent and can be pruned immediately without database counting.
+</div>
+
+<div class="diagram-wrap">
+    <svg width="600" height="280" viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" aria-label="Apriori itemset lattice and anti-monotonicity pruning diagram">
+        <!-- Level 0: Empty -->
+        <rect x="260" y="10" width="80" height="25" rx="3" fill="#eee" stroke="#999" stroke-width="1"/>
+        <text x="300" y="27" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#555">∅ (Empty)</text>
+
+        <!-- Level 1: 1-itemsets -->
+        <rect x="40" y="70" width="60" height="26" rx="3" fill="#7b1f2e"/>
+        <text x="70" y="87" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#fff">{A}</text>
+
+        <rect x="170" y="70" width="60" height="26" rx="3" fill="#7b1f2e"/>
+        <text x="200" y="87" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#fff">{B}</text>
+
+        <rect x="300" y="70" width="60" height="26" rx="3" fill="#7b1f2e"/>
+        <text x="330" y="87" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#fff">{C}</text>
+
+        <rect x="430" y="70" width="60" height="26" rx="3" fill="#e8dede" stroke="#7b1f2e" stroke-width="1.5" stroke-dasharray="4,2"/>
+        <text x="460" y="87" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#7b1f2e">{D} ✗</text>
+
+        <!-- Edges Level 0 to Level 1 -->
+        <line x1="280" y1="35" x2="80" y2="70" stroke="#bbb" stroke-width="1"/>
+        <line x1="295" y1="35" x2="200" y2="70" stroke="#bbb" stroke-width="1"/>
+        <line x1="305" y1="35" x2="330" y2="70" stroke="#bbb" stroke-width="1"/>
+        <line x1="320" y1="35" x2="450" y2="70" stroke="#bbb" stroke-width="1"/>
+
+        <!-- Level 2: 2-itemsets -->
+        <rect x="60" y="145" width="75" height="26" rx="3" fill="#7b1f2e"/>
+        <text x="97" y="162" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">{A, B}</text>
+
+        <rect x="180" y="145" width="75" height="26" rx="3" fill="#7b1f2e"/>
+        <text x="217" y="162" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">{A, C}</text>
+
+        <rect x="300" y="145" width="75" height="26" rx="3" fill="#e8dede" stroke="#7b1f2e" stroke-width="1.5" stroke-dasharray="4,2"/>
+        <text x="337" y="162" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">{B, C} ✗</text>
+
+        <!-- Pruned branch for D -->
+        <rect x="420" y="140" width="150" height="36" rx="3" fill="#f9f9f7" stroke="#999" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="495" y="156" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#888">{A,D}, {B,D}, {C,D}</text>
+        <text x="495" y="169" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="bold" fill="#7b1f2e">Pruned by Apriori Property</text>
+
+        <!-- Edges Level 1 to Level 2 -->
+        <line x1="70" y1="96" x2="97" y2="145" stroke="#bbb" stroke-width="1"/>
+        <line x1="70" y1="96" x2="217" y2="145" stroke="#bbb" stroke-width="1"/>
+        <line x1="200" y1="96" x2="97" y2="145" stroke="#bbb" stroke-width="1"/>
+        <line x1="200" y1="96" x2="337" y2="145" stroke="#bbb" stroke-width="1"/>
+        <line x1="330" y1="96" x2="217" y2="145" stroke="#bbb" stroke-width="1"/>
+        <line x1="330" y1="96" x2="337" y2="145" stroke="#bbb" stroke-width="1"/>
+        <line x1="460" y1="96" x2="495" y2="140" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+
+        <!-- Level 3: 3-itemsets -->
+        <rect x="160" y="215" width="110" height="30" rx="3" fill="#f9f9f7" stroke="#7b1f2e" stroke-width="1.5" stroke-dasharray="4,2"/>
+        <text x="215" y="234" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">{A, B, C} Pruned</text>
+        <text x="215" y="260" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">(Contains infrequent {B, C})</text>
+
+        <line x1="97" y1="171" x2="215" y2="215" stroke="#bbb" stroke-width="1"/>
+        <line x1="217" y1="171" x2="215" y2="215" stroke="#bbb" stroke-width="1"/>
+        <line x1="337" y1="171" x2="215" y2="215" stroke="#bbb" stroke-width="1"/>
+    </svg>
+</div>
+<p class="diagram-caption">Figure 1: Apriori lattice pruning. Because {D} is infrequent, all supersets involving D are pruned without counting. The candidate {A, B, C} is pruned prior to database scanning because its subset {B, C} is infrequent.</p>
+
+<h3>Step-by-Step Apriori Algorithm Workflow</h3>
+<ol>
+    <li><strong>Pass 1:</strong> Scan database \(\mathcal{D}\) once to compute support counts of all 1-itemsets. Discard those with count \(&lt; \text{min\_sup}\) to form the frequent 1-itemset list \(L_1\).</li>
+    <li><strong>Candidate Generation (\(L_{k-1} \bowtie L_{k-1}\)):</strong> Join two frequent \((k-1)\)-itemsets if they share the first \((k-2)\) items in common (assuming lexicographical ordering) to produce candidate \(k\)-itemsets \(C_k\).</li>
+    <li><strong>Candidate Pruning Step:</strong> For each candidate \(c \in C_k\), verify whether all of its \((k-1)\)-subsets are present in \(L_{k-1}\). If any subset is absent, discard \(c\) immediately from \(C_k\).</li>
+    <li><strong>Database Counting Pass:</strong> Scan database \(\mathcal{D}\) to count occurrences of remaining candidates in \(C_k\). Retain those satisfying minimum support to form \(L_k\).</li>
+    <li><strong>Termination:</strong> Repeat steps 2–4 until \(L_k\) is empty. Generate association rules from all frequent itemsets satisfying minimum confidence.</li>
+</ol>
+
+<h3>Complete Worked Numerical Example</h3>
+<p><strong>Database:</strong> Consider \(|\mathcal{D}| = 5\) transactions over items \(\{A, B, C, D, E\}\):</p>
+<pre>T1: {A, B, E}
+T2: {B, D}
+T3: {B, C}
+T4: {A, B, D}
+T5: {A, C, E}</pre>
+<p><strong>Thresholds:</strong> \(\text{min\_sup} = 40\% = 2/5\) (minimum count = 2); \(\text{min\_conf} = 70\%\).</p>
+
+<h4>Iteration 1 (\(k = 1\)):</h4>
+<ul>
+    <li>Candidate 1-itemsets \(C_1\): \(\{A\}: 3, \{B\}: 4, \{C\}: 2, \{D\}: 2, \{E\}: 2\).</li>
+    <li>All meet minimum support count \(\ge 2\). Thus \(L_1 = \{\{A\}, \{B\}, \{C\}, \{D\}, \{E\}\}\).</li>
+</ul>
+
+<h4>Iteration 2 (\(k = 2\)):</h4>
+<ul>
+    <li>Join \(L_1 \bowtie L_1\) to form \(C_2\): \(\{A,B\}, \{A,C\}, \{A,D\}, \{A,E\}, \{B,C\}, \{B,D\}, \{B,E\}, \{C,D\}, \{C,E\}, \{D,E\}\).</li>
+    <li>Count support from database:
+        <ul>
+            <li>\(\{A, B\}\): T1, T4 \(\implies\) count = 2 \(\ge 2\) (Frequent)</li>
+            <li>\(\{A, C\}\): T5 \(\implies\) count = 1 (Infrequent, pruned)</li>
+            <li>\(\{A, D\}\): T4 \(\implies\) count = 1 (Infrequent, pruned)</li>
+            <li>\(\{A, E\}\): T1, T5 \(\implies\) count = 2 \(\ge 2\) (Frequent)</li>
+            <li>\(\{B, C\}\): T3 \(\implies\) count = 1 (Infrequent, pruned)</li>
+            <li>\(\{B, D\}\): T2, T4 \(\implies\) count = 2 \(\ge 2\) (Frequent)</li>
+            <li>\(\{B, E\}\): T1 \(\implies\) count = 1 (Infrequent, pruned)</li>
+            <li>\(\{C, D\}\): None \(\implies\) count = 0 (Pruned)</li>
+            <li>\(\{C, E\}\): T5 \(\implies\) count = 1 (Pruned)</li>
+            <li>\(\{D, E\}\): None \(\implies\) count = 0 (Pruned)</li>
+        </ul>
+    </li>
+    <li>Frequent 2-itemsets: \(L_2 = \{\{A, B\}, \{A, E\}, \{B, D\}\}\).</li>
+</ul>
+
+<h4>Iteration 3 (\(k = 3\)):</h4>
+<ul>
+    <li>Join \(L_2 \bowtie L_2\): Candidate \(\{A, B, E\}\) is generated from \(\{A, B\}\) and \(\{A, E\}\).</li>
+    <li><strong>Pruning Step:</strong> Check subsets of \(\{A, B, E\}\): Subsets are \(\{A, B\} \in L_2\), \(\{A, E\} \in L_2\), but \(\{B, E\} \notin L_2\)!</li>
+    <li>Because subset \(\{B, E\}\) is infrequent, candidate \(\{A, B, E\}\) is <strong>pruned prior to any database scan</strong>.</li>
+    <li>No candidates survive: \(C_3 = \emptyset \implies L_3 = \emptyset\). Algorithm terminates.</li>
+</ul>
+
+<h4>Rule Generation Example:</h4>
+<p>From frequent itemset \(\{A, B\}\) (\(\text{supp} = 2/5 = 0.40\)):</p>
+<ul>
+    <li>Rule \(A \implies B\): \(\text{conf} = \frac{\text{supp}(\{A, B\})}{\text{supp}(\{A\})} = \frac{2}{3} = 66.7\%\) (Below 70%, Rejected).</li>
+    <li>Rule \(B \implies A\): \(\text{conf} = \frac{\text{supp}(\{A, B\})}{\text{supp}(\{B\})} = \frac{2}{4} = 50.0\%\) (Below 70%, Rejected).</li>
+</ul>
+<p>From frequent itemset \(\{B, D\}\) (\(\text{supp} = 2/5 = 0.40\)):</p>
+<ul>
+    <li>Rule \(D \implies B\): \(\text{conf} = \frac{\text{supp}(\{B, D\})}{\text{supp}(\{D\})} = \frac{2}{2} = 100\%\) (Meets 70% threshold! <strong>Accepted</strong>).</li>
+    <li>\(\text{lift}(D \implies B) = \frac{\text{conf}(D \implies B)}{\text{supp}(\{B\})} = \frac{1.0}{4/5} = 1.25 &gt; 1\) (Positive correlation).</li>
+</ul>
+
+<!-- ===================================================================
+     3. HANDLING LARGE DATASETS IN MAIN MEMORY
+     =================================================================== -->
+<h2>3. Handling Large Datasets in Main Memory</h2>
+
+<h3>The Bottleneck of Standard Apriori</h3>
+<p>The standard Apriori algorithm requires \(k\) full sequential disk scans (where \(k\) is the length of the maximum frequent itemset). Furthermore, in Iteration 2, the number of candidate pairs is \(|C_2| = \binom{|L_1|}{2}\). If \(|L_1| = 10^5\), \(|C_2| \approx 5 \times 10^9\) pairs, which requires over 20 GB of memory just to store candidate count arrays. To overcome this memory bottleneck, several advanced algorithmic optimizations were developed:</p>
+
+<h3>1. The PCY (Park-Chen-Yu) Algorithm</h3>
+<p>The PCY algorithm observes that during Pass 1, while counting 1-itemsets, significant unused main memory exists. PCY exploits this idle memory by maintaining a <strong>hash table of bucket counters</strong>:</p>
+<ol>
+    <li><strong>Pass 1:</strong> For each transaction, count individual item frequencies in an array \(A\). Simultaneously, generate all pairs present in the transaction, hash each pair using hash function \(h(i, j)\) to a bucket index in range \([0, B-1]\), and increment that bucket counter:
+    <pre>bucket[h(i, j)] += 1</pre></li>
+    <li><strong>Bitmap Generation:</strong> At the end of Pass 1, convert the bucket counters into a compact <strong>bitmap</strong>: if \(\text{bucket}[k] \ge \text{min\_sup}\), set \(\text{bitmap}[k] = 1\); otherwise set \(\text{bitmap}[k] = 0\). The entire bitmap requires only \(B/8\) bytes of RAM.</li>
+    <li><strong>Candidate Generation in Pass 2:</strong> A pair \(\{i, j\}\) is admitted into candidate set \(C_2\) if and only if:
+        <ul>
+            <li>Both individual items are frequent: \(i \in L_1\) and \(j \in L_1\), <strong>AND</strong></li>
+            <li>Its hash bucket is frequent: \(\text{bitmap}[h(i, j)] == 1\).</li>
+        </ul>
+    </li>
+</ol>
+<p>If a bucket count is below minimum support, no pair hashing to that bucket can possibly be frequent. This filters out the vast majority of candidate 2-itemsets before Pass 2 begins.</p>
+
+<h3>2. Multistage and Multihash Algorithms</h3>
+<ul>
+    <li><strong>Multistage Algorithm:</strong> Adds an intermediate pass (Pass 1.5). During Pass 1.5, only pairs whose bucket was frequent in Pass 1 are hashed using a <em>second independent hash function</em> \(h_2\) into a second hash table. In Pass 2, a pair must pass both bitmap filters. This further compresses \(C_2\) at the expense of one extra disk scan.</li>
+    <li><strong>Multihash Algorithm:</strong> Uses two or more hash tables simultaneously in Pass 1. A pair is retained only if all corresponding bucket positions in both bitmaps are 1. Requires no extra passes, but partitions available memory across multiple hash tables.</li>
+</ul>
+
+<h3>3. Limited Pass Algorithms</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Algorithm</th>
+            <th>Number of Passes</th>
+            <th>Core Mechanism</th>
+            <th>Guarantees / Trade-offs</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Simple Sampling</strong></td>
+            <td>1 pass (over sample) + 1 optional pass</td>
+            <td>Draw a random sample \(S\) of the database that fits in RAM. Run Apriori on \(S\) with scaled support threshold \(s' = s \times |S|/|\mathcal{D}|\).</td>
+            <td>Fast, but subject to false positives and false negatives due to sampling variance.</td>
+        </tr>
+        <tr>
+            <td><strong>SON Algorithm</strong><br>(Savasere, Omiecinski, Navathe)</td>
+            <td><strong>Exactly 2 Passes</strong></td>
+            <td>Partition database \(\mathcal{D}\) into \(p\) chunks that fit in RAM.
+                <ul>
+                    <li><em>Pass 1:</em> Mine local frequent itemsets in each chunk with threshold \(\text{min\_sup} / p\). Take the union of all local frequent sets to form candidate set \(C\). (Monotonicity theorem: any globally frequent itemset must be locally frequent in at least one partition).</li>
+                    <li><em>Pass 2:</em> Stream through full database once to compute exact global counts for candidates in \(C\).</li>
+                </ul>
+            </td>
+            <td><strong>100% exact</strong> (zero false positives, zero false negatives). Ideal for distributed MapReduce and Apache Spark implementations.</td>
+        </tr>
+        <tr>
+            <td><strong>Toivonen's Algorithm</strong></td>
+            <td><strong>1 Pass</strong> (with high probability; 2 passes if fail)</td>
+            <td>
+                <ul>
+                    <li>Mine a sample \(S\) with lower threshold \(s' = 0.8 \times s \times |S|/|\mathcal{D}|\).</li>
+                    <li>Construct the <strong>Negative Border</strong> \(NB(L_S)\): all itemsets that are not frequent in \(S\), but all of their immediate subsets are frequent.</li>
+                    <li>Scan full database once: count support of both \(L_S\) and \(NB(L_S)\).</li>
+                    <li>If no itemset in \(NB(L_S)\) turns out to be globally frequent, the results are provably exact in a single pass. If any negative border item is frequent, re-run with another pass.</li>
+                </ul>
+            </td>
+            <td>Deterministic accuracy when successful; failure probability can be made arbitrarily small by tuning sample size and threshold buffer.</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- ===================================================================
+     4. FREQUENT ITEMSETS IN A STREAM
+     =================================================================== -->
+<h2>4. Counting Frequent Itemsets in a Stream</h2>
+
+<h3>The Lossy Counting Algorithm (Manku &amp; Rajagopalan, 2002)</h3>
+<p>Lossy Counting computes all items (or itemsets) whose frequency in an unbounded stream of length \(N\) exceeds support threshold \(s \in (0, 1]\), with an error tolerance parameter \(\epsilon \ll s\), using only \(O(\frac{1}{\epsilon} \log(\epsilon N))\) memory.</p>
+
+<h4>Mechanism:</h4>
+<ol>
+    <li>Divide the incoming stream conceptually into buckets of width \(w = \lceil \frac{1}{\epsilon} \rceil\). The first bucket has ID 1, the second ID 2, etc. Current bucket ID is \(b_{\text{current}} = \lceil N / w \rceil\).</li>
+    <li>Maintain a data structure of entries \((e, f, \Delta)\), where \(e\) is the item/itemset, \(f\) is its estimated frequency, and \(\Delta\) is the maximum possible error in \(f\).</li>
+    <li>When an item \(e\) arrives:
+        <ul>
+            <li>If \(e\) exists in the data structure, increment its count: \(f \leftarrow f + 1\).</li>
+            <li>If \(e\) does not exist, insert a new entry: \((e, 1, b_{\text{current}} - 1)\).</li>
+        </ul>
+    </li>
+    <li><strong>Pruning Step:</strong> At the boundary of each bucket (every \(w\) arrivals), prune all entries that satisfy:
+    \[ f + \Delta \le b_{\text{current}} \]
+    </li>
+    <li><strong>Query Output:</strong> When queried for frequent items, output all entries satisfying \(f \ge (s - \epsilon)N\).</li>
+</ol>
+
+<h4>Theoretical Guarantees:</h4>
+<ul>
+    <li><strong>No False Negatives:</strong> All items with true frequency \(f_{\text{true}} \ge sN\) are guaranteed to be output.</li>
+    <li><strong>Bounded False Positives:</strong> No item with true frequency \(f_{\text{true}} &lt; (s - \epsilon)N\) is ever output.</li>
+    <li><strong>Underestimation Bound:</strong> For any output item, \(f_{\text{true}} - \epsilon N \le f \le f_{\text{true}}\).</li>
+</ul>
+
+<!-- ===================================================================
+     5. CLUSTERING TECHNIQUES
+     =================================================================== -->
+<h2>5. Clustering Techniques</h2>
+
+<h3>Definition and Foundations</h3>
+<p><strong>Clustering</strong> is an unsupervised machine learning task that partitions an unlabeled dataset \(X = \{x_1, x_2, \dots, x_n\} \subset \mathbb{R}^d\) into \(k\) discrete groups (clusters) such that intra-cluster similarity is maximized (points within a cluster are as close to each other as possible) and inter-cluster similarity is minimized (points in different clusters are as distant as possible).</p>
+
+<h3>Common Distance Metrics</h3>
+<ul>
+    <li><strong>Euclidean Distance (\(L_2\) norm):</strong> \(d(x, y) = \sqrt{\sum_{i=1}^d (x_i - y_i)^2}\). Standard metric for continuous, geometric Euclidean spaces.</li>
+    <li><strong>Manhattan Distance (\(L_1\) norm):</strong> \(d(x, y) = \sum_{i=1}^d |x_i - y_i|\). Robust against outliers; grid-based navigation.</li>
+    <li><strong>Minkowski Distance (\(L_p\) norm):</strong> \(d(x, y) = \left(\sum_{i=1}^d |x_i - y_i|^p\right)^{1/p}\). Generalization of \(L_1\) (\(p=1\)) and \(L_2\) (\(p=2\)).</li>
+    <li><strong>Cosine Distance:</strong> \(d_{\cos}(x, y) = 1 - \frac{x \cdot y}{\|x\|_2 \|y\|_2}\). Measures orientation rather than magnitude; standard for text documents and high-dimensional sparse TF-IDF vectors.</li>
+    <li><strong>Jaccard Distance:</strong> \(d_J(A, B) = 1 - \frac{|A \cap B|}{|A \cup B|}\). Standard for binary sets and categorical transaction overlaps.</li>
+</ul>
+
+<!-- ===================================================================
+     6. K-MEANS CLUSTERING
+     =================================================================== -->
+<h2>6. K-Means Clustering</h2>
+
+<h3>Mathematical Objective Function</h3>
+<p>K-Means seeks a partition of \(n\) points into \(k\) disjoint sets \(\{C_1, C_2, \dots, C_k\}\) with corresponding centroids \(\{\mu_1, \mu_2, \dots, \mu_k\}\) that minimizes the <strong>Within-Cluster Sum of Squares (WCSS)</strong>, also called inertia:</p>
+\[ J = \sum_{j=1}^k \sum_{x_i \in C_j} \|x_i - \mu_j\|^2 \]
+
+<h3>Lloyd's Algorithm (Standard K-Means)</h3>
+<ol>
+    <li><strong>Initialization:</strong> Choose \(k\) initial cluster centroids \(\mu_1^{(0)}, \dots, \mu_k^{(0)}\).</li>
+    <li><strong>Assignment Step:</strong> Assign each data point \(x_i\) to the cluster with the closest centroid (Voronoi partition):
+    \[ C_j^{(t)} = \{ x_i : \|x_i - \mu_j^{(t)}\|^2 \le \|x_i - \mu_l^{(t)}\|^2 \quad \forall l, 1 \le l \le k \} \]</li>
+    <li><strong>Update Step:</strong> Recompute each centroid as the geometric mean of all points assigned to it:
+    \[ \mu_j^{(t+1)} = \frac{1}{|C_j^{(t)}|} \sum_{x_i \in C_j^{(t)}} x_i \]</li>
+    <li><strong>Convergence:</strong> Repeat steps 2 and 3 until centroids stabilize (\(\|\mu_j^{(t+1)} - \mu_j^{(t)}\| &lt; \epsilon\)) or assignments no longer change. Guaranteed to converge to a local optimum in a finite number of iterations because \(J\) strictly decreases at each step.</li>
+</ol>
+
+<div class="diagram-wrap">
+    <svg width="580" height="260" viewBox="0 0 580 260" xmlns="http://www.w3.org/2000/svg" aria-label="K-Means clustering scatter plot with centroids and Voronoi boundaries">
+        <!-- Axes -->
+        <line x1="40" y1="220" x2="540" y2="220" stroke="#333" stroke-width="1.5"/>
+        <line x1="40" y1="220" x2="40" y2="20" stroke="#333" stroke-width="1.5"/>
+        <text x="290" y="245" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#333">Feature Dimension 1</text>
+        <text x="16" y="120" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#333" transform="rotate(-90,16,120)">Feature Dimension 2</text>
+
+        <!-- Voronoi decision boundary lines -->
+        <line x1="200" y1="20" x2="200" y2="220" stroke="#bbb" stroke-width="1.2" stroke-dasharray="4,3"/>
+        <line x1="200" y1="120" x2="540" y2="120" stroke="#bbb" stroke-width="1.2" stroke-dasharray="4,3"/>
+
+        <!-- Cluster 1 (Left, Burgundy) -->
+        <circle cx="90" cy="80" r="4.5" fill="#7b1f2e"/>
+        <circle cx="115" cy="60" r="4.5" fill="#7b1f2e"/>
+        <circle cx="130" cy="95" r="4.5" fill="#7b1f2e"/>
+        <circle cx="105" cy="110" r="4.5" fill="#7b1f2e"/>
+        <circle cx="80" cy="130" r="4.5" fill="#7b1f2e"/>
+        <circle cx="140" cy="140" r="4.5" fill="#7b1f2e"/>
+        <circle cx="120" cy="165" r="4.5" fill="#7b1f2e"/>
+        <!-- Centroid 1 -->
+        <circle cx="111" cy="111" r="9" fill="none" stroke="#7b1f2e" stroke-width="2.5"/>
+        <text x="111" y="115" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">×</text>
+        <text x="111" y="40" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#7b1f2e">Cluster 1 (\mu_1)</text>
+
+        <!-- Cluster 2 (Top Right, Dark Grey) -->
+        <circle cx="340" cy="50" r="4.5" fill="#333"/>
+        <circle cx="370" cy="75" r="4.5" fill="#333"/>
+        <circle cx="390" cy="45" r="4.5" fill="#333"/>
+        <circle cx="430" cy="65" r="4.5" fill="#333"/>
+        <circle cx="460" cy="55" r="4.5" fill="#333"/>
+        <circle cx="410" cy="90" r="4.5" fill="#333"/>
+        <circle cx="450" cy="100" r="4.5" fill="#333"/>
+        <!-- Centroid 2 -->
+        <circle cx="407" cy="68" r="9" fill="none" stroke="#333" stroke-width="2.5"/>
+        <text x="407" y="72" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#333">×</text>
+        <text x="407" y="30" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#333">Cluster 2 (\mu_2)</text>
+
+        <!-- Cluster 3 (Bottom Right, Muted Maroon) -->
+        <polygon points="320,180 325,190 315,190" fill="#7b1f2e"/>
+        <polygon points="360,160 365,170 355,170" fill="#7b1f2e"/>
+        <polygon points="380,200 385,210 375,210" fill="#7b1f2e"/>
+        <polygon points="420,175 425,185 415,185" fill="#7b1f2e"/>
+        <polygon points="450,195 455,205 445,205" fill="#7b1f2e"/>
+        <polygon points="480,170 485,180 475,180" fill="#7b1f2e"/>
+        <!-- Centroid 3 -->
+        <circle cx="401" cy="186" r="9" fill="none" stroke="#7b1f2e" stroke-width="2.5"/>
+        <text x="401" y="190" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">×</text>
+        <text x="401" y="215" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#7b1f2e">Cluster 3 (\mu_3)</text>
+    </svg>
+</div>
+<p class="diagram-caption">Figure 2: K-Means clustering convergence (k=3). Ringed crosses indicate final converged cluster centroids. Dashed lines illustrate the Voronoi partition boundaries separating cluster regions.</p>
+
+<h3>K-Means++ Smart Initialization</h3>
+<p>Standard random initialization often converges to poor local minima if two centroids are placed in the same natural cluster. <strong>K-Means++</strong> (Arthur &amp; Vassilvitskii, 2007) initializes centroids with a dispersion probability guarantee:</p>
+<ol>
+    <li>Choose the first centroid \(\mu_1\) uniformly at random from dataset \(X\).</li>
+    <li>For each data point \(x\), compute \(D(x)\), the shortest distance from \(x\) to the closest existing centroid.</li>
+    <li>Choose the next centroid \(\mu_j\) from \(X\) with probability proportional to the squared distance:
+    \[ P(x \text{ is chosen}) = \frac{D(x)^2}{\sum_{x' \in X} D(x')^2} \]</li>
+    <li>Repeat steps 2 and 3 until \(k\) centroids are chosen. Guarantees an expected solution bound of \(O(\log k)\) times the optimal WCSS.</li>
+</ol>
+
+<h3>Selecting the Optimal Value of \(k\)</h3>
+<ul>
+    <li><strong>The Elbow Method:</strong> Plot WCSS (\(J\)) against increasing values of \(k\) (\(k = 1, 2, \dots\)). As \(k\) increases, \(J\) decreases monotonically. The optimal \(k\) is the point of inflection ("elbow") where adding more clusters yields diminishing reductions in variance.</li>
+    <li><strong>Silhouette Coefficient:</strong> For each point \(i\), compute intra-cluster distance \(a(i)\) (average distance to all other points in the same cluster) and nearest-cluster distance \(b(i)\) (average distance to points in the closest neighboring cluster):
+    \[ s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))} \]
+    \(s(i) \in [-1, +1]\). A mean silhouette score near \(+1.0\) indicates well-separated, cohesive clusters; values near \(0\) indicate overlapping clusters; negative values indicate misclassification.</li>
+</ul>
+
+<!-- ===================================================================
+     7. HIERARCHICAL CLUSTERING
+     =================================================================== -->
+<h2>7. Hierarchical Clustering</h2>
+
+<h3>Agglomerative vs. Divisive Strategies</h3>
+<p>Hierarchical clustering constructs an entire hierarchy of nested clusters represented as a binary tree called a <strong>dendrogram</strong>. It requires no prior specification of \(k\):</p>
+<ul>
+    <li><strong>Agglomerative (Bottom-Up):</strong> Starts with \(n\) singleton clusters. At each iteration, the two most similar (least distant) clusters are merged. Continues until all points belong to a single root cluster. Computational complexity is \(O(n^2 \log n)\) or \(O(n^3)\).</li>
+    <li><strong>Divisive (Top-Down):</strong> Starts with all data points in a single mega-cluster. Recursively splits clusters using a flat clustering method (such as 2-means) until each point is an isolated singleton.</li>
+</ul>
+
+<h3>Linkage Criteria (Distance between Clusters \(A\) and \(B\))</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Linkage Metric</th>
+            <th>Formula</th>
+            <th>Behavior &amp; Properties</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Single Linkage</strong><br>(Nearest Neighbor)</td>
+            <td>\(D(A, B) = \min_{x \in A, y \in B} d(x, y)\)</td>
+            <td>Can extract arbitrary non-elliptical shapes; vulnerable to the <strong>chaining effect</strong> (elongated, straggly clusters connected by thin noise bridges).</td>
+        </tr>
+        <tr>
+            <td><strong>Complete Linkage</strong><br>(Farthest Neighbor)</td>
+            <td>\(D(A, B) = \max_{x \in A, y \in B} d(x, y)\)</td>
+            <td>Produces compact, spherical clusters of roughly equal diameter; sensitive to outliers.</td>
+        </tr>
+        <tr>
+            <td><strong>Average Linkage</strong><br>(UPGMA)</td>
+            <td>\(D(A, B) = \frac{1}{|A||B|} \sum_{x \in A} \sum_{y \in B} d(x, y)\)</td>
+            <td>Intermediate behavior; compromises between single and complete linkage; robust to moderate noise.</td>
+        </tr>
+        <tr>
+            <td><strong>Ward's Minimum Variance</strong></td>
+            <td>\(\Delta \text{ESS}_{AB} = \frac{|A||B|}{|A| + |B|} \|\mu_A - \mu_B\|^2\)</td>
+            <td>Merges the two clusters whose union minimizes the increase in total within-cluster sum of squares. Yields dense, well-balanced spherical clusters.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="diagram-wrap">
+    <svg width="600" height="250" viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" aria-label="Hierarchical agglomerative clustering dendrogram with distance cut line">
+        <!-- Distance Y-axis -->
+        <line x1="50" y1="210" x2="50" y2="20" stroke="#333" stroke-width="1.5"/>
+        <text x="25" y="115" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#333" transform="rotate(-90,25,115)">Distance (d)</text>
+
+        <line x1="45" y1="210" x2="55" y2="210" stroke="#333" stroke-width="1"/>
+        <text x="40" y="214" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#555">0.0</text>
+        <line x1="45" y1="165" x2="55" y2="165" stroke="#333" stroke-width="1"/>
+        <text x="40" y="169" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#555">1.5</text>
+        <line x1="45" y1="120" x2="55" y2="120" stroke="#333" stroke-width="1"/>
+        <text x="40" y="124" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#555">3.0</text>
+        <line x1="45" y1="75" x2="55" y2="75" stroke="#333" stroke-width="1"/>
+        <text x="40" y="79" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#555">4.5</text>
+        <line x1="45" y1="30" x2="55" y2="30" stroke="#333" stroke-width="1"/>
+        <text x="40" y="34" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#555">6.0</text>
+
+        <!-- Leaf labels -->
+        <text x="110" y="228" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#333">x_1</text>
+        <text x="170" y="228" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#333">x_2</text>
+        <text x="260" y="228" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#333">x_3</text>
+        <text x="320" y="228" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#333">x_4</text>
+        <text x="430" y="228" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#333">x_5</text>
+        <text x="510" y="228" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#333">x_6</text>
+
+        <!-- Tree lines -->
+        <!-- Merge 1: x1 & x2 at d=1.0 (y=180) -->
+        <line x1="110" y1="210" x2="110" y2="180" stroke="#7b1f2e" stroke-width="1.5"/>
+        <line x1="170" y1="210" x2="170" y2="180" stroke="#7b1f2e" stroke-width="1.5"/>
+        <line x1="110" y1="180" x2="170" y2="180" stroke="#7b1f2e" stroke-width="1.5"/>
+
+        <!-- Merge 2: x3 & x4 at d=1.4 (y=168) -->
+        <line x1="260" y1="210" x2="260" y2="168" stroke="#7b1f2e" stroke-width="1.5"/>
+        <line x1="320" y1="210" x2="320" y2="168" stroke="#7b1f2e" stroke-width="1.5"/>
+        <line x1="260" y1="168" x2="320" y2="168" stroke="#7b1f2e" stroke-width="1.5"/>
+
+        <!-- Merge 3: x5 & x6 at d=1.8 (y=156) -->
+        <line x1="430" y1="210" x2="430" y2="156" stroke="#7b1f2e" stroke-width="1.5"/>
+        <line x1="510" y1="210" x2="510" y2="156" stroke="#7b1f2e" stroke-width="1.5"/>
+        <line x1="430" y1="156" x2="510" y2="156" stroke="#7b1f2e" stroke-width="1.5"/>
+
+        <!-- Merge 4: {x1, x2} & {x3, x4} at d=3.8 (y=96) -->
+        <line x1="140" y1="180" x2="140" y2="96" stroke="#7b1f2e" stroke-width="1.5"/>
+        <line x1="290" y1="168" x2="290" y2="96" stroke="#7b1f2e" stroke-width="1.5"/>
+        <line x1="140" y1="96" x2="290" y2="96" stroke="#7b1f2e" stroke-width="1.5"/>
+
+        <!-- Merge 5: root merge at d=5.5 (y=45) -->
+        <line x1="215" y1="96" x2="215" y2="45" stroke="#7b1f2e" stroke-width="1.5"/>
+        <line x1="470" y1="156" x2="470" y2="45" stroke="#7b1f2e" stroke-width="1.5"/>
+        <line x1="215" y1="45" x2="470" y2="45" stroke="#7b1f2e" stroke-width="1.5"/>
+
+        <!-- Horizontal Cutoff Line at d = 2.5 (y=135) -->
+        <line x1="45" y1="135" x2="560" y2="135" stroke="#333" stroke-width="1.5" stroke-dasharray="6,3"/>
+        <text x="565" y="139" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">Threshold Cut (k=3)</text>
+    </svg>
+</div>
+<p class="diagram-caption">Figure 3: Hierarchical agglomerative dendrogram. The vertical height of a horizontal bridge indicates the distance between the two merged clusters. Slicing with a horizontal cut line at distance threshold d=2.5 partitions the dataset into exactly 3 clusters: {x1, x2}, {x3, x4}, and {x5, x6}.</p>
+
+<!-- ===================================================================
+     8. CLUSTERING HIGH-DIMENSIONAL DATA
+     =================================================================== -->
+<h2>8. Clustering High-Dimensional Data: CLIQUE and ProCLUS</h2>
+
+<h3>The Curse of Dimensionality in Clustering</h3>
+<p>As feature dimensionality \(d\) increases into dozens or hundreds of dimensions, traditional clustering algorithms break down due to two geometric phenomena:</p>
+<ol>
+    <li><strong>Distance Concentration:</strong> The difference between the distance to the nearest neighbor and the distance to the farthest neighbor vanishes relative to the distance itself:
+    \[ \lim_{d \to \infty} \frac{d_{\max} - d_{\min}}{d_{\min}} = 0 \]
+    Every point appears equidistant from every other point, rendering distance-based partitioning meaningless.</li>
+    <li><strong>Irrelevant Subspace Dimensions:</strong> In high-dimensional datasets (e.g., genomics, customer telemetry), clusters typically exist only in specific lower-dimensional projections (subspaces). In the remaining dimensions, points are distributed randomly like background noise, which completely obscures natural clusters when computing full-dimensional distances.</li>
+</ol>
+
+<h3>CLIQUE (CLustering In QUEst)</h3>
+<p>CLIQUE (Agrawal et al., 1998) is a <strong>grid-based, density-based subspace clustering</strong> algorithm. It automatically finds dense clusters embedded in any subspace of the original feature space.</p>
+
+<h4>Key Concepts and Apriori Property:</h4>
+<ul>
+    <li><strong>Grid Discretization:</strong> Partition each dimension into \(\xi\) equal-width intervals. The intersection of intervals across any \(k\) dimensions forms a \(k\)-dimensional rectangular grid cell (unit).</li>
+    <li><strong>Dense Unit:</strong> A cell is defined as dense if the fraction of total dataset points falling inside it exceeds a user-defined density threshold parameter \(\tau\).</li>
+    <li><strong>Apriori Subspace Pruning Property:</strong> If a \(k\)-dimensional cell is dense, all of its \((k-1)\)-dimensional projection cells must also be dense. Conversely, if any \((k-1)\)-dimensional projection is not dense, the \(k\)-dimensional cell cannot be dense.</li>
+</ul>
+
+<h4>Algorithm Steps:</h4>
+<ol>
+    <li>Find all 1-dimensional dense units by scanning each attribute independently.</li>
+    <li>Iteratively generate candidate \(k\)-dimensional units from pairs of \((k-1)\)-dimensional dense units sharing \((k-2)\) common dimensions, pruning candidates with non-dense sub-projections (Apriori principle).</li>
+    <li>Scan dataset to identify dense \(k\)-dimensional units.</li>
+    <li>For each subspace containing dense units, connect adjacent dense units to form connected components (clusters).</li>
+    <li>Generate minimal Disjunctive Normal Form (DNF) symbolic descriptions (bounding boxes) for each discovered cluster.</li>
+</ol>
+
+<div class="diagram-wrap">
+    <svg width="600" height="240" viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" aria-label="CLIQUE grid-based subspace clustering diagram">
+        <!-- 2D Space -->
+        <g transform="translate(40, 20)">
+            <text x="100" y="-5" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">2D Feature Subspace (X1, X2)</text>
+            <rect x="0" y="0" width="200" height="180" fill="#f9f9f7" stroke="#333" stroke-width="1.5"/>
+
+            <!-- Grid 4x4 -->
+            <line x1="50" y1="0" x2="50" y2="180" stroke="#ddd" stroke-width="1"/>
+            <line x1="100" y1="0" x2="100" y2="180" stroke="#ddd" stroke-width="1"/>
+            <line x1="150" y1="0" x2="150" y2="180" stroke="#ddd" stroke-width="1"/>
+            <line x1="0" y1="45" x2="200" y2="45" stroke="#ddd" stroke-width="1"/>
+            <line x1="0" y1="90" x2="200" y2="90" stroke="#ddd" stroke-width="1"/>
+            <line x1="0" y1="135" x2="200" y2="135" stroke="#ddd" stroke-width="1"/>
+
+            <!-- Dense units -->
+            <rect x="50" y="90" width="50" height="45" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+            <rect x="100" y="90" width="50" height="45" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+            <rect x="50" y="45" width="50" height="45" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+
+            <!-- Points inside dense cells -->
+            <circle cx="65" cy="110" r="2.5" fill="#7b1f2e"/>
+            <circle cx="80" cy="120" r="2.5" fill="#7b1f2e"/>
+            <circle cx="70" cy="100" r="2.5" fill="#7b1f2e"/>
+            <circle cx="85" cy="105" r="2.5" fill="#7b1f2e"/>
+            <circle cx="115" cy="110" r="2.5" fill="#7b1f2e"/>
+            <circle cx="135" cy="125" r="2.5" fill="#7b1f2e"/>
+            <circle cx="125" cy="100" r="2.5" fill="#7b1f2e"/>
+            <circle cx="65" cy="65" r="2.5" fill="#7b1f2e"/>
+            <circle cx="85" cy="75" r="2.5" fill="#7b1f2e"/>
+            <circle cx="75" cy="55" r="2.5" fill="#7b1f2e"/>
+
+            <!-- Sparse background points -->
+            <circle cx="25" cy="25" r="2" fill="#aaa"/>
+            <circle cx="175" cy="160" r="2" fill="#aaa"/>
+            <circle cx="180" cy="30" r="2" fill="#aaa"/>
+
+            <text x="100" y="195" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#333">Dimension X1</text>
+            <text x="-12" y="90" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#333" transform="rotate(-90,-12,90)">Dimension X2</text>
+        </g>
+
+        <!-- 1D projections on right -->
+        <g transform="translate(320, 30)">
+            <text x="120" y="-15" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">1D Marginal Projections</text>
+
+            <text x="0" y="15" font-family="system-ui,sans-serif" font-size="9" font-weight="bold" fill="#333">Projection onto X1:</text>
+            <rect x="0" y="25" width="240" height="20" fill="#f9f9f7" stroke="#333" stroke-width="1"/>
+            <rect x="60" y="25" width="60" height="20" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+            <rect x="120" y="25" width="60" height="20" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+            <text x="90" y="39" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="bold" fill="#7b1f2e">Dense [u1, u2]</text>
+            <text x="150" y="39" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="bold" fill="#7b1f2e">Dense [u2, u3]</text>
+
+            <text x="0" y="85" font-family="system-ui,sans-serif" font-size="9" font-weight="bold" fill="#333">Projection onto X2:</text>
+            <rect x="0" y="95" width="240" height="20" fill="#f9f9f7" stroke="#333" stroke-width="1"/>
+            <rect x="60" y="95" width="60" height="20" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+            <rect x="120" y="95" width="60" height="20" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+            <text x="90" y="109" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="bold" fill="#7b1f2e">Dense [v1, v2]</text>
+            <text x="150" y="109" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="bold" fill="#7b1f2e">Dense [v2, v3]</text>
+
+            <text x="120" y="150" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">2D cells formed from intersections of 1D dense intervals</text>
+        </g>
+    </svg>
+</div>
+<p class="diagram-caption">Figure 4: CLIQUE Subspace Clustering. Grid cells with point density exceeding threshold \tau are classified as dense units. Connected adjacent dense units form a subspace cluster, enabling detection of arbitrary shapes regardless of data distribution in unrelated dimensions.</p>
+
+<h3>ProCLUS (Projected Clustering)</h3>
+<p>While CLIQUE is grid-based, <strong>ProCLUS</strong> (Aggarwal et al., 1999) is a <strong>medoid-based projected clustering algorithm</strong>. It discovers clusters where each cluster \(C_i\) is associated with its own distinct subset of relevant dimensions \(\mathcal{D}_i \subset \{1, \dots, d\}\) (having average subspace cardinality \(l \ll d\)):</p>
+<ul>
+    <li><strong>Initialization Phase:</strong> Selects a well-scattered set of \(k\) medoid candidates using greedy distance-based sampling.</li>
+    <li><strong>Iterative Phase:</strong>
+        <ol>
+            <li>For each current medoid \(m_i\), evaluate the variance (standard deviation) of points along every dimension. Dimensions with low intra-cluster variance \(\sigma_{ij}^2\) are assigned to \(\mathcal{D}_i\).</li>
+            <li>Assign each data point to its closest medoid using Manhattan distance computed <em>only over that cluster's relevant subspace dimensions</em>:
+            \[ d(x, m_i) = \frac{1}{|\mathcal{D}_i|} \sum_{j \in \mathcal{D}_i} |x_j - m_{i, j}| \]</li>
+            <li>Evaluate clustering quality using total objective function. Bad medoids (those with small cluster size or high variance) are swapped with random candidate medoids.</li>
+        </ol>
+    </li>
+    <li><strong>Refinement Phase:</strong> Computes one final pass over data to clean noise and optimize cluster boundaries.</li>
+</ul>
+
+<!-- ===================================================================
+     9. CLUSTERING IN NON-EUCLIDEAN SPACE
+     =================================================================== -->
+<h2>9. Clustering in Non-Euclidean Space: BFR &amp; CURE</h2>
+
+<h3>The BFR (Bradley-Fayyad-Reina) Algorithm</h3>
+<p>BFR (1998) scales K-Means to massive disk-resident datasets by assuming clusters are normally distributed around centroids in Euclidean space. Points are summarized into three in-memory memory sets:</p>
+<ol>
+    <li><strong>Discard Set (DS):</strong> Points that are sufficiently close to a cluster centroid (measured via <strong>Mahalanobis distance</strong> \(&lt; 3\sigma\)). Points are discarded from memory immediately after updating the cluster's sufficient statistics:
+        <ul>
+            <li>\(N\): number of points.</li>
+            <li>\(\vec{SUM} = \sum x_i\): vector sum of coordinates along each dimension.</li>
+            <li>\(\vec{SUMSQ} = \sum x_i^2\): vector sum of squared coordinates.</li>
+        </ul>
+        Centroid \(\mu = \vec{SUM}/N\) and variance \(\sigma^2 = (\vec{SUMSQ}/N) - \mu^2\) are calculated on-the-fly.</li>
+    <li><strong>Compression Set (CS):</strong> Mini-clusters of points that are close to each other but not close enough to any existing cluster centroid. Stored using the same \((N, \vec{SUM}, \vec{SUMSQ})\) summary.</li>
+    <li><strong>Retained Set (RS):</strong> True outlier points that cannot be assigned to any DS or CS. Kept in raw form in RAM until subsequent batches arrive.</li>
+</ol>
+
+<h3>The CURE (Clustering Using REpresentatives) Algorithm</h3>
+<p>Standard K-Means fails on non-spherical clusters (e.g., crescents, interlocking spirals), while hierarchical single linkage is vulnerable to noise chaining. <strong>CURE</strong> (Guha, Rastogi, Shim, 1998) provides a hybrid solution:</p>
+<ul>
+    <li>Instead of using a single centroid or all points, CURE represents each cluster by a fixed number \(c\) of <strong>well-scattered representative points</strong>.</li>
+    <li><strong>Shrinkage Mechanism:</strong> The \(c\) representative points are shrunk towards the cluster center of mass by a fraction \(\alpha \in [0, 1]\) (typically \(\alpha = 0.2\)):
+    \[ p_{\text{shrunk}} = p + \alpha (\mu - p) \]
+    Shrinkage dampens the adverse effect of isolated outlier points and noise spikes while preserving the non-spherical geometric geometry of the cluster.</li>
+    <li>Cluster distance is defined as the minimum Euclidean distance between any pair of shrunk representative points:
+    \[ D_{\text{CURE}}(C_1, C_2) = \min_{p \in \text{Rep}(C_1), q \in \text{Rep}(C_2)} \|p - q\| \]</li>
+    <li>Handles arbitrary geometric shapes, complex non-convex boundaries, and scales to large datasets using random sampling and spatial partitioning (KD-trees).</li>
+</ul>
+
+<!-- ===================================================================
+     10. CLUSTERING FOR STREAMS AND PARALLELISM
+     =================================================================== -->
+<h2>10. Clustering for Streams and Parallelism</h2>
+
+<h3>Stream Clustering: CluStream</h3>
+<p>Traditional clustering algorithms require multiple passes over the dataset. Over an unbounded stream, multi-pass algorithms are impossible. The <strong>CluStream</strong> algorithm (Aggarwal et al., 2003) introduces a two-phase stream clustering architecture:</p>
+
+<ol>
+    <li><strong>Online Micro-Clustering Phase:</strong>
+        <ul>
+            <li>Maintains \(q\) statistical <strong>micro-clusters</strong> in real-time memory (where \(q \gg k\)).</li>
+            <li>Each micro-cluster is stored as a <strong>Cluster Feature (CF) tuple</strong> containing: \((N, \vec{LS}, \vec{SS}, \text{LST}, \text{SST})\), where \(N\) is point count, \(\vec{LS}\) is linear sum of points, \(\vec{SS}\) is sum of squares, \(\text{LST}\) is linear sum of timestamps, and \(\text{SST}\) is sum of squared timestamps.</li>
+            <li>When a new stream point arrives, it is absorbed into its nearest micro-cluster if within maximum boundary distance; otherwise, a new micro-cluster is initialized and the oldest inactive micro-cluster is merged or evicted. Operation takes \(O(1)\) time.</li>
+        </ul>
+    </li>
+    <li><strong>Offline Macro-Clustering Phase:</strong>
+        <ul>
+            <li>Operates on-demand when an analyst submits a query for time horizon \(h\).</li>
+            <li>Extracts the difference between current micro-clusters and historical snapshot micro-clusters stored \(h\) time units ago (exploiting the additive property of CF vectors).</li>
+            <li>Executes a modified weighted K-Means on the extracted micro-clusters to output the final \(k\) macro-clusters.</li>
+        </ul>
+    </li>
+</ol>
+
+<h3>Parallel and Distributed Clustering (MapReduce / Spark)</h3>
+<p>For petabyte-scale datasets, clustering is parallelized across compute clusters:</p>
+<ul>
+    <li><strong>Distributed K-Means on MapReduce:</strong>
+        <ul>
+            <li><strong>Map Phase:</strong> Each mapper reads a shard of the dataset and current broadcast centroids. For every point, it finds the nearest centroid and outputs \((j, (x_i, 1))\), where \(j\) is the centroid index.</li>
+            <li><strong>Combine Phase:</strong> Locally aggregates points per centroid into local vector sum and count.</li>
+            <li><strong>Reduce Phase:</strong> Aggregates sums and counts from all mappers, divides \(\sum x_i / \sum 1\) to compute new global centroids, and tests for convergence.</li>
+        </ul>
+    </li>
+    <li><strong>Apache Spark MLLib:</strong> Caches data partitions in distributed cluster RAM (Resilient Distributed Datasets / DataFrames), eliminating MapReduce disk I/O bottlenecks and executing iterative K-Means 20–50x faster.</li>
+</ul>
+
+<!-- ===================================================================
+     11. COMPARISON OF CLUSTERING ALGORITHMS
+     =================================================================== -->
+<h2>11. Comprehensive Comparison of Clustering Algorithms</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Algorithm</th>
+            <th>Type / Paradigm</th>
+            <th>Time Complexity</th>
+            <th>Handles Arbitrary Shapes?</th>
+            <th>Sensitivity to Outliers</th>
+            <th>Scalability to Large / Streaming Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>K-Means / K-Means++</strong></td>
+            <td>Partitioning (Centroid)</td>
+            <td>\(O(n \cdot k \cdot d \cdot i)\)</td>
+            <td>No (assumes spherical clusters)</td>
+            <td>High (squared distances amplify outliers)</td>
+            <td>High (parallelizes easily)</td>
+        </tr>
+        <tr>
+            <td><strong>Agglomerative Hierarchical</strong></td>
+            <td>Hierarchical (Bottom-Up)</td>
+            <td>\(O(n^2 \log n)\) to \(O(n^3)\)</td>
+            <td>Single: Yes; Complete/Ward: No</td>
+            <td>Low (Single linkage); High (Complete)</td>
+            <td>Very Poor (\(O(n^2)\) space; max \(\approx 50,000\) points)</td>
+        </tr>
+        <tr>
+            <td><strong>CLIQUE</strong></td>
+            <td>Grid &amp; Density Subspace</td>
+            <td>\(O(c^k + n \cdot k)\)</td>
+            <td>Yes (connected dense units)</td>
+            <td>Very Low (sparse cells ignored)</td>
+            <td>High for high dimensions; poor if dense units explode</td>
+        </tr>
+        <tr>
+            <td><strong>ProCLUS</strong></td>
+            <td>Medoid Projected Subspace</td>
+            <td>\(O(n \cdot k \cdot l \cdot i)\)</td>
+            <td>No (hyper-ellipsoidal in subspace)</td>
+            <td>Moderate (medoids more robust than means)</td>
+            <td>Moderate to high</td>
+        </tr>
+        <tr>
+            <td><strong>BFR Algorithm</strong></td>
+            <td>Partitioning (Summary Sets)</td>
+            <td>\(O(n \cdot k \cdot d)\)</td>
+            <td>No (assumes Gaussian clusters)</td>
+            <td>Low (outliers relegated to Retained Set)</td>
+            <td>Extremely High (disk-resident data)</td>
+        </tr>
+        <tr>
+            <td><strong>CURE</strong></td>
+            <td>Representative Points + Shrinkage</td>
+            <td>\(O(n^2 \log n)\) (sample: \(O(n))\)</td>
+            <td><strong>Yes</strong> (crescents, rings, complex curves)</td>
+            <td><strong>Very Low</strong> (shrinkage neutralizes outliers)</td>
+            <td>High via random sampling and KD-trees</td>
+        </tr>
+        <tr>
+            <td><strong>CluStream</strong></td>
+            <td>Two-phase Streaming (Micro/Macro)</td>
+            <td>Online: \(O(1)\); Offline: \(O(q \cdot k)\)</td>
+            <td>Macro level determines shape</td>
+            <td>Low (outliers isolated into inactive micro-clusters)</td>
+            <td><strong>Infinite stream scalability</strong></td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="shared.js"></script>
+</body>
+</html>

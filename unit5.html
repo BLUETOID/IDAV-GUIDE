@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Unit V — Data Visualization. Comprehensive textbook guide on visualization stages, computational support, human vision and perception, Gestalt laws, Cleveland-McGill ranking, display limitations, complex information spaces, and narrative visualization.">
+    <title>Unit V — Data Visualization | IDAV Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Merriweather:wght@400;700&family=Outfit:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=Space+Grotesk:wght@400;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="unit1.html">Unit I</a></li>
+        <li><a href="unit2.html">Unit II</a></li>
+        <li><a href="unit3.html">Unit III</a></li>
+        <li><a href="unit4.html">Unit IV</a></li>
+        <li><a href="unit5.html" class="active">Unit V</a></li>
+        <li><a href="short-answers.html">Short Answers</a></li>
+        <li><a href="long-answers.html">Long Answers</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1>Unit V: Data Visualization</h1>
+    <p>08 Lectures &nbsp;|&nbsp; Comprehensive Reference Guide</p>
+</div>
+
+<div class="note-banner">
+    <strong>ST-1 Exam Coverage Notice</strong>
+    No ST-1 exam questions in the provided question bank are drawn from this unit. This page provides exhaustive, textbook-grade coverage of every topic in the syllabus for complete course preparation and comprehensive university exams.
+</div>
+
+<!-- ===================================================================
+     1. INTRODUCTION TO VISUALIZATION AND STAGES
+     =================================================================== -->
+<h2>1. Introduction to Visualization &amp; Stages</h2>
+
+<h3>Definition and Core Purpose</h3>
+<p><strong>Data visualization</strong> is the formal mapping of abstract structured data into visual representations (geometric marks and visual channels) to amplify human cognition. Stuart Card, Jock Mackinlay, and Ben Shneiderman (1999) define visualization as <em>"the use of computer-supported, interactive, visual representations of abstract data to amplify cognition."</em></p>
+
+<p>The three fundamental goals of data visualization are:</p>
+<ol>
+    <li><strong>Exploratory Visualization:</strong> Open-ended discovery and hypothesis generation without preconceived answers (e.g., discovering unknown clusters or unexpected outliers in a high-dimensional dataset).</li>
+    <li><strong>Confirmatory Visualization:</strong> Validating, testing, or rejecting statistical hypotheses (e.g., verifying whether data meets the normality assumption of linear regression).</li>
+    <li><strong>Explanatory (Presentation) Visualization:</strong> Communicating confirmed insights, narratives, and recommendations to non-technical stakeholders to drive organizational decisions.</li>
+</ol>
+
+<h3>Why Visual Representation Amplifies Cognition</h3>
+<ul>
+    <li><strong>High-Bandwidth Visual Channel:</strong> The human visual cortex processes over 70% of sensory receptors, enabling parallel pattern recognition at bandwidth orders of magnitude faster than serial reading of tabular text or numbers.</li>
+    <li><strong>External Cognitive Memory:</strong> Visual graphics act as external memory buffers, offloading memory storage from human working memory (which holds only 3–4 chunks) into high-resolution display space.</li>
+    <li><strong>Instant Pattern Detection:</strong> Clusters, spatial distributions, trends, cyclical patterns, and anomalies emerge immediately in visual space without requiring iterative mathematical queries.</li>
+</ul>
+
+<h3>The Visualization Pipeline (Reference Model)</h3>
+<p>The standard Reference Model for visualization formalizes the transformation of raw information into human understanding through four sequential stages with interactive feedback loops:</p>
+
+<ol>
+    <li><strong>Raw Data:</strong> Unstructured or semi-structured data sources (relational tables, text documents, sensor feeds, JSON APIs).</li>
+    <li><strong>Data Transformations:</strong> Preprocessing operations—filtering, aggregation, dimensionality reduction, missing value imputation, and normalization—that generate clean, structured <em>Data Tables</em>.</li>
+    <li><strong>Visual Mappings:</strong> Mapping data dimensions to graphical primitives (marks like points, lines, bars) and graphical attributes (channels like position, color, size, orientation) to construct <em>Visual Structures</em>.</li>
+    <li><strong>View Transformations:</strong> Rendering graphical structures onto screen displays through camera projections, viewport scaling, zooming, panning, and clipping to produce interactive <em>Views</em>.</li>
+    <li><strong>User Interaction Loops:</strong> The user perceives the visualization and manipulates controls (filtering, brushing, dynamic queries), closing the feedback loop back to the transformation and mapping stages.</li>
+</ol>
+
+<div class="diagram-wrap">
+    <svg width="680" height="200" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" aria-label="Visualization Reference Pipeline diagram showing stages and interaction feedback loops">
+        <defs>
+            <marker id="arrU5Pipe" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#7b1f2e"/>
+            </marker>
+        </defs>
+
+        <!-- Stage 1 -->
+        <rect x="15" y="40" width="105" height="55" rx="3" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+        <text x="67" y="62" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#7b1f2e">Raw Data</text>
+        <text x="67" y="78" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">DBs, logs, APIs</text>
+
+        <line x1="120" y1="67" x2="153" y2="67" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrU5Pipe)"/>
+
+        <!-- Stage 2 -->
+        <rect x="155" y="40" width="115" height="55" rx="3" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+        <text x="212" y="60" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Data Tables</text>
+        <text x="212" y="73" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#555">Transformations</text>
+        <text x="212" y="85" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#777">Filter &amp; Aggregate</text>
+
+        <line x1="270" y1="67" x2="303" y2="67" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrU5Pipe)"/>
+
+        <!-- Stage 3 -->
+        <rect x="305" y="40" width="125" height="55" rx="3" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+        <text x="367" y="60" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Visual Structure</text>
+        <text x="367" y="73" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#555">Visual Mapping</text>
+        <text x="367" y="85" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#777">Marks &amp; Channels</text>
+
+        <line x1="430" y1="67" x2="463" y2="67" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrU5Pipe)"/>
+
+        <!-- Stage 4 -->
+        <rect x="465" y="40" width="95" height="55" rx="3" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+        <text x="512" y="62" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#7b1f2e">Views</text>
+        <text x="512" y="78" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">GPU / Display</text>
+
+        <line x1="560" y1="67" x2="588" y2="67" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrU5Pipe)"/>
+
+        <!-- Human User -->
+        <rect x="590" y="35" width="75" height="65" rx="4" fill="#7b1f2e"/>
+        <text x="627" y="65" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#fff">Human</text>
+        <text x="627" y="82" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#fdd">Perception</text>
+
+        <!-- Feedback Loops -->
+        <path d="M 627,100 L 627,150 L 512,150 L 512,100" fill="none" stroke="#7b1f2e" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#arrU5Pipe)"/>
+        <text x="570" y="162" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#7b1f2e">View Controls (Pan / Zoom)</text>
+
+        <path d="M 627,150 L 367,150 L 367,100" fill="none" stroke="#7b1f2e" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#arrU5Pipe)"/>
+        <text x="430" y="178" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#7b1f2e">Visual Mapping Controls (Channel reassignment)</text>
+
+        <path d="M 367,150 L 212,150 L 212,100" fill="none" stroke="#7b1f2e" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#arrU5Pipe)"/>
+        <text x="280" y="193" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#7b1f2e">Data Controls (Dynamic query filtering)</text>
+    </svg>
+</div>
+<p class="diagram-caption">Figure 1: The Visualization Reference Model (Card, Mackinlay, Shneiderman). Forward pipeline transforms raw data into rendered views; reverse feedback paths represent interactive human exploration.</p>
+
+<!-- ===================================================================
+     2. COMPUTATIONAL SUPPORT
+     =================================================================== -->
+<h2>2. Computational Support</h2>
+
+<p>High-performance data visualization requires robust computational infrastructure across data processing, hardware acceleration, indexing, and rendering pipelines:</p>
+
+<h3>1. Data Processing and Reduction</h3>
+<ul>
+    <li><strong>Server-Side Pre-aggregation:</strong> For billion-row datasets, streaming individual raw tuples to the browser causes network and memory crashes. Distributed OLAP engines (Apache Pinot, ClickHouse) pre-aggregate data into data cubes, returning only the summary bins needed for rendering.</li>
+    <li><strong>Vectorized Binning &amp; Hexbinning:</strong> Two-dimensional continuous coordinates are aggregated into discrete hexagonal or rectangular spatial bins on the server, converting a 100-million-point scatter plot into a 10,000-cell density heatmap.</li>
+</ul>
+
+<h3>2. Hardware Acceleration: WebGL vs. Canvas vs. SVG</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Technology</th>
+            <th>Rendering Model</th>
+            <th>Element Limit</th>
+            <th>Pros</th>
+            <th>Cons</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>SVG (Scalable Vector Graphics)</strong></td>
+            <td>Retained mode (DOM tree nodes)</td>
+            <td>\(\approx 1,000 - 5,000\) elements</td>
+            <td>Resolution independent; crisp CSS styling; individual DOM event listeners (click, hover).</td>
+            <td>High memory overhead; browser DOM reflow bottlenecks at scale.</td>
+        </tr>
+        <tr>
+            <td><strong>HTML5 Canvas (2D)</strong></td>
+            <td>Immediate mode (Pixel rasterization)</td>
+            <td>\(\approx 50,000 - 100,000\) elements</td>
+            <td>Lightweight memory footprint; fast sequential 2D drawing loops.</td>
+            <td>Pixelated on zoom; requires custom hit-testing for mouse interactivity.</td>
+        </tr>
+        <tr>
+            <td><strong>WebGL / WebGPU</strong></td>
+            <td>Hardware-accelerated GPU shaders</td>
+            <td><strong>1,000,000+ elements</strong> at 60 FPS</td>
+            <td>Massive parallelism via vertex/fragment shaders; buttery-smooth pan and zoom over millions of points.</td>
+            <td>Steep programming complexity; shader memory management overhead.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>3. Spatial Indexing for Fast Viewport Culling</h3>
+<p>To support smooth panning and zooming over large geographic or scatter datasets, visualization engines construct hierarchical spatial indices in memory:</p>
+<ul>
+    <li><strong>R-Trees &amp; Quadtrees:</strong> Recursively partition the 2D plane into bounding boxes. When a user pans or zooms, the engine queries the spatial index in \(O(\log N)\) time to retrieve only the subset of visual marks intersecting the current screen bounding box, discarding all off-screen marks (frustum culling).</li>
+    <li><strong>KD-Trees:</strong> Enable microsecond-latency \(k\)-nearest neighbor searches to display interactive tooltip cards when the user hovers near a data point.</li>
+</ul>
+
+<h3>4. Cognitive Latency Thresholds</h3>
+<p>Human perceptual psychophysics (Robert Miller, 1968; Stuart Card, 1991) defines three critical latency bounds for interactive visualization systems:</p>
+<ul>
+    <li><strong>0.1 Second (100 ms):</strong> The threshold for perception of <em>instantaneous response</em>. Direct manipulation interactions (dragging a slider, hover tooltips, continuous zoom) must update within 100 ms (ideally 60 FPS = 16.6 ms) to feel physical and connected.</li>
+    <li><strong>1.0 Second:</strong> The limit for maintaining the user's unbroken <em>flow of thought</em>. Queries that execute within 1 second allow seamless exploratory navigation without mental distraction.</li>
+    <li><strong>10 Seconds:</strong> The limit of human <em>attention</em>. Operations exceeding 10 seconds require asynchronous background processing with progress indicators, otherwise the user switches tasks.</li>
+</ul>
+
+<!-- ===================================================================
+     3. ISSUES IN VISUALIZATION
+     =================================================================== -->
+<h2>3. Issues in Visualization</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Issue / Pathology</th>
+            <th>Mechanism of Distortion</th>
+            <th>Negative Cognitive Impact</th>
+            <th>Principled Mitigation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Overplotting &amp; Occlusion</strong></td>
+            <td>High-density data points plotted over identical pixel coordinates.</td>
+            <td>Foreground points completely obscure background points; true density is invisible.</td>
+            <td>Alpha blending (transparency), 2D density contour plots, hexbin aggregation, spatial jittering.</td>
+        </tr>
+        <tr>
+            <td><strong>Visual Clutter</strong></td>
+            <td>Excessive overlapping marks, labels, gridlines, and borders competing for attention.</td>
+            <td>High extraneous cognitive load; failure of visual search.</td>
+            <td>Aggressive filtering, semantic zooming, progressive disclosure, interactive tooltips instead of static labels.</td>
+        </tr>
+        <tr>
+            <td><strong>Truncated Axes (Non-Zero Baseline)</strong></td>
+            <td>Starting the bar chart baseline at non-zero values (e.g., y-axis starting at 95 instead of 0).</td>
+            <td>Grossly exaggerates minute percentage differences, deceiving viewers regarding true proportions.</td>
+            <td>Always enforce a zero baseline for bar charts (length encoding). Use broken axis indicators only if unavoidable.</td>
+        </tr>
+        <tr>
+            <td><strong>Area vs. Radius Distortion</strong></td>
+            <td>Scaling circle radius linearly with data value rather than scaling circle area.</td>
+            <td>Because Area \(\propto r^2\), doubling a data value quadruples the visual circle area, quadratic distortion.</td>
+            <td>Explicitly scale mark radius by the square root of data value: \(r \propto \sqrt{v}\).</td>
+        </tr>
+        <tr>
+            <td><strong>Rainbow Colormap Pitfall</strong></td>
+            <td>Using the default Jet/Rainbow spectrum for continuous sequential data.</td>
+            <td>Non-linear perceptual luminance transitions produce false boundaries and hide real gradients; impossible for color-blind users.</td>
+            <td>Use perceptually uniform colormaps (Viridis, Magma, Cividis) where luminance increases monotonically with data.</td>
+        </tr>
+        <tr>
+            <td><strong>Chartjunk (Edward Tufte)</strong></td>
+            <td>Decorative visual elements that convey no information (fake 3D bars, drop shadows, heavy gridlines, clip-art).</td>
+            <td>Distracts user attention, degrades data-ink ratio, introduces optical vibration illusions.</td>
+            <td>Eliminate all non-data ink. Maximize data-ink ratio.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Tufte's Lie Factor</h3>
+<p>Edward Tufte (1983) defined the mathematical <strong>Lie Factor</strong> to quantify graphical distortion:</p>
+\[ \text{Lie Factor} = \frac{\text{Size of effect shown in graphic}}{\text{Size of effect in data}} = \frac{|\Delta \text{Graphic}| / \text{Graphic}_{\text{initial}}}{|\Delta \text{Data}| / \text{Data}_{\text{initial}}} \]
+<ul>
+    <li>\(\text{Lie Factor} = 1.0\): Completely accurate representation.</li>
+    <li>\(\text{Lie Factor} &gt; 1.05\): Graphic exaggerates the true effect (overstating growth or decline).</li>
+    <li>\(\text{Lie Factor} &lt; 0.95\): Graphic suppresses or conceals the true effect.</li>
+</ul>
+
+<!-- ===================================================================
+     4. DIFFERENT TYPES OF VISUALIZATION TASKS
+     =================================================================== -->
+<h2>4. Different Types of Visualization Tasks</h2>
+
+<h3>Shneiderman's Visual Information Seeking Mantra</h3>
+<div class="note-banner">
+    <strong>The Information Seeking Mantra (Ben Shneiderman, 1996)</strong>
+    <em>"Overview first, zoom and filter, then details-on-demand."</em><br>
+    Effective visual interfaces present a broad, macroscopic summary of the entire information space, allow users to isolate interesting regions of interest through interactive zooming and filtering, and provide specific attribute values upon user selection.
+</div>
+
+<h3>Amar, Eagan, and Stasko's Analytical Task Taxonomy</h3>
+<p>Amar, Eagan, and Stasko (2005) identified 10 atomic low-level visual analytical tasks that users perform during exploratory data analysis:</p>
+<ol>
+    <li><strong>Retrieve Value:</strong> Identify the exact attribute value of a specific data mark.</li>
+    <li><strong>Filter:</strong> Isolate data objects that satisfy specific conditional predicates.</li>
+    <li><strong>Compute Derived Value:</strong> Calculate aggregate statistics (mean, median, sum, ratio) across a group.</li>
+    <li><strong>Find Extremum:</strong> Locate data objects possessing minimum or maximum attribute values.</li>
+    <li><strong>Sort:</strong> Rank data items according to a defined ordering attribute.</li>
+    <li><strong>Determine Range:</strong> Find the minimum and maximum span of a continuous attribute.</li>
+    <li><strong>Characterize Distribution:</strong> Discern the overall statistical spread and shape (normal, skewed, bimodal).</li>
+    <li><strong>Find Anomalies:</strong> Detect outliers, missing values, or aberrant deviations from expectations.</li>
+    <li><strong>Find Clusters:</strong> Identify cohesive groupings of similar items in multi-attribute space.</li>
+    <li><strong>Correlate:</strong> Determine whether two or more continuous variables exhibit positive, negative, or non-linear dependencies.</li>
+</ol>
+
+<h3>Chart Taxonomy Mapped to Analytical Goals</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Analytical Goal</th>
+            <th>Recommended Chart Types</th>
+            <th>Primary Encoded Channels</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Comparison across Categories</strong></td>
+            <td>Horizontal bar chart, grouped bar, slope chart, lollipop chart</td>
+            <td>Position along common aligned scale, length</td>
+        </tr>
+        <tr>
+            <td><strong>Trend over Time (Temporal)</strong></td>
+            <td>Line chart, area chart, sparkline, horizon graph</td>
+            <td>Position (x=time, y=metric), slope/direction</td>
+        </tr>
+        <tr>
+            <td><strong>Statistical Distribution</strong></td>
+            <td>Histogram, Kernel Density Estimate (KDE), box-and-whisker plot, violin plot</td>
+            <td>Position, area under curve, five-number summary marks</td>
+        </tr>
+        <tr>
+            <td><strong>Bivariate &amp; Multivariate Correlation</strong></td>
+            <td>Scatter plot, scatterplot matrix (SPLOM), bubble chart, parallel coordinates</td>
+            <td>2D spatial position (x, y), point size, point color</td>
+        </tr>
+        <tr>
+            <td><strong>Part-to-Whole Composition</strong></td>
+            <td>Stacked bar chart, treemap, sunburst diagram, waffle chart</td>
+            <td>Length, 2D area (nested rectangles), angular arc</td>
+        </tr>
+        <tr>
+            <td><strong>Geospatial Distribution</strong></td>
+            <td>Choropleth map, proportional symbol map, cartogram, flow map</td>
+            <td>Geographic coordinates (lat/long), color saturation, glyph size</td>
+        </tr>
+        <tr>
+            <td><strong>Hierarchies &amp; Networks</strong></td>
+            <td>Node-link graph, adjacency matrix, Sankey diagram, chord diagram</td>
+            <td>Node position, link thickness, path flow direction</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- ===================================================================
+     5. DATA REPRESENTATION: MARKS AND CHANNELS
+     =================================================================== -->
+<h2>5. Data Representation: Marks and Visual Channels</h2>
+
+<h3>Data Types and Properties</h3>
+<ul>
+    <li><strong>Nominal (Categorical):</strong> Discrete categories with no intrinsic order (e.g., country, product category, blood type). Operations: \(=\), \(\neq\).</li>
+    <li><strong>Ordinal:</strong> Ordered categories with no fixed mathematical difference between ranks (e.g., satisfaction ratings: low, medium, high; education level). Operations: \(&lt;\), \(&gt;\).</li>
+    <li><strong>Quantitative (Numerical):</strong> Continuous or discrete measurements supporting arithmetic:
+        <ul>
+            <li><em>Interval:</em> Zero point is arbitrary (e.g., temperature in Celsius/Fahrenheit, calendar year). Operations: \(+\), \(-\).</li>
+            <li><em>Ratio:</em> Zero point represents a true physical absence (e.g., weight, revenue, distance, time elapsed). Operations: \(\times\), \(\div\).</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>Marks and Channels</h3>
+<ul>
+    <li><strong>Graphical Marks:</strong> Geometric primitives that represent data items: <em>Points</em> (0D), <em>Lines</em> (1D), <em>Areas</em> (2D), and <em>Volumes</em> (3D).</li>
+    <li><strong>Visual Channels:</strong> Graphical properties that control mark appearance to encode attribute values: <em>Position</em> (aligned or unaligned), <em>Length</em>, <em>Angle</em>, <em>Direction</em>, <em>Area</em>, <em>Curvature</em>, <em>Color Luminance</em>, <em>Color Saturation</em>, <em>Color Hue</em>, <em>Shape</em>, and <em>Spatial Texture</em>.</li>
+</ul>
+
+<h3>Cleveland and McGill's Perceptual Accuracy Hierarchy</h3>
+<p>William S. Cleveland and Robert McGill (1984) conducted foundational psychophysical experiments to rank visual channels based on human perceptual decoding accuracy for <strong>quantitative continuous data</strong>. Their hierarchy (re-validated by Heer and Bostock, 2010) is the foundational design law of data visualization:</p>
+
+<div class="diagram-wrap">
+    <svg width="640" height="230" viewBox="0 0 640 230" xmlns="http://www.w3.org/2000/svg" aria-label="Cleveland and McGill perceptual channel ranking for quantitative data">
+        <!-- Axes -->
+        <line x1="180" y1="20" x2="180" y2="210" stroke="#333" stroke-width="1.5"/>
+        <line x1="180" y1="210" x2="600" y2="210" stroke="#333" stroke-width="1.5"/>
+        <text x="390" y="225" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">Decreasing Perceptual Error (Higher Human Accuracy) →</text>
+
+        <!-- Channel Bars -->
+        <!-- 1. Position on common scale -->
+        <text x="170" y="42" text-anchor="end" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">1. Position (Common Scale)</text>
+        <rect x="180" y="28" width="380" height="20" fill="#7b1f2e"/>
+        <text x="570" y="42" font-family="system-ui,sans-serif" font-size="9" font-weight="bold" fill="#7b1f2e">Most Accurate</text>
+
+        <!-- 2. Position on non-aligned scale -->
+        <text x="170" y="72" text-anchor="end" font-family="system-ui,sans-serif" font-size="10" fill="#333">2. Position (Non-aligned)</text>
+        <rect x="180" y="58" width="330" height="20" fill="#9e3a49"/>
+
+        <!-- 3. Length -->
+        <text x="170" y="102" text-anchor="end" font-family="system-ui,sans-serif" font-size="10" fill="#333">3. Length</text>
+        <rect x="180" y="88" width="280" height="20" fill="#9e3a49"/>
+
+        <!-- 4. Direction / Angle -->
+        <text x="170" y="132" text-anchor="end" font-family="system-ui,sans-serif" font-size="10" fill="#333">4. Direction / Angle</text>
+        <rect x="180" y="118" width="220" height="20" fill="#c0707c"/>
+
+        <!-- 5. Area -->
+        <text x="170" y="162" text-anchor="end" font-family="system-ui,sans-serif" font-size="10" fill="#333">5. Area</text>
+        <rect x="180" y="148" width="160" height="20" fill="#c0707c"/>
+
+        <!-- 6. Volume / Curvature / Color Saturation -->
+        <text x="170" y="192" text-anchor="end" font-family="system-ui,sans-serif" font-size="10" fill="#333">6. Color Saturation / Shading</text>
+        <rect x="180" y="178" width="100" height="20" fill="#dfabb2"/>
+        <text x="290" y="192" font-family="system-ui,sans-serif" font-size="9" fill="#777">Least Accurate</text>
+    </svg>
+</div>
+<p class="diagram-caption">Figure 2: Cleveland and McGill's empirical ranking of visual channels for quantitative data. Position along a common aligned scale delivers the lowest perceptual estimation error.</p>
+
+<h3>Stevens' Power Law in Visual Perception</h3>
+<p>Psychophysicist S. S. Stevens (1957) demonstrated that the relationship between perceived sensation magnitude \(S\) and actual physical stimulus intensity \(I\) follows an exponential power law:</p>
+\[ S = k \cdot I^\beta \]
+<ul>
+    <li><strong>Length (\(\beta \approx 1.0\)):</strong> Human judgment of 1D length is virtually unbiased and linear.</li>
+    <li><strong>Area (\(\beta \approx 0.7 - 0.8\)):</strong> Humans systematically <em>underestimate</em> 2D areas (a circle with 4x the area of another is perceived as only \(\approx 2.8\)x larger).</li>
+    <li><strong>Volume (\(\beta \approx 0.5 - 0.6\)):</strong> Humans severely underestimate 3D volumes.</li>
+</ul>
+
+<!-- ===================================================================
+     6. DISPLAY SPACE & RENDERING TIME LIMITATIONS
+     =================================================================== -->
+<h2>6. Limitations: Display Space, Rendering Time &amp; Navigation Links</h2>
+
+<h3>Display Space Limitation</h3>
+<p>A physical computer display provides a finite grid of pixels (e.g., a 1080p display has \(\approx 2.07\) million pixels; a 4K display has \(\approx 8.29\) million pixels). When a dataset comprises tens of millions of records, the number of data items drastically exceeds display resolution. Three architectural techniques address this space bottleneck:</p>
+
+<ol>
+    <li><strong>Focus + Context (Distortion-Oriented Views):</strong> Displays the focal region of current interest in high magnification and detail, while smoothly compressing surrounding contextual elements into the margins.
+        <ul>
+            <li><em>Bifocal Displays &amp; Fisheye Lenses:</em> Magnify points near mouse cursor while shrinking peripheral marks.</li>
+            <li><em>Hyperbolic Trees:</em> Projects large hierarchical tree structures onto a Poincaré hyperbolic disk, allocating exponential perimeter space to peripheral nodes.</li>
+        </ul>
+    </li>
+    <li><strong>Overview + Detail (Dual-Window Navigation):</strong> Employs two coordinated spatial views:
+        <ul>
+            <li>An <em>overview panel</em> (mini-map) displaying the entire global dataset in coarse, aggregated resolution with a visible bounding box indicator.</li>
+            <li>A <em>detail panel</em> rendering an expanded, full-resolution visualization of the sub-region enclosed by the overview's bounding box.</li>
+        </ul>
+    </li>
+    <li><strong>Small Multiples (Edward Tufte):</strong> Slices complex multi-dimensional datasets into a series of small, identical sub-charts arranged in a grid, where each small chart shares identical axes, scales, and visual encodings but displays a different categorical slice or time epoch. Enables instant comparison without taxing working memory.</li>
+</ol>
+
+<h3>Navigation Links &amp; Coordinated Multiple Views</h3>
+<p>In complex analytical dashboards, navigation links tie disparate visual components together:</p>
+<ul>
+    <li><strong>Brushing and Linking:</strong> Selecting (brushing) a subset of data marks in one view (e.g., highlighting high-income customers in a scatter plot) immediately and automatically highlights the identical data entities across all other coordinated views (e.g., highlighting their corresponding bars in a geographic chart and timeline).</li>
+    <li><strong>Semantic Zooming:</strong> Unlike geometric zooming (which merely magnifies pixels), semantic zooming alters the <em>representation</em> of data based on zoom level (e.g., zooming into a map shifts from country outlines, to state borders, to road networks, to individual building footprints).</li>
+    <li><strong>Drill-Down / Roll-Up:</strong> Navigating through hierarchical dimensional levels (e.g., clicking on a national quarterly bar to drill down into regional monthly distributions).</li>
+</ul>
+
+<!-- ===================================================================
+     7. HUMAN VISION AND PERCEPTION
+     =================================================================== -->
+<h2>7. Human Vision &amp; Cognitive Perception</h2>
+
+<h3>Foveal vs. Peripheral Vision</h3>
+<p>The human retina is not a uniform sensor:</p>
+<ul>
+    <li><strong>Fovea Centralis:</strong> A microscopic region occupying only \(\approx 1^\circ - 2^\circ\) of the central visual angle (the size of a thumbnail held at arm's length). Densely packed with cone photoreceptors; capable of sharp resolution, color acuity, and detailed reading.</li>
+    <li><strong>Peripheral Field:</strong> Covers the remaining \(180^\circ\) visual field. Dominated by rod photoreceptors; low spatial resolution, poor color discrimination, but hyper-sensitive to motion, flicker, and sudden luminance changes.</li>
+    <li><em>Design Implication:</em> Visualizations cannot rely on viewers seeing multiple details simultaneously across wide visual angles. Critical notifications or updates outside the current foveal focal point will be missed unless accompanied by pre-attentive motion or luminance signals.</li>
+</ul>
+
+<h3>Pre-attentive Processing &amp; Visual Conjunctions</h3>
+<p><strong>Pre-attentive visual processing</strong> occurs in the low-level visual pathway (primary visual cortex V1) in parallel across the entire visual field in less than 200–250 milliseconds, before conscious visual attention is focused.</p>
+
+<ul>
+    <li><strong>Pre-attentive Features (Instant Pop-Out):</strong> Color hue, luminance, line orientation, length, size, shape, curvature, and motion pop out effortlessly regardless of the number of background distractor items.</li>
+    <li><strong>Conjunction Search Failure:</strong> When a target mark is defined by the <em>conjunction of two or more visual channels</em> (e.g., finding a <em>red circle</em> among a field of <em>red squares</em> and <em>blue circles</em>), pre-attentive parallel search fails completely. The visual system must revert to serial visual scanning, checking each item sequentially, causing search time to increase linearly with the number of distractor elements.</li>
+</ul>
+
+<h3>Gestalt Principles of Perceptual Organization</h3>
+<p>Formulated by the Berlin School of Gestalt Psychology (Max Wertheimer, Kurt Koffka, Wolfgang Köhler, 1912–1923), Gestalt principles describe the innate heuristics the human visual system uses to organize visual stimuli into coherent wholes:</p>
+
+<div class="diagram-wrap">
+    <svg width="640" height="190" viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg" aria-label="Illustration of Gestalt principles: Proximity, Similarity, Common Region, and Connectedness">
+        <!-- 1. Proximity -->
+        <g transform="translate(20, 20)">
+            <text x="60" y="15" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">1. Proximity</text>
+            <!-- Group 1 -->
+            <circle cx="20" cy="40" r="5" fill="#333"/>
+            <circle cx="35" cy="40" r="5" fill="#333"/>
+            <circle cx="20" cy="55" r="5" fill="#333"/>
+            <circle cx="35" cy="55" r="5" fill="#333"/>
+            <!-- Group 2 -->
+            <circle cx="85" cy="40" r="5" fill="#333"/>
+            <circle cx="100" cy="40" r="5" fill="#333"/>
+            <circle cx="85" cy="55" r="5" fill="#333"/>
+            <circle cx="100" cy="55" r="5" fill="#333"/>
+            <text x="60" y="80" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#555">Distance forms 2 groups</text>
+        </g>
+
+        <!-- 2. Similarity -->
+        <g transform="translate(170, 20)">
+            <text x="65" y="15" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">2. Similarity</text>
+            <circle cx="30" cy="40" r="5" fill="#7b1f2e"/>
+            <circle cx="55" cy="40" r="5" fill="#333"/>
+            <circle cx="80" cy="40" r="5" fill="#7b1f2e"/>
+            <circle cx="105" cy="40" r="5" fill="#333"/>
+
+            <circle cx="30" cy="55" r="5" fill="#7b1f2e"/>
+            <circle cx="55" cy="55" r="5" fill="#333"/>
+            <circle cx="80" cy="55" r="5" fill="#7b1f2e"/>
+            <circle cx="105" cy="55" r="5" fill="#333"/>
+            <text x="65" y="80" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#555">Color forms vertical columns</text>
+        </g>
+
+        <!-- 3. Common Region -->
+        <g transform="translate(330, 20)">
+            <text x="65" y="15" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">3. Common Region</text>
+            <rect x="15" y="30" width="45" height="35" rx="3" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1"/>
+            <circle cx="30" cy="47" r="5" fill="#333"/>
+            <circle cx="45" cy="47" r="5" fill="#333"/>
+
+            <rect x="75" y="30" width="45" height="35" rx="3" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1"/>
+            <circle cx="90" cy="47" r="5" fill="#333"/>
+            <circle cx="105" cy="47" r="5" fill="#333"/>
+            <text x="65" y="80" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#555">Enclosures override proximity</text>
+        </g>
+
+        <!-- 4. Connectedness -->
+        <g transform="translate(490, 20)">
+            <text x="65" y="15" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">4. Connectedness</text>
+            <circle cx="25" cy="47" r="5" fill="#333"/>
+            <line x1="25" y1="47" x2="65" y2="47" stroke="#7b1f2e" stroke-width="1.5"/>
+            <circle cx="65" cy="47" r="5" fill="#333"/>
+
+            <circle cx="85" cy="47" r="5" fill="#333"/>
+            <line x1="85" y1="47" x2="125" y2="47" stroke="#7b1f2e" stroke-width="1.5"/>
+            <circle cx="125" cy="47" r="5" fill="#333"/>
+            <text x="75" y="80" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#555">Links establish grouping</text>
+        </g>
+    </svg>
+</div>
+<p class="diagram-caption">Figure 3: Four core Gestalt Laws of Perceptual Organization. Connectedness and Common Region exert stronger perceptual grouping forces than proximity or similarity alone.</p>
+
+<ul>
+    <li><strong>Law of Proximity:</strong> Spatial closeness causes visual elements to be perceived as a shared group.</li>
+    <li><strong>Law of Similarity:</strong> Elements sharing visual features (identical color hue, shape, size, or orientation) are perceived as belonging to the same category.</li>
+    <li><strong>Law of Continuity:</strong> The eye naturally continues paths, lines, and curves beyond their endpoints rather than seeing abrupt angular turns.</li>
+    <li><strong>Law of Closure:</strong> The visual cortex automatically fills in missing gaps in incomplete geometric outlines to perceive complete enclosed figures.</li>
+    <li><strong>Law of Common Region:</strong> Enclosing elements within a visible boundary box or background card groups them, overriding proximity.</li>
+    <li><strong>Law of Connectedness:</strong> Explicit graphical links (lines, edges) create the strongest grouping perception in human vision.</li>
+</ul>
+
+<h3>Color Theory &amp; Colormap Design</h3>
+<p>Color perception operates via two biological mechanisms:</p>
+<ol>
+    <li><strong>Trichromatic Cone Reception:</strong> Three types of cone photoreceptors sensitive to short (S, \(\approx 420\) nm, blue), medium (M, \(\approx 530\) nm, green), and long (L, \(\approx 560\) nm, red) wavelengths.</li>
+    <li><strong>Opponent-Process Neural Channels:</strong> Retinal ganglion cells combine cone signals into three antagonistic neural channels: <em>Luminance</em> (black-white), <em>Red-Green</em>, and <em>Blue-Yellow</em>.</li>
+</ol>
+
+<h4>Color Encodings by Data Type:</h4>
+<ul>
+    <li><strong>Categorical (Qualitative) Palettes:</strong> Use distinct color <em>hues</em> with roughly equal luminance and saturation (e.g., ColorBrewer Set1, Okabe-Ito palette) to encode unordered categories. Limit to \(\le 7\) colors to avoid memory overload.</li>
+    <li><strong>Sequential Palettes:</strong> Monotonically increasing lightness/luminance across a single or multi-hue gradient (e.g., Blues, Viridis) to represent continuous ordered quantitative data.</li>
+    <li><strong>Diverging Palettes:</strong> Two contrasting sequential lightness ramps meeting at a neutral, light midpoint (e.g., Blue-White-Red, Purple-White-Orange) to encode data with a meaningful critical threshold (zero profit, baseline temperature).</li>
+    <li><strong>Color Vision Deficiency (CVD) Accessibility:</strong> Approximately 8% of men and 0.5% of women possess red-green color blindness (deuteranopia/protanopia). Red and green must never be used as the sole differentiating channel for opposing outcomes. Safe combinations pair blue with orange or blue with dark red.</li>
+</ul>
+
+<!-- ===================================================================
+     8. EXPLORATION OF COMPLEX INFORMATION SPACE
+     =================================================================== -->
+<h2>8. Exploration of Complex Information Spaces</h2>
+
+<p>High-dimensional datasets (\(d &gt; 3\)) cannot be rendered directly into physical 3D Cartesian coordinates. Several sophisticated multi-dimensional visualization paradigms have been developed:</p>
+
+<h3>1. Parallel Coordinates</h3>
+<p>Introduced by Alfred Inselberg (1985), Parallel Coordinates maps \(d\)-dimensional data points into 2D space by arranging the \(d\) coordinate axes as parallel vertical lines. A data point \(x = (x_1, x_2, \dots, x_d)\) is drawn as a continuous <strong>polyline</strong> that intersects each vertical axis at its respective coordinate value.</p>
+
+<div class="diagram-wrap">
+    <svg width="620" height="220" viewBox="0 0 620 220" xmlns="http://www.w3.org/2000/svg" aria-label="Parallel Coordinates plot showing multivariate clustering across four dimensions">
+        <!-- 4 Vertical Axes -->
+        <line x1="80" y1="30" x2="80" y2="190" stroke="#333" stroke-width="1.5"/>
+        <line x1="220" y1="30" x2="220" y2="190" stroke="#333" stroke-width="1.5"/>
+        <line x1="360" y1="30" x2="360" y2="190" stroke="#333" stroke-width="1.5"/>
+        <line x1="500" y1="30" x2="500" y2="190" stroke="#333" stroke-width="1.5"/>
+
+        <text x="80" y="20" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">Income ($k)</text>
+        <text x="220" y="20" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">Age (yrs)</text>
+        <text x="360" y="20" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">Credit Score</text>
+        <text x="500" y="20" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">Loan Default</text>
+
+        <!-- Axis Ticks -->
+        <text x="75" y="35" text-anchor="end" font-family="system-ui,sans-serif" font-size="8" fill="#555">150</text>
+        <text x="75" y="190" text-anchor="end" font-family="system-ui,sans-serif" font-size="8" fill="#555">20</text>
+        <text x="215" y="35" text-anchor="end" font-family="system-ui,sans-serif" font-size="8" fill="#555">70</text>
+        <text x="215" y="190" text-anchor="end" font-family="system-ui,sans-serif" font-size="8" fill="#555">18</text>
+        <text x="355" y="35" text-anchor="end" font-family="system-ui,sans-serif" font-size="8" fill="#555">850</text>
+        <text x="355" y="190" text-anchor="end" font-family="system-ui,sans-serif" font-size="8" fill="#555">300</text>
+        <text x="495" y="35" text-anchor="end" font-family="system-ui,sans-serif" font-size="8" fill="#555">No</text>
+        <text x="495" y="190" text-anchor="end" font-family="system-ui,sans-serif" font-size="8" fill="#555">Yes</text>
+
+        <!-- Cluster 1 Polylines (High income, high credit, low default - Burgundy) -->
+        <polyline points="80,50 220,90 360,45 500,40" fill="none" stroke="#7b1f2e" stroke-width="1.5" opacity="0.8"/>
+        <polyline points="80,60 220,80 360,55 500,40" fill="none" stroke="#7b1f2e" stroke-width="1.5" opacity="0.8"/>
+        <polyline points="80,45 220,105 360,40 500,40" fill="none" stroke="#7b1f2e" stroke-width="1.5" opacity="0.8"/>
+
+        <!-- Cluster 2 Polylines (Low income, low credit, high default - Dark Grey) -->
+        <polyline points="80,170 220,165 360,160 500,185" fill="none" stroke="#333" stroke-width="1.5" opacity="0.8"/>
+        <polyline points="80,160 220,150 360,170 500,185" fill="none" stroke="#333" stroke-width="1.5" opacity="0.8"/>
+        <polyline points="80,180 220,175 360,155 500,185" fill="none" stroke="#333" stroke-width="1.5" opacity="0.8"/>
+
+        <!-- Legend -->
+        <line x1="120" y1="205" x2="160" y2="205" stroke="#7b1f2e" stroke-width="2"/>
+        <text x="165" y="209" font-family="system-ui,sans-serif" font-size="9" fill="#7b1f2e">Low Risk Cluster</text>
+        <line x1="300" y1="205" x2="340" y2="205" stroke="#333" stroke-width="2"/>
+        <text x="345" y="209" font-family="system-ui,sans-serif" font-size="9" fill="#333">High Risk Cluster</text>
+    </svg>
+</div>
+<p class="diagram-caption">Figure 4: Parallel Coordinates plot over four dimensions. Each multidimensional customer observation is drawn as a polyline intersecting vertical axes. Bundled parallel lines reveal natural clusters and multivariate correlations.</p>
+
+<h3>2. Scatterplot Matrices (SPLOM)</h3>
+<p>A SPLOM organizes pairwise 2D scatter plots into a \(d \times d\) grid matrix. Cell \((i, j)\) plots dimension \(i\) on the y-axis and dimension \(j\) on the x-axis. The main diagonal typically displays 1D histograms or density curves of individual variables. Allows comprehensive inspection of all pairwise bivariate correlations, but displays scale quadratically (\(O(d^2)\)).</p>
+
+<h3>3. Treemaps and Hierarchical Partitioning</h3>
+<p>Invented by Ben Shneiderman (1992), treemaps visualize hierarchical, tree-structured data through <strong>nested rectangular enclosures</strong>. The root rectangle is subdivided into smaller rectangles whose areas are proportional to a quantitative metric (e.g., disk usage, sales revenue) and whose fill colors encode a secondary metric (e.g., growth rate). Tiling algorithms (Squarified Treemaps) optimize rectangle aspect ratios close to 1:1, avoiding long, unreadable thin slivers.</p>
+
+<!-- ===================================================================
+     9. SPACE PERCEPTION AND 2D VS 3D VISUALIZATION
+     =================================================================== -->
+<h2>9. Space Perception: 2D vs. 3D Visualization</h2>
+
+<h3>The Perceptual Perils of 3D for Abstract Data</h3>
+<p>While computer graphics systems effortlessly render 3D perspective charts, scientific visualization research overwhelmingly demonstrates that <strong>3D representation of abstract non-spatial data is harmful to human cognition</strong>:</p>
+
+<ul>
+    <li><strong>Occlusion:</strong> In a 3D scatter or bar chart, marks in the foreground physically block and hide marks located in the background, requiring complex camera rotation to view hidden data.</li>
+    <li><strong>Perspective Foreshortening:</strong> In perspective projection, identical objects appear smaller as they move farther from the virtual camera viewpoint. This directly falsifies size, length, and position channel encodings, violating Cleveland and McGill's accuracy rules.</li>
+    <li><strong>Angle Distortion:</strong> Angles between surfaces and lines are distorted by camera viewing angle, making slope and correlation estimation unreliable.</li>
+    <li><strong>Cognitive Navigation Overhead:</strong> Moving a virtual 3D camera (pitch, yaw, roll, zoom) requires substantial motor and mental effort, distracting the user from the analytical task.</li>
+</ul>
+
+<h3>When is 3D Visualization Legitimate?</h3>
+<p>3D representation is valid and necessary <strong>only when the underlying data possesses inherently physical 3D spatial coordinates</strong>:</p>
+<ul>
+    <li>Medical Imaging: Volumetric CT and MRI scan voxel reconstructions.</li>
+    <li>Molecular Biology: Protein tertiary structures and DNA folding conformations.</li>
+    <li>Fluid Dynamics &amp; Aerospace: Aerodynamic airflow and stress turbulence over physical aircraft wing meshes.</li>
+    <li>Geographical Topography: Subsurface geological reservoir formations and planetary elevation surfaces.</li>
+</ul>
+
+<!-- ===================================================================
+     10. NARRATIVE VISUALIZATION & GESTURES
+     =================================================================== -->
+<h2>10. Narrative Visualization &amp; Natural User Interaction</h2>
+
+<h3>Narrative Visualization Genres</h3>
+<p>Edward Segel and Jeffrey Heer (2010) classified narrative data visualization structures along a spectrum between <strong>Author-Driven</strong> (structured, linear, authoritative presentation) and <strong>Reader-Driven</strong> (unstructured, highly interactive free exploration):</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Narrative Genre</th>
+            <th>Control Balance</th>
+            <th>Structural Flow</th>
+            <th>Primary Use Case</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Magazine / Poster Style</strong></td>
+            <td>Author-driven</td>
+            <td>Single-frame static layout with annotations, headlines, and callout callouts.</td>
+            <td>Infographics, executive summaries, print publications.</td>
+        </tr>
+        <tr>
+            <td><strong>Interactive Slideshow</strong></td>
+            <td>Author-directed with user pacing</td>
+            <td>Sequential stepping through curated visual states, with interactive filtering within each step.</td>
+            <td>Data journalism storytelling, board presentations.</td>
+        </tr>
+        <tr>
+            <td><strong>The Martini Glass Structure</strong></td>
+            <td>Hybrid (Author-driven \(\to\) Reader-driven)</td>
+            <td>Starts with a narrow, tightly scripted author-driven narrative establishing context (the stem), then broadens out into open-ended, free exploratory interaction (the wide glass).</td>
+            <td>Data journalism (The New York Times), enterprise analytics onboarding.</td>
+        </tr>
+        <tr>
+            <td><strong>Drill-Down Story</strong></td>
+            <td>Reader-driven with guided checkpoints</td>
+            <td>Presents a central dashboard with clickable narrative links prompting deeper drill-down paths.</td>
+            <td>Business intelligence exploratory dashboards.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Figure Captions and Cognitive Scaffolding</h3>
+<ul>
+    <li><strong>Active Declarative Titles:</strong> Replace passive descriptions with analytical conclusions. Instead of <em>"Figure 1: Revenue by Region 2024"</em>, use <em>"Figure 1: EMEA Revenue Expanded 34%, Driving Global Operating Margin Gains."</em></li>
+    <li><strong>Direct Data Labeling:</strong> Place text labels directly adjacent to data marks and line terminations, eliminating the need for distant color legends that force viewers to make repeated visual saccades.</li>
+    <li><strong>Contextual Callout Annotations:</strong> Annotate anomalies, policy changes, and inflection points directly inside the chart plot area to provide immediate cognitive context.</li>
+</ul>
+
+<h3>Gestures and Natural User Interfaces (NUI)</h3>
+<p>Modern analytical interfaces on touch displays, large collaborative video walls, and spatial computing headsets leverage multi-touch and spatial gestures:</p>
+<ul>
+    <li><strong>Direct Multi-Touch Manipulation:</strong> Pinch-to-zoom for continuous geometric scale adjustment; two-finger drag for pan navigation; lasso gestures for selecting arbitrary point clusters in scatter plots.</li>
+    <li><strong>Tangible &amp; Stylus Interaction:</strong> High-precision pen input enables freehand annotation, lassoing, and handwritten formula queries directly over data marks.</li>
+    <li><strong>Multimodal Analytics:</strong> Combining voice querying with pointing gestures (e.g., saying <em>"Filter to these customers"</em> while pointing to an on-screen cluster) enables hands-free analytics in operating rooms, field operations, and executive war rooms.</li>
+</ul>
+
+<!-- ===================================================================
+     11. COMPREHENSIVE CASE STUDY
+     =================================================================== -->
+<h2>11. Real-World Case Study: Enterprise Supply Chain Control Tower</h2>
+
+<p><strong>Scenario:</strong> A global electronics manufacturer monitors 40 manufacturing plants, 350 suppliers, and thousands of daily international freight shipments across a unified, coordinated multi-view visualization dashboard:</p>
+
+<ul>
+    <li><strong>Overview View (Geospatial Flow Map):</strong> Built with WebGL (deck.gl), rendering real-time cargo ship locations and air freight transit lines across a world map. Color hue encodes shipment status (Burgundy: on-time, Dark Red: delayed, Alert Orange: customs hold).</li>
+    <li><strong>Detail View (Brushing and Linking):</strong> Clicking on a delayed shipping route automatically filters two linked adjacent charts:
+        <ul>
+            <li>A <em>Gantt-style timeline chart</em> highlighting port bottleneck stages and predicted customs clearance delays.</li>
+            <li>A <em>Parallel Coordinates chart</em> comparing supplier metrics (delivery reliability, inventory buffer, unit margin, geopolitical risk score) for that delayed cargo's component parts.</li>
+        </ul>
+    </li>
+    <li><strong>Perceptual Optimizations:</strong>
+        <ul>
+            <li>Adheres strictly to Tufte's Data-Ink ratio: zero 3D decorations, muted background tones, single burgundy accent palette.</li>
+            <li>Gestalt Common Region cards group related telemetry metrics; direct annotations explain unexpected supply chain disruptions.</li>
+            <li>Sub-second query response latency maintained via server-side spatial R-tree indexing and Pre-aggregated OLAP cubes.</li>
+        </ul>
+    </li>
+</ul>
+
+<script src="shared.js"></script>
+</body>
+</html>

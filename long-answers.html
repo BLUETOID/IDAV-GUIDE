@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IDAV ST-1 Long Answer Questions — 7-mark style answers for Unit I and Unit II, fully structured with sub-headings, SVG diagrams, examples, and comparison tables.">
+    <title>Long Answer Questions | IDAV Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Merriweather:wght@400;700&family=Outfit:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=Space+Grotesk:wght@400;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="unit1.html">Unit I</a></li>
+        <li><a href="unit2.html">Unit II</a></li>
+        <li><a href="unit3.html">Unit III</a></li>
+        <li><a href="unit4.html">Unit IV</a></li>
+        <li><a href="unit5.html">Unit V</a></li>
+        <li><a href="short-answers.html">Short Answers</a></li>
+        <li><a href="long-answers.html" class="active">Long Answers</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1>Long Answer Questions (7 Marks)</h1>
+    <p>Questions Q5, Q18–Q40. Each answer: Definition/Intro &rarr; Main Explanation &rarr; Diagram (where applicable) &rarr; Example &rarr; Comparison table (where required).</p>
+</div>
+
+<!-- =================== UNIT I =================== -->
+<h2>Unit I — Long Answers</h2>
+
+<!-- ===== Q5 ===== -->
+<div class="qa-block" id="q5">
+    <div class="question-label">Q5</div>
+    <div class="question-text">Describe the major phases of the Data Analytics Lifecycle.</div>
+    <div class="answer-body">
+
+        <h3>Introduction</h3>
+        <p>The Data Analytics Lifecycle is a structured, iterative framework that defines the sequence of phases an analytics project follows — from initial problem definition to production deployment. It ensures that analytical work is goal-directed, reproducible, and aligned with business needs.</p>
+
+        <h3>The Six Phases</h3>
+
+        <h4>Phase 1: Discovery</h4>
+        <p>The team defines the business problem and the analytics objective. Available data sources are identified and assessed for relevance and quality. Key stakeholders are mapped and initial hypotheses are formed. The output is a project charter that states what question the analytics project will answer.</p>
+
+        <h4>Phase 2: Data Preparation</h4>
+        <p>Raw data is extracted from sources, loaded into an analytics sandbox, and cleaned: missing values are imputed or removed, outliers are handled, inconsistencies are resolved, and formats are standardized. Exploratory Data Analysis (EDA) is performed using histograms, scatter plots, and correlation matrices to understand the data's structure.</p>
+
+        <h4>Phase 3: Model Planning</h4>
+        <p>The team selects the modeling technique appropriate to the problem type (classification, regression, clustering, time series). Candidate algorithms are evaluated. Feature engineering decisions are made — which raw attributes to transform, combine, or encode. The evaluation metric is defined (accuracy, RMSE, AUC-ROC, F1-score).</p>
+
+        <h4>Phase 4: Model Building</h4>
+        <p>Selected models are trained on the prepared dataset using a train/validation/test split. Hyperparameters are tuned using cross-validation. Multiple models are compared on the validation set. The best-performing model is selected.</p>
+
+        <h4>Phase 5: Communicating Results</h4>
+        <p>Findings are translated for non-technical stakeholders. Visualizations, executive summaries, and plain-language narratives convey the model's business impact, assumptions, and limitations. Stakeholders decide whether to proceed to deployment.</p>
+
+        <h4>Phase 6: Operationalization</h4>
+        <p>The validated model is deployed to production — as a REST API, a scheduled batch scoring job, or embedded in a business application. Monitoring is established to detect data drift (input distribution shifts) and model drift (performance degradation). When conditions change, the cycle restarts from Discovery or Data Preparation.</p>
+
+        <div class="diagram-wrap">
+        <svg width="560" height="410" viewBox="0 0 560 410" xmlns="http://www.w3.org/2000/svg" aria-label="Data Analytics Lifecycle six-phase cyclic diagram">
+            <circle cx="280" cy="205" r="152" fill="none" stroke="#e0d0d0" stroke-width="1" stroke-dasharray="5,4"/>
+            <defs>
+                <marker id="arrowL" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                    <path d="M0,0 L0,6 L8,3 z" fill="#7b1f2e"/>
+                </marker>
+            </defs>
+            <path d="M 300,58 A 152,152 0 0,1 405,136" fill="none" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL)"/>
+            <path d="M 415,153 A 152,152 0 0,1 415,278" fill="none" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL)"/>
+            <path d="M 404,295 A 152,152 0 0,1 302,357" fill="none" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL)"/>
+            <path d="M 258,357 A 152,152 0 0,1 156,295" fill="none" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL)"/>
+            <path d="M 145,278 A 152,152 0 0,1 145,153" fill="none" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL)"/>
+            <path d="M 156,136 A 152,152 0 0,1 260,58" fill="none" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL)"/>
+            <circle cx="280" cy="53" r="28" fill="#7b1f2e"/>
+            <text x="280" y="49" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">Phase 1</text>
+            <text x="280" y="62" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#fff">Discovery</text>
+            <circle cx="412" cy="130" r="28" fill="#7b1f2e"/>
+            <text x="412" y="126" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">Phase 2</text>
+            <text x="412" y="139" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#fff">Data Prep</text>
+            <circle cx="412" cy="282" r="28" fill="#7b1f2e"/>
+            <text x="412" y="278" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">Phase 3</text>
+            <text x="412" y="291" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#fff">Mdl Plan</text>
+            <circle cx="280" cy="358" r="28" fill="#7b1f2e"/>
+            <text x="280" y="354" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">Phase 4</text>
+            <text x="280" y="367" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#fff">Mdl Build</text>
+            <circle cx="148" cy="282" r="28" fill="#7b1f2e"/>
+            <text x="148" y="278" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">Phase 5</text>
+            <text x="148" y="291" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#fff">Comm.</text>
+            <circle cx="148" cy="130" r="28" fill="#7b1f2e"/>
+            <text x="148" y="126" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">Phase 6</text>
+            <text x="148" y="139" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#fff">Operatn.</text>
+        </svg>
+        </div>
+        <p class="diagram-caption">Figure: Data Analytics Lifecycle — six phases in a cyclic flow. After Phase 6 (Operationalization), monitoring triggers restarting the cycle when data or model performance changes.</p>
+
+        <h3>Real-World Example</h3>
+        <p>A bank applies the lifecycle to build a loan default predictor. Phase 1: define objective (reduce defaults by 20%). Phase 2: collect 5 years of loan records; handle 12% missing income values by imputation. Phase 3: choose random forest. Phase 4: train on 80% of data; achieve AUC 0.89 on test set. Phase 5: present to credit committee with a risk-by-segment chart. Phase 6: deploy as a real-time scoring API called at loan application submission; retrain quarterly.</p>
+    </div>
+</div>
+
+<!-- ===== Q18 ===== -->
+<div class="qa-block" id="q18">
+    <div class="question-label">Q18</div>
+    <div class="question-text">Explain the need of data analytics in modern business. How has the need for data analytics evolved over time?</div>
+    <div class="answer-body">
+        <h3>Need for Data Analytics in Modern Business</h3>
+        <p>Modern businesses face three structural challenges that make analytics essential: (1) <strong>Volume explosion</strong> — customer transactions, social media, IoT devices, and web interactions generate petabytes of data that cannot be processed manually. (2) <strong>Market competition</strong> — competitors who analyze data faster and more deeply gain pricing, inventory, and marketing advantages. (3) <strong>Customer expectation</strong> — consumers expect personalized products, services, and recommendations, which are only possible through behavioral analytics at scale.</p>
+        <p>Specific business needs addressed by analytics:</p>
+        <ul>
+            <li><strong>Risk management:</strong> Credit scoring, fraud detection, and insurance pricing models quantify and price risk accurately.</li>
+            <li><strong>Operational efficiency:</strong> Process mining and predictive maintenance reduce downtime and waste.</li>
+            <li><strong>Customer retention:</strong> Churn prediction models identify at-risk customers before they leave, enabling proactive retention interventions.</li>
+            <li><strong>Revenue optimization:</strong> Dynamic pricing models (airlines, hotels, ride-sharing) adjust prices in real time to maximize revenue.</li>
+        </ul>
+
+        <h3>Evolution of Analytic Scalability</h3>
+        <table>
+            <thead>
+                <tr><th>Era</th><th>Technology</th><th>Data Scale</th><th>Analytics Type</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1970s–1990s</td><td>RDBMS, SQL, spreadsheets, OLAP</td><td>Megabytes–Gigabytes</td><td>Descriptive reporting only</td></tr>
+                <tr><td>2000s</td><td>Data warehouses (Teradata), ETL pipelines</td><td>Terabytes</td><td>Historical BI, batch reporting</td></tr>
+                <tr><td>2006–2014</td><td>Hadoop, MapReduce, NoSQL (HBase, Cassandra)</td><td>Petabytes</td><td>Batch analytics on unstructured data</td></tr>
+                <tr><td>2012–2018</td><td>Apache Spark, Kafka, Storm</td><td>Petabytes, real-time</td><td>Real-time and interactive analytics</td></tr>
+                <tr><td>2016–present</td><td>Cloud (BigQuery, Redshift), AutoML, LLMs</td><td>Exabytes, on-demand</td><td>AI-driven predictive and prescriptive analytics</td></tr>
+            </tbody>
+        </table>
+        <p>The trajectory shows a consistent pattern: as data volume grew, new distributed technologies emerged to process it; as latency requirements tightened, batch gave way to streaming; and as complexity increased, automation (AutoML, LLMs) emerged to democratize analytics beyond specialist teams.</p>
+    </div>
+</div>
+
+<!-- ===== Q19 ===== -->
+<div class="qa-block" id="q19">
+    <div class="question-label">Q19</div>
+    <div class="question-text">Compare and contrast analysis and reporting in the context of data analytics. How do both play a role in decision-making processes?</div>
+    <div class="answer-body">
+        <h3>Definitions</h3>
+        <p><strong>Reporting</strong> organizes and presents historical data in a standardized format to communicate what occurred. <strong>Analysis</strong> examines data to identify causes, patterns, and future outcomes. Both are essential but serve different decision-making purposes.</p>
+
+        <h3>Detailed Comparison</h3>
+        <table>
+            <thead>
+                <tr><th>Dimension</th><th>Reporting</th><th>Analysis</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Purpose</td><td>Communicate historical facts</td><td>Derive insights, predict, prescribe</td></tr>
+                <tr><td>Time orientation</td><td>Backward-looking (past data)</td><td>Forward-looking (future prediction) or diagnostic</td></tr>
+                <tr><td>Output</td><td>Fixed tables, dashboards, KPI summaries</td><td>Models, correlations, hypotheses, recommendations</td></tr>
+                <tr><td>User</td><td>Managers, executives (monitoring)</td><td>Analysts, data scientists (exploration)</td></tr>
+                <tr><td>Techniques</td><td>Aggregation, filtering, sorting, grouping</td><td>Statistical modeling, ML, regression, clustering</td></tr>
+                <tr><td>Frequency</td><td>Regular, scheduled (daily, weekly, monthly)</td><td>On-demand or iterative for specific questions</td></tr>
+                <tr><td>Flexibility</td><td>Low — predefined structure</td><td>High — hypothesis-driven exploration</td></tr>
+                <tr><td>Example</td><td>Monthly regional sales report</td><td>Identifying why Q3 sales fell 15% and predicting Q4</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Role in Decision-Making</h3>
+        <p><strong>Reporting</strong> provides the factual baseline — executives use it for monitoring (is performance within acceptable bounds?). Without reliable reporting, decision-makers lack situational awareness. <strong>Analysis</strong> provides the diagnostic and predictive layer — it explains why performance deviated and what to do next. Effective decisions require both: reporting to detect that a problem exists; analysis to understand it and prescribe a solution.</p>
+
+        <h3>Example</h3>
+        <p>A retailer's weekly report shows that revenue fell 18% this week. The report identifies the fact but not the cause. An analyst investigates: the analysis reveals that the revenue drop is concentrated in the electronics category in one city and correlates with a competitor's flash sale. The prescriptive output: adjust pricing strategy in that city for the next two weeks.</p>
+    </div>
+</div>
+
+<!-- ===== Q23 ===== -->
+<div class="qa-block" id="q23">
+    <div class="question-label">Q23</div>
+    <div class="question-text">Discuss the evolution of analytic scalability from traditional analytics to real-time analytics and predictive analytics.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>Analytic scalability refers to the ability of analytics systems to handle increasing data volumes, velocity, and variety without proportional increases in cost or latency. The evolution reflects a progression driven by business demand and enabled by successive technological innovations.</p>
+
+        <h3>Phase 1: Traditional Analytics (Pre-2000)</h3>
+        <p>Relational databases (RDBMS), SQL, spreadsheets, and OLAP cubes handled gigabyte-scale structured data. Analytics was descriptive — aggregation, filtering, sorting. All data had to fit on a single server. Queries were batch-oriented; reports were generated overnight. Scale limit: ~100 GB before performance degraded significantly.</p>
+
+        <h3>Phase 2: Data Warehousing (2000–2006)</h3>
+        <p>Dedicated data warehouses (Teradata, IBM Netezza) with columnar storage and MPP (massively parallel processing) scaled to terabytes. ETL pipelines moved data from operational systems to the warehouse nightly. Analytics remained backward-looking and scheduled. Query time dropped from hours to minutes for complex aggregations. Scale: 1–10 TB.</p>
+
+        <h3>Phase 3: Big Data (2006–2012)</h3>
+        <p>Google's MapReduce (2004) and Hadoop (2006) introduced distributed batch processing over commodity clusters. Data in the terabyte-to-petabyte range could be processed. Unstructured data (logs, images, text) became analyzable. However, MapReduce had high latency (hours per job) — unsuitable for interactive or real-time use.</p>
+
+        <h3>Phase 4: Real-Time Analytics (2012–2018)</h3>
+        <p>Apache Spark (in-memory processing, 100× faster than MapReduce), Apache Storm, and Apache Flink enabled stream processing with second-level latency. Apache Kafka provided high-throughput event streaming. Organizations could now analyze data as it arrived — enabling real-time fraud detection, live dashboards, and instant personalization.</p>
+
+        <h3>Phase 5: Predictive and AI-Driven Analytics (2016–present)</h3>
+        <p>Cloud platforms (BigQuery, Redshift, Snowflake) provide elastic, serverless analytics at exabyte scale with pay-per-query pricing. AutoML tools automate feature engineering and model selection. Large Language Models enable natural language querying of databases. Predictive and prescriptive analytics are now accessible to non-specialists through low-code platforms.</p>
+    </div>
+</div>
+
+<!-- ===== Q24 ===== -->
+<div class="qa-block" id="q24">
+    <div class="question-label">Q24</div>
+    <div class="question-text">Discuss the classification of data. Explain all categories in detail with examples.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>Data is classified by the degree to which it conforms to a predefined format or schema. The three primary categories are structured, semi-structured, and unstructured data. Each requires different storage systems, processing tools, and analytical approaches.</p>
+
+        <h3>1. Structured Data</h3>
+        <p>Structured data conforms to a rigid, predefined schema — organized in rows and columns with fixed data types. Every record has the same attributes in the same positions. It is stored in relational database management systems (RDBMS) and is directly queryable using SQL.</p>
+        <ul>
+            <li>Approximately 20% of all enterprise data is structured.</li>
+            <li>Tools: MySQL, PostgreSQL, Oracle, SQL Server.</li>
+            <li>Analysis: SQL queries, OLAP, regression, statistical tests.</li>
+        </ul>
+        <p><strong>Examples:</strong> Customer records (CustomerID, Name, Age, Email, AccountBalance), bank transaction logs (TransactionID, Date, Amount, MerchantCode), and employee HR records.</p>
+
+        <h3>2. Semi-Structured Data</h3>
+        <p>Semi-structured data does not conform to a rigid tabular schema but contains tags, markers, or keys that separate semantic elements and enforce a partial hierarchy. It is self-describing — the schema is embedded within the data itself. Different records may have different attributes.</p>
+        <ul>
+            <li>Tools: MongoDB (BSON/JSON), Apache CouchDB, XML parsers, Elasticsearch.</li>
+            <li>Analysis: XPath, JSONPath, document stores, schema-on-read approaches.</li>
+        </ul>
+        <p><strong>Examples:</strong> JSON objects returned by REST APIs (where different API responses may include different fields), XML configuration files, HTML web pages (structured markup but variable content), and email messages (fixed headers: To, From, Subject + free-text body).</p>
+
+        <h3>3. Unstructured Data</h3>
+        <p>Unstructured data has no predefined format or schema. It cannot be stored in a relational table without significant transformation and cannot be queried with standard SQL. It accounts for approximately 80% of all enterprise data. Analysis requires specialized techniques: NLP for text, computer vision for images/video, signal processing for audio.</p>
+        <ul>
+            <li>Tools: Hadoop (storage), Spark (processing), TensorFlow (ML on images/audio).</li>
+            <li>Analysis: NLP (sentiment analysis, entity extraction), image classification, speech recognition.</li>
+        </ul>
+        <p><strong>Examples:</strong> Customer service call recordings (audio), product review free-text on e-commerce sites, surveillance video feeds, medical imaging (X-rays, MRIs), and satellite imagery.</p>
+
+        <h3>Comparison Table</h3>
+        <table>
+            <thead>
+                <tr><th>Criterion</th><th>Structured</th><th>Semi-Structured</th><th>Unstructured</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Schema</td><td>Fixed, predefined</td><td>Flexible, self-describing</td><td>None</td></tr>
+                <tr><td>Storage</td><td>RDBMS</td><td>NoSQL, files</td><td>Object store, file system</td></tr>
+                <tr><td>Query language</td><td>SQL</td><td>XPath, JSONPath, Mongo query</td><td>Requires ML/NLP preprocessing</td></tr>
+                <tr><td>Percentage of data</td><td>~20%</td><td>~10%</td><td>~80%</td></tr>
+                <tr><td>Analysis complexity</td><td>Low</td><td>Medium</td><td>High</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== Q34 ===== -->
+<div class="qa-block" id="q34">
+    <div class="question-label">Q34</div>
+    <div class="question-text">Explain the sources and nature of data and classify them with suitable examples.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>Every analytics project begins with data — the raw material from which insights are derived. Understanding where data comes from (sources) and its intrinsic properties (nature and classification) is foundational to selecting appropriate collection, storage, and analysis strategies.</p>
+
+        <h3>Sources of Data</h3>
+        <table>
+            <thead>
+                <tr><th>Category</th><th>Description</th><th>Examples</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Internal</td><td>Generated within the organization's systems</td><td>ERP records, CRM data, employee HR databases, POS transaction logs</td></tr>
+                <tr><td>External</td><td>Obtained from outside the organization</td><td>Government census, market research reports, competitor pricing scraped from websites</td></tr>
+                <tr><td>Primary</td><td>Collected directly for the current analytical purpose</td><td>Customer surveys, A/B test results, lab experiments, sensor deployments</td></tr>
+                <tr><td>Secondary</td><td>Previously collected for another purpose, repurposed</td><td>Academic datasets, historical transaction archives, public open data portals</td></tr>
+                <tr><td>Machine-generated</td><td>Automatically generated by systems without human input</td><td>Server access logs, IoT temperature readings, GPS location traces, network packet headers</td></tr>
+                <tr><td>Human-generated</td><td>Created by human interaction or content creation</td><td>Social media posts, customer reviews, forum discussions, survey responses</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Nature of Data</h3>
+        <p>The nature of data refers to its structural properties — how it is organized, how it can be stored, and what analytical methods apply:</p>
+        <ul>
+            <li><strong>Structured:</strong> Fixed schema, relational storage, SQL-queryable. Examples: bank transactions, employee records.</li>
+            <li><strong>Semi-structured:</strong> Self-describing tags, flexible schema, NoSQL storage. Examples: JSON API responses, XML files.</li>
+            <li><strong>Unstructured:</strong> No schema, requires NLP/vision. Examples: customer call audio, social media images.</li>
+        </ul>
+        <p>Additionally, data can be classified by measurement scale: <strong>nominal</strong> (categories with no order — e.g., city names), <strong>ordinal</strong> (ordered categories — e.g., customer satisfaction: poor/fair/good/excellent), <strong>interval</strong> (numeric with equal gaps but no true zero — e.g., temperature in °C), and <strong>ratio</strong> (numeric with a true zero — e.g., weight, income, count).</p>
+    </div>
+</div>
+
+<!-- ===== Q35 ===== -->
+<div class="qa-block" id="q35">
+    <div class="question-label">Q35</div>
+    <div class="question-text">Compare analysis and reporting. In business decision-making, how does predictive analytics provide more value than descriptive reporting?</div>
+    <div class="answer-body">
+        <h3>Analysis vs Reporting — Comparison</h3>
+        <table>
+            <thead>
+                <tr><th>Dimension</th><th>Reporting</th><th>Analysis</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Primary question</td><td>What happened?</td><td>Why, what will happen, what should we do?</td></tr>
+                <tr><td>Orientation</td><td>Backward-looking</td><td>Forward-looking or diagnostic</td></tr>
+                <tr><td>Output</td><td>KPI dashboards, tabular summaries</td><td>Statistical models, forecasts, recommendations</td></tr>
+                <tr><td>Frequency</td><td>Scheduled (daily/weekly/monthly)</td><td>On-demand, exploratory</td></tr>
+                <tr><td>User</td><td>Managers monitoring performance</td><td>Analysts and data scientists exploring causality</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Why Predictive Analytics Provides More Value than Descriptive Reporting</h3>
+        <p>Descriptive reporting tells decision-makers what already happened — but by the time a report is read, the business outcome is irreversible. Predictive analytics, in contrast, models future outcomes with enough lead time to act.</p>
+        <ul>
+            <li><strong>Proactive vs reactive:</strong> A descriptive report identifies that customer churn increased by 5% last month; a predictive model identifies the 10,000 customers most likely to churn in the next 30 days, enabling targeted retention campaigns before churn occurs.</li>
+            <li><strong>Cost reduction:</strong> Predictive maintenance models forecast equipment failures days in advance, allowing scheduled maintenance rather than expensive emergency repairs.</li>
+            <li><strong>Competitive advantage:</strong> Dynamic pricing models (airlines, hotels) predict demand elasticity and adjust prices in real time to maximize revenue — impossible with descriptive reporting alone.</li>
+            <li><strong>Uncertainty quantification:</strong> Predictive models provide confidence intervals and probability estimates — decision-makers understand not just what will likely happen, but how certain the prediction is.</li>
+        </ul>
+        <p>Reporting remains necessary as the input foundation (you need accurate historical data to train predictive models), but predictive analytics generates substantially greater business value by shifting organizations from reactive to proactive decision-making.</p>
+    </div>
+</div>
+
+<!-- ===== Q36 ===== -->
+<div class="qa-block" id="q36">
+    <div class="question-label">Q36</div>
+    <div class="question-text">Discuss the key characteristics of Big Data (5Vs). Explain the need for Big Data platforms and briefly describe some commonly used platforms.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>Big Data refers to datasets that are too large, diverse, or rapidly generated to be processed by conventional data management systems. The 5Vs framework characterizes its defining properties.</p>
+
+        <h3>The 5Vs</h3>
+        <ul>
+            <li><strong>Volume:</strong> The quantity of data generated — ranging from terabytes to zettabytes. Example: Facebook processes over 100 petabytes daily. Volume necessitates distributed storage and batch-processing frameworks that spread data and computation across clusters.</li>
+            <li><strong>Velocity:</strong> The rate at which data is generated and must be processed. Example: Twitter/X generates ~6,000 tweets per second. Velocity demands stream processing architectures with latency measured in milliseconds, not hours.</li>
+            <li><strong>Variety:</strong> The diversity of data types — structured tables, semi-structured JSON/XML, and unstructured images/video/audio/text. A single analytics pipeline may need to process all three simultaneously.</li>
+            <li><strong>Veracity:</strong> The uncertainty and inconsistency inherent in Big Data. Social media data contains errors, slang, and bias; sensor data has measurement noise; merged datasets have inconsistent formats. Veracity challenges drive data quality pipelines, data provenance tracking, and confidence scoring.</li>
+            <li><strong>Value:</strong> The ultimate justification for Big Data investment — the actionable business insights extracted from analysis. Raw Big Data has no intrinsic value; the value is realized only through processing and interpretation.</li>
+        </ul>
+
+        <div class="diagram-wrap">
+            <svg width="600" height="230" viewBox="0 0 600 230" xmlns="http://www.w3.org/2000/svg" aria-label="Big Data 5Vs converging into Big Data Platform diagram">
+                <defs>
+                    <marker id="arrowL_5V" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L8,3 z" fill="#7b1f2e"/>
+                    </marker>
+                </defs>
+
+                <!-- Center: Big Data Platform -->
+                <rect x="230" y="85" width="140" height="60" rx="4" fill="#7b1f2e" stroke="#7b1f2e" stroke-width="2"/>
+                <text x="300" y="112" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#fff">Big Data Platform</text>
+                <text x="300" y="128" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#fdd">Hadoop / Spark / Kafka</text>
+
+                <!-- Top Left: Volume -->
+                <rect x="30" y="20" width="130" height="42" rx="3" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="95" y="38" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Volume</text>
+                <text x="95" y="52" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Terabytes to Zettabytes</text>
+                <line x1="160" y1="45" x2="230" y2="90" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL_5V)"/>
+
+                <!-- Top Right: Velocity -->
+                <rect x="440" y="20" width="130" height="42" rx="3" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="505" y="38" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Velocity</text>
+                <text x="505" y="52" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Real-Time Event Streams</text>
+                <line x1="440" y1="45" x2="370" y2="90" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL_5V)"/>
+
+                <!-- Bottom Left: Variety -->
+                <rect x="30" y="165" width="130" height="42" rx="3" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="95" y="183" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Variety</text>
+                <text x="95" y="197" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Structured, Unstructured</text>
+                <line x1="160" y1="180" x2="230" y2="140" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL_5V)"/>
+
+                <!-- Bottom Right: Veracity -->
+                <rect x="440" y="165" width="130" height="42" rx="3" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="505" y="183" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Veracity</text>
+                <text x="505" y="197" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Quality, Bias, Trust</text>
+                <line x1="440" y1="180" x2="370" y2="140" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL_5V)"/>
+
+                <!-- Top Center: Value -->
+                <rect x="235" y="10" width="130" height="42" rx="3" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="300" y="28" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Value (The Goal)</text>
+                <text x="300" y="42" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Actionable Insights &amp; ROI</text>
+                <line x1="300" y1="52" x2="300" y2="83" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL_5V)"/>
+            </svg>
+        </div>
+        <p class="diagram-caption">Figure: The 5Vs of Big Data converging into a distributed Big Data Platform for high-throughput storage, processing, and value extraction.</p>
+
+        <h3>Need for Big Data Platforms</h3>
+        <p>Traditional RDBMS systems fail under Big Data conditions because: (1) a single server cannot store petabytes; (2) write speed of a single disk cannot match data arrival velocity; (3) rigid schemas cannot handle unstructured variety; (4) single-node processing cannot complete batch jobs within acceptable time. Big Data platforms solve these through distributed storage, distributed parallel computation, and fault-tolerant cluster management.</p>
+
+        <h3>Commonly Used Platforms</h3>
+        <table>
+            <thead>
+                <tr><th>Platform</th><th>Primary Role</th><th>Key Capability</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Apache Hadoop</td><td>Distributed batch storage and processing</td><td>HDFS distributes files across nodes; MapReduce parallelizes computation</td></tr>
+                <tr><td>Apache Spark</td><td>In-memory distributed processing</td><td>RDD and DataFrame APIs; 100× faster than MapReduce for iterative ML</td></tr>
+                <tr><td>Apache Kafka</td><td>High-throughput streaming platform</td><td>Publish-subscribe messaging; durable log storage; millions of events/second</td></tr>
+                <tr><td>Apache Hive</td><td>SQL querying over Hadoop</td><td>HiveQL translates SQL to MapReduce/Tez jobs; handles petabyte-scale tables</td></tr>
+                <tr><td>Google BigQuery</td><td>Serverless cloud data warehouse</td><td>Columnar storage; petabyte-scale SQL queries in seconds; pay-per-query</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== Q37 ===== -->
+<div class="qa-block" id="q37">
+    <div class="question-label">Q37</div>
+    <div class="question-text">Explain the concept of Big Data and discuss the challenges associated with managing Big Data. How do characteristics like Volume, Velocity, Variety, and Veracity impact data analysis?</div>
+    <div class="answer-body">
+        <h3>Concept of Big Data</h3>
+        <p>Big Data is a term for datasets characterized by such extreme volume, velocity, and variety that conventional data management tools cannot adequately capture, store, manage, or analyze them. The concept emerged from the observation that digital data is growing exponentially — from web activity, mobile devices, IoT sensors, social platforms, and scientific instruments — while the cost of storage has fallen rapidly, making it economically viable to retain all data rather than sampling.</p>
+
+        <h3>Challenges of Managing Big Data</h3>
+        <ul>
+            <li><strong>Storage infrastructure:</strong> Petabyte-scale data exceeds single-server capacity; distributed file systems (HDFS, Amazon S3) are required, but managing data consistency and replication across hundreds of nodes is complex.</li>
+            <li><strong>Data integration:</strong> Combining data from heterogeneous sources (databases, APIs, files, streams) requires ETL pipelines that handle schema mismatches, encoding differences, and time-zone normalization.</li>
+            <li><strong>Data quality and cleaning:</strong> At scale, even a 1% error rate produces millions of erroneous records. Automated data quality pipelines are essential but themselves require engineering effort.</li>
+            <li><strong>Security and privacy:</strong> Large datasets are attractive targets; distributed systems have many attack surfaces. Regulatory compliance (GDPR, HIPAA) restricts how personal data can be stored and analyzed.</li>
+            <li><strong>Latency vs throughput trade-off:</strong> Batch systems optimize throughput (process maximum data per hour); stream systems optimize latency (minimize time from data arrival to result). Organizations often need both simultaneously.</li>
+            <li><strong>Skill gap:</strong> Big Data engineering requires expertise in distributed systems, cloud platforms, ML, and data governance — a rare combination.</li>
+        </ul>
+
+        <h3>Impact of Each V on Data Analysis</h3>
+        <table>
+            <thead>
+                <tr><th>V</th><th>Impact on Analysis</th><th>Required Mitigation</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Volume</td><td>Cannot fit in single-machine memory; algorithms that require full dataset scans (e.g., naive K-means) become infeasible</td><td>Distributed algorithms (MapReduce K-means), sampling, approximate query processing</td></tr>
+                <tr><td>Velocity</td><td>Batch models trained on historical data become stale; real-time scoring requires low-latency model serving</td><td>Streaming ML (online learning), micro-batch processing, in-memory model caching</td></tr>
+                <tr><td>Variety</td><td>Each data type requires different preprocessing (NLP for text, CNN for images) and different storage formats; multi-modal analysis is computationally expensive</td><td>Data lakes with schema-on-read, polyglot persistence, unified ML frameworks (Spark MLlib)</td></tr>
+                <tr><td>Veracity</td><td>Noisy labels degrade model accuracy; inconsistent formats cause data type errors; bias in source data propagates to model predictions</td><td>Data validation pipelines, anomaly detection, data provenance tracking, bias audits</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== Q38 ===== -->
+<div class="qa-block" id="q38">
+    <div class="question-label">Q38</div>
+    <div class="question-text">Explain the phases of the Data Analytics Lifecycle in detail.</div>
+    <div class="answer-body">
+        <p>This question covers the same lifecycle as Q5. Refer to the Q5 answer above for the complete six-phase description (Discovery, Data Preparation, Model Planning, Model Building, Communicating Results, Operationalization) with the phase flow diagram and real-world banking example.</p>
+        <p>Additional detail for a 7-mark answer: emphasis on iterative nature — the lifecycle is not strictly linear. After model evaluation (Phase 4), it is common to return to Phase 2 (collect additional features) or Phase 3 (try a different algorithm family). In large organizations, multiple lifecycle runs may execute in parallel for different analytical questions, each sharing the same data preparation infrastructure.</p>
+    </div>
+</div>
+
+<!-- =================== UNIT II =================== -->
+<h2>Unit II — Long Answers</h2>
+
+<!-- ===== Q20 ===== -->
+<div class="qa-block" id="q20">
+    <div class="question-label">Q20</div>
+    <div class="question-text">Explain Principal Component Analysis (PCA) and discuss its main steps with a simple example to illustrate how it works.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>Principal Component Analysis (PCA) is an unsupervised dimensionality reduction technique that transforms a dataset with p correlated variables into a smaller set of k uncorrelated variables — the principal components (PCs) — ordered by the proportion of total variance they explain. PCA is used to reduce the curse of dimensionality, remove multicollinearity, speed up downstream algorithms, and enable 2D/3D visualization of high-dimensional data.</p>
+
+        <h3>Main Steps of PCA</h3>
+        <ol>
+            <li><strong>Standardize the data:</strong> For each feature j, compute z = (x − mean_j) / std_j. This ensures features measured on different scales (e.g., income in dollars vs age in years) contribute equally. If features are already on the same scale, this step may be skipped.</li>
+            <li><strong>Compute the covariance matrix:</strong> The p×p covariance matrix C where C[i,j] = cov(feature_i, feature_j). This captures how all pairs of features co-vary.</li>
+            <li><strong>Compute eigenvectors and eigenvalues of C:</strong> Each eigenvector defines a direction in the p-dimensional feature space (a principal component direction). The corresponding eigenvalue quantifies the variance of the data projected onto that direction.</li>
+            <li><strong>Sort by eigenvalue (descending):</strong> PC1 has the largest eigenvalue (captures the most variance). PC2 has the second-largest eigenvalue and is orthogonal to PC1. And so on.</li>
+            <li><strong>Select top k components:</strong> Choose k such that the selected PCs together explain a sufficient fraction of total variance — commonly 95%. The explained variance ratio for PC_i = eigenvalue_i / sum of all eigenvalues.</li>
+            <li><strong>Project data onto the new k-dimensional space:</strong> Multiply the standardized data matrix by the k×p matrix of selected eigenvectors (the "loading matrix"). Each row in the resulting n×k matrix is the original data point expressed in the new coordinate system.</li>
+        </ol>
+
+        <div class="diagram-wrap">
+            <svg width="560" height="240" viewBox="0 0 560 240" xmlns="http://www.w3.org/2000/svg" aria-label="PCA 2D scatter plot with orthogonal principal axes PC1 and PC2">
+                <defs>
+                    <marker id="arrowL_PCA" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L8,3 z" fill="#7b1f2e"/>
+                    </marker>
+                </defs>
+
+                <!-- Original Axes -->
+                <line x1="60" y1="190" x2="480" y2="190" stroke="#999" stroke-width="1.2"/>
+                <line x1="60" y1="190" x2="60" y2="20" stroke="#999" stroke-width="1.2"/>
+                <text x="495" y="194" font-family="system-ui,sans-serif" font-size="10" fill="#777">Feature X1</text>
+                <text x="50" y="15" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#777">Feature X2</text>
+
+                <!-- Data Points (correlated cluster) -->
+                <circle cx="120" cy="150" r="3.5" fill="#555"/>
+                <circle cx="150" cy="140" r="3.5" fill="#555"/>
+                <circle cx="180" cy="130" r="3.5" fill="#555"/>
+                <circle cx="200" cy="115" r="3.5" fill="#555"/>
+                <circle cx="230" cy="110" r="3.5" fill="#555"/>
+                <circle cx="250" cy="95" r="3.5" fill="#555"/>
+                <circle cx="280" cy="85" r="3.5" fill="#555"/>
+                <circle cx="310" cy="70" r="3.5" fill="#555"/>
+                <circle cx="330" cy="60" r="3.5" fill="#555"/>
+                <circle cx="360" cy="50" r="3.5" fill="#555"/>
+
+                <circle cx="170" cy="160" r="3.5" fill="#555"/>
+                <circle cx="210" cy="135" r="3.5" fill="#555"/>
+                <circle cx="240" cy="125" r="3.5" fill="#555"/>
+                <circle cx="270" cy="105" r="3.5" fill="#555"/>
+                <circle cx="300" cy="85" r="3.5" fill="#555"/>
+
+                <!-- Principal Component 1 (Major axis of variance) -->
+                <line x1="80" y1="175" x2="420" y2="35" stroke="#7b1f2e" stroke-width="2.5" marker-end="url(#arrowL_PCA)"/>
+                <text x="430" y="32" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#7b1f2e">PC1 (Max Variance, \lambda_1)</text>
+
+                <!-- Principal Component 2 (Orthogonal axis) -->
+                <line x1="250" y1="105" x2="185" y2="40" stroke="#333" stroke-width="1.8" marker-end="url(#arrowL_PCA)"/>
+                <text x="180" y="30" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#333">PC2 (\lambda_2)</text>
+
+                <!-- Orthogonal angle indicator -->
+                <path d="M 235,90 L 245,80 L 255,95" fill="none" stroke="#333" stroke-width="1"/>
+
+                <!-- Projections onto PC1 -->
+                <line x1="170" y1="160" x2="190" y2="130" stroke="#7b1f2e" stroke-width="1" stroke-dasharray="2,2"/>
+                <line x1="210" y1="135" x2="225" y2="115" stroke="#7b1f2e" stroke-width="1" stroke-dasharray="2,2"/>
+                <line x1="300" y1="85" x2="295" y2="86" stroke="#7b1f2e" stroke-width="1" stroke-dasharray="2,2"/>
+                <text x="350" y="150" font-family="system-ui,sans-serif" font-size="9" fill="#7b1f2e">Dashed lines: projection onto PC1</text>
+            </svg>
+        </div>
+        <p class="diagram-caption">Figure: PCA transforms correlated axes (X1, X2) into orthogonal axes PC1 and PC2. PC1 aligns with the direction of maximum variance (\lambda_1); dimensionality reduction projects data points onto PC1 alone.</p>
+
+        <h3>Simple Example</h3>
+        <p>Dataset: 100 students, each described by 3 features — hours_studied (x1), assignment_score (x2), and exam_score (x3). These three are highly correlated (students who study more score higher on both). PCA reveals that one principal component (PC1) — a weighted combination of all three — captures 88% of the variance. This PC1 effectively measures "overall academic effort and performance." Reducing from 3 dimensions to 1 (PC1 alone) retains 88% of information, enabling simple 1D ranking of students.</p>
+
+        <h3>Real-World Application</h3>
+        <p>Face recognition: a face image of 128×128 pixels is a 16,384-dimensional vector. PCA reduces this to the top 150 principal components (eigenfaces) that capture 95% of variance. Classification and similarity search operate on 150-dimensional representations — 109 times fewer dimensions — with negligible loss in accuracy.</p>
+    </div>
+</div>
+
+<!-- ===== Q21 ===== -->
+<div class="qa-block" id="q21">
+    <div class="question-label">Q21</div>
+    <div class="question-text">Illustrate five differences between supervised and unsupervised learning in the context of data analytics with suitable examples.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>Machine learning algorithms are broadly categorized by whether they learn from labeled training data (supervised) or discover structure in unlabeled data (unsupervised). The distinction has fundamental implications for the type of problem that can be solved and the data requirements.</p>
+
+        <h3>Comparison Table</h3>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Dimension</th><th>Supervised Learning</th><th>Unsupervised Learning</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Training data requirement</td>
+                    <td>Requires labeled data — each training example has an input (features) and a known output (label/target). Labeling is typically expensive (human annotation).</td>
+                    <td>Requires no labels — only input features. Labeling cost is eliminated, making it applicable to large unlabeled datasets.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Goal</td>
+                    <td>Learn a mapping from inputs to outputs (classification or regression). The model predicts a specific target variable for new inputs.</td>
+                    <td>Discover hidden structure, patterns, or groupings in data. No specific target — the model finds what is interesting without being told what to look for.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Output type</td>
+                    <td>A prediction: a class label (classification) or a numeric value (regression).</td>
+                    <td>A structure: cluster assignments, reduced-dimension representations, or generative models of the data distribution.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Evaluation</td>
+                    <td>Can be evaluated objectively against known labels: accuracy, precision, recall, RMSE, AUC-ROC.</td>
+                    <td>Evaluation is inherently harder — no ground-truth labels. Internal metrics (silhouette score, inertia) or domain expert judgment are used.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Common algorithms and examples</td>
+                    <td>Decision trees, SVM, neural networks, logistic regression. Example: email spam classifier trained on 10,000 labeled spam/non-spam emails.</td>
+                    <td>K-means, PCA, autoencoders, DBSCAN, Gaussian Mixture Models. Example: customer segmentation — cluster 1 million customers by purchase behavior without any predefined segments.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== Q22 ===== -->
+<div class="qa-block" id="q22">
+    <div class="question-label">Q22</div>
+    <div class="question-text">Explain the regression models used in data analysis. Discuss its applications.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>Regression modeling is a statistical technique that quantifies the relationship between a dependent variable (outcome) and one or more independent variables (predictors). The resulting model equation can predict the dependent variable for new inputs and can quantify how much each predictor contributes to the outcome.</p>
+
+        <h3>Types of Regression Models</h3>
+
+        <h4>1. Simple Linear Regression</h4>
+        <p>Models the linear relationship between one predictor and the outcome: Y = b0 + b1*X + ε. The coefficients b0 (intercept) and b1 (slope) are estimated by minimizing the sum of squared residuals (OLS — Ordinary Least Squares). Assumes linearity, independence of errors, homoscedasticity, and normality of residuals.</p>
+
+        <h4>2. Multiple Linear Regression</h4>
+        <p>Extends simple regression to multiple predictors: Y = b0 + b1*X1 + b2*X2 + ... + bn*Xn + ε. Each coefficient bi represents the change in Y for a unit increase in Xi, holding all other predictors constant (partial effect). Feature selection and multicollinearity (correlated predictors) must be managed.</p>
+
+        <h4>3. Logistic Regression</h4>
+        <p>Used for binary classification. Models the log-odds of the positive class as a linear combination of features: log(p/1-p) = b0 + b1*X1 + ... The output is a probability in (0,1) via the sigmoid function. Despite the name, it is a classification algorithm.</p>
+
+        <h4>4. Polynomial Regression</h4>
+        <p>Fits a polynomial curve: Y = b0 + b1*X + b2*X² + ... + bn*X^n. Handles non-linear relationships between X and Y while remaining linear in the coefficients (can be estimated with OLS).</p>
+
+        <h4>5. Ridge and Lasso Regression</h4>
+        <p>Regularized regression that adds a penalty term to the OLS loss function. Ridge (L2 regularization): penalty = λ * sum(bi²) — shrinks all coefficients toward zero. Lasso (L1): penalty = λ * sum(|bi|) — performs feature selection by shrinking some coefficients to exactly zero. Used when there are many predictors (p &gt;&gt; n) or high multicollinearity.</p>
+
+        <h3>Applications</h3>
+        <table>
+            <thead>
+                <tr><th>Domain</th><th>Application</th><th>Regression Type</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Real estate</td><td>Predicting house price from floor area, location, and age</td><td>Multiple linear</td></tr>
+                <tr><td>Finance</td><td>Predicting stock returns from market factors (CAPM, Fama-French)</td><td>Multiple linear</td></tr>
+                <tr><td>Healthcare</td><td>Predicting probability of hospital readmission within 30 days</td><td>Logistic regression</td></tr>
+                <tr><td>Manufacturing</td><td>Predicting product yield from temperature, pressure, and humidity</td><td>Polynomial / ridge</td></tr>
+                <tr><td>Marketing</td><td>Predicting sales from advertising spend across channels</td><td>Multiple linear / Lasso</td></tr>
+                <tr><td>Economics</td><td>Modeling demand as a function of price and income</td><td>Log-linear (elasticity)</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== Q25 ===== -->
+<div class="qa-block" id="q25">
+    <div class="question-label">Q25</div>
+    <div class="question-text">Explain Bayesian modeling and Bayesian networks in detail.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>Bayesian modeling is a statistical approach grounded in Bayes' theorem that treats model parameters as probability distributions rather than fixed values. It updates beliefs about these parameters as evidence accumulates. A Bayesian network is a graphical Bayesian model that represents the joint probability distribution of a set of variables using a directed acyclic graph (DAG).</p>
+
+        <h3>Bayes' Theorem</h3>
+        <p><strong>P(hypothesis | data) = P(data | hypothesis) × P(hypothesis) / P(data)</strong></p>
+        <ul>
+            <li><strong>Prior P(hypothesis):</strong> Belief about the hypothesis before seeing the data.</li>
+            <li><strong>Likelihood P(data | hypothesis):</strong> Probability of observing the data if the hypothesis is true.</li>
+            <li><strong>Posterior P(hypothesis | data):</strong> Updated belief after seeing the data.</li>
+            <li><strong>Marginal likelihood P(data):</strong> Normalizing constant; sum of likelihood × prior over all hypotheses.</li>
+        </ul>
+
+        <h3>Bayesian Network Structure</h3>
+        <p>A BN represents the joint distribution of n variables as: P(X1, X2, ..., Xn) = Product of P(Xi | Parents(Xi)) for i = 1 to n. This factorization is valid because the DAG structure encodes conditional independence assumptions: each node is conditionally independent of its non-descendants given its parents. This dramatically reduces the number of parameters needed to specify the full joint distribution.</p>
+
+        <div class="diagram-wrap">
+            <svg width="600" height="230" viewBox="0 0 600 230" xmlns="http://www.w3.org/2000/svg" aria-label="Bayesian Network Directed Acyclic Graph with CPT table">
+                <defs>
+                    <marker id="arrowL_BN" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L8,3 z" fill="#7b1f2e"/>
+                    </marker>
+                </defs>
+
+                <!-- Node: Pollution -->
+                <rect x="40" y="25" width="100" height="35" rx="4" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="90" y="47" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#7b1f2e">Pollution</text>
+
+                <!-- Node: Smoker -->
+                <rect x="220" y="25" width="100" height="35" rx="4" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="270" y="47" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#7b1f2e">Smoker</text>
+
+                <!-- Node: Cancer -->
+                <rect x="130" y="105" width="100" height="35" rx="4" fill="#7b1f2e" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="180" y="127" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#fff">Cancer</text>
+
+                <!-- Node: X-Ray -->
+                <rect x="40" y="180" width="100" height="35" rx="4" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="90" y="202" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#7b1f2e">X-Ray Result</text>
+
+                <!-- Node: Dyspnoea -->
+                <rect x="220" y="180" width="100" height="35" rx="4" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="270" y="202" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#7b1f2e">Dyspnoea</text>
+
+                <!-- Edges -->
+                <line x1="100" y1="60" x2="160" y2="105" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL_BN)"/>
+                <line x1="260" y1="60" x2="200" y2="105" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL_BN)"/>
+                <line x1="160" y1="140" x2="100" y2="180" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL_BN)"/>
+                <line x1="200" y1="140" x2="260" y2="180" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowL_BN)"/>
+
+                <!-- CPT Table Box on the Right -->
+                <g transform="translate(360, 30)">
+                    <rect x="0" y="0" width="220" height="150" fill="#fff" stroke="#c0a0a6" stroke-width="1"/>
+                    <rect x="0" y="0" width="220" height="24" fill="#7b1f2e"/>
+                    <text x="110" y="16" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">CPT: P(Cancer | Poll, Smoke)</text>
+
+                    <text x="10" y="42" font-family="system-ui,sans-serif" font-size="8.5" fill="#333">Poll=H, Smoke=T  →  P(C) = 0.05</text>
+                    <text x="10" y="66" font-family="system-ui,sans-serif" font-size="8.5" fill="#333">Poll=H, Smoke=F  →  P(C) = 0.02</text>
+                    <text x="10" y="90" font-family="system-ui,sans-serif" font-size="8.5" fill="#333">Poll=L, Smoke=T  →  P(C) = 0.03</text>
+                    <text x="10" y="114" font-family="system-ui,sans-serif" font-size="8.5" fill="#333">Poll=L, Smoke=F  →  P(C) = 0.001</text>
+                    <text x="10" y="138" font-family="system-ui,sans-serif" font-size="8" font-style="italic" fill="#777">Factorized joint: P(P)·P(S)·P(C|P,S)·P(X|C)·P(D|C)</text>
+                </g>
+            </svg>
+        </div>
+        <p class="diagram-caption">Figure: Directed Acyclic Graph (DAG) for a medical diagnosis Bayesian Network. Nodes encode random variables; directed edges encode causal dependencies; the table shows conditional probabilities for Cancer.</p>
+
+        <h3>Components in Detail</h3>
+        <ul>
+            <li><strong>Nodes:</strong> Each node Xi represents one random variable. Can be discrete (cancer: yes/no) or continuous (blood pressure: real-valued).</li>
+            <li><strong>Directed edges:</strong> An edge from A to B means A is a direct parent of B — changes in A directly influence B's probability distribution.</li>
+            <li><strong>Conditional Probability Tables (CPTs):</strong> For a node with k binary parents, the CPT has 2^k rows — one for each combination of parent values — each giving P(node = true | parent configuration). Root nodes have simple prior probability tables.</li>
+            <li><strong>Inference:</strong> Given observed values for some nodes (evidence), infer the probabilities of unobserved nodes. Exact inference (variable elimination, junction tree) is exact but exponential in worst case; approximate inference (Markov chain Monte Carlo, belief propagation) scales better.</li>
+        </ul>
+
+        <h3>Real-World Example</h3>
+        <p>Medical diagnosis: A BN with nodes for Smoking (yes/no), Air Pollution (low/high), Cancer (yes/no), X-Ray Result (positive/negative), and Dyspnoea (yes/no). Given a patient who smokes and reports dyspnoea, the BN computes P(Cancer = yes | Smoking = yes, Dyspnoea = yes) by propagating evidence through the graph. This posterior probability helps the physician prioritize further diagnostics. Bayesian networks are preferred in medical domains because they naturally handle uncertainty, missing data, and prior clinical knowledge.</p>
+    </div>
+</div>
+
+<!-- ===== Q26 ===== -->
+<div class="qa-block" id="q26">
+    <div class="question-label">Q26</div>
+    <div class="question-text">Explain linear systems analysis and nonlinear dynamics in time series analysis.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>Time series analysis studies data recorded at successive, equally-spaced time points. The choice between linear and nonlinear models depends on the underlying data-generating process. Most traditional time series tools assume linearity; real-world systems (financial markets, weather, biological processes) often exhibit nonlinear dynamics.</p>
+
+        <h3>Linear Systems Analysis</h3>
+        <p>A linear time series model assumes the current value is a linear function of past values and/or past error terms.</p>
+
+        <h4>Autoregressive (AR) Model</h4>
+        <p>Xt = c + φ1*Xt-1 + φ2*Xt-2 + ... + φp*Xt-p + εt. The current value is a weighted sum of the last p values plus noise. The order p is selected using partial autocorrelation function (PACF) plots.</p>
+
+        <h4>Moving Average (MA) Model</h4>
+        <p>Xt = μ + εt + θ1*εt-1 + ... + θq*εt-q. The current value depends on the current and past noise terms. Order q selected using autocorrelation function (ACF) plots.</p>
+
+        <h4>ARIMA(p, d, q)</h4>
+        <p>Combines AR(p), d-order differencing (for stationarity — subtract Xt-1 from Xt d times to remove trend), and MA(q). ARIMA is the standard linear time series model for forecasting. The Box-Jenkins methodology provides a systematic procedure for selecting p, d, q using ACF/PACF analysis.</p>
+
+        <h3>Nonlinear Dynamics</h3>
+        <p>Nonlinear time series models allow the current value to depend on past values through nonlinear functions. Three important frameworks:</p>
+
+        <h4>ARCH/GARCH (Volatility Modeling)</h4>
+        <p>ARCH (Autoregressive Conditional Heteroscedasticity): models the variance of the error term as a function of past squared errors — capturing volatility clustering (periods of high volatility cluster together). GARCH generalizes this to include past variance terms. Fundamental in financial time series analysis for option pricing and risk management.</p>
+
+        <h4>Neural Network Time Series Models (LSTM)</h4>
+        <p>Long Short-Term Memory (LSTM) networks are recurrent neural networks specifically designed for sequential data. LSTM cells maintain a memory cell that can selectively retain or forget information over many time steps, capturing long-range dependencies that AR/MA models cannot. LSTMs model arbitrary nonlinear temporal relationships and are state-of-the-art for complex time series forecasting.</p>
+
+        <h4>Chaos and Deterministic Nonlinear Dynamics</h4>
+        <p>Some systems appear random but are governed by deterministic nonlinear equations sensitive to initial conditions (deterministic chaos). Tools: Lyapunov exponents (measure sensitivity to initial conditions), phase-space reconstruction (Takens' theorem), and recurrence plots. Applied to weather prediction limitations, heart rate variability analysis, and financial market microstructure.</p>
+
+        <h3>Example</h3>
+        <p>Stock price modeling: daily returns are analyzed. Linear ARIMA captures autocorrelation in returns; GARCH captures the observation that high-volatility days cluster together (volatility clustering). An LSTM model captures nonlinear patterns across hundreds of days of market history, outperforming ARIMA/GARCH on complex index forecasting tasks.</p>
+    </div>
+</div>
+
+<!-- ===== Q27 ===== -->
+<div class="qa-block" id="q27">
+    <div class="question-label">Q27</div>
+    <div class="question-text">Explain regression modeling and its applications in data analysis. Discuss how multivariate regression extends this approach with suitable examples.</div>
+    <div class="answer-body">
+        <h3>Regression Modeling</h3>
+        <p>See Q22 for the complete treatment of regression types and applications. The key insight is that regression produces an explicit mathematical equation relating inputs to outputs, enabling both prediction and interpretation of predictor importance (through coefficient values and statistical significance tests).</p>
+
+        <h3>Multivariate Regression</h3>
+        <p>Multivariate regression (multiple linear regression) extends simple regression by including multiple predictor variables: Y = b0 + b1*X1 + b2*X2 + ... + bn*Xn + ε. Each coefficient bi represents the marginal effect of Xi on Y, controlling for all other predictors. This is essential in observational studies where predictors are correlated — controlling for confounders prevents attribution of an effect to the wrong variable.</p>
+
+        <h4>Example 1: House Price Prediction</h4>
+        <p>Price = 50,000 + 150*(floor_area) + 20,000*(bedrooms) + 10,000*(location_score) − 500*(age_in_years)</p>
+        <p>Each coefficient is interpretable: an additional bedroom increases price by $20,000 on average, holding all other features constant. The negative coefficient on age indicates older houses sell for less, all else equal.</p>
+
+        <h4>Example 2: Sales Forecasting</h4>
+        <p>Monthly_Sales = 1,200 + 3.5*(TV_ad_spend) + 1.8*(digital_ad_spend) + 0.9*(promotional_discount) − 200*(competitor_price_gap)</p>
+        <p>This model quantifies the return on investment for each advertising channel simultaneously, enabling marketing budget allocation decisions.</p>
+
+        <h3>Extension: Multivariate Response</h3>
+        <p>When there are multiple dependent variables (Y1, Y2, ..., Yk), the problem becomes multivariate multiple regression — fit k separate regression equations, or use MANOVA to jointly test their relationships to the predictors while accounting for correlation among the response variables.</p>
+    </div>
+</div>
+
+<!-- ===== Q28 ===== -->
+<div class="qa-block" id="q28">
+    <div class="question-label">Q28</div>
+    <div class="question-text">Evaluate the suitability of SVM and Neural Networks for data classification.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>Both SVM and neural networks are powerful supervised learning algorithms for classification tasks, but they have fundamentally different architectures, theoretical foundations, and practical characteristics. The choice between them depends on data size, dimensionality, interpretability requirements, and available computational resources.</p>
+
+        <h3>Support Vector Machines (SVM)</h3>
+        <p>SVM finds the maximum-margin hyperplane that separates classes. With kernel tricks, it handles non-linear boundaries by mapping data to higher-dimensional spaces. Key properties:</p>
+        <ul>
+            <li>Only support vectors (boundary points) determine the decision boundary — SVM is sparse and robust to outliers far from the boundary.</li>
+            <li>Strong theoretical guarantees: maximizing margin minimizes an upper bound on generalization error (PAC learning theory).</li>
+            <li>Performs well in high-dimensional, low-sample-size settings (e.g., gene expression data with 20,000 features and 100 samples).</li>
+            <li>Training is convex optimization — guaranteed to find the global optimum.</li>
+            <li>Does not scale well to very large datasets (training complexity O(n²) to O(n³) in number of training samples).</li>
+        </ul>
+
+        <h3>Neural Networks</h3>
+        <p>Neural networks learn hierarchical feature representations through multiple layers of non-linear transformations. Key properties:</p>
+        <ul>
+            <li>Universal approximation: sufficiently deep/wide networks can approximate any continuous function.</li>
+            <li>Learns feature representations automatically — no manual feature engineering required for raw inputs (images, audio, text).</li>
+            <li>Scales to very large datasets (mini-batch stochastic gradient descent trains on millions of examples efficiently).</li>
+            <li>Training is non-convex — susceptible to local optima; requires careful initialization, regularization, and hyperparameter tuning.</li>
+            <li>Requires large amounts of labeled training data to generalize well — limited data leads to overfitting.</li>
+        </ul>
+
+        <h3>Comparative Evaluation</h3>
+        <table>
+            <thead>
+                <tr><th>Criterion</th><th>SVM</th><th>Neural Network</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Dataset size</td><td>Best for small to medium datasets (&lt;100K samples)</td><td>Best for large datasets (&gt;100K samples)</td></tr>
+                <tr><td>High-dimensional input</td><td>Excellent — proven on text, genomics</td><td>Requires more data to avoid overfitting</td></tr>
+                <tr><td>Raw input (images, audio)</td><td>Requires manual feature extraction</td><td>Learns features automatically (CNN, RNN)</td></tr>
+                <tr><td>Training speed</td><td>Slow for large n (quadratic solver)</td><td>Fast with GPU and mini-batch SGD</td></tr>
+                <tr><td>Interpretability</td><td>Moderate — support vectors identifiable</td><td>Low — black-box (without XAI tools)</td></tr>
+                <tr><td>Optimization</td><td>Convex — global optimum guaranteed</td><td>Non-convex — local optima possible</td></tr>
+                <tr><td>Hyperparameters</td><td>Few (C, kernel type, kernel parameters)</td><td>Many (layers, units, dropout, learning rate)</td></tr>
+                <tr><td>Example use case</td><td>Spam classification, medical diagnosis with genomic data</td><td>Image recognition, NLP, speech synthesis</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Conclusion</h3>
+        <p>SVM is the preferred choice for high-dimensional, small-to-medium structured datasets where theoretical guarantees matter. Neural networks are preferred for large datasets, raw perceptual inputs (images, audio, text), and tasks requiring hierarchical feature learning. In practice, the choice is often empirical — both are evaluated on a validation set for the specific task.</p>
+    </div>
+</div>
+
+<!-- ===== Q29 ===== -->
+<div class="qa-block" id="q29">
+    <div class="question-label">Q29</div>
+    <div class="question-text">Explain kernel method. List the commonly used kernel functions in SVM.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>The kernel method is a technique in machine learning that enables algorithms operating on inner products (dot products) to work in high-dimensional or infinite-dimensional feature spaces without explicitly computing the transformation. This is the "kernel trick."</p>
+
+        <h3>The Kernel Trick</h3>
+        <p>Many algorithms (SVM, PCA, ridge regression) can be expressed in terms of dot products between data points: xi · xj. The kernel trick replaces each dot product with a kernel function: K(xi, xj) = phi(xi) · phi(xj), where phi is a mapping to a high-dimensional feature space. The key insight is that K(xi, xj) can often be computed efficiently from the original input vectors, without ever computing phi(xi) explicitly — even when phi maps to an infinite-dimensional space.</p>
+
+        <h3>Mercer's Theorem</h3>
+        <p>A function K is a valid kernel if and only if it is symmetric (K(xi, xj) = K(xj, xi)) and the n×n kernel matrix K[i,j] = K(xi, xj) is positive semi-definite for any finite set of inputs. Valid kernels correspond to dot products in some (possibly infinite-dimensional) Hilbert space.</p>
+
+        <h3>Commonly Used Kernel Functions in SVM</h3>
+        <table>
+            <thead>
+                <tr><th>Kernel</th><th>Formula</th><th>Parameters</th><th>When to Use</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Linear</td>
+                    <td>K(xi, xj) = xi · xj</td>
+                    <td>None</td>
+                    <td>Data is linearly separable; high-dimensional sparse input (text classification, TF-IDF vectors)</td>
+                </tr>
+                <tr>
+                    <td>Polynomial</td>
+                    <td>K(xi, xj) = (γ * xi · xj + r)^d</td>
+                    <td>d (degree), γ, r</td>
+                    <td>Data has polynomial feature interactions (image analysis, NLP)</td>
+                </tr>
+                <tr>
+                    <td>RBF (Gaussian)</td>
+                    <td>K(xi, xj) = exp(−γ * ||xi − xj||²)</td>
+                    <td>γ (controls width)</td>
+                    <td>General-purpose non-linear classification; most common default choice</td>
+                </tr>
+                <tr>
+                    <td>Sigmoid</td>
+                    <td>K(xi, xj) = tanh(γ * xi · xj + r)</td>
+                    <td>γ, r</td>
+                    <td>Neural-network-like decision surfaces; not always a valid Mercer kernel for all parameters</td>
+                </tr>
+                <tr>
+                    <td>Laplacian</td>
+                    <td>K(xi, xj) = exp(−γ * ||xi − xj||₁)</td>
+                    <td>γ</td>
+                    <td>Robust to outliers; L1 norm instead of L2</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Example</h3>
+        <p>XOR classification: two classes form an XOR pattern in 2D — no linear hyperplane can separate them. A polynomial kernel of degree 2 maps the 2D input to a 6-dimensional feature space where the XOR boundary becomes linear. The SVM finds this linear boundary in the mapped space, which corresponds to a curved (quadratic) boundary in the original 2D space.</p>
+    </div>
+</div>
+
+<!-- ===== Q30 ===== -->
+<div class="qa-block" id="q30">
+    <div class="question-label">Q30</div>
+    <div class="question-text">Define rule induction. Explain the basic concepts and types of rules used in rule induction.</div>
+    <div class="answer-body">
+        <h3>Definition</h3>
+        <p>Rule induction is a machine learning technique that automatically extracts a set of IF-THEN (antecedent-consequent) rules from training data. Each rule describes a pattern or decision boundary in the feature space that is directly interpretable by humans.</p>
+
+        <h3>Basic Concepts</h3>
+        <ul>
+            <li><strong>Antecedent (condition):</strong> A conjunction of attribute conditions. Example: income &gt; 50000 AND age &lt; 40.</li>
+            <li><strong>Consequent (conclusion):</strong> The predicted class or outcome. Example: THEN credit_risk = LOW.</li>
+            <li><strong>Coverage:</strong> The fraction of training instances that satisfy the antecedent.</li>
+            <li><strong>Accuracy (confidence):</strong> The fraction of instances satisfying the antecedent that also match the consequent.</li>
+            <li><strong>Support:</strong> The fraction of all instances satisfying both antecedent and consequent.</li>
+        </ul>
+
+        <h3>Types of Rules</h3>
+
+        <h4>1. Classification Rules</h4>
+        <p>Assign an instance to a class based on attribute values. Produced by algorithms like RIPPER (Repeated Incremental Pruning to Produce Error Reduction) and C4.5 (decision tree rules).</p>
+        <pre>IF age &lt; 30 AND income &gt; 50000 THEN credit_risk = LOW (accuracy: 88%, coverage: 32%)
+IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, coverage: 15%)</pre>
+
+        <h4>2. Association Rules</h4>
+        <p>Capture co-occurrence patterns in transaction data. Produced by Apriori and FP-Growth algorithms. No predefined target variable — all items can appear in antecedent or consequent.</p>
+        <pre>IF {bread, butter} THEN {milk} (support=0.40, confidence=0.75, lift=1.8)</pre>
+
+        <h4>3. Ordered vs Unordered Rule Sets</h4>
+        <p>An <strong>ordered rule list (decision list)</strong> fires rules in sequence — the first rule whose antecedent matches an instance determines its class. An <strong>unordered rule set</strong> allows multiple rules to match; conflicts are resolved by voting or confidence-weighted combination.</p>
+
+        <h4>4. Propositional vs Relational Rules</h4>
+        <p>Propositional rules operate on single-instance attribute values. Relational (first-order logic) rules can express conditions involving relationships between multiple entities — used in Inductive Logic Programming (ILP).</p>
+
+        <h3>Real-World Example</h3>
+        <p>Medical decision support: rule induction on patient records produces rules such as: <code>IF blood_pressure &gt; 140 AND diabetes = yes AND age &gt; 55 THEN high_cardiovascular_risk = true</code>. Clinicians can inspect, validate, and override such rules — unlike neural networks, which are opaque. This interpretability is essential in regulatory and clinical settings.</p>
+    </div>
+</div>
+
+<!-- ===== Q31 ===== -->
+<div class="qa-block" id="q31">
+    <div class="question-label">Q31</div>
+    <div class="question-text">Define neural networks. List their major components and applications in data analysis.</div>
+    <div class="answer-body">
+        <h3>Definition</h3>
+        <p>An artificial neural network (ANN) is a computational model inspired by the structure of biological neural networks. It consists of layers of interconnected processing units (neurons) that learn a mapping from inputs to outputs by adjusting connection weights through an iterative optimization process (training). ANNs can approximate arbitrarily complex functions given sufficient depth (layers) and width (neurons per layer).</p>
+
+        <h3>Major Components</h3>
+        <table>
+            <thead>
+                <tr><th>Component</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Input layer</td><td>Receives the raw features. Each neuron corresponds to one input variable. No computation occurs here — values are passed forward as-is.</td></tr>
+                <tr><td>Hidden layers</td><td>One or more layers between input and output. Each neuron computes: output = activation_function(w · x + b), where w is the weight vector, x is the input vector, and b is a bias term. Multiple hidden layers allow the network to learn increasingly abstract features.</td></tr>
+                <tr><td>Output layer</td><td>Produces the final prediction. Uses sigmoid/softmax for classification (outputs probabilities); linear activation for regression (outputs continuous values).</td></tr>
+                <tr><td>Weights</td><td>Numerical parameters associated with each connection. Initialized randomly; updated during training via backpropagation.</td></tr>
+                <tr><td>Biases</td><td>An additional parameter per neuron that allows the activation threshold to be shifted — equivalent to an intercept term in linear regression.</td></tr>
+                <tr><td>Activation functions</td><td>Introduce non-linearity. ReLU (max(0,x)) — most common for hidden layers, avoids vanishing gradient. Sigmoid (1/(1+e^-x)) — output layer for binary classification. Softmax — output layer for multi-class classification. Tanh — zero-centered alternative to sigmoid.</td></tr>
+                <tr><td>Loss function</td><td>Quantifies prediction error. MSE for regression; cross-entropy for classification. The optimization objective is to minimize the loss.</td></tr>
+                <tr><td>Optimizer</td><td>The algorithm that updates weights. Stochastic Gradient Descent (SGD), Adam, RMSProp. Computes the gradient of the loss with respect to each weight via backpropagation and updates weights in the negative gradient direction.</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Applications in Data Analysis</h3>
+        <table>
+            <thead>
+                <tr><th>Domain</th><th>Application</th><th>Architecture</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Computer vision</td><td>Image classification, object detection, medical imaging (tumor detection)</td><td>Convolutional Neural Network (CNN)</td></tr>
+                <tr><td>NLP</td><td>Sentiment analysis, machine translation, text summarization</td><td>Transformer (BERT, GPT)</td></tr>
+                <tr><td>Time series</td><td>Stock price forecasting, demand prediction, predictive maintenance</td><td>LSTM, GRU</td></tr>
+                <tr><td>Recommendation</td><td>Product recommendations, content personalization</td><td>Deep collaborative filtering</td></tr>
+                <tr><td>Fraud detection</td><td>Real-time transaction anomaly detection</td><td>Autoencoder (unsupervised anomaly)</td></tr>
+                <tr><td>Speech</td><td>Speech recognition, voice assistants</td><td>Deep RNN, Transformer</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== Q32 ===== -->
+<div class="qa-block" id="q32">
+    <div class="question-label">Q32</div>
+    <div class="question-text">Define univariate analysis and multivariate analysis. List their major characteristics.</div>
+    <div class="answer-body">
+        <h3>Definitions</h3>
+        <p><strong>Univariate analysis</strong> examines one variable at a time. Its goal is to describe the distribution, central tendency, and dispersion of a single variable without examining its relationship to other variables.</p>
+        <p><strong>Multivariate analysis</strong> simultaneously examines two or more variables, studying their joint distribution and the relationships, correlations, and interactions among them.</p>
+
+        <h3>Characteristics</h3>
+        <table>
+            <thead>
+                <tr><th>Characteristic</th><th>Univariate Analysis</th><th>Multivariate Analysis</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Number of variables</td><td>One</td><td>Two or more (simultaneously)</td></tr>
+                <tr><td>Primary goal</td><td>Summarize and describe the distribution of a single variable</td><td>Understand relationships, dependencies, and patterns among multiple variables</td></tr>
+                <tr><td>Techniques</td><td>Mean, median, mode, standard deviation, variance, skewness, kurtosis, histogram, boxplot, frequency table</td><td>Correlation matrix, scatter plot matrix, PCA, factor analysis, cluster analysis, MANOVA, multiple regression, discriminant analysis</td></tr>
+                <tr><td>Handles interactions</td><td>No — each variable is independent</td><td>Yes — joint effects and interaction terms are explicitly modeled</td></tr>
+                <tr><td>Computational complexity</td><td>Low</td><td>High — often requires matrix operations, eigendecomposition</td></tr>
+                <tr><td>Information captured</td><td>Marginal distribution of one variable only</td><td>Joint distribution of all variables; inter-variable structure</td></tr>
+                <tr><td>Example</td><td>Histogram of customer ages in a dataset</td><td>PCA on customer age, income, purchase frequency, and churn status to find customer segments</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== Q33 ===== -->
+<div class="qa-block" id="q33">
+    <div class="question-label">Q33</div>
+    <div class="question-text">Design a suitable data analysis approach for a dataset containing multiple variables and time-dependent observations. Select appropriate techniques from Regression, PCA, SVM, and Time Series Analysis, and justify your answer.</div>
+    <div class="answer-body">
+        <h3>Problem Description</h3>
+        <p>Dataset: Monthly observations for 500 customers over 3 years. Variables per customer per month: purchase_amount, visit_frequency, avg_order_value, discount_used, customer_age, city_tier, product_category_mix (10 category proportions), and churn_flag (binary). Goals: (1) Predict customer churn next month, (2) Forecast aggregate revenue for the next quarter.</p>
+
+        <h3>Proposed Multi-Stage Analysis Approach</h3>
+
+        <h4>Stage 1: Dimensionality Reduction — PCA</h4>
+        <p><strong>Justification:</strong> The 10 product category proportion variables are likely correlated (customers who buy electronics rarely buy groceries, for example). PCA is applied to the 10-dimensional category mix vector to reduce it to 2–3 principal components that capture &gt;90% of category preference variance. This reduces feature count from ~15 to ~7, removing multicollinearity before regression and SVM steps — both of which are sensitive to correlated features.</p>
+
+        <h4>Stage 2: Churn Prediction — SVM</h4>
+        <p><strong>Justification:</strong> Churn prediction is a binary classification task (churn: yes/no). The dataset is moderate-sized (~18,000 monthly records per year), well within SVM's practical range. The feature space after PCA reduction is moderate-dimensional. SVM with an RBF kernel is selected because: (1) the churn boundary is likely non-linear in the feature space; (2) SVM is robust when classes are imbalanced (as churn typically is); (3) SVM's theoretical guarantees about generalization are relevant in a business context where model reliability matters. Features: PCA-reduced category mix + visit_frequency + avg_order_value + discount_used + customer_age + city_tier.</p>
+
+        <h4>Stage 3: Revenue Forecasting — Time Series Analysis (ARIMA/SARIMA)</h4>
+        <p><strong>Justification:</strong> Aggregate monthly revenue is a time-dependent observation — future revenue depends on past revenue trends, seasonal patterns (holiday shopping peaks), and long-term growth trends. SARIMA (Seasonal ARIMA) explicitly models seasonality, which ARIMA alone cannot. The time series of 36 monthly revenue totals is modeled; the next 3 months are forecast. If non-linear patterns are present (e.g., COVID-era disruptions), an LSTM model is fitted as an alternative and the two forecasts are averaged.</p>
+
+        <h4>Stage 4: Multivariate Regression for Factor Attribution</h4>
+        <p><strong>Justification:</strong> After predicting churn and revenue, management asks: which factors most influence revenue per customer? Multiple linear regression with revenue_per_customer as the dependent variable and visit_frequency, avg_order_value, discount_used, customer_age, PCA_component_1, PCA_component_2 as predictors quantifies the marginal contribution of each factor and identifies which to target with interventions. Lasso regression is used to further select the most important predictors.</p>
+
+        <h3>Summary Justification Table</h3>
+        <table>
+            <thead>
+                <tr><th>Technique</th><th>Applied to</th><th>Justification</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>PCA</td><td>10 product category features</td><td>Correlated features — reduce multicollinearity; compress information</td></tr>
+                <tr><td>SVM (RBF kernel)</td><td>Churn prediction (binary classification)</td><td>Non-linear boundary; moderate data size; robust to class imbalance</td></tr>
+                <tr><td>SARIMA / LSTM</td><td>Quarterly revenue forecast</td><td>Time-dependent data with seasonality — linear + nonlinear temporal modeling</td></tr>
+                <tr><td>Lasso regression</td><td>Revenue per customer attribution</td><td>Many predictors — Lasso selects the most influential ones automatically</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== Q39 ===== -->
+<div class="qa-block" id="q39">
+    <div class="question-label">Q39</div>
+    <div class="question-text">Explain Support Vector Machine (SVM) and kernel methods. Compare linear and nonlinear kernels with examples and explain how SVM handles nonlinear decision boundaries.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>SVM is a supervised learning algorithm that finds the hyperplane in feature space that maximally separates two classes. The margin — the minimum distance from the hyperplane to the nearest training points of either class (the support vectors) — is maximized. Maximizing margin minimizes an upper bound on the generalization error.</p>
+
+        <h3>Mathematical Formulation</h3>
+        <p>Find w and b such that: w · x + b = 0 is the decision boundary; minimize (1/2)||w||² subject to yi(w · xi + b) ≥ 1 for all i, where yi ∈ {+1, −1}. For non-separable data, slack variables ξi allow misclassification with a cost parameter C: minimize (1/2)||w||² + C * sum(ξi).</p>
+
+        <h3>Handling Nonlinear Decision Boundaries — The Kernel Trick</h3>
+        <p>When the data is not linearly separable in the input space, the kernel trick maps data into a higher-dimensional feature space where linear separation is possible. The dual formulation of SVM uses only dot products xi · xj, which the kernel function replaces with K(xi, xj) = phi(xi) · phi(xj). The mapping phi is never computed explicitly — K is computed directly from the original inputs.</p>
+
+        <div class="diagram-wrap">
+            <svg width="600" height="230" viewBox="0 0 600 230" xmlns="http://www.w3.org/2000/svg" aria-label="SVM maximum margin and non-linear kernel transformation diagram">
+                <defs>
+                    <marker id="arrowL_SVM" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L8,3 z" fill="#7b1f2e"/>
+                    </marker>
+                </defs>
+
+                <!-- Left Panel: 2D Non-linear input space -->
+                <g transform="translate(30, 20)">
+                    <text x="100" y="0" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Input Space (Non-linear)</text>
+                    <rect x="0" y="10" width="200" height="170" fill="#f9f9f7" stroke="#333" stroke-width="1.2"/>
+
+                    <!-- Inner class (+1, circles) -->
+                    <circle cx="100" cy="95" r="4.5" fill="#7b1f2e"/>
+                    <circle cx="90" cy="85" r="4.5" fill="#7b1f2e"/>
+                    <circle cx="110" cy="85" r="4.5" fill="#7b1f2e"/>
+                    <circle cx="95" cy="105" r="4.5" fill="#7b1f2e"/>
+                    <circle cx="105" cy="105" r="4.5" fill="#7b1f2e"/>
+
+                    <!-- Outer class (-1, squares) -->
+                    <rect x="30" y="30" width="9" height="9" fill="#333"/>
+                    <rect x="60" y="25" width="9" height="9" fill="#333"/>
+                    <rect x="140" y="25" width="9" height="9" fill="#333"/>
+                    <rect x="170" y="40" width="9" height="9" fill="#333"/>
+                    <rect x="175" y="100" width="9" height="9" fill="#333"/>
+                    <rect x="165" y="150" width="9" height="9" fill="#333"/>
+                    <rect x="120" y="160" width="9" height="9" fill="#333"/>
+                    <rect x="40" y="155" width="9" height="9" fill="#333"/>
+                    <rect x="25" y="100" width="9" height="9" fill="#333"/>
+
+                    <!-- Circular decision boundary -->
+                    <circle cx="100" cy="95" r="42" fill="none" stroke="#7b1f2e" stroke-width="2" stroke-dasharray="4,2"/>
+                    <text x="100" y="195" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#555">Non-linear circular boundary</text>
+                </g>
+
+                <!-- Mapping arrow in center -->
+                <g transform="translate(255, 95)">
+                    <line x1="0" y1="10" x2="65" y2="10" stroke="#7b1f2e" stroke-width="2" marker-end="url(#arrowL_SVM)"/>
+                    <text x="32" y="0" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" font-weight="bold" fill="#7b1f2e">\Phi(x)</text>
+                    <text x="32" y="28" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Kernel Trick</text>
+                </g>
+
+                <!-- Right Panel: High-D Feature Space with Linear Separator -->
+                <g transform="translate(350, 20)">
+                    <text x="100" y="0" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Feature Space (Linear Hyperplane)</text>
+                    <rect x="0" y="10" width="200" height="170" fill="#f9f9f7" stroke="#333" stroke-width="1.2"/>
+
+                    <!-- Linear Hyperplane (w · x + b = 0) -->
+                    <line x1="20" y1="160" x2="180" y2="30" stroke="#7b1f2e" stroke-width="2"/>
+                    <text x="105" y="80" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="bold" fill="#7b1f2e" transform="rotate(-38,105,80)">w·\Phi(x)+b = 0</text>
+
+                    <!-- Margin Lines -->
+                    <line x1="5" y1="145" x2="165" y2="15" stroke="#999" stroke-width="1.2" stroke-dasharray="3,2"/>
+                    <line x1="35" y1="175" x2="195" y2="45" stroke="#999" stroke-width="1.2" stroke-dasharray="3,2"/>
+
+                    <!-- Class +1 points above margin -->
+                    <circle cx="50" cy="50" r="4.5" fill="#7b1f2e"/>
+                    <circle cx="80" cy="40" r="4.5" fill="#7b1f2e"/>
+                    <circle cx="65" cy="70" r="4.5" fill="#7b1f2e"/>
+                    <!-- Support Vector +1 -->
+                    <circle cx="85" cy="80" r="4.5" fill="#7b1f2e"/>
+                    <circle cx="85" cy="80" r="8" fill="none" stroke="#7b1f2e" stroke-width="1.5"/>
+
+                    <!-- Class -1 points below margin -->
+                    <rect x="130" y="130" width="9" height="9" fill="#333"/>
+                    <rect x="160" y="120" width="9" height="9" fill="#333"/>
+                    <rect x="145" y="150" width="9" height="9" fill="#333"/>
+                    <!-- Support Vector -1 -->
+                    <rect x="115" y="110" width="9" height="9" fill="#333"/>
+                    <circle cx="119" cy="114" r="8" fill="none" stroke="#333" stroke-width="1.5"/>
+
+                    <text x="100" y="195" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#555">Circled: Support Vectors</text>
+                </g>
+            </svg>
+        </div>
+        <p class="diagram-caption">Figure: The SVM Kernel Trick. Non-linearly separable data in 2D input space is mapped via kernel \Phi(x) into high-dimensional feature space where a maximum-margin linear hyperplane w·\Phi(x)+b=0 cleanly separates the classes.</p>
+
+        <h3>Linear vs Nonlinear Kernels — Comparison</h3>
+        <table>
+            <thead>
+                <tr><th>Aspect</th><th>Linear Kernel K(xi,xj) = xi·xj</th><th>RBF (Nonlinear) Kernel K(xi,xj) = exp(−γ||xi−xj||²)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Decision boundary shape</td><td>Linear hyperplane in input space</td><td>Non-linear, locally curved boundary</td></tr>
+                <tr><td>Feature space</td><td>Same as input space</td><td>Infinite-dimensional Gaussian feature space</td></tr>
+                <tr><td>Suitable data</td><td>Linearly separable; high-dimensional sparse (text)</td><td>Non-linearly distributed; moderate dimensions</td></tr>
+                <tr><td>Parameters</td><td>Only C (regularization)</td><td>C and γ (kernel width)</td></tr>
+                <tr><td>Computational cost</td><td>Lower — no kernel matrix needed for prediction</td><td>Higher — kernel evaluation for each test point</td></tr>
+                <tr><td>Example application</td><td>Document classification with TF-IDF features</td><td>Image classification with pixel features; biological data</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Example: Nonlinear Boundary</h3>
+        <p>Dataset: class +1 forms a circular cluster at the origin; class −1 surrounds it in a ring. No linear hyperplane can separate them. With an RBF kernel (γ=0.5), SVM maps data into an infinite-dimensional space where a linear hyperplane corresponds to the circular boundary in 2D input space. The trained SVM correctly classifies all points with a decision boundary that is a circle in input space.</p>
+
+        <h3>Real-World Application</h3>
+        <p>Spam email classification: features are TF-IDF word frequencies (10,000-dimensional sparse vectors). A linear SVM kernel is used because the feature space is already high-dimensional and the problem is nearly linearly separable in that space. Training is fast (linear SVM scales to millions of documents), and accuracy exceeds 98%.</p>
+    </div>
+</div>
+
+<!-- ===== Q40 ===== -->
+<div class="qa-block" id="q40">
+    <div class="question-label">Q40</div>
+    <div class="question-text">Explain neural networks in detail. Discuss learning, generalization, and competitive learning with real-life examples.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>Artificial neural networks (ANNs) are computational models consisting of layers of interconnected neurons. By adjusting connection weights through iterative training, ANNs learn complex mappings from inputs to outputs. See Q31 for the complete component description.</p>
+
+        <h3>Learning in Neural Networks — Backpropagation</h3>
+        <p>The learning algorithm has two phases per training batch:</p>
+        <ol>
+            <li><strong>Forward pass:</strong> Input is propagated layer by layer. Each neuron computes z = w · x + b, then applies activation function a = f(z). The output layer produces a prediction.</li>
+            <li><strong>Backward pass (backpropagation):</strong> The loss L (e.g., cross-entropy for classification) is computed by comparing prediction to ground truth. The gradient dL/dw is computed for each weight using the chain rule, propagating the error gradient backward from the output layer to the input layer. Weights are updated: w = w − α * (dL/dw), where α is the learning rate.</li>
+        </ol>
+        <p>This is repeated for many mini-batches (typically 32–256 examples) over many epochs (passes through the full training set) until the loss converges.</p>
+
+        <div class="diagram-wrap">
+            <svg width="600" height="240" viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" aria-label="Neural Network architecture diagram showing forward pass and backpropagation error flow">
+                <defs>
+                    <marker id="arrowL_NN" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L8,3 z" fill="#7b1f2e"/>
+                    </marker>
+                    <marker id="arrowL_NN_back" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
+                    </marker>
+                </defs>
+
+                <!-- Layer Labels -->
+                <text x="80" y="25" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Input Layer</text>
+                <text x="280" y="25" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Hidden Layer (ReLU)</text>
+                <text x="480" y="25" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Output Layer (Softmax)</text>
+
+                <!-- Input Nodes (x1, x2, x3) -->
+                <circle cx="80" cy="65" r="16" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="80" y="69" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">x_1</text>
+
+                <circle cx="80" cy="120" r="16" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="80" y="124" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">x_2</text>
+
+                <circle cx="80" cy="175" r="16" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="80" y="179" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">x_3</text>
+
+                <!-- Hidden Nodes (h1, h2, h3, h4) -->
+                <circle cx="280" cy="50" r="16" fill="#7b1f2e"/>
+                <text x="280" y="54" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">h_1</text>
+
+                <circle cx="280" cy="97" r="16" fill="#7b1f2e"/>
+                <text x="280" y="101" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">h_2</text>
+
+                <circle cx="280" cy="143" r="16" fill="#7b1f2e"/>
+                <text x="280" y="147" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">h_3</text>
+
+                <circle cx="280" cy="190" r="16" fill="#7b1f2e"/>
+                <text x="280" y="194" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">h_4</text>
+
+                <!-- Output Nodes (y1, y2) -->
+                <circle cx="480" cy="90" r="16" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="480" y="94" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">\hat{y}_1</text>
+
+                <circle cx="480" cy="150" r="16" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="480" y="154" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">\hat{y}_2</text>
+
+                <!-- Connections Input to Hidden -->
+                <line x1="96" y1="65" x2="264" y2="50" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="96" y1="65" x2="264" y2="97" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="96" y1="65" x2="264" y2="143" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="96" y1="65" x2="264" y2="190" stroke="#c0a0a6" stroke-width="1"/>
+
+                <line x1="96" y1="120" x2="264" y2="50" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="96" y1="120" x2="264" y2="97" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="96" y1="120" x2="264" y2="143" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="96" y1="120" x2="264" y2="190" stroke="#c0a0a6" stroke-width="1"/>
+
+                <line x1="96" y1="175" x2="264" y2="50" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="96" y1="175" x2="264" y2="97" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="96" y1="175" x2="264" y2="143" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="96" y1="175" x2="264" y2="190" stroke="#c0a0a6" stroke-width="1"/>
+
+                <!-- Connections Hidden to Output -->
+                <line x1="296" y1="50" x2="464" y2="90" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="296" y1="50" x2="464" y2="150" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="296" y1="97" x2="464" y2="90" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="296" y1="97" x2="464" y2="150" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="296" y1="143" x2="464" y2="90" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="296" y1="143" x2="464" y2="150" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="296" y1="190" x2="464" y2="90" stroke="#c0a0a6" stroke-width="1"/>
+                <line x1="296" y1="190" x2="464" y2="150" stroke="#c0a0a6" stroke-width="1"/>
+
+                <!-- Forward Pass Indicator (Top) -->
+                <line x1="130" y1="10" x2="430" y2="10" stroke="#7b1f2e" stroke-width="2" marker-end="url(#arrowL_NN)"/>
+                <text x="280" y="8" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" font-weight="bold" fill="#7b1f2e">Forward Propagation: z = w·x + b, a = f(z) →</text>
+
+                <!-- Backward Pass Indicator (Bottom) -->
+                <line x1="430" y1="225" x2="130" y2="225" stroke="#555" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrowL_NN_back)"/>
+                <text x="280" y="235" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" font-weight="bold" fill="#555">← Backpropagation: Error Gradients \partial L / \partial w via Chain Rule</text>
+            </svg>
+        </div>
+        <p class="diagram-caption">Figure: Multilayer Perceptron (MLP) architecture. Input activations propagate forward through hidden neurons to output predictions. Backpropagation transmits loss gradients backward to update connection weights.</p>
+
+        <h4>Real-Life Example of Learning</h4>
+        <p>Image classifier for handwritten digits (MNIST): The network receives 28×28 pixel values (784 inputs). Forward pass through 3 hidden layers produces 10 output probabilities (one per digit 0–9). The cross-entropy loss measures how far the predicted probabilities are from the true one-hot label. Backpropagation updates all weights. After 10 epochs, accuracy on the test set reaches &gt;99%.</p>
+
+        <h3>Generalization</h3>
+        <p>Generalization is the network's ability to produce correct outputs on data it has never seen during training. A network that memorizes training examples (overfitting) will perform well on the training set but poorly on new data. The goal of training is to learn the underlying input-output mapping — not the training examples themselves.</p>
+        <p>Techniques to improve generalization:</p>
+        <ul>
+            <li><strong>Dropout:</strong> During each training step, randomly set a fraction (e.g., 20%) of neurons to zero. This prevents neurons from co-adapting and forces the network to learn robust representations.</li>
+            <li><strong>L2 regularization (weight decay):</strong> Add λ * sum(w²) to the loss, penalizing large weights and encouraging simpler models.</li>
+            <li><strong>Early stopping:</strong> Monitor validation loss during training; stop when validation loss begins increasing even though training loss is still decreasing.</li>
+            <li><strong>Data augmentation:</strong> Artificially expand the training set by applying random transformations (rotations, flips, crops for images) — the network sees more diverse examples.</li>
+            <li><strong>Batch normalization:</strong> Normalize each layer's inputs to reduce internal covariate shift, allowing faster training and acting as a mild regularizer.</li>
+        </ul>
+
+        <h4>Real-Life Example of Generalization</h4>
+        <p>A neural network trained to detect pneumonia in chest X-rays from Hospital A must generalize to X-rays from Hospital B (different scanner hardware, patient demographics). Dropout + data augmentation + training on diverse hospital data ensures the model does not memorize Hospital A's scanner artifacts — it learns the underlying pathological patterns.</p>
+
+        <h3>Competitive Learning</h3>
+        <p>Competitive learning is an unsupervised neural network training paradigm where neurons compete to represent input patterns. Only the winning neuron (the one with the weight vector closest to the current input) updates its weights — it moves toward the input: w_winner = w_winner + η * (x − w_winner). All other neurons remain unchanged. Over many inputs, different neurons specialize in representing different regions of the input distribution.</p>
+
+        <h4>Self-Organizing Map (SOM)</h4>
+        <p>The SOM extends competitive learning by organizing neurons on a 2D grid and updating not just the winner but also its topological neighbors (the neighborhood shrinks over training). The result is a 2D map of the input space that preserves topological relationships — similar inputs are represented by nearby neurons. SOMs are used for unsupervised clustering and visualization of high-dimensional data.</p>
+
+        <h4>Real-Life Example of Competitive Learning</h4>
+        <p>Customer segmentation using a SOM: a financial institution feeds transaction behavior vectors (recency, frequency, monetary value, product diversity) into a 10×10 SOM. After training, the 100-neuron grid organizes into interpretable regions: one corner represents high-value frequent buyers, the opposite corner represents dormant low-value accounts, and intermediate neurons capture transitions between segments. The map is visualized as a 2D heatmap, enabling relationship managers to identify segment clusters without predefined labels.</p>
+    </div>
+</div>
+
+<script src="shared.js"></script>
+</body>
+</html>

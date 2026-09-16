@@ -1,0 +1,416 @@
+/* ============================================================
+   IDAV Exam Guide — Shared Stylesheet
+   Design rules: no animations, no gradients, no hover effects,
+   no emojis, one accent color only.
+   ============================================================ */
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --idav-font: Georgia, 'Times New Roman', Times, serif;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: auto;
+}
+
+body {
+    background-color: #f9f9f7;
+    color: #1a1a1a;
+    font-family: var(--idav-font);
+    line-height: 1.75;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.25rem 3rem;
+}
+
+/* --- Navigation --- */
+nav {
+    border-bottom: 2px solid #7b1f2e;
+    padding: 0.75rem 0;
+    margin-bottom: 2rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    display: inline-block;
+    color: #7b1f2e;
+    text-decoration: none;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.2rem 0.55rem;
+    border-right: 1px solid #c0a0a6;
+}
+
+nav ul li:last-child a {
+    border-right: none;
+}
+
+nav ul li a.active {
+    color: #1a1a1a;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* --- Page Header --- */
+.page-header {
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #c0a0a6;
+}
+
+.page-header h1 {
+    font-size: 1.75rem;
+    color: #7b1f2e;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.page-header p {
+    font-size: 0.95rem;
+    color: #444;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* --- Headings --- */
+h1 {
+    font-size: 1.75rem;
+    color: #7b1f2e;
+    margin-bottom: 0.75rem;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.3rem;
+    color: #7b1f2e;
+    margin-top: 2.25rem;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #c0a0a6;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.05rem;
+    color: #1a1a1a;
+    margin-top: 1.5rem;
+    margin-bottom: 0.4rem;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 0.95rem;
+    color: #333;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* --- Paragraphs & Lists --- */
+p {
+    margin-bottom: 0.8rem;
+}
+
+ul, ol {
+    margin-left: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+ul li, ol li {
+    margin-bottom: 0.3rem;
+}
+
+/* --- Tables --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.25rem;
+    font-family: var(--idav-font);
+    font-size: 0.9rem;
+}
+
+thead {
+    background-color: #7b1f2e;
+    color: #fff;
+}
+
+thead th {
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+tbody td {
+    padding: 0.55rem 0.75rem;
+    vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2eded;
+}
+
+/* --- Info / Note Banner --- */
+.note-banner {
+    border-left: 4px solid #7b1f2e;
+    background-color: #f5eeee;
+    padding: 0.75rem 1rem;
+    margin: 1.25rem 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.9rem;
+    color: #3a1010;
+}
+
+.note-banner strong {
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+/* --- Coverage Badge (Home page) --- */
+.coverage-badge {
+    display: inline-block;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid #7b1f2e;
+    color: #7b1f2e;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.coverage-badge.none {
+    border-color: #888;
+    color: #666;
+}
+
+/* --- SVG Diagrams --- */
+.diagram-wrap {
+    margin: 1.25rem 0;
+    overflow-x: auto;
+}
+
+.diagram-wrap svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.diagram-caption {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 0.35rem;
+    font-style: italic;
+}
+
+/* --- Q&A Sections --- */
+.qa-block {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e0d8d8;
+}
+
+.qa-block:last-child {
+    border-bottom: none;
+}
+
+.question-label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #7b1f2e;
+    margin-bottom: 0.3rem;
+}
+
+.question-text {
+    font-weight: bold;
+    font-size: 0.98rem;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+
+.answer-body {
+    font-size: 0.95rem;
+    color: #222;
+}
+
+/* --- Code / Rule snippets --- */
+code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #eee;
+    padding: 0.1rem 0.35rem;
+    font-size: 0.88rem;
+    border: 1px solid #ccc;
+}
+
+pre {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 0.75rem 1rem;
+    margin: 0.75rem 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.88rem;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+
+/* --- Horizontal Rule --- */
+hr {
+    border: none;
+    border-top: 1px solid #c0a0a6;
+    margin: 2rem 0;
+}
+
+/* --- Print-friendliness --- */
+@media print {
+    nav { display: none; }
+    body { max-width: 100%; padding: 0; }
+    h2 { page-break-before: auto; }
+    .qa-block { page-break-inside: avoid; }
+}
+
+/* --- Responsive narrow screens --- */
+@media (max-width: 600px) {
+    body { padding: 0 0.75rem 2rem; }
+    nav ul { gap: 0; }
+    nav ul li a { font-size: 0.78rem; padding: 0.2rem 0.4rem; }
+    h1 { font-size: 1.4rem; }
+    h2 { font-size: 1.15rem; }
+}
+
+/* ============================================================
+   Font Picker Widget
+   ============================================================ */
+#idav-font-picker {
+    position: fixed;
+    bottom: 4rem;
+    right: 1.25rem;
+    z-index: 200;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+#idav-fp-btn {
+    background: #7b1f2e;
+    color: #fff;
+    border: none;
+    padding: 0.45rem 0.8rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+#idav-fp-panel {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 4px);
+    right: 0;
+    background: #fff;
+    border: 1px solid #c0a0a6;
+    width: 210px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.13);
+}
+
+#idav-fp-panel.ifp-open {
+    display: block;
+}
+
+#idav-fp-panel > p {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7b1f2e;
+    padding: 0.5rem 0.8rem 0.3rem;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+#idav-fp-panel ul {
+    list-style: none;
+    margin: 0;
+    padding: 0.2rem 0;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+#idav-fp-panel ul li {
+    padding: 0.38rem 0.8rem;
+    font-size: 0.88rem;
+    cursor: pointer;
+    color: #1a1a1a;
+    border-bottom: 1px solid #f5f5f5;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#idav-fp-panel ul li:last-child { border-bottom: none; }
+
+#idav-fp-panel ul li.ifp-active {
+    color: #7b1f2e;
+    background: #f5eeee;
+    font-weight: bold;
+}
+
+#idav-fp-panel ul li.ifp-active::after {
+    content: " \2713";
+    float: right;
+    color: #7b1f2e;
+    font-weight: bold;
+}
+
+/* ============================================================
+   Back to Top Button
+   ============================================================ */
+#idav-btt {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    background: #7b1f2e;
+    color: #fff;
+    text-decoration: none;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.45rem 0.8rem;
+    z-index: 199;
+    border: none;
+    display: block;
+}
+
+@media print {
+    #idav-font-picker, #idav-btt { display: none; }
+}

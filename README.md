@@ -90,6 +90,5 @@ Then visit `http://localhost:8000/` in your browser.
 ├── style.css           # Shared design system and responsive layout
 ├── syllabus.md         # Source syllabus specification
 ├── questions.md        # Source ST-1 question bank
-├── plan.md             # Project roadmap and verification checklist
 └── README.md           # Project documentation
 ```

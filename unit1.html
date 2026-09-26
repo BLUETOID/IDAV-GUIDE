@@ -109,23 +109,47 @@
 <h3>The Analytics Value Chain</h3>
 <p>Raw data has no inherent business value. Value is created through a transformation chain:</p>
 <figure class="diagram-wrap">
-    <svg width="660" height="190" viewBox="0 0 660 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="value-title value-desc">
+    <svg width="700" height="210" viewBox="0 0 700 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="value-title value-desc">
         <title id="value-title">Analytics value chain</title>
         <desc id="value-desc">Raw data becomes information, knowledge, insight, a decision, and finally measured value. Each transition requires work; value is not guaranteed.</desc>
-        <g fill="#f5eeee" stroke="#7b1f2e">
-            <rect x="15" y="22" width="180" height="48" rx="8"/><rect x="240" y="22" width="180" height="48" rx="8"/><rect x="465" y="22" width="180" height="48" rx="8"/>
-            <rect x="15" y="120" width="180" height="48" rx="8"/><rect x="240" y="120" width="180" height="48" rx="8"/><rect x="465" y="120" width="180" height="48" rx="8"/>
+        <defs>
+            <marker id="arrowVC" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+                <path d="M0,0 L0,8 L10,4 z" fill="#7b1f2e"/>
+            </marker>
+            <marker id="arrowVCfade" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+                <path d="M0,0 L0,8 L10,4 z" fill="#c0a0a6"/>
+            </marker>
+        </defs>
+        <!-- Top row: Data → Information → Knowledge -->
+        <g fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5">
+            <rect x="15" y="28" width="175" height="52" rx="26"/>
+            <rect x="260" y="28" width="175" height="52" rx="26"/>
+            <rect x="505" y="28" width="175" height="52" rx="26"/>
         </g>
-        <g font-family="system-ui,sans-serif" font-size="17" font-weight="bold" fill="#7b1f2e" text-anchor="middle">
-            <text x="105" y="52">Data</text><text x="330" y="52">Information</text><text x="555" y="52">Knowledge</text>
-            <text x="105" y="150">Value</text><text x="330" y="150">Decision</text><text x="555" y="150">Insight</text>
+        <!-- Bottom row: Value ← Decision ← Insight -->
+        <g fill="#f0e2df" stroke="#7b1f2e" stroke-width="1.5">
+            <rect x="15" y="128" width="175" height="52" rx="26"/>
+            <rect x="260" y="128" width="175" height="52" rx="26"/>
+            <rect x="505" y="128" width="175" height="52" rx="26"/>
         </g>
-        <g font-family="system-ui,sans-serif" font-size="20" fill="#7b1f2e" text-anchor="middle" aria-hidden="true">
-            <text x="217" y="53">→</text><text x="442" y="53">→</text><text x="555" y="106">↓</text>
-            <text x="442" y="151">←</text><text x="217" y="151">←</text>
+        <!-- Labels -->
+        <g font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#7b1f2e" text-anchor="middle">
+            <text x="102" y="60">Data</text><text x="347" y="60">Information</text><text x="592" y="60">Knowledge</text>
+            <text x="102" y="160">Value</text><text x="347" y="160">Decision</text><text x="592" y="160">Insight</text>
         </g>
+        <!-- Forward arrows top row -->
+        <line x1="190" y1="54" x2="255" y2="54" stroke="#7b1f2e" stroke-width="2" marker-end="url(#arrowVC)"/>
+        <line x1="435" y1="54" x2="500" y2="54" stroke="#7b1f2e" stroke-width="2" marker-end="url(#arrowVC)"/>
+        <!-- Down arrow right side -->
+        <line x1="592" y1="85" x2="592" y2="123" stroke="#7b1f2e" stroke-width="2" marker-end="url(#arrowVC)"/>
+        <!-- Backward arrows bottom row -->
+        <line x1="500" y1="154" x2="435" y2="154" stroke="#7b1f2e" stroke-width="2" marker-end="url(#arrowVC)"/>
+        <line x1="255" y1="154" x2="190" y2="154" stroke="#7b1f2e" stroke-width="2" marker-end="url(#arrowVC)"/>
+        <!-- Faint feedback loop: Value back up to Data -->
+        <path d="M 60,128 C 60,108 60,108 60,80" fill="none" stroke="#c0a0a6" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrowVCfade)"/>
+        <text x="18" y="108" font-family="system-ui,sans-serif" font-size="9" fill="#c0a0a6" transform="rotate(-90,18,108)">iterate</text>
     </svg>
-    <figcaption class="diagram-caption">Figure 1: Read left to right across the top, then right to left across the bottom. Collect and store data; clean and organize it into information; analyze and model to build knowledge; interpret and communicate an insight; make a decision; act and measure whether it created value. Example: order records → weekly sales totals → a repeat-purchase pattern → a testable loyalty hypothesis → a targeted trial → measured retention change.</figcaption>
+    <figcaption class="diagram-caption">Figure 1: Read left to right across the top, then right to left across the bottom. Collect and store data; clean and organize it into information; analyze and model to build knowledge; interpret and communicate an insight; make a decision; act and measure whether it created value. The dashed arrow from Value back to Data shows the iterative nature — outcomes inform new questions. Example: order records → weekly sales totals → a repeat-purchase pattern → a testable loyalty hypothesis → a targeted trial → measured retention change.</figcaption>
 </figure>
 
 <h3>Applications Across Industries</h3>
@@ -505,15 +529,17 @@
 <p>Value is the reason to invest in data infrastructure. Retaining every click does not itself improve a business: an analysis must lead to an action whose benefits outweigh collection, privacy, storage and operating costs. For example, compare a new recommendation strategy with an existing one in a controlled test, measure repeat purchases and returns, and keep the change only if the net outcome improves. The sequence is collection → storage → processing → modeling → insight → decision → measured impact.</p>
 
 <div class="diagram-wrap">
-    <!-- SVG: 5Vs Pentagon — redrawn with geometrically correct positions and clear labels -->
+    <!-- SVG: 5Vs Pentagon — with filled polygon background -->
     <!-- Pentagon center (260,195), r=130. Vertices from top clockwise. -->
-    <!-- sin/cos values: 72°: sin=0.9511, cos=0.3090. 144°: sin=0.5878, cos=0.8090 -->
     <!-- Top (Volume): (260, 65) -->
-    <!-- Upper-right (Velocity): (260+124, 195-40) = (384,155) -->
-    <!-- Lower-right (Value): (260+76, 195+105) = (336,300) -->
-    <!-- Lower-left (Veracity): (260-76, 195+105) = (184,300) -->
-    <!-- Upper-left (Variety): (260-124, 195-40) = (136,155) -->
+    <!-- Upper-right (Velocity): (384,155) -->
+    <!-- Lower-right (Value): (336,300) -->
+    <!-- Lower-left (Veracity): (184,300) -->
+    <!-- Upper-left (Variety): (136,155) -->
     <svg width="520" height="370" viewBox="0 0 520 370" xmlns="http://www.w3.org/2000/svg" aria-label="5Vs of Big Data pentagon diagram with Volume, Velocity, Value, Veracity and Variety labeled at each vertex">
+
+        <!-- Filled pentagon background -->
+        <polygon points="260,65 384,155 336,300 184,300 136,155" fill="#f5eeee" fill-opacity="0.6" stroke="none"/>
 
         <!-- Pentagon border lines (drawn individually to avoid fill issues) -->
         <line x1="260" y1="65"  x2="384" y2="155" stroke="#7b1f2e" stroke-width="2"/>
@@ -815,6 +841,10 @@
         <!-- Guide circle (faint) -->
         <circle cx="280" cy="210" r="145" fill="none" stroke="#e8dcdc" stroke-width="1" stroke-dasharray="6,4"/>
 
+        <!-- Center label -->
+        <text x="280" y="205" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="bold" fill="#7b1f2e">Analytics</text>
+        <text x="280" y="220" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="bold" fill="#7b1f2e">Lifecycle</text>
+
         <!-- Arrow lines between node edges (from edge of one circle to edge of next, clockwise) -->
         <!-- P0(280,65) → P1(406,138): dir=(126,73), L=145.6, u=(0.865,0.501) -->
         <!-- start=(280+26,65+15)=(306,80), end=(406-26,138-15)=(380,123) -->
@@ -868,6 +898,16 @@
 
         <text x="110" y="126" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a">Operationali-</text>
         <text x="110" y="141" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a">zation</text>
+
+        <!-- Iteration arrows (dashed): Phase 5→Phase 2 and Phase 6→Phase 1 -->
+        <defs>
+            <marker id="arrowLCiter" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#c0a0a6"/>
+            </marker>
+        </defs>
+        <!-- Phase 5 (Communicating, 154,282) → Phase 2 (Data Prep, 406,138) via curved path through center -->
+        <path d="M 168,268 Q 280,210 392,152" fill="none" stroke="#c0a0a6" stroke-width="1.3" stroke-dasharray="4,3" marker-end="url(#arrowLCiter)"/>
+        <text x="298" y="198" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#c0a0a6">iterate</text>
     </svg>
 </div>
 <p class="diagram-caption">Figure 5: Data Analytics Lifecycle — six phases in a cyclic flow. Arrows indicate the primary direction of progression. The cycle restarts from Phase 1 (Discovery) or Phase 2 (Data Preparation) when model performance degrades or a new business question arises.</p>

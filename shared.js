@@ -11,6 +11,9 @@
             ['index.html', 'Overview'],
             ['unit1.html', 'Unit I'],
             ['unit2.html', 'Unit II'],
+            ['unit3.html', 'Unit III'],
+            ['unit4.html', 'Unit IV'],
+            ['unit5.html', 'Unit V'],
             ['short-answers.html', '2-mark answers'],
             ['long-answers.html', '7-mark answers']
         ];

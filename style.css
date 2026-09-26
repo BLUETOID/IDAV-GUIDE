@@ -153,6 +153,9 @@ pre { overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; backgrou
 .section-heading h2, .study-method h2 { border: 0; padding: 0; margin: 0; font-size: clamp(2rem, 3.5vw, 2.9rem); }
 .section-heading > p { max-width: 36ch; font: .95rem/1.6 var(--font-ui); color: var(--muted); margin: 0; }
 .unit-grid, .practice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.unit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.unit-grid .unit-card:nth-child(1),
+.unit-grid .unit-card:nth-child(2) { grid-column: auto; }
 .unit-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); padding: clamp(1.4rem, 2.6vw, 2.2rem); }
 .card-topline { display: flex; justify-content: space-between; gap: .5rem; font: 700 .73rem/1.5 var(--font-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
 .card-topline span:last-child { color: var(--muted); letter-spacing: 0; text-transform: none; font-weight: 500; }
@@ -196,6 +199,7 @@ pre { overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; backgrou
     .site-links { order: 3; flex-basis: 100%; justify-content: flex-start; margin-left: -.7rem; }
     .site-tools { margin-left: auto; }
     .home-hero { gap: 2rem; }
+    .unit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 700px) {
     body { padding: 0 1rem 3rem; font-size: 1rem; }

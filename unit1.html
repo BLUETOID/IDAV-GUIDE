@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Unit I — Introduction to Data Analytics and Lifecycle. Sources and nature of data, classification, Big Data, 5Vs, analytics lifecycle, key roles — full exam reference.">
     <title>Unit I — Introduction to Data Analytics | IDAV Guide</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Merriweather:wght@400;700&family=Outfit:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=Space+Grotesk:wght@400;700&display=swap">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,25 +23,49 @@
     </ul>
 </nav>
 
+<main id="top">
 <div class="page-header">
     <h1>Unit I: Introduction to Data Analytics &amp; Lifecycle</h1>
-    <p>08 Lectures &nbsp;|&nbsp; ST-1 Questions: Q1–7, Q17–19, Q23, Q24, Q34–38</p>
+    <p>08 Lectures &nbsp;|&nbsp; Unit I questions: Q1, Q3–7, Q18–19, Q23–24, Q34–38 &nbsp;|&nbsp; Related tools: Q2</p>
 </div>
+
+<header class="chapter-intro">
+    <p class="chapter-kicker">Unit I · Foundations · 08 lectures</p>
+    <p class="chapter-summary">Follow a data point from its source and format through quality checks, a scalable platform and analysis to a decision. Then trace the six-phase lifecycle and the people who make the work usable. Start with the sections below; use the linked question-bank answers to practise explaining each topic.</p>
+    <nav class="chapter-map" aria-label="Unit I topic contents">
+        <h3>In this chapter</h3>
+        <ol>
+            <li><a href="#data-analytics">Data analytics</a> — purpose, types, value chain and applications. <span class="chapter-links">Practise: <a href="short-answers.html#q1">Q1</a>, <a href="short-answers.html#q6">Q6</a></span></li>
+            <li><a href="#sources-of-data">Sources of data</a> — where observations come from. <span class="chapter-links">Practise: <a href="short-answers.html#q7">Q7</a>, <a href="long-answers.html#q34">Q34</a></span></li>
+            <li><a href="#classification-of-data">Classification of data</a> — structure, measurement and time. <span class="chapter-links">Practise: <a href="long-answers.html#q24">Q24</a>, <a href="long-answers.html#q34">Q34</a></span></li>
+            <li><a href="#data-quality">Characteristics of data</a> — quality and fitness for use. <span class="chapter-links">Practise: <a href="long-answers.html#q34">Q34</a></span></li>
+            <li><a href="#big-data-platform">Big Data platform</a> — ingestion, storage and processing. <span class="chapter-links">Practise: <a href="short-answers.html#q4">Q4</a>, <a href="long-answers.html#q36">Q36</a></span></li>
+            <li><a href="#five-vs">The 5Vs of Big Data</a> — scale, speed, diversity, trust and value. <span class="chapter-links">Practise: <a href="long-answers.html#q36">Q36</a>, <a href="long-answers.html#q37">Q37</a></span></li>
+            <li><a href="#need-and-evolution">Need and evolution of analytics</a> — why systems scale. <span class="chapter-links">Practise: <a href="long-answers.html#q18">Q18</a>, <a href="long-answers.html#q23">Q23</a></span></li>
+            <li><a href="#analysis-vs-reporting">Analysis vs reporting</a> — questions and decisions. <span class="chapter-links">Practise: <a href="long-answers.html#q19">Q19</a>, <a href="long-answers.html#q35">Q35</a></span></li>
+            <li><a href="#analytic-tools">Modern analytic tools</a> — choosing tools for each task. <span class="chapter-links">Related tools question: <a href="short-answers.html#q2">Q2</a></span></li>
+            <li><a href="#analytics-lifecycle">Data Analytics Lifecycle</a> — six iterative phases. <span class="chapter-links">Practise: <a href="long-answers.html#q5">Q5</a>, <a href="long-answers.html#q38">Q38</a></span></li>
+            <li><a href="#project-roles">Key project roles</a> — who owns each handoff. <span class="chapter-links">Practise: <a href="short-answers.html#q3">Q3</a></span></li>
+        </ol>
+    </nav>
+</header>
 
 <!-- ===================================================================
      1. DATA ANALYTICS
      =================================================================== -->
-<h2>1. Data Analytics</h2>
+<h2 id="data-analytics">1. Data Analytics</h2>
+<p class="section-intro">Begin with the question the decision-maker needs answered; the method and tool follow from that question.</p>
 
 <h3>Definition</h3>
 <p>Data analytics is the systematic process of examining, cleaning, transforming, and modeling raw data using statistical, mathematical, and computational techniques to extract meaningful patterns, test hypotheses, and produce actionable insights that support decision-making.</p>
 
 <h3>Why Data Analytics Matters</h3>
-<p>Every organization generates data — from transactions, user interactions, sensors, and external feeds. Without analytics, this data is inert. Analytics converts it into competitive intelligence: it allows organizations to understand what is happening, why it is happening, what will happen next, and what the optimal response is. The McKinsey Global Institute estimates that data-driven organizations are 23 times more likely to acquire customers and 6 times more likely to retain them than non-data-driven peers.</p>
+<p>Every organization generates data — from transactions, user interactions, sensors, and external feeds. Without analysis, this data may never inform a decision. Analytics helps organizations understand what happened, investigate why, estimate what might happen next, and compare possible responses. Its value depends on data quality, sound methods, and whether decision-makers act on the findings.</p>
 
 <h3>The Four Types of Data Analytics</h3>
 <p>The four types form a maturity continuum — each succeeding type provides more foresight but requires greater analytical sophistication:</p>
 
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Type</th><th>Question Answered</th><th>Technique</th><th>Business Example</th><th>Value</th></tr>
@@ -60,65 +82,81 @@
             <td><strong>Diagnostic</strong></td>
             <td>Why did it happen?</td>
             <td>Drill-down, correlation analysis, root-cause analysis, data mining</td>
-            <td>"Q3 revenue rose because the new loyalty program increased repeat purchases by 22%"</td>
-            <td>Understanding causality</td>
+            <td>"Repeat purchases rose after the loyalty program launched; test whether it contributed to revenue growth"</td>
+            <td>Investigating possible causes (correlation alone is not proof)</td>
         </tr>
         <tr>
             <td><strong>Predictive</strong></td>
             <td>What will happen?</td>
             <td>Regression, machine learning, time series forecasting, probability modeling</td>
-            <td>"Q4 revenue is forecast to be $4.7M ± $0.2M with 85% confidence"</td>
+            <td>"Forecast next quarter’s revenue with an uncertainty interval, then check it against actuals"</td>
             <td>Future-ready planning</td>
         </tr>
         <tr>
             <td><strong>Prescriptive</strong></td>
             <td>What should we do?</td>
             <td>Optimization algorithms, simulation, decision trees, reinforcement learning</td>
-            <td>"Shift $150K of TV ad spend to digital to maximize Q4 revenue; expected gain: $420K"</td>
+            <td>"Compare budget allocations under cost and reach constraints before changing ad spend"</td>
             <td>Optimal decision-making</td>
         </tr>
     </tbody>
 </table>
+</div>
 
 <h3>Data-Driven vs Intuition-Driven Decisions</h3>
-<p>Traditional managerial decisions rely on experience, intuition, and incomplete information — prone to cognitive biases (anchoring, confirmation bias, availability heuristic). Data-driven decisions use systematic evidence collected from reliable sources, processed by objective algorithms, and validated against historical outcomes. Organizations with strong data cultures reduce decision uncertainty, replicate successes systematically, and detect problems earlier.</p>
+<p>Decisions based only on experience and intuition can be affected by cognitive biases such as anchoring and confirmation bias. Data-driven decisions use evidence collected from relevant sources, analyzed with methods whose assumptions can be checked, and compared with observed outcomes. Data does not remove bias by itself: teams must verify sample coverage, methods and downstream impact.</p>
 
 <h3>The Analytics Value Chain</h3>
 <p>Raw data has no inherent business value. Value is created through a transformation chain:</p>
-<p style="font-family: system-ui, sans-serif; font-size: 0.9rem; padding: 0.75rem 0; border-top: 1px solid #e0d8d8; border-bottom: 1px solid #e0d8d8; margin: 1rem 0;">
-    <strong>Data</strong> &rarr; <em>Collect &amp; Store</em> &rarr;
-    <strong>Information</strong> &rarr; <em>Clean &amp; Organize</em> &rarr;
-    <strong>Knowledge</strong> &rarr; <em>Analyze &amp; Model</em> &rarr;
-    <strong>Insight</strong> &rarr; <em>Interpret &amp; Communicate</em> &rarr;
-    <strong>Decision</strong> &rarr; <em>Act &amp; Measure</em> &rarr;
-    <strong>Value</strong>
-</p>
+<figure class="diagram-wrap">
+    <svg width="660" height="190" viewBox="0 0 660 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="value-title value-desc">
+        <title id="value-title">Analytics value chain</title>
+        <desc id="value-desc">Raw data becomes information, knowledge, insight, a decision, and finally measured value. Each transition requires work; value is not guaranteed.</desc>
+        <g fill="#f5eeee" stroke="#7b1f2e">
+            <rect x="15" y="22" width="180" height="48" rx="8"/><rect x="240" y="22" width="180" height="48" rx="8"/><rect x="465" y="22" width="180" height="48" rx="8"/>
+            <rect x="15" y="120" width="180" height="48" rx="8"/><rect x="240" y="120" width="180" height="48" rx="8"/><rect x="465" y="120" width="180" height="48" rx="8"/>
+        </g>
+        <g font-family="system-ui,sans-serif" font-size="17" font-weight="bold" fill="#7b1f2e" text-anchor="middle">
+            <text x="105" y="52">Data</text><text x="330" y="52">Information</text><text x="555" y="52">Knowledge</text>
+            <text x="105" y="150">Value</text><text x="330" y="150">Decision</text><text x="555" y="150">Insight</text>
+        </g>
+        <g font-family="system-ui,sans-serif" font-size="20" fill="#7b1f2e" text-anchor="middle" aria-hidden="true">
+            <text x="217" y="53">→</text><text x="442" y="53">→</text><text x="555" y="106">↓</text>
+            <text x="442" y="151">←</text><text x="217" y="151">←</text>
+        </g>
+    </svg>
+    <figcaption class="diagram-caption">Figure 1: Read left to right across the top, then right to left across the bottom. Collect and store data; clean and organize it into information; analyze and model to build knowledge; interpret and communicate an insight; make a decision; act and measure whether it created value. Example: order records → weekly sales totals → a repeat-purchase pattern → a testable loyalty hypothesis → a targeted trial → measured retention change.</figcaption>
+</figure>
 
 <h3>Applications Across Industries</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Industry</th><th>Analytics Application</th><th>Outcome</th></tr>
     </thead>
     <tbody>
-        <tr><td>Healthcare</td><td>Predicting patient readmission risk from electronic health records and vitals</td><td>Targeted discharge care plans; 20–30% readmission reduction</td></tr>
-        <tr><td>Retail / E-commerce</td><td>Personalized product recommendations (Amazon, Netflix algorithms)</td><td>Amazon: 35% of revenue from recommendations</td></tr>
-        <tr><td>Finance / Banking</td><td>Real-time fraud detection on payment transactions</td><td>Detection of 95%+ of fraudulent transactions within milliseconds</td></tr>
-        <tr><td>Manufacturing</td><td>Predictive maintenance of machines using sensor data (IoT + ML)</td><td>40–50% reduction in unplanned downtime</td></tr>
-        <tr><td>Logistics</td><td>Route optimization for delivery fleets (UPS, FedEx)</td><td>UPS saves 10M gallons of fuel/year via route analytics</td></tr>
-        <tr><td>Sports</td><td>Player performance analytics, opponent strategy modeling (Moneyball)</td><td>Data-driven team selection outperforming subjective scouting</td></tr>
-        <tr><td>Agriculture</td><td>Precision farming — soil sensors + weather data + crop yield prediction</td><td>20–30% increase in yield; 15% reduction in water use</td></tr>
+        <tr><td>Healthcare</td><td>Predicting patient readmission risk from electronic health records and vitals</td><td>Identify patients who may benefit from extra discharge support; evaluate actual readmissions</td></tr>
+        <tr><td>Retail / E-commerce</td><td>Personalized product recommendations</td><td>Test whether relevant suggestions improve discovery and repeat purchases</td></tr>
+        <tr><td>Finance / Banking</td><td>Near-real-time fraud screening on payment transactions</td><td>Flag suspicious transactions for review while monitoring false positives</td></tr>
+        <tr><td>Manufacturing</td><td>Predictive maintenance of machines using sensor data (IoT + ML)</td><td>Schedule inspections before likely failures; compare downtime with a baseline</td></tr>
+        <tr><td>Logistics</td><td>Route optimization for delivery fleets</td><td>Compare routes by distance, fuel use, delivery time and constraints</td></tr>
+        <tr><td>Sports</td><td>Player performance analytics and opponent strategy modeling</td><td>Supplement scouting with evidence; test whether decisions improve results</td></tr>
+        <tr><td>Agriculture</td><td>Precision farming — soil sensors + weather data + crop yield prediction</td><td>Target irrigation and fertilizer, then measure yield and resource use</td></tr>
     </tbody>
 </table>
+</div>
 
 <!-- ===================================================================
      2. SOURCES OF DATA
      =================================================================== -->
-<h2>2. Sources of Data</h2>
+<h2 id="sources-of-data">2. Sources of Data</h2>
+<p class="section-intro">One dataset can be internal and machine-generated, or external and secondary: these categories describe different aspects of origin, not mutually exclusive boxes.</p>
 
 <h3>Definition</h3>
 <p>A data source is any origin point — physical, digital, or human — from which data is systematically collected for storage, processing, and analysis.</p>
 
 <h3>Classification of Data Sources</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Category</th><th>Description</th><th>Examples</th><th>Characteristics</th></tr>
@@ -140,7 +178,7 @@
             <td><strong>Primary Sources</strong></td>
             <td>Data collected directly for the current analytical purpose</td>
             <td>Surveys, interviews, A/B test results, lab experiments, sensor deployments</td>
-            <td>High relevance; expensive to collect; no pre-existing bias from prior use</td>
+            <td>Tailored to the question, but costly to collect and still vulnerable to sampling or measurement bias</td>
         </tr>
         <tr>
             <td><strong>Secondary Sources</strong></td>
@@ -174,11 +212,12 @@
         </tr>
     </tbody>
 </table>
+</div>
 
 <h3>Data Collection Challenges</h3>
 <ul>
     <li><strong>Access rights and licensing:</strong> External and third-party data often require subscriptions, data sharing agreements, or API credentials. Terms of service may restrict commercial use.</li>
-    <li><strong>Privacy and regulatory compliance:</strong> Personal data collection is regulated by GDPR (EU), CCPA (California), HIPAA (US health), and PDPA (India). Consent, anonymization, and data minimization principles apply.</li>
+    <li><strong>Privacy and regulatory compliance:</strong> Personal data collection may be subject to GDPR (EU), CCPA/CPRA (California), HIPAA (US health), or India's Digital Personal Data Protection Act, depending on the data and jurisdiction. Check the applicable legal basis, access controls, retention and data minimization requirements.</li>
     <li><strong>Format diversity:</strong> Different sources produce data in incompatible formats (CSV, JSON, XML, Parquet, binary streams) requiring ETL transformation before unified analysis.</li>
     <li><strong>Data freshness:</strong> Stale data leads to incorrect conclusions. A pricing model trained on pre-COVID data does not reflect post-COVID market dynamics.</li>
     <li><strong>Sampling bias:</strong> If data is collected only from certain user segments (e.g., mobile users), analytics findings may not generalize to the full population.</li>
@@ -187,14 +226,16 @@
 <!-- ===================================================================
      3. CLASSIFICATION OF DATA
      =================================================================== -->
-<h2>3. Classification of Data</h2>
+<h2 id="classification-of-data">3. Classification of Data</h2>
+<p class="section-intro">Classify the format first to plan storage and parsing; then classify each field’s measurement scale to choose sensible summaries and models.</p>
 
 <h3>Classification by Structure</h3>
 <p>The most common classification divides data by the degree to which it conforms to a predefined schema:</p>
 
+<div class="table-scroll">
 <table>
     <thead>
-        <tr><th>Type</th><th>Schema</th><th>Storage</th><th>Query</th><th>Proportion of Enterprise Data</th><th>Examples</th></tr>
+        <tr><th>Type</th><th>Schema</th><th>Typical Storage</th><th>Typical Query / Preparation</th><th>Examples</th></tr>
     </thead>
     <tbody>
         <tr>
@@ -202,7 +243,6 @@
             <td>Fixed, predefined rows and columns with typed fields</td>
             <td>Relational DBMS (MySQL, PostgreSQL, Oracle)</td>
             <td>SQL</td>
-            <td>~20%</td>
             <td>Bank transaction ledger, employee HR table, flight reservation record</td>
         </tr>
         <tr>
@@ -210,22 +250,39 @@
             <td>Flexible, self-describing tags/keys; no fixed schema</td>
             <td>NoSQL document stores (MongoDB), file systems</td>
             <td>JSONPath, XPath, document queries</td>
-            <td>~10–15%</td>
             <td>JSON REST API responses, XML configuration files, HTML pages, email messages (structured header + free-text body)</td>
         </tr>
         <tr>
             <td><strong>Unstructured</strong></td>
-            <td>None — no predefined format</td>
+            <td>No consistent record-level schema; file formats still exist</td>
             <td>Object stores (Amazon S3), HDFS, file systems</td>
-            <td>Requires NLP, computer vision, or signal processing preprocessing</td>
-            <td>~65–80%</td>
+            <td>Extract text or features with suitable tools (e.g., OCR, NLP, vision or signal processing)</td>
             <td>Customer call audio, surveillance video, social media images, PDF contracts, medical X-rays</td>
         </tr>
     </tbody>
 </table>
+</div>
+
+<figure class="diagram-wrap">
+    <svg width="660" height="188" viewBox="0 0 660 188" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="structure-title structure-desc">
+        <title id="structure-title">Three data structure categories</title>
+        <desc id="structure-desc">A fixed-schema table, a self-describing JSON object and free-form audio show structured, semi-structured and unstructured data respectively. Formats can overlap: a media file can have structured metadata.</desc>
+        <g fill="#f5eeee" stroke="#7b1f2e">
+            <rect x="10" y="12" width="200" height="160" rx="8"/><rect x="230" y="12" width="200" height="160" rx="8"/><rect x="450" y="12" width="200" height="160" rx="8"/>
+        </g>
+        <g font-family="system-ui,sans-serif" fill="#29232a" text-anchor="middle">
+            <g font-size="17" font-weight="bold" fill="#7b1f2e"><text x="110" y="43">Structured</text><text x="330" y="43">Semi-structured</text><text x="550" y="43">Unstructured</text></g>
+            <g font-size="13"><text x="110" y="76">order_id | amount</text><text x="110" y="101">42 | 125.00</text><text x="110" y="144">Fixed typed columns</text>
+            <text x="330" y="76">{ "order_id": 42,</text><text x="330" y="101">"tags": ["gift"] }</text><text x="330" y="144">Keys describe fields</text>
+            <text x="550" y="76">Call recording .wav</text><text x="550" y="101">Sound waveform</text><text x="550" y="144">Extract speech to query</text></g>
+        </g>
+    </svg>
+    <figcaption class="diagram-caption">Figure 2: The same order can have fixed database columns, a flexible JSON event and an audio support call. To count orders, query the table or parse the event; to find complaints in the call, first transcribe and review the audio. The categories describe usable structure, not fixed percentages of all data.</figcaption>
+</figure>
 
 <h3>Classification by Measurement Scale (Stevens' Scales)</h3>
 <p>Stanley Stevens (1946) classified measurement scales into four types, each supporting different mathematical operations and statistical methods:</p>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Scale</th><th>Properties</th><th>Operations Allowed</th><th>Statistical Methods</th><th>Examples</th></tr>
@@ -261,6 +318,7 @@
         </tr>
     </tbody>
 </table>
+</div>
 
 <h3>Additional Classifications</h3>
 <ul>
@@ -273,12 +331,14 @@
 <!-- ===================================================================
      4. CHARACTERISTICS / DATA QUALITY
      =================================================================== -->
-<h2>4. Characteristics of Data (Data Quality Dimensions)</h2>
+<h2 id="data-quality">4. Characteristics of Data (Data Quality Dimensions)</h2>
+<p class="section-intro">Quality is relative to a task: a daily stock report can be timely enough for planning yet too stale to promise same-hour delivery.</p>
 
 <h3>Definition</h3>
 <p>Data quality is the degree to which data is fit for its intended analytical purpose. Poor quality data produces incorrect insights regardless of how sophisticated the analytics methods are — the principle "garbage in, garbage out" (GIGO) applies universally.</p>
 
 <h3>The Six Core Quality Dimensions</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Dimension</th><th>Definition</th><th>Example of Violation</th><th>Impact on Analytics</th></tr>
@@ -299,7 +359,7 @@
         <tr>
             <td><strong>Consistency</strong></td>
             <td>The same entity has the same attribute values across all systems and at all times; no contradictions</td>
-            <td>Customer address shows "Mumbai" in the CRM but "Bombay" in the billing system</td>
+            <td>Customer address shows "Mumbai" in the CRM but "Delhi" in the billing system for the same date</td>
             <td>Incorrect joins; double-counting; reconciliation failures in reporting</td>
         </tr>
         <tr>
@@ -317,11 +377,12 @@
         <tr>
             <td><strong>Uniqueness</strong></td>
             <td>Each entity is recorded exactly once; no duplicate records</td>
-            <td>A customer who called twice appears twice in the support ticket database, inflating complaint counts</td>
+            <td>The same support ticket is imported twice, inflating complaint counts</td>
             <td>Inflated metrics; incorrect customer counts; biased segmentation</td>
         </tr>
     </tbody>
 </table>
+</div>
 
 <h3>FAIR Principles for Research Data</h3>
 <p>For scientific and open data, the FAIR principles (Wilkinson et al., 2016) extend quality criteria:</p>
@@ -338,83 +399,110 @@
 <!-- ===================================================================
      5. BIG DATA PLATFORM
      =================================================================== -->
-<h2>5. Big Data Platform</h2>
+<h2 id="big-data-platform">5. Big Data Platform</h2>
+<p class="section-intro">Think of a platform as a set of connected capabilities, not one product: ingestion moves data in, storage keeps it, processing prepares it, and serving makes results available.</p>
 
 <h3>Definition</h3>
-<p>A Big Data platform is an integrated software infrastructure designed to ingest, store, process, and analyze datasets at a scale, velocity, or variety that exceeds the capabilities of traditional relational database management systems — enabling analytics workloads from gigabytes to exabytes.</p>
+<p>A Big Data platform combines infrastructure to ingest, store, process and analyze data whose scale, arrival rate or variety makes a single-system workflow impractical. There is no fixed byte threshold: the architecture depends on workload and service requirements.</p>
 
 <h3>Why Traditional Systems Fall Short</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Limitation</th><th>Traditional RDBMS</th><th>Big Data Platform Solution</th></tr>
     </thead>
     <tbody>
-        <tr><td>Scale</td><td>Vertical scaling only (bigger server); practical limit ~10 TB</td><td>Horizontal scaling — add commodity servers to cluster; linear scalability</td></tr>
-        <tr><td>Schema</td><td>Requires fixed schema before data ingestion (schema-on-write)</td><td>Schema-on-read — ingest raw data now; define structure when querying</td></tr>
-        <tr><td>Data types</td><td>Only structured relational data</td><td>Handles structured, semi-structured, and unstructured data natively</td></tr>
-        <tr><td>Processing model</td><td>ACID transactions; optimized for point queries</td><td>Batch + streaming processing; optimized for large sequential scans</td></tr>
-        <tr><td>Cost</td><td>Expensive proprietary licenses; enterprise hardware</td><td>Commodity hardware + open-source software; cloud pay-per-use</td></tr>
+        <tr><td>Scale</td><td>A single database instance may become costly or slow for this workload; some databases also distribute work</td><td>Partition storage and computation where distribution is justified; scaling is not automatically linear</td></tr>
+        <tr><td>Schema</td><td>Relational tables define a schema for stored records</td><td>Raw storage can defer some schema decisions until processing or query time</td></tr>
+        <tr><td>Data types</td><td>Relational systems can store JSON and other types, but may not suit every large media or event workload</td><td>Combine purpose-built stores and processing for records, events and media</td></tr>
+        <tr><td>Processing model</td><td>Often used for transactional reads and writes; analytical databases also support large scans</td><td>Batch and/or streaming systems support distributed analysis when required</td></tr>
+        <tr><td>Cost</td><td>Licensing, operations and hardware costs depend on product and scale</td><td>Open-source or managed cloud options trade operational effort against usage costs</td></tr>
     </tbody>
 </table>
+</div>
+
+<figure class="diagram-wrap">
+    <svg width="700" height="170" viewBox="0 0 700 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pipeline-title pipeline-desc">
+        <title id="pipeline-title">Example Big Data platform pipeline</title>
+        <desc id="pipeline-desc">Application events and batch files are ingested, stored, processed and served to a dashboard or alert. Quality and access controls apply throughout.</desc>
+        <g fill="#f5eeee" stroke="#7b1f2e">
+            <rect x="10" y="30" width="115" height="66" rx="8"/><rect x="150" y="30" width="115" height="66" rx="8"/>
+            <rect x="290" y="30" width="115" height="66" rx="8"/><rect x="430" y="30" width="115" height="66" rx="8"/><rect x="570" y="30" width="120" height="66" rx="8"/>
+        </g>
+        <g font-family="system-ui,sans-serif" font-size="14" text-anchor="middle" fill="#29232a">
+            <text x="67" y="57">Events / files</text><text x="67" y="77">orders, logs</text>
+            <text x="207" y="57">Ingest</text><text x="207" y="77">connectors, log</text>
+            <text x="347" y="57">Store</text><text x="347" y="77">lake / warehouse</text>
+            <text x="487" y="57">Process</text><text x="487" y="77">batch / stream</text>
+            <text x="630" y="57">Serve</text><text x="630" y="77">reports / alerts</text>
+        </g>
+        <g font-family="system-ui,sans-serif" font-size="21" text-anchor="middle" fill="#7b1f2e" aria-hidden="true"><text x="137" y="69">→</text><text x="277" y="69">→</text><text x="417" y="69">→</text><text x="557" y="69">→</text></g>
+        <text x="350" y="135" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" fill="#7b1f2e">Quality checks · access control · lineage · monitoring across the pipeline</text>
+    </svg>
+    <figcaption class="diagram-caption">Figure 3: Example order-events pipeline. Ingest raw transactions, retain them for replay or audit, clean and aggregate in batch or stream jobs, then serve a sales dashboard or a checkout-failure alert. Kafka, Spark and a warehouse can fill different boxes; none is a complete platform on its own.</figcaption>
+</figure>
 
 <h3>Hadoop Ecosystem Architecture</h3>
 <p>Apache Hadoop (2006) is the foundational Big Data framework. Its core components:</p>
 <ul>
-    <li><strong>HDFS (Hadoop Distributed File System):</strong> Splits large files into 128 MB blocks distributed across cluster nodes. Each block is replicated 3 times across different nodes for fault tolerance. The NameNode manages the file namespace; DataNodes store the blocks.</li>
+    <li><strong>HDFS (Hadoop Distributed File System):</strong> Splits large files into configurable blocks distributed across cluster nodes. Replication or erasure coding provides fault tolerance according to configuration. The NameNode manages the file namespace; DataNodes store the blocks.</li>
     <li><strong>YARN (Yet Another Resource Negotiator):</strong> The cluster resource manager — allocates CPU and memory to running applications; separates resource management from processing logic.</li>
     <li><strong>MapReduce:</strong> The programming model for batch processing. A Map function processes each record independently and emits (key, value) pairs. The framework sorts and groups by key. A Reduce function aggregates values per key. Runs in parallel across all DataNodes.</li>
     <li><strong>Hive:</strong> Translates SQL-like HiveQL queries into MapReduce or Tez jobs — enables SQL analysts to query petabyte-scale HDFS data without writing Java code.</li>
     <li><strong>HBase:</strong> A NoSQL column-family store on top of HDFS; supports low-latency random reads/writes — unlike HDFS which is optimized for large sequential reads.</li>
-    <li><strong>Apache Spark:</strong> In-memory distributed processing framework that replaced MapReduce for most workloads. Spark stores intermediate results in RAM rather than writing to disk, making iterative algorithms (machine learning) 100× faster than MapReduce.</li>
+    <li><strong>Apache Spark:</strong> Distributed processing engine for batch, SQL, streaming and machine learning. It can cache intermediate results in memory for iterative work, though it also uses disk when needed; performance depends on the workload.</li>
 </ul>
 
 <h3>Lambda and Kappa Architectures</h3>
-<p><strong>Lambda Architecture</strong> (Nathan Marz) runs two parallel processing pipelines: a <em>batch layer</em> (Hadoop/Spark on historical data, high accuracy, high latency) and a <em>speed layer</em> (Spark Streaming/Storm on real-time data, approximate, low latency). A <em>serving layer</em> merges results from both. Lambda provides both historical completeness and real-time responsiveness, but requires maintaining two separate codebases.</p>
-<p><strong>Kappa Architecture</strong> (Jay Kreps) simplifies Lambda by eliminating the batch layer entirely — all processing, historical and real-time, is done through a single streaming pipeline (Kafka + Flink/Spark Streaming). Historical reprocessing is handled by replaying the Kafka log. Kappa reduces complexity but requires the stream processor to handle very long retention periods.</p>
+<p><strong>Lambda Architecture</strong> uses a <em>batch layer</em> to recompute comprehensive views from historical data and a <em>speed layer</em> to update recent results at low latency; a <em>serving layer</em> makes both available to queries. It balances fresh and complete results but requires coordinating two processing paths, which may duplicate logic.</p>
+<p><strong>Kappa Architecture</strong> uses a single stream-processing path; where events have been retained, a new version of the application can reprocess them by replaying the log. This reduces duplicate processing logic, but complete replay depends on retention, data volume and available capacity. Neither pattern is mandatory for every Big Data platform.</p>
 
 <h3>Commonly Used Big Data Platforms</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Platform</th><th>Type</th><th>Primary Use</th><th>Key Capability</th></tr>
     </thead>
     <tbody>
         <tr><td>Apache Hadoop</td><td>Open source</td><td>Distributed batch storage and processing</td><td>HDFS + MapReduce; fault-tolerant; handles petabyte-scale</td></tr>
-        <tr><td>Apache Spark</td><td>Open source</td><td>In-memory distributed processing (batch + streaming)</td><td>RDD/DataFrame/Dataset APIs; MLlib; Spark SQL; 100× faster than MapReduce for iterative ML</td></tr>
-        <tr><td>Apache Kafka</td><td>Open source</td><td>High-throughput event streaming &amp; messaging</td><td>Durable log; millions of events/second; enables real-time analytics pipelines</td></tr>
+        <tr><td>Apache Spark</td><td>Open source</td><td>Distributed processing (batch + streaming)</td><td>RDD/DataFrame/Dataset APIs; MLlib; Spark SQL; caching can help iterative workloads</td></tr>
+        <tr><td>Apache Kafka</td><td>Open source</td><td>Event streaming &amp; messaging</td><td>Durable log; throughput depends on configuration; enables near-real-time pipelines</td></tr>
         <tr><td>Apache Flink</td><td>Open source</td><td>Stateful stream processing</td><td>Exactly-once semantics; low latency; event-time processing with watermarks</td></tr>
         <tr><td>Google BigQuery</td><td>Cloud (managed)</td><td>Serverless cloud data warehouse</td><td>Columnar storage (Capacitor format); petabyte-scale SQL; separates storage from compute; pay per query</td></tr>
         <tr><td>Amazon Redshift</td><td>Cloud (managed)</td><td>Cloud data warehouse</td><td>Columnar MPP; integrates with S3 (Redshift Spectrum); RA3 nodes decouple storage/compute</td></tr>
         <tr><td>Snowflake</td><td>Cloud (managed)</td><td>Multi-cloud data warehouse</td><td>Unique multi-cluster shared data architecture; auto-scaling; zero-copy cloning; time travel</td></tr>
     </tbody>
 </table>
+</div>
 
 <h3>Real-World Example</h3>
-<p>LinkedIn processes over 1 trillion events per day using Apache Kafka as the central nervous system. Data flows from hundreds of microservices into Kafka topics; Flink processes streams for real-time feed ranking and anomaly detection; Spark batch jobs process the full day's data overnight for analytics and model retraining. The entire stack runs on a 20,000+ server cluster.</p>
+<p>Consider an e-commerce service recording purchases and page views. Application events enter a durable event log such as Kafka; a stream processor detects unusual checkout failures, while batch or warehouse queries build historical sales reports. Analysts can combine those results to decide whether to investigate a failed release or adjust inventory. This is an illustrative architecture, not a claim about any one company's infrastructure.</p>
 
 <!-- ===================================================================
      6. 5Vs OF BIG DATA
      =================================================================== -->
-<h2>6. The 5Vs of Big Data</h2>
+<h2 id="five-vs">6. The 5Vs of Big Data</h2>
+<p class="section-intro">The Vs are design questions rather than size thresholds: what must be stored, how quickly, in which formats, with what confidence, and for what benefit?</p>
 
 <h3>Definition</h3>
-<p>The 5Vs framework (Doug Laney, 2001 — originally 3Vs; extended to 5Vs by IBM) characterizes the defining challenges of Big Data that distinguish it from traditional data management problems.</p>
+<p>The 5Vs framework extends the volume, velocity and variety dimensions commonly attributed to Doug Laney with veracity and value. It is a way to discuss Big Data challenges, not a formal test for whether a dataset qualifies as Big Data.</p>
 
 <h3>Detailed Explanation of Each V</h3>
 
 <h4>1. Volume — Scale of Data</h4>
-<p>Volume refers to the sheer quantity of data generated and stored. In 2023, the global data sphere exceeded 120 zettabytes (120 × 10²¹ bytes). Facebook processes over 100 petabytes of data daily; YouTube receives 500 hours of video upload every minute. Volume necessitates distributed storage (HDFS, S3) and distributed computation (MapReduce, Spark) that spreads the data across commodity server clusters rather than a single expensive machine. The key Volume-driven architectural decision is horizontal scaling (scale out) vs vertical scaling (scale up).</p>
+<p>Volume refers to the quantity of data generated and stored. A retail chain might keep years of transaction and clickstream records: as these grow, single-machine scans may become too slow or expensive for the required reporting window. Distributed storage (such as HDFS or object storage) and distributed computation (such as Spark) can partition the workload when the cost and complexity are justified. The architectural choice is whether to scale up a machine, scale out across machines, or reduce the data scanned.</p>
 
 <h4>2. Velocity — Speed of Data Generation</h4>
-<p>Velocity refers to the speed at which data is generated and must be processed. Twitter/X generates ~6,000 tweets/second; a modern stock exchange processes 10 million trades/second; a connected car generates 25 GB of sensor data per hour. At high velocity, batch processing is insufficient — results would be hours stale. Stream processing frameworks (Apache Flink, Spark Streaming, Storm) process data continuously as it arrives, enabling results within milliseconds. The CAP theorem trade-off: at extreme velocity, systems often sacrifice full consistency for availability and partition tolerance.</p>
+<p>Velocity refers to the rate at which data arrives and how soon it must be acted on. For a payment fraud alert, a report produced the next day may be too late; a stream processor such as Flink or Spark Structured Streaming can update risk signals as events arrive. A monthly finance report may still be best served by batch processing. End-to-end latency depends on ingestion, computation, downstream systems and the chosen consistency guarantees; speed alone does not determine a CAP-theorem trade-off.</p>
 
 <h4>3. Variety — Diversity of Data Types</h4>
 <p>Variety refers to the range of data formats and types. A single analytics platform in a modern enterprise simultaneously handles: structured relational records (SQL), semi-structured logs and API payloads (JSON/XML), unstructured documents (PDFs, Word), images (product photos, medical scans), video (surveillance, user-generated), audio (call center recordings), and graph data (social networks, knowledge graphs). Each type requires different storage systems, preprocessing pipelines, and analysis algorithms. The polyglot persistence approach uses multiple purpose-built stores (RDBMS + document DB + graph DB + vector store) rather than forcing all data into one system.</p>
 
 <h4>4. Veracity — Uncertainty and Quality</h4>
-<p>Veracity refers to the trustworthiness, accuracy, and reliability of data. Big Data sources are inherently noisy: social media posts contain slang, irony, and factual errors; IoT sensors have calibration drift and measurement noise; merged datasets from different systems have inconsistent formats, duplicate records, and conflicting values. IBM estimates that poor data quality costs the US economy $3.1 trillion annually. Veracity challenges drive data quality pipelines, anomaly detection systems, data provenance tracking (maintaining a full audit trail of where data came from and how it was transformed), and confidence-weighted analytics.</p>
+<p>Veracity refers to the trustworthiness, accuracy and reliability of data. Social media posts may contain irony and misinformation; sensors can drift; merged datasets can disagree about a customer's identity. Quality checks, anomaly detection and provenance (recording where data came from and how it changed) help analysts state how much confidence to place in their results.</p>
 
 <h4>5. Value — Business Worth of Data</h4>
-<p>Value is the ultimate justification for Big Data investment. Raw data has no intrinsic business value — the same petabyte of clickstream data is worthless to a company that cannot extract patterns from it and priceless to one that can predict user intent from it. Value is created through the analytics pipeline: collection → storage → processing → modeling → insight → decision → revenue/cost impact. ROI examples: Netflix saves $1 billion/year in customer retention through its recommendation system; Google's advertising auction, which runs billions of times daily, is an analytics system that generates $237 billion in annual revenue.</p>
+<p>Value is the reason to invest in data infrastructure. Retaining every click does not itself improve a business: an analysis must lead to an action whose benefits outweigh collection, privacy, storage and operating costs. For example, compare a new recommendation strategy with an existing one in a controlled test, measure repeat purchases and returns, and keep the change only if the net outcome improves. The sequence is collection → storage → processing → modeling → insight → decision → measured impact.</p>
 
 <div class="diagram-wrap">
     <!-- SVG: 5Vs Pentagon — redrawn with geometrically correct positions and clear labels -->
@@ -474,7 +562,7 @@
         <text x="120" y="156" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#444">Structured, semi, unstructured</text>
     </svg>
 </div>
-<p class="diagram-caption">Figure 1: 5Vs of Big Data Pentagon. Each vertex represents one characteristic of Big Data. The dashed spokes from the center to each vertex illustrate that all five dimensions must be managed simultaneously for effective Big Data analytics.</p>
+<p class="diagram-caption">Figure 4: 5Vs of Big Data Pentagon. Each vertex represents one characteristic of Big Data. The dashed spokes from the center to each vertex illustrate that all five dimensions must be managed simultaneously for effective Big Data analytics.</p>
 
 <h3>Extended Vs</h3>
 <p>Some frameworks extend beyond 5Vs:</p>
@@ -486,56 +574,63 @@
 <!-- ===================================================================
      7. NEED AND EVOLUTION OF ANALYTICS
      =================================================================== -->
-<h2>7. Need for Data Analytics &amp; Evolution of Analytic Scalability</h2>
+<h2 id="need-and-evolution">7. Need for Data Analytics &amp; Evolution of Analytic Scalability</h2>
+<p class="section-intro">Scalability concerns volume, arrival rate, query latency and operating cost; the best architecture depends on the decision’s deadline, not just the dataset’s size.</p>
 
 <h3>Why Organizations Need Data Analytics</h3>
 <ul>
-    <li><strong>Volume problem:</strong> A mid-size e-commerce site generates millions of clickstream events daily. No human team can manually inspect these to find the pattern "users who see the blue button convert 12% better than those who see the green button." Automated analytics is the only feasible method.</li>
+    <li><strong>Volume problem:</strong> An e-commerce site may produce more clickstream events than a team can inspect manually. Aggregation and a controlled A/B test can reveal whether a blue or green button changes conversion; the difference must be measured, not assumed.</li>
     <li><strong>Speed of competition:</strong> Real-time fraud detection, dynamic pricing, and personalized search results require decisions in milliseconds — faster than any human can respond. Analytics algorithms embedded in production systems make these decisions automatically at scale.</li>
-    <li><strong>Non-obvious patterns:</strong> The correlation between diaper sales and beer sales on Friday evenings (a famous Walmart discovery) was invisible until market basket analysis was applied. Analytics reveals patterns that human intuition cannot perceive in high-dimensional data.</li>
+    <li><strong>Non-obvious patterns:</strong> Market basket analysis can reveal products purchased together that merchandisers might not notice. Such associations should be verified on new data before changing promotions; a surprising association is not automatically causal.</li>
     <li><strong>Risk quantification:</strong> Credit scoring, insurance underwriting, and supply chain risk assessment require probabilistic models that quantify uncertainty — not possible through subjective judgment alone.</li>
     <li><strong>Regulatory compliance:</strong> In finance (Basel III, MiFID II), healthcare (HIPAA), and environmental regulation, organizations must perform and document quantitative risk analyses. Analytics provides the audit trail and evidence base.</li>
 </ul>
 
 <h3>The Analytics Maturity Model</h3>
-<p>Organizations evolve through analytics capability stages. The Gartner Analytics Maturity Model describes 5 stages:</p>
+<p>One useful teaching model groups capabilities into five stages, from descriptive reporting to automated decisions. Organizations may use several stages at once; this is not a required sequence or a measure of how many organizations occupy each stage:</p>
+<div class="table-scroll">
 <table>
     <thead>
-        <tr><th>Stage</th><th>Type</th><th>Capability</th><th>Tool Examples</th><th>Org Maturity</th></tr>
+        <tr><th>Stage</th><th>Type</th><th>Capability</th><th>Tool Examples</th><th>Decision Focus</th></tr>
     </thead>
     <tbody>
-        <tr><td>1</td><td>Descriptive</td><td>Reporting what happened — KPI dashboards, sales reports</td><td>Excel, Power BI, Tableau, SQL</td><td>Most organizations</td></tr>
-        <tr><td>2</td><td>Diagnostic</td><td>Understanding why it happened — root cause analysis, drill-down</td><td>SQL analytics, correlation tools</td><td>Many organizations</td></tr>
-        <tr><td>3</td><td>Predictive</td><td>Forecasting what will happen — ML models, forecasting</td><td>Python scikit-learn, R, SAS, KNIME</td><td>Analytics-oriented orgs</td></tr>
-        <tr><td>4</td><td>Prescriptive</td><td>Recommending optimal action — optimization, simulation</td><td>Gurobi, CPLEX, reinforcement learning</td><td>Data-mature organizations</td></tr>
-        <tr><td>5</td><td>Autonomous</td><td>Systems that act without human intervention — self-optimizing pipelines</td><td>AutoML, self-driving analytics, MLOps platforms</td><td>Leading tech companies</td></tr>
+        <tr><td>1</td><td>Descriptive</td><td>Reporting what happened — KPI dashboards, sales reports</td><td>Excel, Power BI, Tableau, SQL</td><td>Monitor outcomes</td></tr>
+        <tr><td>2</td><td>Diagnostic</td><td>Investigating why it happened — drill-down and hypothesis testing</td><td>SQL analytics, statistical tools</td><td>Check plausible explanations</td></tr>
+        <tr><td>3</td><td>Predictive</td><td>Forecasting what may happen — ML models, forecasting</td><td>Python scikit-learn, R, SAS, KNIME</td><td>Estimate uncertainty</td></tr>
+        <tr><td>4</td><td>Prescriptive</td><td>Comparing possible actions — optimization, simulation</td><td>Gurobi, CPLEX, decision analysis</td><td>Choose under constraints</td></tr>
+        <tr><td>5</td><td>Autonomous</td><td>Taking bounded actions with oversight and monitoring</td><td>Rules engines, model serving, MLOps platforms</td><td>Track impact and exceptions</td></tr>
     </tbody>
 </table>
+</div>
 
 <h3>Evolution of Analytic Scalability</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Era</th><th>Technology</th><th>Data Scale</th><th>Analytics Type</th><th>Key Limitation</th></tr>
     </thead>
     <tbody>
-        <tr><td>1970s–1990s</td><td>RDBMS, SQL, OLAP cubes, spreadsheets</td><td>MB–GB</td><td>Descriptive reporting only</td><td>Single server; structured data only</td></tr>
-        <tr><td>2000–2006</td><td>Data warehouses (Teradata, IBM Netezza), ETL pipelines, columnar storage</td><td>TB range</td><td>Batch BI, historical reporting</td><td>Expensive proprietary systems; schema-on-write rigidity</td></tr>
-        <tr><td>2006–2012</td><td>Hadoop, MapReduce, HDFS, HBase, Hive</td><td>PB range</td><td>Batch analytics on unstructured data</td><td>High latency (hours per MapReduce job); no iterative ML</td></tr>
-        <tr><td>2012–2018</td><td>Apache Spark, Kafka, Storm, Flink</td><td>PB range, real-time</td><td>Real-time analytics + iterative ML</td><td>Complex infrastructure; requires specialized engineers</td></tr>
-        <tr><td>2016–present</td><td>Cloud platforms (BigQuery, Redshift, Snowflake), AutoML, MLOps, LLMs</td><td>EB range, on-demand</td><td>AI-driven predictive + prescriptive + autonomous</td><td>Governance, explainability, cost, skill gap</td></tr>
+        <tr><td>Early database and BI era</td><td>RDBMS, SQL, OLAP cubes, spreadsheets</td><td>From local tables to larger managed databases</td><td>Reporting and statistical analysis</td><td>Operational data integration and repeated large scans</td></tr>
+        <tr><td>Enterprise warehousing</td><td>Data warehouses, ETL pipelines, columnar storage</td><td>Multi-source historical datasets</td><td>Batch BI and historical comparisons</td><td>ETL maintenance, cost and freshness</td></tr>
+        <tr><td>Distributed batch era</td><td>Hadoop, MapReduce, HDFS, Hive</td><td>Data partitioned across a cluster</td><td>Large-scale batch transformations</td><td>High latency and complex operations</td></tr>
+        <tr><td>Streaming and iterative processing</td><td>Spark, Kafka, Flink</td><td>Growing batch and event workloads</td><td>Fresh dashboards, event alerts and model training</td><td>State, delivery semantics and operational complexity</td></tr>
+        <tr><td>Managed cloud services</td><td>BigQuery, Redshift, Snowflake and managed streams</td><td>Elastic capacity, subject to service limits and budget</td><td>SQL, batch and streaming; predictive models where useful</td><td>Governance, cost, explainability and lock-in</td></tr>
     </tbody>
 </table>
+</div>
 
 <!-- ===================================================================
      8. ANALYSIS vs REPORTING
      =================================================================== -->
-<h2>8. Analysis vs Reporting</h2>
+<h2 id="analysis-vs-reporting">8. Analysis vs Reporting</h2>
+<p class="section-intro">A report flags the change; an analysis tests explanations and possible actions. Together they make an auditable decision process.</p>
 
 <h3>Definitions</h3>
 <p><strong>Reporting</strong> is the process of organizing and presenting historical data in a standardized, pre-agreed format to communicate what occurred during a specific period. Reports are structured, scheduled, and descriptive.</p>
 <p><strong>Analysis</strong> is the process of interrogating data with open-ended questions to discover causes, correlations, anomalies, and predictions. Analysis is exploratory, hypothesis-driven, and forward-looking or diagnostic.</p>
 
 <h3>Detailed Comparison</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Dimension</th><th>Reporting</th><th>Analysis</th></tr>
@@ -547,14 +642,15 @@
         <tr><td>User persona</td><td>Managers and executives monitoring performance against targets</td><td>Analysts, data scientists exploring causality and building models</td></tr>
         <tr><td>Methodology</td><td>Aggregation, filtering, sorting, grouping by time period</td><td>Statistical hypothesis testing, regression, clustering, ML modeling</td></tr>
         <tr><td>Frequency</td><td>Regular and scheduled (daily/weekly/monthly)</td><td>On-demand, exploratory, iterative</td></tr>
-        <tr><td>Structure</td><td>Low — pre-defined report templates; any deviation requires IT</td><td>High — analysts define their own queries and approaches</td></tr>
+        <tr><td>Structure</td><td>Usually predefined metrics and templates</td><td>Questions and methods may change during investigation</td></tr>
         <tr><td>Typical tool</td><td>Power BI, Tableau, Excel, SSRS, Looker</td><td>Python, R, SQL ad-hoc, Jupyter Notebooks, SAS</td></tr>
-        <tr><td>Example output</td><td>"Monthly revenue: $4.2M; 8% above target; top region: North"</td><td>"Revenue growth driven by loyalty program; predicted Q4: $4.7M; recommend increasing digital ad spend by 15%"</td></tr>
+        <tr><td>Example output</td><td>"Monthly revenue increased; the North region contributed most"</td><td>"Repeat purchases rose; test whether the loyalty program caused the change before deciding where to invest"</td></tr>
     </tbody>
 </table>
+</div>
 
 <h3>Business Intelligence vs Business Analytics</h3>
-<p><strong>Business Intelligence (BI)</strong> is the set of technologies and processes for collecting, integrating, and presenting historical data — primarily reporting and dashboards. BI tells you what happened. <strong>Business Analytics (BA)</strong> extends BI by applying statistical and predictive modeling techniques to explain historical outcomes and forecast future ones. BA tells you why it happened and what will happen. Organizations mature from BI (reporting) to BA (analysis) as their data capabilities and analytical skills grow.</p>
+<p><strong>Business Intelligence (BI)</strong> commonly refers to technologies and processes for integrating, exploring and presenting business data, including reports and dashboards. <strong>Business Analytics (BA)</strong> often emphasizes statistical investigation, prediction and decision models. The terms overlap in practice: a BI tool may support analysis, and an analyst may build a report. Distinguish the question and method rather than relying solely on a product label.</p>
 
 <h3>Role in Decision-Making</h3>
 <p>Effective organizational decision-making requires both. Reporting provides the factual baseline — without accurate, timely reports, decision-makers operate blind. Analysis builds on the baseline to generate and validate hypotheses, quantify risk, and produce evidence-based prescriptions. Neither alone is sufficient: reporting without analysis produces awareness without action; analysis without reporting lacks the factual grounding that ensures analytical models reflect reality.</p>
@@ -562,8 +658,10 @@
 <!-- ===================================================================
      9. MODERN ANALYTIC TOOLS
      =================================================================== -->
-<h2>9. Modern Data Analytic Tools</h2>
+<h2 id="analytic-tools">9. Modern Data Analytic Tools</h2>
+<p class="section-intro">Choose tools by job—collection, transformation, exploration, modeling, visualization or deployment—rather than treating a dashboard or a notebook as the entire workflow.</p>
 
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Category</th><th>Open Source Tools</th><th>Proprietary / Cloud Tools</th><th>Primary Use</th></tr>
@@ -613,14 +711,17 @@
         </tr>
     </tbody>
 </table>
+</div>
 
 <!-- ===================================================================
      10. DATA ANALYTICS LIFECYCLE
      =================================================================== -->
-<h2>10. Data Analytics Lifecycle</h2>
+<h2 id="analytics-lifecycle">10. Data Analytics Lifecycle</h2>
+<p class="section-intro">Each phase has a deliverable and a decision gate. If the evidence is weak, return to an earlier phase rather than shipping a convincing-looking but unreliable model.</p>
 
 <h3>Definition</h3>
 <p>The Data Analytics Lifecycle is a structured, iterative end-to-end framework that defines the phases an analytics project passes through — from problem definition to production deployment. It is not strictly linear; teams frequently iterate between phases as new information emerges.</p>
+<p><strong>Why use it?</strong> A lifecycle connects business success criteria to data access, evaluation and ownership of a deployed result. It creates checkpoints where teams can detect weak data, leakage, an unsuitable metric or a costly intervention before relying on the output.</p>
 
 <h3>Phase 1: Discovery</h3>
 <p><strong>Objective:</strong> Define the business problem in precise, measurable terms and assess feasibility. Key activities:</p>
@@ -660,10 +761,10 @@
 <h3>Phase 4: Model Building</h3>
 <p><strong>Objective:</strong> Train, tune, and evaluate candidate models. Key activities:</p>
 <ul>
-    <li>Split data into training / validation / test sets (typical: 70/15/15 or 80/10/10)</li>
+    <li>Split data into training / validation / test sets (for example, 70/15/15 or 80/10/10, adjusted for dataset size and time order); fit imputation, scaling and encoders on training data only, then apply them to validation and test data</li>
     <li>Train multiple candidate models on the training set</li>
     <li>Tune hyperparameters using grid search, random search, or Bayesian optimization on the validation set</li>
-    <li>Evaluate all candidates on the held-out test set using the defined metric</li>
+    <li>Compare candidates using validation data (or cross-validation), select a final approach, then evaluate it once on a held-out test set</li>
     <li>Perform error analysis: examine misclassified cases; investigate residual patterns</li>
     <li>Check for overfitting: large gap between training and validation performance indicates overfitting; apply regularization, dropout, or reduce model complexity</li>
 </ul>
@@ -674,7 +775,7 @@
 <p><strong>Objective:</strong> Translate model findings into business language and secure stakeholder buy-in for deployment. Key activities:</p>
 <ul>
     <li>Prepare visualizations that explain the model's predictions and the business impact in non-technical terms</li>
-    <li>Quantify the expected ROI: "This churn model identifies 65% of churners in advance; preventing half of them from churning saves an estimated $2.1M/year"</li>
+    <li>Estimate potential ROI with explicit assumptions: how many at-risk customers can be reached, what the intervention costs, and how its effect will be measured</li>
     <li>Clearly state model assumptions, limitations, and failure modes — do not oversell</li>
     <li>Address ethical and fairness concerns: does the model produce biased outcomes for any demographic group?</li>
     <li>Present alternative scenarios: what happens if the model is wrong? What is the cost of false positives vs false negatives?</li>
@@ -687,7 +788,7 @@
     <li>Package the model as a REST API or batch scoring service that production systems can call</li>
     <li>Integrate with operational systems (CRM, ERP, marketing automation, fraud detection platform)</li>
     <li>Implement monitoring: track prediction distributions, input feature distributions (data drift), and model accuracy on labeled new data (model drift)</li>
-    <li>Establish retraining triggers: retrain the model when accuracy drops below a threshold or when the input distribution shifts significantly (concept drift)</li>
+    <li>Establish investigation and retraining triggers: monitor performance, input-data drift and changes in the relationship between inputs and outcomes (concept drift); a shifted input distribution alone does not prove concept drift</li>
     <li>Set up A/B testing infrastructure to measure business impact of model predictions vs the baseline</li>
 </ul>
 <p><strong>Key output:</strong> Production model endpoint; monitoring dashboard; retraining pipeline.</p>
@@ -769,20 +870,22 @@
         <text x="110" y="141" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a">zation</text>
     </svg>
 </div>
-<p class="diagram-caption">Figure 2: Data Analytics Lifecycle — six phases in a cyclic flow. Arrows indicate the primary direction of progression. The cycle restarts from Phase 1 (Discovery) or Phase 2 (Data Preparation) when model performance degrades or a new business question arises.</p>
+<p class="diagram-caption">Figure 5: Data Analytics Lifecycle — six phases in a cyclic flow. Arrows indicate the primary direction of progression. The cycle restarts from Phase 1 (Discovery) or Phase 2 (Data Preparation) when model performance degrades or a new business question arises.</p>
 
 <h3>Agile Analytics</h3>
 <p>Traditional waterfall analytics projects (complete each phase before starting the next) take months before delivering value. <strong>Agile analytics</strong> applies software development agile principles to analytics: work in 2-week sprints; deliver a minimum viable model early (even if imperfect) and iterate; prioritize features by business value; maintain close collaboration between data scientists and business stakeholders throughout. Agile analytics reduces the risk of building a technically excellent model that does not address the actual business problem.</p>
 
-<h3>Real-World Example</h3>
-<p>A bank applies the full lifecycle to build a credit default predictor. Phase 1: define objective — reduce defaults by 20% without increasing false rejection rate above 5%. Phase 2: collect 5 years of loan records (2M rows); impute 12% missing income values; engineer features (debt-to-income ratio, payment history trend). Phase 3: select gradient boosted trees; evaluation metric: AUC-ROC. Phase 4: train on 70%; achieve AUC 0.91 on test set; interpret with SHAP values. Phase 5: present to credit committee with risk-segment breakdown; quantify $18M/year expected savings. Phase 6: deploy as a REST API called at loan application submission; retrain quarterly; monitor input distribution daily.</p>
+<h3>Worked Example: Credit Decisions</h3>
+<p><strong>Illustrative scenario, not a measured bank outcome:</strong> A bank explores a credit-default predictor. <strong>Discovery:</strong> agree with lending and compliance teams on whether the goal is fewer defaults, faster review, or both; set acceptable false-rejection and fairness criteria. <strong>Data preparation:</strong> join historical applications to later repayment outcomes, remove identifiers not needed for modeling, inspect missing income values and ensure each feature was available at application time. <strong>Model planning:</strong> compare a simple logistic-regression baseline with a more flexible model; choose metrics such as recall at an acceptable false-positive rate and a time-based holdout. <strong>Model building:</strong> tune using earlier data, test once on later applications, and examine errors across applicant groups. <strong>Communicating results:</strong> show the credit committee the trade-off between caught defaults and wrongly flagged applications, with estimated intervention costs. <strong>Operationalization:</strong> pilot human review of flagged cases, log outcomes, monitor drift and assess real-world impact before expanding use.</p>
 
 <!-- ===================================================================
      11. KEY ROLES
      =================================================================== -->
-<h2>11. Key Roles for Successful Analytic Projects</h2>
+<h2 id="project-roles">11. Key Roles for Successful Analytic Projects</h2>
+<p class="section-intro">Roles may be combined on a small team, but accountability for business goals, data, modeling, deployment and governance still needs to be explicit.</p>
 
 <h3>Core Team Roles</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Role</th><th>Primary Responsibility</th><th>Key Skills</th><th>Interfaces With</th></tr>
@@ -832,8 +935,10 @@
         </tr>
     </tbody>
 </table>
+</div>
 
 <h3>Executive / Governance Roles</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Role</th><th>Responsibility</th><th>Organizational Level</th></tr>
@@ -856,9 +961,26 @@
         </tr>
     </tbody>
 </table>
+</div>
 
 <h3>Role Interaction Summary</h3>
-<p>A successful analytics project requires all roles to work in a coordinated way. The Business Analyst identifies what needs to be solved; the Data Engineer makes the data available; the Data Scientist builds the model; the ML Engineer deploys it; the DBA secures and maintains the underlying data; the Project Manager keeps everything on schedule; and the Project Sponsor and CDO provide the organizational mandate and resources. Breakdowns at any interface — especially the Business Analyst / Data Scientist interface (misunderstood requirements) or the Data Scientist / ML Engineer interface (models that work in notebooks but not in production) — are the leading causes of analytics project failure.</p>
+<p>A successful analytics project requires coordinated handoffs. The Business Analyst identifies what needs to be solved; the Data Engineer makes the data available; the Data Scientist builds and evaluates the model; the ML Engineer deploys it; the DBA helps secure and maintain the underlying data; the Project Manager coordinates delivery; and the Project Sponsor and CDO provide organizational direction. For example, a model built on a field that production systems cannot supply will fail at deployment even if its test score is strong. Agree on feature availability and ownership early.</p>
+
+<section class="study-check" aria-labelledby="study-check-title">
+    <h3 id="study-check-title">End-of-unit self-check</h3>
+    <p>Try these without looking at the tables first. If an answer feels uncertain, follow the linked section and then the matching worked question.</p>
+    <ol>
+        <li>Given an order table, a JSON event and a recorded customer call, <a href="#classification-of-data">classify each</a> and explain how you would query or prepare it. Check <a href="long-answers.html#q24">Q24</a> or <a href="long-answers.html#q34">Q34</a>.</li>
+        <li>For a noisy, fast-moving event feed, explain which of the <a href="#five-vs">5Vs</a> matter and sketch a <a href="#big-data-platform">source-to-decision pipeline</a>. Check <a href="long-answers.html#q36">Q36</a> and <a href="long-answers.html#q37">Q37</a>.</li>
+        <li>When a weekly sales report drops, separate the <a href="#analysis-vs-reporting">reporting question</a> from a testable analytical hypothesis; do not claim a cause from correlation alone. Check <a href="long-answers.html#q19">Q19</a>.</li>
+        <li>Recite the <a href="#analytics-lifecycle">six lifecycle phases</a> in order, name one deliverable per phase and explain when to loop back. Check <a href="long-answers.html#q5">Q5</a> and <a href="long-answers.html#q38">Q38</a>.</li>
+        <li>Assign responsibility for data availability, model evaluation, production monitoring and business approval using the <a href="#project-roles">project roles</a>. Check <a href="short-answers.html#q3">Q3</a>.</li>
+    </ol>
+</section>
+<footer class="chapter-footer">
+    <p><strong>Next step:</strong> Practise the <a href="short-answers.html">short-answer</a> and <a href="long-answers.html">long-answer</a> questions, then move to <a href="unit2.html">Unit II: Data Analysis</a> to study the modeling methods introduced in the lifecycle. <a href="#data-analytics">Return to the first section</a> or <a href="index.html">go to the guide home</a>.</p>
+</footer>
+</main>
 
 <script src="shared.js"></script>
 </body>

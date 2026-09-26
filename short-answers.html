@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="IDAV ST-1 Short Answer Questions — 2-mark style answers for Unit I and Unit II, grouped and exam-ready.">
     <title>Short Answer Questions | IDAV Guide</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Merriweather:wght@400;700&family=Outfit:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=Space+Grotesk:wght@400;700&display=swap">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,13 +23,34 @@
     </ul>
 </nav>
 
-<div class="page-header">
+<main id="top">
+<header class="page-header chapter-intro">
+    <p class="chapter-kicker">ST-1 Question Bank · Units I &amp; II</p>
     <h1>Short Answer Questions (2 Marks)</h1>
-    <p>Questions Q1–Q4, Q6–Q7 (Unit I) and Q8–Q17 (Unit I / II). Each answer is 3–6 lines — exam-ready.</p>
-</div>
+    <p class="chapter-summary">Find all 16 short answers by unit. Use the question indexes to jump straight to an answer, or read the matching theory first.</p>
+    <nav class="chapter-map" aria-label="Jump to a unit">
+        <ul>
+            <li><a href="#unit1-questions">Unit I · Analytics foundations</a></li>
+            <li><a href="#unit2-questions">Unit II · Analytic methods</a></li>
+        </ul>
+    </nav>
+    <p class="chapter-links">Looking for the lifecycle question? <a href="long-answers.html#q5">Q5 is a long answer</a>.</p>
+</header>
 
 <!-- =================== UNIT I =================== -->
-<h2>Unit I — Short Answers</h2>
+<section id="unit1-questions" aria-labelledby="unit1-heading">
+<h2 id="unit1-heading">Unit I — Short Answers</h2>
+<p class="chapter-links">Review the concepts in <a href="unit1.html">Unit I theory</a>.</p>
+<nav class="question-index" aria-label="Unit I short answer index">
+    <ul>
+        <li><a href="#q1">Q1 · Data analytics</a></li>
+        <li><a href="#q2">Q2 · Visualization tools</a></li>
+        <li><a href="#q3">Q3 · Project roles</a></li>
+        <li><a href="#q4">Q4 · Big Data platform</a></li>
+        <li><a href="#q6">Q6 · Why analytics matters</a></li>
+        <li><a href="#q7">Q7 · Data sources</a></li>
+    </ul>
+</nav>
 
 <div class="qa-block" id="q1">
     <div class="question-label">Q1 — Define</div>
@@ -92,17 +111,26 @@
     </div>
 </div>
 
-<div class="qa-block" id="q17">
-    <div class="question-label">Q17 — Define</div>
-    <div class="question-text">Define regression analysis. Mention any two applications of regression in data analytics.</div>
-    <div class="answer-body">
-        <p>Regression analysis is a statistical technique that models the relationship between a dependent variable (outcome) and one or more independent variables (predictors), producing an equation used to predict the dependent variable's value for new inputs. The simplest form is: Y = b0 + b1X + error, where b0 and b1 are estimated by minimizing the sum of squared residuals.</p>
-        <p><strong>Applications:</strong> (1) <strong>Real estate pricing</strong> — predicting house prices from floor area, location, and number of rooms. (2) <strong>Demand forecasting</strong> — predicting next month's product sales from historical sales data, promotional spend, and seasonality indicators.</p>
-    </div>
-</div>
+</section>
 
 <!-- =================== UNIT II =================== -->
-<h2>Unit II — Short Answers</h2>
+<section id="unit2-questions" aria-labelledby="unit2-heading">
+<h2 id="unit2-heading">Unit II — Short Answers</h2>
+<p class="chapter-links">Review the methods in <a href="unit2.html">Unit II theory</a>, including regression (Q17).</p>
+<nav class="question-index" aria-label="Unit II short answer index">
+    <ul>
+        <li><a href="#q8">Q8 · Fuzzy logic</a></li>
+        <li><a href="#q9">Q9 · Multivariate analysis</a></li>
+        <li><a href="#q10">Q10 · Competitive learning</a></li>
+        <li><a href="#q11">Q11 · PCA</a></li>
+        <li><a href="#q12">Q12 · Time series</a></li>
+        <li><a href="#q13">Q13 · Rule induction</a></li>
+        <li><a href="#q14">Q14 · SVM kernels</a></li>
+        <li><a href="#q15">Q15 · Stochastic search</a></li>
+        <li><a href="#q16">Q16 · Bayesian networks</a></li>
+        <li><a href="#q17">Q17 · Regression</a></li>
+    </ul>
+</nav>
 
 <div class="qa-block" id="q8">
     <div class="question-label">Q8 — Short Note</div>
@@ -177,9 +205,24 @@
     <div class="question-text">Explain Bayesian Network. State its main components.</div>
     <div class="answer-body">
         <p>A Bayesian Network (BN) is a probabilistic graphical model represented as a directed acyclic graph (DAG) where nodes represent random variables and directed edges represent conditional dependencies between them. A BN encodes the joint probability distribution of all variables as a product of conditional probabilities, one per node given its parent nodes.</p>
-        <p><strong>Main components:</strong> (1) <strong>Nodes</strong> — each represents a random variable (discrete or continuous). (2) <strong>Directed edges</strong> — an arrow from node A to node B means A directly influences B (A is a parent of B). (3) <strong>Conditional Probability Table (CPT)</strong> — each node has a CPT giving P(node | parents); root nodes (no parents) have prior probabilities. (4) <strong>DAG structure</strong> — the acyclic constraint ensures the joint distribution is well-defined and factorizable.</p>
+        <p><strong>Main components:</strong> (1) <strong>Nodes</strong> — each represents a random variable (discrete or continuous). (2) <strong>Directed edges</strong> — an arrow from node A to node B means A is a direct probabilistic parent of B (not necessarily a causal influence). (3) <strong>Conditional Probability Table (CPT)</strong> — each node has a CPT giving P(node | parents); root nodes (no parents) have prior probabilities. (4) <strong>DAG structure</strong> — the acyclic constraint ensures the joint distribution is well-defined and factorizable.</p>
     </div>
 </div>
+
+<div class="qa-block" id="q17">
+    <div class="question-label">Q17 — Define</div>
+    <div class="question-text">Define regression analysis. Mention any two applications of regression in data analytics.</div>
+    <div class="answer-body">
+        <p>Regression analysis is a statistical technique that models the relationship between a dependent variable (outcome) and one or more independent variables (predictors), producing an equation used to predict the dependent variable's value for new inputs. The simplest form is: Y = b0 + b1X + error, where b0 and b1 are estimated by minimizing the sum of squared residuals.</p>
+        <p><strong>Applications:</strong> (1) <strong>Real estate pricing</strong> — predicting house prices from floor area, location, and number of rooms. (2) <strong>Demand forecasting</strong> — predicting next month's product sales from historical sales data, promotional spend, and seasonality indicators.</p>
+    </div>
+</div>
+</section>
+
+<footer class="chapter-footer">
+    <p>Keep studying: <a href="long-answers.html">Long answers (Q5, Q18–Q40)</a> · <a href="#unit1-questions">Unit I index</a> · <a href="#unit2-questions">Unit II index</a></p>
+</footer>
+</main>
 
 <script src="shared.js"></script>
 </body>

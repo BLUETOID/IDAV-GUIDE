@@ -1,6 +1,6 @@
 # IDAV Exam Guide
 
-> A textbook-grade, interactive study and revision guide for **Introduction to Data Analytics & Visualization (IDAV)**.
+> A focused study and revision guide for **Introduction to Data Analytics & Visualization (IDAV)**, centered on the ST-1 syllabus and questions for Units I and II.
 
 Built with clean HTML5, CSS3, and JavaScript—no heavy frameworks, no build steps, and no third-party runtime dependencies.
 
@@ -19,14 +19,14 @@ Built with clean HTML5, CSS3, and JavaScript—no heavy frameworks, no build ste
 
 ## Overview
 
-This repository hosts a comprehensive, content-first educational web reference covering the complete curriculum for **Introduction to Data Analytics & Visualization (IDAV)** across 5 units:
+The homepage, study path and question-bank navigation focus on **Units I and II** of Introduction to Data Analytics & Visualization. Reference pages for the remaining units are still present but are outside the current ST-1 question-bank focus:
 1. **Unit I: Introduction to Data Analytics & Lifecycle**
 2. **Unit II: Data Analysis**
 3. **Unit III: Mining Data Streams**
 4. **Unit IV: Frequent Itemsets & Clustering**
 5. **Unit V: Data Visualization**
 
-It also provides complete, exam-ready answers for the **40-question ST-1 Question Bank (CO1 & CO2)** split into concise 2-mark short answers and structured 7-mark long answers.
+The **40-question ST-1 Question Bank (CO1 & CO2)** is split into 16 short answers and 24 long answers. Each question retains its number from `questions.md`, with unit-level contents and links from the theory pages.
 
 ---
 
@@ -44,18 +44,18 @@ It also provides complete, exam-ready answers for the **40-question ST-1 Questio
 
 ## Question Bank Coverage
 
-- **[Short Answers (2 Marks)](short-answers.html):** 16 concise, high-yield answers (3–6 lines each) covering definitions, lists, and core concepts for Unit I and Unit II.
-- **[Long Answers (7 Marks)](long-answers.html):** 24 detailed, multi-part answers (Q17–40) formatted with mathematical formulations, comparison tables, step-by-step algorithms, and dedicated SVG diagrams.
+- **[Short Answers (2 Marks)](short-answers.html):** 16 answers (Q1–4, Q6–17) covering definitions, lists, and core concepts for Units I and II.
+- **[Long Answers (7 Marks)](long-answers.html):** 24 detailed answers (Q5, Q18–40) with mathematical formulations, comparison tables, worked methods, and SVG diagrams.
 
 ---
 
 ## Key Features
 
-- **Rich Vector SVG Diagrams:** Labeled structural diagrams with clean geometry, explicit axes, and no raster blur or ASCII art.
-- **10-Font Reading Switcher:** Interactive font toggle supporting 10 distinct serif and sans-serif typefaces (Georgia, Inter, Playfair Display, Merriweather, Lora, Outfit, Source Serif 4, Roboto, EB Garamond, Space Grotesk) with local persistence.
-- **Floating Back-to-Top Button:** Quick navigation on long-form theory pages.
-- **Academic Aesthetic:** Content-first typography, high readability, single burgundy accent (`#7b1f2e`), and zero distractive animations.
-- **Print-Friendly:** Clean print stylesheets for generating revision handouts and PDFs.
+- **Detailed unit notes:** Linked topic contents, explanations, worked examples, diagrams, question references and self-checks for Units I and II.
+- **Question lookup:** Unit-grouped indexes for all 40 supplied questions, with stable `#q1`–`#q40` links.
+- **SVG diagrams:** Labelled, scalable figures that remain readable on smaller screens.
+- **Reading controls:** One serif/sans-serif toggle, saved locally in the browser, plus a back-to-top button on long pages. The main study pages work offline without external fonts.
+- **Responsive and print-friendly:** Scrollable comparison tables on narrow screens, visible focus indicators and uncluttered printed notes.
 
 ---
 
@@ -78,15 +78,15 @@ Then visit `http://localhost:8000/` in your browser.
 
 ```
 .
-├── index.html          # Course overview, syllabus matrix, and question index
+├── index.html          # Focused study path for Units I and II
 ├── unit1.html          # Unit I: Introduction & Analytics Lifecycle
 ├── unit2.html          # Unit II: Data Analysis
 ├── unit3.html          # Unit III: Mining Data Streams
 ├── unit4.html          # Unit IV: Frequent Itemsets & Clustering
 ├── unit5.html          # Unit V: Data Visualization
-├── short-answers.html  # 2-Mark Short Answer Question Bank (Q1-16)
-├── long-answers.html   # 7-Mark Long Answer Question Bank (Q17-40)
-├── shared.js           # Font picker widget and back-to-top utility
+├── short-answers.html  # 2-mark answers: Q1–4, Q6–17
+├── long-answers.html   # 7-mark answers: Q5, Q18–40
+├── shared.js           # Shared navigation, reading toggle, tables and back-to-top
 ├── style.css           # Shared design system and responsive layout
 ├── syllabus.md         # Source syllabus specification
 ├── questions.md        # Source ST-1 question bank

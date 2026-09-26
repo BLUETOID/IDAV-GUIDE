@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="IDAV ST-1 Long Answer Questions — 7-mark style answers for Unit I and Unit II, fully structured with sub-headings, SVG diagrams, examples, and comparison tables.">
     <title>Long Answer Questions | IDAV Guide</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Merriweather:wght@400;700&family=Outfit:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=Space+Grotesk:wght@400;700&display=swap">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,13 +23,38 @@
     </ul>
 </nav>
 
-<div class="page-header">
+<main id="top">
+<header class="page-header chapter-intro">
+    <p class="chapter-kicker">ST-1 Question Bank · Units I &amp; II</p>
     <h1>Long Answer Questions (7 Marks)</h1>
-    <p>Questions Q5, Q18–Q40. Each answer: Definition/Intro &rarr; Main Explanation &rarr; Diagram (where applicable) &rarr; Example &rarr; Comparison table (where required).</p>
-</div>
+    <p class="chapter-summary">Explore 24 detailed answers with examples, tables, and diagrams where useful. Choose a unit, then jump to a question from its index.</p>
+    <nav class="chapter-map" aria-label="Jump to a unit">
+        <ul>
+            <li><a href="#unit1-questions">Unit I · Analytics foundations</a></li>
+            <li><a href="#unit2-questions">Unit II · Analytic methods</a></li>
+        </ul>
+    </nav>
+    <p class="chapter-links">Need a quick definition? <a href="short-answers.html">Browse the short answers</a>. Q5 (lifecycle) is on this page.</p>
+</header>
 
 <!-- =================== UNIT I =================== -->
-<h2>Unit I — Long Answers</h2>
+<section id="unit1-questions" aria-labelledby="unit1-heading">
+<h2 id="unit1-heading">Unit I — Long Answers</h2>
+<p class="chapter-links">Review the concepts in <a href="unit1.html">Unit I theory</a>.</p>
+<nav class="question-index" aria-label="Unit I long answer index">
+    <ul>
+        <li><a href="#q5">Q5 · Analytics lifecycle</a></li>
+        <li><a href="#q18">Q18 · Why analytics matters</a></li>
+        <li><a href="#q19">Q19 · Analysis vs reporting</a></li>
+        <li><a href="#q23">Q23 · Analytic scalability</a></li>
+        <li><a href="#q24">Q24 · Data classification</a></li>
+        <li><a href="#q34">Q34 · Sources and nature of data</a></li>
+        <li><a href="#q35">Q35 · Predictive vs descriptive</a></li>
+        <li><a href="#q36">Q36 · 5Vs and platforms</a></li>
+        <li><a href="#q37">Q37 · Big Data challenges</a></li>
+        <li><a href="#q38">Q38 · Lifecycle in detail</a></li>
+    </ul>
+</nav>
 
 <!-- ===== Q5 ===== -->
 <div class="qa-block" id="q5">
@@ -119,6 +142,7 @@
         </ul>
 
         <h3>Evolution of Analytic Scalability</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>Era</th><th>Technology</th><th>Data Scale</th><th>Analytics Type</th></tr>
@@ -131,6 +155,7 @@
                 <tr><td>2016–present</td><td>Cloud (BigQuery, Redshift), AutoML, LLMs</td><td>Exabytes, on-demand</td><td>AI-driven predictive and prescriptive analytics</td></tr>
             </tbody>
         </table>
+        </div>
         <p>The trajectory shows a consistent pattern: as data volume grew, new distributed technologies emerged to process it; as latency requirements tightened, batch gave way to streaming; and as complexity increased, automation (AutoML, LLMs) emerged to democratize analytics beyond specialist teams.</p>
     </div>
 </div>
@@ -144,6 +169,7 @@
         <p><strong>Reporting</strong> organizes and presents historical data in a standardized format to communicate what occurred. <strong>Analysis</strong> examines data to identify causes, patterns, and future outcomes. Both are essential but serve different decision-making purposes.</p>
 
         <h3>Detailed Comparison</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>Dimension</th><th>Reporting</th><th>Analysis</th></tr>
@@ -159,6 +185,7 @@
                 <tr><td>Example</td><td>Monthly regional sales report</td><td>Identifying why Q3 sales fell 15% and predicting Q4</td></tr>
             </tbody>
         </table>
+        </div>
 
         <h3>Role in Decision-Making</h3>
         <p><strong>Reporting</strong> provides the factual baseline — executives use it for monitoring (is performance within acceptable bounds?). Without reliable reporting, decision-makers lack situational awareness. <strong>Analysis</strong> provides the diagnostic and predictive layer — it explains why performance deviated and what to do next. Effective decisions require both: reporting to detect that a problem exists; analysis to understand it and prescribe a solution.</p>
@@ -227,6 +254,7 @@
         <p><strong>Examples:</strong> Customer service call recordings (audio), product review free-text on e-commerce sites, surveillance video feeds, medical imaging (X-rays, MRIs), and satellite imagery.</p>
 
         <h3>Comparison Table</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>Criterion</th><th>Structured</th><th>Semi-Structured</th><th>Unstructured</th></tr>
@@ -239,6 +267,7 @@
                 <tr><td>Analysis complexity</td><td>Low</td><td>Medium</td><td>High</td></tr>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 
@@ -251,6 +280,7 @@
         <p>Every analytics project begins with data — the raw material from which insights are derived. Understanding where data comes from (sources) and its intrinsic properties (nature and classification) is foundational to selecting appropriate collection, storage, and analysis strategies.</p>
 
         <h3>Sources of Data</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>Category</th><th>Description</th><th>Examples</th></tr>
@@ -264,6 +294,7 @@
                 <tr><td>Human-generated</td><td>Created by human interaction or content creation</td><td>Social media posts, customer reviews, forum discussions, survey responses</td></tr>
             </tbody>
         </table>
+        </div>
 
         <h3>Nature of Data</h3>
         <p>The nature of data refers to its structural properties — how it is organized, how it can be stored, and what analytical methods apply:</p>
@@ -282,6 +313,7 @@
     <div class="question-text">Compare analysis and reporting. In business decision-making, how does predictive analytics provide more value than descriptive reporting?</div>
     <div class="answer-body">
         <h3>Analysis vs Reporting — Comparison</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>Dimension</th><th>Reporting</th><th>Analysis</th></tr>
@@ -294,6 +326,7 @@
                 <tr><td>User</td><td>Managers monitoring performance</td><td>Analysts and data scientists exploring causality</td></tr>
             </tbody>
         </table>
+        </div>
 
         <h3>Why Predictive Analytics Provides More Value than Descriptive Reporting</h3>
         <p>Descriptive reporting tells decision-makers what already happened — but by the time a report is read, the business outcome is irreversible. Predictive analytics, in contrast, models future outcomes with enough lead time to act.</p>
@@ -374,6 +407,7 @@
         <p>Traditional RDBMS systems fail under Big Data conditions because: (1) a single server cannot store petabytes; (2) write speed of a single disk cannot match data arrival velocity; (3) rigid schemas cannot handle unstructured variety; (4) single-node processing cannot complete batch jobs within acceptable time. Big Data platforms solve these through distributed storage, distributed parallel computation, and fault-tolerant cluster management.</p>
 
         <h3>Commonly Used Platforms</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>Platform</th><th>Primary Role</th><th>Key Capability</th></tr>
@@ -386,6 +420,7 @@
                 <tr><td>Google BigQuery</td><td>Serverless cloud data warehouse</td><td>Columnar storage; petabyte-scale SQL queries in seconds; pay-per-query</td></tr>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 
@@ -408,6 +443,7 @@
         </ul>
 
         <h3>Impact of Each V on Data Analysis</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>V</th><th>Impact on Analysis</th><th>Required Mitigation</th></tr>
@@ -419,6 +455,7 @@
                 <tr><td>Veracity</td><td>Noisy labels degrade model accuracy; inconsistent formats cause data type errors; bias in source data propagates to model predictions</td><td>Data validation pipelines, anomaly detection, data provenance tracking, bias audits</td></tr>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 
@@ -427,13 +464,35 @@
     <div class="question-label">Q38</div>
     <div class="question-text">Explain the phases of the Data Analytics Lifecycle in detail.</div>
     <div class="answer-body">
-        <p>This question covers the same lifecycle as Q5. Refer to the Q5 answer above for the complete six-phase description (Discovery, Data Preparation, Model Planning, Model Building, Communicating Results, Operationalization) with the phase flow diagram and real-world banking example.</p>
+        <p>This question covers the same lifecycle as Q5. Refer to the <a href="#q5">Q5 answer above</a> for the complete six-phase description (Discovery, Data Preparation, Model Planning, Model Building, Communicating Results, Operationalization) with the phase flow diagram and real-world banking example.</p>
         <p>Additional detail for a 7-mark answer: emphasis on iterative nature — the lifecycle is not strictly linear. After model evaluation (Phase 4), it is common to return to Phase 2 (collect additional features) or Phase 3 (try a different algorithm family). In large organizations, multiple lifecycle runs may execute in parallel for different analytical questions, each sharing the same data preparation infrastructure.</p>
     </div>
 </div>
 
+</section>
+
 <!-- =================== UNIT II =================== -->
-<h2>Unit II — Long Answers</h2>
+<section id="unit2-questions" aria-labelledby="unit2-heading">
+<h2 id="unit2-heading">Unit II — Long Answers</h2>
+<p class="chapter-links">Review the methods in <a href="unit2.html">Unit II theory</a>.</p>
+<nav class="question-index" aria-label="Unit II long answer index">
+    <ul>
+        <li><a href="#q20">Q20 · PCA steps</a></li>
+        <li><a href="#q21">Q21 · Supervised vs unsupervised</a></li>
+        <li><a href="#q22">Q22 · Regression models</a></li>
+        <li><a href="#q25">Q25 · Bayesian modeling</a></li>
+        <li><a href="#q26">Q26 · Time series dynamics</a></li>
+        <li><a href="#q27">Q27 · Multivariate regression</a></li>
+        <li><a href="#q28">Q28 · SVM vs neural networks</a></li>
+        <li><a href="#q29">Q29 · Kernel methods</a></li>
+        <li><a href="#q30">Q30 · Rule induction</a></li>
+        <li><a href="#q31">Q31 · Neural networks</a></li>
+        <li><a href="#q32">Q32 · Univariate vs multivariate</a></li>
+        <li><a href="#q33">Q33 · Choosing an approach</a></li>
+        <li><a href="#q39">Q39 · SVM and kernels</a></li>
+        <li><a href="#q40">Q40 · Neural network learning</a></li>
+    </ul>
+</nav>
 
 <!-- ===== Q20 ===== -->
 <div class="qa-block" id="q20">
@@ -522,6 +581,7 @@
         <p>Machine learning algorithms are broadly categorized by whether they learn from labeled training data (supervised) or discover structure in unlabeled data (unsupervised). The distinction has fundamental implications for the type of problem that can be solved and the data requirements.</p>
 
         <h3>Comparison Table</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>#</th><th>Dimension</th><th>Supervised Learning</th><th>Unsupervised Learning</th></tr>
@@ -559,6 +619,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 
@@ -588,6 +649,7 @@
         <p>Regularized regression that adds a penalty term to the OLS loss function. Ridge (L2 regularization): penalty = λ * sum(bi²) — shrinks all coefficients toward zero. Lasso (L1): penalty = λ * sum(|bi|) — performs feature selection by shrinking some coefficients to exactly zero. Used when there are many predictors (p &gt;&gt; n) or high multicollinearity.</p>
 
         <h3>Applications</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>Domain</th><th>Application</th><th>Regression Type</th></tr>
@@ -601,6 +663,7 @@
                 <tr><td>Economics</td><td>Modeling demand as a function of price and income</td><td>Log-linear (elasticity)</td></tr>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 
@@ -730,10 +793,10 @@
     <div class="question-text">Explain regression modeling and its applications in data analysis. Discuss how multivariate regression extends this approach with suitable examples.</div>
     <div class="answer-body">
         <h3>Regression Modeling</h3>
-        <p>See Q22 for the complete treatment of regression types and applications. The key insight is that regression produces an explicit mathematical equation relating inputs to outputs, enabling both prediction and interpretation of predictor importance (through coefficient values and statistical significance tests).</p>
+        <p>See <a href="#q22">Q22</a> for the complete treatment of regression types and applications. The key insight is that regression produces an explicit mathematical equation relating inputs to outputs, enabling both prediction and interpretation of predictor importance (through coefficient values and statistical significance tests).</p>
 
         <h3>Multivariate Regression</h3>
-        <p>Multivariate regression (multiple linear regression) extends simple regression by including multiple predictor variables: Y = b0 + b1*X1 + b2*X2 + ... + bn*Xn + ε. Each coefficient bi represents the marginal effect of Xi on Y, controlling for all other predictors. This is essential in observational studies where predictors are correlated — controlling for confounders prevents attribution of an effect to the wrong variable.</p>
+        <p>Multiple linear regression extends simple regression by including multiple predictor variables: Y = b0 + b1*X1 + b2*X2 + ... + bn*Xn + ε. Here the question uses “multivariate” for multiple predictors; strictly, multivariate regression models multiple outcomes. Each coefficient bi describes the association of Xi with Y while holding the other included predictors constant. In observational data, this adjustment alone does not establish a causal effect or account for unmeasured confounders.</p>
 
         <h4>Example 1: House Price Prediction</h4>
         <p>Price = 50,000 + 150*(floor_area) + 20,000*(bedrooms) + 10,000*(location_score) − 500*(age_in_years)</p>
@@ -777,6 +840,7 @@
         </ul>
 
         <h3>Comparative Evaluation</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>Criterion</th><th>SVM</th><th>Neural Network</th></tr>
@@ -792,6 +856,7 @@
                 <tr><td>Example use case</td><td>Spam classification, medical diagnosis with genomic data</td><td>Image recognition, NLP, speech synthesis</td></tr>
             </tbody>
         </table>
+        </div>
 
         <h3>Conclusion</h3>
         <p>SVM is the preferred choice for high-dimensional, small-to-medium structured datasets where theoretical guarantees matter. Neural networks are preferred for large datasets, raw perceptual inputs (images, audio, text), and tasks requiring hierarchical feature learning. In practice, the choice is often empirical — both are evaluated on a validation set for the specific task.</p>
@@ -813,6 +878,7 @@
         <p>A function K is a valid kernel if and only if it is symmetric (K(xi, xj) = K(xj, xi)) and the n×n kernel matrix K[i,j] = K(xi, xj) is positive semi-definite for any finite set of inputs. Valid kernels correspond to dot products in some (possibly infinite-dimensional) Hilbert space.</p>
 
         <h3>Commonly Used Kernel Functions in SVM</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>Kernel</th><th>Formula</th><th>Parameters</th><th>When to Use</th></tr>
@@ -850,6 +916,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
 
         <h3>Example</h3>
         <p>XOR classification: two classes form an XOR pattern in 2D — no linear hyperplane can separate them. A polynomial kernel of degree 2 maps the 2D input to a 6-dimensional feature space where the XOR boundary becomes linear. The SVM finds this linear boundary in the mapped space, which corresponds to a curved (quadratic) boundary in the original 2D space.</p>
@@ -904,6 +971,7 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
         <p>An artificial neural network (ANN) is a computational model inspired by the structure of biological neural networks. It consists of layers of interconnected processing units (neurons) that learn a mapping from inputs to outputs by adjusting connection weights through an iterative optimization process (training). ANNs can approximate arbitrarily complex functions given sufficient depth (layers) and width (neurons per layer).</p>
 
         <h3>Major Components</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>Component</th><th>Description</th></tr>
@@ -919,8 +987,10 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
                 <tr><td>Optimizer</td><td>The algorithm that updates weights. Stochastic Gradient Descent (SGD), Adam, RMSProp. Computes the gradient of the loss with respect to each weight via backpropagation and updates weights in the negative gradient direction.</td></tr>
             </tbody>
         </table>
+        </div>
 
         <h3>Applications in Data Analysis</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>Domain</th><th>Application</th><th>Architecture</th></tr>
@@ -934,6 +1004,7 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
                 <tr><td>Speech</td><td>Speech recognition, voice assistants</td><td>Deep RNN, Transformer</td></tr>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 
@@ -947,6 +1018,7 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
         <p><strong>Multivariate analysis</strong> simultaneously examines two or more variables, studying their joint distribution and the relationships, correlations, and interactions among them.</p>
 
         <h3>Characteristics</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>Characteristic</th><th>Univariate Analysis</th><th>Multivariate Analysis</th></tr>
@@ -961,6 +1033,7 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
                 <tr><td>Example</td><td>Histogram of customer ages in a dataset</td><td>PCA on customer age, income, purchase frequency, and churn status to find customer segments</td></tr>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 
@@ -987,6 +1060,7 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
         <p><strong>Justification:</strong> After predicting churn and revenue, management asks: which factors most influence revenue per customer? Multiple linear regression with revenue_per_customer as the dependent variable and visit_frequency, avg_order_value, discount_used, customer_age, PCA_component_1, PCA_component_2 as predictors quantifies the marginal contribution of each factor and identifies which to target with interventions. Lasso regression is used to further select the most important predictors.</p>
 
         <h3>Summary Justification Table</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>Technique</th><th>Applied to</th><th>Justification</th></tr>
@@ -998,6 +1072,7 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
                 <tr><td>Lasso regression</td><td>Revenue per customer attribution</td><td>Many predictors — Lasso selects the most influential ones automatically</td></tr>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 
@@ -1094,6 +1169,7 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
         <p class="diagram-caption">Figure: The SVM Kernel Trick. Non-linearly separable data in 2D input space is mapped via kernel \Phi(x) into high-dimensional feature space where a maximum-margin linear hyperplane w·\Phi(x)+b=0 cleanly separates the classes.</p>
 
         <h3>Linear vs Nonlinear Kernels — Comparison</h3>
+        <div class="table-scroll">
         <table>
             <thead>
                 <tr><th>Aspect</th><th>Linear Kernel K(xi,xj) = xi·xj</th><th>RBF (Nonlinear) Kernel K(xi,xj) = exp(−γ||xi−xj||²)</th></tr>
@@ -1107,6 +1183,7 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
                 <tr><td>Example application</td><td>Document classification with TF-IDF features</td><td>Image classification with pixel features; biological data</td></tr>
             </tbody>
         </table>
+        </div>
 
         <h3>Example: Nonlinear Boundary</h3>
         <p>Dataset: class +1 forms a circular cluster at the origin; class −1 surrounds it in a ring. No linear hyperplane can separate them. With an RBF kernel (γ=0.5), SVM maps data into an infinite-dimensional space where a linear hyperplane corresponds to the circular boundary in 2D input space. The trained SVM correctly classifies all points with a decision boundary that is a circle in input space.</p>
@@ -1122,7 +1199,7 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
     <div class="question-text">Explain neural networks in detail. Discuss learning, generalization, and competitive learning with real-life examples.</div>
     <div class="answer-body">
         <h3>Introduction</h3>
-        <p>Artificial neural networks (ANNs) are computational models consisting of layers of interconnected neurons. By adjusting connection weights through iterative training, ANNs learn complex mappings from inputs to outputs. See Q31 for the complete component description.</p>
+        <p>Artificial neural networks (ANNs) are computational models consisting of layers of interconnected neurons. By adjusting connection weights through iterative training, ANNs learn complex mappings from inputs to outputs. See <a href="#q31">Q31</a> for the complete component description.</p>
 
         <h3>Learning in Neural Networks — Backpropagation</h3>
         <p>The learning algorithm has two phases per training batch:</p>
@@ -1242,6 +1319,12 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
         <p>Customer segmentation using a SOM: a financial institution feeds transaction behavior vectors (recency, frequency, monetary value, product diversity) into a 10×10 SOM. After training, the 100-neuron grid organizes into interpretable regions: one corner represents high-value frequent buyers, the opposite corner represents dormant low-value accounts, and intermediate neurons capture transitions between segments. The map is visualized as a 2D heatmap, enabling relationship managers to identify segment clusters without predefined labels.</p>
     </div>
 </div>
+</section>
+
+<footer class="chapter-footer">
+    <p>Keep studying: <a href="short-answers.html">Short answers (Q1–Q4, Q6–Q17)</a> · <a href="#unit1-questions">Unit I index</a> · <a href="#unit2-questions">Unit II index</a></p>
+</footer>
+</main>
 
 <script src="shared.js"></script>
 </body>

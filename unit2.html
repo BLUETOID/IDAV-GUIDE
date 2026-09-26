@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Unit II — Analytic Techniques. Regression, Bayesian networks, SVM, time series, rule induction, neural networks, PCA, fuzzy logic, stochastic search — full exam reference with SVG diagrams.">
     <title>Unit II — Analytic Techniques | IDAV Guide</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Merriweather:wght@400;700&family=Outfit:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=Space+Grotesk:wght@400;700&display=swap">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,18 +23,42 @@
     </ul>
 </nav>
 
+<main id="top">
 <div class="page-header">
     <h1>Unit II: Analytic Techniques &amp; Methods</h1>
-    <p>08 Lectures &nbsp;|&nbsp; ST-1 Questions: Q8–16, Q20–22, Q25–33, Q39–40</p>
+    <p>08 Lectures &nbsp;|&nbsp; Data Analysis &nbsp;|&nbsp; Models, inference, patterns and optimization</p>
 </div>
+
+<header class="chapter-intro">
+    <p class="chapter-kicker">Unit II · Data Analysis · 08 lectures</p>
+    <p class="chapter-summary">This chapter follows the syllabus from regression and multivariate analysis through Bayesian inference, kernel methods, time series, rule induction, neural networks, PCA, fuzzy models and stochastic search. Learn what each method assumes, what it produces and when to use it; then practise explaining the diagrams and choosing methods for a dataset.</p>
+    <p><strong>Reading path:</strong> Start with regression and multivariate relationships (1–2), move to uncertainty and classification (3–4), study time dependence and interpretable rules (5–6), then representation learning (7–8), approximate reasoning (9) and optimization (10). Use the linked question-bank answers after each topic; <a href="unit1.html">Unit I</a> reviews the analytics lifecycle and data preparation prerequisites.</p>
+    <nav class="chapter-map" aria-label="Unit II topic contents">
+        <h2>Topic contents</h2>
+        <ol>
+            <li><a href="#regression">Regression models</a></li>
+            <li><a href="#multivariate">Multivariate analysis</a></li>
+            <li><a href="#bayesian">Bayesian modeling, inference and networks</a></li>
+            <li><a href="#svm">Support vector machines and kernels</a></li>
+            <li><a href="#time-series">Time series: linear systems and nonlinear dynamics</a></li>
+            <li><a href="#rule-induction">Rule induction</a></li>
+            <li><a href="#neural-networks">Neural networks and competitive learning</a></li>
+            <li><a href="#pca">PCA and neural networks</a></li>
+            <li><a href="#fuzzy-logic">Fuzzy logic, model extraction and fuzzy trees</a></li>
+            <li><a href="#stochastic-search">Stochastic search</a></li>
+        </ol>
+    </nav>
+</header>
 
 <!-- =====================================================================
      1. REGRESSION MODELS
      ===================================================================== -->
-<h2>1. Regression Models</h2>
+<h2 id="regression">1. Regression Models</h2>
+<p class="section-intro">Use regression to predict a numerical outcome or quantify conditional associations; logistic regression instead predicts a class probability.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q17">Q17 · definition and uses</a> · <a href="long-answers.html#q22">Q22 · model types</a> · <a href="long-answers.html#q27">Q27 · multiple predictors</a>.</p>
 
 <h3>Definition</h3>
-<p>Regression analysis is a supervised statistical technique that models the mathematical relationship between a dependent variable (the outcome to predict, Y) and one or more independent variables (the predictors, X). The model equation is used for prediction on new inputs and for quantifying how much each predictor contributes to the outcome.</p>
+<p>Regression analysis is a supervised statistical technique that models the mathematical relationship between a dependent variable (the outcome to predict, Y) and one or more independent variables (the predictors, X). The model equation is used for prediction on new inputs and for describing associations between predictors and the outcome; coefficients alone do not establish causation.</p>
 
 <h3>Types of Regression Models</h3>
 
@@ -47,7 +69,7 @@
 
 <h4>1.2 Multiple Linear Regression</h4>
 <p><strong>Y = b<sub>0</sub> + b<sub>1</sub>X<sub>1</sub> + b<sub>2</sub>X<sub>2</sub> + ... + b<sub>n</sub>X<sub>n</sub> + ε</strong></p>
-<p>Each coefficient b<sub>i</sub> represents the marginal effect of X<sub>i</sub> on Y — the change in Y for a unit increase in X<sub>i</sub>, holding all other predictors constant. This "controlling for other variables" property is critical in observational studies to isolate the effect of individual predictors.</p>
+<p>Each coefficient b<sub>i</sub> represents the predicted change in Y for a unit increase in X<sub>i</sub>, holding the other included predictors constant. In observational data, omitted confounders can still bias this association; a causal interpretation requires additional assumptions or a suitable study design.</p>
 
 <h4>1.3 Logistic Regression</h4>
 <p>Used for binary classification (outcome is 0 or 1). Models the log-odds of the positive class: log(p / 1−p) = b<sub>0</sub> + b<sub>1</sub>X<sub>1</sub> + ... The log-odds is passed through the sigmoid function σ(z) = 1 / (1 + e<sup>−z</sup>) to produce a probability in (0,1). Despite the name "regression," logistic regression is a classification algorithm.</p>
@@ -62,19 +84,19 @@
 <p>Adds a penalty λΣ|b<sub>i</sub>| to the OLS loss function. Unlike Ridge, Lasso can shrink coefficients to exactly zero — performing automatic feature selection. Preferred when you have many predictors and want a sparse model.</p>
 
 <h3>OLS Derivation Concept</h3>
-<p>OLS finds the coefficients that minimize the Residual Sum of Squares (RSS): RSS = Σ(Y<sub>i</sub> − b<sub>0</sub> − b<sub>1</sub>X<sub>i</sub>)². Taking partial derivatives with respect to b<sub>0</sub> and b<sub>1</sub> and setting to zero yields the normal equations. Solution: b<sub>1</sub> = Σ(X<sub>i</sub> − X̄)(Y<sub>i</sub> − Ȳ) / Σ(X<sub>i</sub> − X̄)², and b<sub>0</sub> = Ȳ − b<sub>1</sub>X̄. In matrix notation: β̂ = (XᵀX)⁻¹XᵀY.</p>
+<p>OLS finds the coefficients that minimize the Residual Sum of Squares (RSS): RSS = Σ(Y<sub>i</sub> − b<sub>0</sub> − b<sub>1</sub>X<sub>i</sub>)². Taking partial derivatives with respect to b<sub>0</sub> and b<sub>1</sub> and setting to zero yields the normal equations. Solution: b<sub>1</sub> = Σ(X<sub>i</sub> − X̄)(Y<sub>i</sub> − Ȳ) / Σ(X<sub>i</sub> − X̄)², and b<sub>0</sub> = Ȳ − b<sub>1</sub>X̄. In matrix notation, if X includes an intercept and XᵀX is invertible: β̂ = (XᵀX)⁻¹XᵀY (otherwise use a pseudoinverse or regularization).</p>
 
 <h3>R-Squared (Coefficient of Determination)</h3>
-<p>R² = 1 − (RSS / TSS), where TSS = Σ(Y<sub>i</sub> − Ȳ)² is the total variance in Y. R² measures the proportion of variance in Y explained by the model. R² = 0 means the model explains nothing (no better than predicting the mean). R² = 1 means the model perfectly predicts Y. R² = 0.75 means 75% of Y's variance is captured by the predictors. <strong>Adjusted R²</strong> penalizes for adding predictors that do not improve fit, preventing overfitting through feature addition.</p>
+<p>R² = 1 − (RSS / TSS), where TSS = Σ(Y<sub>i</sub> − Ȳ)² is the total variance in Y. For an OLS fit evaluated on its training data with an intercept, R² measures the fraction of sample variation around the mean accounted for by the fit: 0 is the mean baseline and 1 is a perfect fit. Outside this setting (for example on held-out data), R² can be negative. <strong>Adjusted R²</strong> penalizes extra predictors but does not by itself prevent overfitting; check held-out performance.</p>
 
-<h3>Regression Assumptions (LINE + A)</h3>
-<p>OLS regression produces unbiased, minimum-variance estimates only when these assumptions hold:</p>
+<h3>OLS Assumptions and Diagnostics</h3>
+<p>For the usual OLS interpretation and inference, examine the following. Linearity and zero conditional mean of errors, together with appropriate independence and constant error variance, underpin the classical best-linear-unbiased (Gauss–Markov) result; normal errors are mainly useful for small-sample tests, not for unbiasedness:</p>
 <ul>
-    <li><strong>Linearity:</strong> The relationship between X and Y is linear. Check with a scatter plot or residual-vs-fitted plot (should show no pattern).</li>
-    <li><strong>Independence:</strong> Observations are independent. Violated in time series data (autocorrelation); detected via Durbin-Watson test.</li>
-    <li><strong>Normality:</strong> The error terms ε are normally distributed. Check with QQ plot of residuals. Moderate violations are acceptable with large n (Central Limit Theorem).</li>
+    <li><strong>Linear conditional mean and exogeneity:</strong> Model the conditional mean linearly in the coefficients, with errors averaging to zero given the included predictors. Inspect residual patterns; omitted confounders and reverse causality can violate exogeneity.</li>
+    <li><strong>Error dependence:</strong> Check whether errors are correlated over time; the Durbin–Watson statistic can help detect first-order autocorrelation. If present, ordinary standard errors may be unreliable without adjustment.</li>
+    <li><strong>Normality for classical small-sample inference:</strong> A Q–Q plot helps assess error distribution. Normality is not required for OLS to estimate coefficients; large-sample inference needs its own conditions.</li>
     <li><strong>Equal Variance (Homoscedasticity):</strong> The variance of ε is constant across all X values. Violated when residuals fan out as fitted values increase (heteroscedasticity). Detected via Breusch-Pagan test.</li>
-    <li><strong>Absence of multicollinearity:</strong> Predictor variables are not highly correlated with each other. Detected via Variance Inflation Factor (VIF); VIF &gt; 10 indicates problematic multicollinearity. Mitigated via Ridge regression or removing collinear predictors.</li>
+    <li><strong>No perfect multicollinearity:</strong> Predictors must not be exact linear combinations of one another. Strong near-collinearity makes individual coefficients unstable; inspect VIF in context and consider Ridge regression or removing redundant predictors.</li>
 </ul>
 
 <div class="diagram-wrap">
@@ -106,12 +128,7 @@
         <text x="330" y="273" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">4</text>
         <text x="400" y="273" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">5</text>
 
-        <!-- Regression line: Y = 220 - 38*(X-1) so at X=1→220, X=5→68. Maps perfectly. -->
-        <!-- In SVG: y_pixel = 260 - (y_value / max_y) * 230.  -->
-        <!-- Let's use linear: x_pixel = 60 + (X-1)*70, y_pixel = 260 - (Y * scale) -->
-        <!-- Regression line from x_pixel=120 to x_pixel=400 -->
-        <!-- At X=1: y=50 → pixel y = 260-50*2.0 = 160; At X=5: y=210 → pixel y = 260-210*0.8... -->
-        <!-- Let's just use simple: line from (120,222) to (400,68) which looks visually right -->
+        <!-- Illustrative fitted line; SVG y-coordinates increase downward. -->
         <line x1="100" y1="238" x2="415" y2="55" stroke="#7b1f2e" stroke-width="2.5"/>
         <text x="320" y="78" text-anchor="start" font-family="system-ui,sans-serif" font-size="11" fill="#7b1f2e" font-style="italic">Ŷ = b₀ + b₁X</text>
 
@@ -146,15 +163,15 @@
 
         <!-- One residual illustration -->
         <circle cx="268" cy="148" r="5" fill="#7b1f2e"/>
-        <line x1="268" y1="141" x2="268" y2="123" stroke="#555" stroke-width="1" stroke-dasharray="3,2"/>
-        <text x="274" y="132" font-family="system-ui,sans-serif" font-size="9" fill="#555">residual (ε)</text>
-        <!-- the regression line value at x=268 (approx x_pixel for X≈3): line y ≈ 145 -->
-        <circle cx="268" cy="123" r="3" fill="#555"/>
+        <line x1="268" y1="148" x2="268" y2="140" stroke="#555" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <text x="278" y="153" font-family="system-ui,sans-serif" font-size="9" fill="#555">residual (ε)</text>
+        <circle cx="268" cy="140" r="3" fill="#555"/>
     </svg>
 </div>
 <p class="diagram-caption">Figure 1: Linear regression scatter plot. Red/maroon points are observed data; the maroon line is the fitted OLS regression line Ŷ = b₀ + b₁X. The dashed vertical segment illustrates a residual ε — the vertical distance between an observed point and the predicted value on the line. OLS minimizes the sum of all such squared residuals.</p>
 
 <h3>Applications of Regression</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Domain</th><th>Application</th><th>Type</th></tr>
@@ -167,16 +184,20 @@
         <tr><td>Marketing</td><td>Sales prediction from advertising spend across channels</td><td>Multiple linear / Lasso</td></tr>
     </tbody>
 </table>
+</div>
 
 <!-- =====================================================================
      2. MULTIVARIATE ANALYSIS
      ===================================================================== -->
-<h2>2. Multivariate Analysis</h2>
+<h2 id="multivariate">2. Multivariate Analysis</h2>
+<p class="section-intro">Study variables jointly instead of one at a time: correlations, multiple predictors and latent factors reveal different kinds of structure.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q9">Q9 · why it matters</a> · <a href="long-answers.html#q32">Q32 · univariate vs multivariate</a> · <a href="long-answers.html#q33">Q33 · mixed-method design</a>.</p>
 
 <h3>Definition</h3>
 <p>Multivariate analysis is a collection of statistical methods for simultaneously analyzing observations on two or more variables, studying their joint distribution, relationships, and interactions. It captures patterns and structures that are invisible when variables are examined one at a time.</p>
 
 <h3>Core Methods</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Method</th><th>Goal</th><th>Output</th><th>Example</th></tr>
@@ -191,11 +212,13 @@
         <tr><td>Canonical Correlation</td><td>Measure the association between two sets of variables</td><td>Canonical variate pairs; canonical correlations</td><td>Relate a set of economic variables to a set of social indicators</td></tr>
     </tbody>
 </table>
+</div>
 
 <h3>Correlation Matrix</h3>
-<p>A correlation matrix shows the pairwise Pearson correlation coefficients between all pairs of variables. Each entry r<sub>ij</sub> ∈ [−1, +1]: r = +1 means perfect positive linear relationship; r = 0 means no linear relationship; r = −1 means perfect negative relationship. |r| &gt; 0.7 is typically considered a strong correlation; |r| &lt; 0.3 is weak. The correlation matrix is the starting point for PCA, factor analysis, and multicollinearity detection in regression.</p>
+<p>A correlation matrix shows the pairwise Pearson correlation coefficients between all pairs of variables. Each entry r<sub>ij</sub> ∈ [−1, +1]: r = +1 means perfect positive linear relationship; r = 0 means no linear relationship; r = −1 means perfect negative relationship. The strength of a correlation depends on the domain and measurement context; these coefficients do not measure nonlinear dependence. The correlation matrix is the starting point for PCA, factor analysis, and multicollinearity detection in regression.</p>
 
 <h3>Univariate vs Multivariate — Comparison</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Aspect</th><th>Univariate</th><th>Multivariate</th></tr>
@@ -205,14 +228,17 @@
         <tr><td>Captures interactions</td><td>No</td><td>Yes — joint patterns and correlations</td></tr>
         <tr><td>Techniques</td><td>Mean, median, histogram, boxplot, frequency table</td><td>Correlation matrix, PCA, clustering, regression, MANOVA</td></tr>
         <tr><td>Computational cost</td><td>Low</td><td>High — matrix operations, eigendecomposition</td></tr>
-        <tr><td>Information</td><td>Marginal distribution of one variable only</td><td>Full joint distribution; inter-variable structure</td></tr>
+        <tr><td>Information</td><td>Marginal distribution of one variable only</td><td>Relationships and inter-variable structure (depending on method)</td></tr>
     </tbody>
 </table>
+</div>
 
 <!-- =====================================================================
      3. BAYESIAN MODELING AND NETWORKS
      ===================================================================== -->
-<h2>3. Bayesian Modeling and Bayesian Networks</h2>
+<h2 id="bayesian">3. Bayesian Modeling and Bayesian Networks</h2>
+<p class="section-intro">Bayesian inference updates a prior with evidence; a Bayesian network organizes the joint distribution using a directed acyclic graph.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q16">Q16 · network components</a> · <a href="long-answers.html#q25">Q25 · Bayesian modeling</a>.</p>
 
 <h3>Bayes' Theorem</h3>
 <p><strong>P(H | D) = [ P(D | H) × P(H) ] / P(D)</strong></p>
@@ -222,7 +248,7 @@
     <li><strong>Posterior P(H|D):</strong> Updated belief about H after observing D — the key output.</li>
     <li><strong>Marginal likelihood P(D):</strong> Normalizing constant; ensures posterior sums to 1 over all hypotheses.</li>
 </ul>
-<p>The fundamental Bayesian insight: prior beliefs + observed evidence = updated posterior belief. As more evidence accumulates, the posterior becomes increasingly data-driven and less influenced by the prior.</p>
+<p>The fundamental Bayesian insight: prior beliefs + observed evidence = updated posterior belief. How strongly evidence changes the prior depends on the likelihood, sample size and model assumptions.</p>
 
 <h3>Naive Bayes Classifier</h3>
 <p>Naive Bayes applies Bayes' theorem to classification, with the "naive" assumption that all features are conditionally independent given the class label. Despite this unrealistic assumption, Naive Bayes works surprisingly well in practice, especially for text classification:</p>
@@ -234,14 +260,14 @@
     <li>P(free | not-spam) = 0.1, P(money | not-spam) = 0.1, P(click | not-spam) = 0.05</li>
     <li>P(spam | email) ∝ 0.3 × 0.8 × 0.7 × 0.75 = 0.126</li>
     <li>P(not-spam | email) ∝ 0.7 × 0.1 × 0.1 × 0.05 = 0.00035</li>
-    <li>After normalization: P(spam) ≈ 0.997 — classified as spam.</li>
+    <li>After normalization: P(spam | these words) ≈ 0.997 under this illustrative model — classified as spam.</li>
 </ul>
 
 <h3>Bayesian Network — Structure</h3>
 <p>A Bayesian Network (BN) is a probabilistic graphical model represented as a directed acyclic graph (DAG) where:</p>
 <ul>
     <li><strong>Nodes</strong> represent random variables (discrete or continuous).</li>
-    <li><strong>Directed edges</strong> represent direct probabilistic influence (A → B means A is a parent of B and directly causes or influences B).</li>
+    <li><strong>Directed edges</strong> encode conditional dependencies: A → B means A is a parent used in B's conditional distribution. A causal reading needs extra assumptions, not just a DAG.</li>
     <li><strong>Conditional Probability Table (CPT)</strong>: Each node X with parents Pa(X) has a table giving P(X | Pa(X)) for each combination of parent values. Root nodes (no parents) have unconditional prior probabilities.</li>
     <li><strong>Joint distribution factorization</strong>: P(X<sub>1</sub>, ..., X<sub>n</sub>) = Π P(X<sub>i</sub> | Pa(X<sub>i</sub>)). This factorization is valid because the DAG encodes conditional independence: each node is conditionally independent of its non-descendants given its parents.</li>
 </ul>
@@ -286,39 +312,39 @@
         <line x1="170" y1="172" x2="108" y2="235" stroke="#7b1f2e" stroke-width="1.8" marker-end="url(#arrowBAY)"/>
         <line x1="232" y1="172" x2="290" y2="235" stroke="#7b1f2e" stroke-width="1.8" marker-end="url(#arrowBAY)"/>
 
-        <!-- Legend -->
-        <rect x="8" y="290" width="12" height="12" fill="#7b1f2e"/>
-        <text x="24" y="301" font-family="system-ui,sans-serif" font-size="10" fill="#333">Root node (prior probability only)</text>
-        <rect x="210" y="290" width="12" height="12" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1"/>
-        <text x="226" y="301" font-family="system-ui,sans-serif" font-size="10" fill="#333">CPT node (conditional)</text>
+        <text x="14" y="301" font-family="system-ui,sans-serif" font-size="10" fill="#333">Roots: P(S), P(AP) · Child factors: P(C | S, AP), P(XR | C), P(D | C)</text>
     </svg>
 </div>
 <p class="diagram-caption">Figure 2: Bayesian Network DAG for medical diagnosis. Nodes are Smoking, Air Pollution (root nodes — prior probabilities only), Cancer (has a CPT conditioned on both parents), X-Ray Result, and Dyspnoea (both conditioned on Cancer). Given observed evidence (e.g., patient smokes + has dyspnoea), inference computes P(Cancer | evidence) by propagating through the graph.</p>
 
 <h3>Inference in Bayesian Networks</h3>
-<p><strong>Exact inference</strong> (Variable Elimination, Junction Tree) computes exact posterior probabilities but is exponential in the treewidth of the network. <strong>Approximate inference</strong> (Markov Chain Monte Carlo — MCMC, Loopy Belief Propagation) scales better but produces estimates with sampling error. For most practical networks with fewer than ~20 nodes, exact inference is feasible.</p>
+<p><strong>Exact inference</strong> (Variable Elimination, Junction Tree) computes exact posterior probabilities but is exponential in the treewidth of the network. <strong>Approximate inference</strong> (Markov Chain Monte Carlo — MCMC, Loopy Belief Propagation) scales better but produces estimates with sampling error. Feasibility depends more on graph structure and variable cardinality than on node count alone.</p>
 
 <h3>Bayesian vs Frequentist Statistics</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Aspect</th><th>Bayesian</th><th>Frequentist</th></tr>
     </thead>
     <tbody>
         <tr><td>Parameters</td><td>Random variables with probability distributions</td><td>Fixed unknown constants</td></tr>
-        <tr><td>Prior knowledge</td><td>Explicitly incorporated via the prior distribution</td><td>Not used — only the data speaks</td></tr>
+        <tr><td>Prior knowledge</td><td>Explicitly incorporated via the prior distribution</td><td>No explicit prior distribution in standard frequentist inference; modeling assumptions still matter</td></tr>
         <tr><td>Output</td><td>Full posterior distribution over parameters</td><td>Point estimate + confidence interval</td></tr>
-        <tr><td>Small data</td><td>Performs well — prior regularizes the estimate</td><td>Estimates may be unstable with small n</td></tr>
-        <tr><td>Interpretation</td><td>"Probability that the parameter is 5 is 0.73" (intuitive)</td><td>"If we repeated the experiment many times, 95% of CIs would contain the true value" (unintuitive)</td></tr>
+        <tr><td>Small data</td><td>Informative priors can stabilize estimates, if well chosen</td><td>Estimates and intervals may be unstable with small samples</td></tr>
+        <tr><td>Interpretation</td><td>A credible interval describes posterior probability for a parameter range, given the model and data</td><td>"If we repeated the experiment many times, 95% of CIs would contain the true value" (unintuitive)</td></tr>
     </tbody>
 </table>
+</div>
 
 <!-- =====================================================================
      4. SUPPORT VECTOR MACHINE (SVM)
      ===================================================================== -->
-<h2>4. Support Vector Machine (SVM) and Kernel Methods</h2>
+<h2 id="svm">4. Support Vector Machine (SVM) and Kernel Methods</h2>
+<p class="section-intro">First understand the linear maximum-margin boundary; then see how kernels produce nonlinear boundaries in input space.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q14">Q14 · nonlinear classification</a> · <a href="long-answers.html#q29">Q29 · kernel functions</a> · <a href="long-answers.html#q39">Q39 · SVM and kernels</a>.</p>
 
 <h3>Definition</h3>
-<p>SVM is a supervised learning algorithm that finds the maximum-margin hyperplane — the decision boundary that separates two classes with the largest possible margin. The margin is defined as the minimum distance from the hyperplane to the nearest training points of either class (the support vectors). Maximizing margin minimizes an upper bound on the generalization error (VC theory).</p>
+<p>SVM is a supervised learning algorithm that finds the maximum-margin hyperplane — the decision boundary that separates two classes with the largest possible margin. The margin is defined as the minimum distance from the hyperplane to the nearest training points of either class (the support vectors). Margin maximization is one way to control model complexity, but generalization also depends on the kernel, regularization and data.</p>
 
 <h3>Mathematical Formulation</h3>
 <p>Find weight vector <strong>w</strong> and bias b such that:</p>
@@ -334,9 +360,10 @@
 <p>The hyperparameter <strong>C</strong> controls the bias-variance tradeoff: large C → low bias / high variance (tries to classify all training points correctly, even at the cost of small margin); small C → high bias / low variance (allows more misclassifications but achieves a wider margin).</p>
 
 <h3>The Kernel Trick</h3>
-<p>When data is not linearly separable in the original feature space, the kernel trick implicitly maps data into a higher-dimensional space where linear separation is possible. The SVM optimization problem is reformulated in terms of dot products x<sub>i</sub> · x<sub>j</sub> (the dual formulation). Replacing each dot product with a kernel function K(x<sub>i</sub>, x<sub>j</sub>) = φ(x<sub>i</sub>) · φ(x<sub>j</sub>) allows the algorithm to operate in the high-dimensional (possibly infinite-dimensional) feature space without explicitly computing the mapping φ.</p>
+<p>When data is not linearly separable in the original feature space, the kernel trick implicitly maps data into a higher-dimensional space where a linear boundary can represent a nonlinear boundary in the original inputs (not necessarily perfect separation). The SVM optimization problem is reformulated in terms of dot products x<sub>i</sub> · x<sub>j</sub> (the dual formulation). Replacing each dot product with a kernel function K(x<sub>i</sub>, x<sub>j</sub>) = φ(x<sub>i</sub>) · φ(x<sub>j</sub>) allows the algorithm to operate in the high-dimensional (possibly infinite-dimensional) feature space without explicitly computing the mapping φ.</p>
 
 <h3>Kernel Functions</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Kernel</th><th>Formula</th><th>Feature Space</th><th>Best For</th></tr>
@@ -344,11 +371,12 @@
     <tbody>
         <tr><td>Linear</td><td>K(xi,xj) = xi·xj</td><td>Same as input</td><td>Linearly separable data; high-dimensional sparse input (text TF-IDF vectors)</td></tr>
         <tr><td>Polynomial (degree d)</td><td>K(xi,xj) = (γ·xi·xj + r)^d</td><td>Polynomial features of degree d</td><td>Data with polynomial interactions; image features</td></tr>
-        <tr><td>RBF / Gaussian</td><td>K(xi,xj) = exp(−γ||xi−xj||²)</td><td>Infinite-dimensional</td><td>General-purpose non-linear classification; most common default choice</td></tr>
+        <tr><td>RBF / Gaussian</td><td>K(xi,xj) = exp(−γ||xi−xj||²)</td><td>Infinite-dimensional</td><td>Flexible nonlinear boundaries; tune γ and C on validation data</td></tr>
         <tr><td>Sigmoid</td><td>K(xi,xj) = tanh(γ·xi·xj + r)</td><td>Neural-network-like</td><td>Neural-network-style decision surfaces; not always positive semi-definite</td></tr>
-        <tr><td>Laplacian</td><td>K(xi,xj) = exp(−γ||xi−xj||₁)</td><td>L1-norm based</td><td>Robust to outliers; similar to RBF but uses L1 distance</td></tr>
+        <tr><td>Laplacian</td><td>K(xi,xj) = exp(−γ||xi−xj||₁)</td><td>L1-norm based</td><td>An alternative distance-based kernel using the L1 norm</td></tr>
     </tbody>
 </table>
+</div>
 
 <div class="diagram-wrap">
     <!-- SVG: SVM diagram — OWN marker ID "arrowSVM" -->
@@ -397,11 +425,11 @@
 
         <!-- Support vectors — highlighted with thicker border -->
         <!-- Support vector from class +1 closest to boundary -->
-        <circle cx="255" cy="165" r="8" fill="none" stroke="#7b1f2e" stroke-width="3"/>
-        <text x="270" y="169" font-family="system-ui,sans-serif" font-size="9" fill="#7b1f2e">SV (+1)</text>
+        <circle cx="190" cy="190" r="8" fill="none" stroke="#7b1f2e" stroke-width="3"/>
+        <text x="203" y="196" font-family="system-ui,sans-serif" font-size="9" fill="#7b1f2e">SV (+1)</text>
         <!-- Support vector from class -1 closest to boundary -->
-        <rect x="113" y="120" width="14" height="14" fill="#7b1f2e" stroke="#333" stroke-width="2"/>
-        <text x="130" y="132" font-family="system-ui,sans-serif" font-size="9" fill="#333">SV (−1)</text>
+        <rect x="121" y="113" width="14" height="14" fill="#7b1f2e" stroke="#333" stroke-width="2"/>
+        <text x="137" y="115" font-family="system-ui,sans-serif" font-size="9" fill="#333">SV (−1)</text>
 
         <!-- Class labels -->
         <text x="340" y="25" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#333" font-weight="bold">Class +1</text>
@@ -412,37 +440,39 @@
         <text x="145" y="16" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#7b1f2e">w·x+b=+1</text>
     </svg>
 </div>
-<p class="diagram-caption">Figure 3: SVM maximum-margin classifier. Solid line = decision boundary (w·x+b=0). Dashed lines = support vector planes (w·x+b=±1). Shaded region = margin. The labeled points "SV (+1)" and "SV (−1)" are support vectors — the closest training points to the decision boundary. Only support vectors determine the boundary; moving other training points does not change the SVM solution.</p>
+<p class="diagram-caption">Figure 3: SVM maximum-margin classifier. Solid line = decision boundary (w·x+b=0). Dashed lines = support vector planes (w·x+b=±1). Shaded region = margin. The labeled points "SV (+1)" and "SV (−1)" are support vectors — the closest training points to the decision boundary. Support vectors determine the fitted boundary; moving a non-support vector has no effect unless it becomes a support vector.</p>
 
 <h3>Multi-Class SVM Strategies</h3>
 <ul>
     <li><strong>One-vs-Rest (OvR):</strong> Train k binary SVMs, one per class vs all others. Classify a new point by the SVM with the highest confidence score. Simple, requires k classifiers.</li>
-    <li><strong>One-vs-One (OvO):</strong> Train k(k-1)/2 binary SVMs, one for each pair of classes. Classify by majority vote. More classifiers but each trains on a smaller, balanced dataset. Generally more accurate than OvR.</li>
+    <li><strong>One-vs-One (OvO):</strong> Train k(k-1)/2 binary SVMs, one for each pair of classes. Classify by majority vote. More classifiers but each trains on a smaller, balanced dataset. Accuracy depends on data and tuning; compare strategies on validation data.</li>
 </ul>
 
 <!-- =====================================================================
      5. TIME SERIES ANALYSIS
      ===================================================================== -->
-<h2>5. Time Series Analysis</h2>
+<h2 id="time-series">5. Time Series Analysis</h2>
+<p class="section-intro">Time order matters: identify trend and seasonality, then distinguish linear dependence on past values from state-dependent nonlinear dynamics.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q12">Q12 · time-dependent data</a> · <a href="long-answers.html#q26">Q26 · linear vs nonlinear</a> · <a href="long-answers.html#q33">Q33 · method selection</a>.</p>
 
 <h3>Definition</h3>
-<p>A time series is a sequence of observations X<sub>t</sub> recorded at successive, equally-spaced time intervals (t = 1, 2, ..., T). Time series analysis models the temporal structure of the data — autocorrelation, trend, seasonality — to describe, forecast, and detect anomalies.</p>
+<p>A time series is a sequence of observations X<sub>t</sub> ordered in time (t = 1, 2, ..., T); the models below generally assume regular intervals, so irregular observations may need special treatment. Time series analysis models the temporal structure of the data — autocorrelation, trend, seasonality — to describe, forecast, and detect anomalies.</p>
 
 <h3>Decomposition of a Time Series</h3>
-<p>Any time series can be decomposed into four components:</p>
+<p>A useful descriptive decomposition separates a series into components when these patterns are present; not every series has all four or a unique decomposition:</p>
 <ul>
     <li><strong>Trend (T):</strong> The long-term, smooth direction of change over time — growth, decline, or flatness. Estimated by moving averages or polynomial regression on time.</li>
     <li><strong>Seasonality (S):</strong> Regular, periodic fluctuations with a fixed period (daily, weekly, monthly, yearly). Example: retail sales spike every December; electricity demand peaks every weekday morning.</li>
     <li><strong>Cyclical variation (C):</strong> Irregular, long-period oscillations not tied to a calendar (e.g., 5–10 year economic cycles). Unlike seasonality, period and amplitude are variable.</li>
-    <li><strong>Residual / Irregular (R):</strong> The random noise remaining after removing T, S, and C. Should be white noise if the model is complete.</li>
+    <li><strong>Residual / Irregular (R):</strong> The random noise remaining after removing T, S, and C. Ideally resembles white noise after an adequate model, though this must be checked rather than assumed.</li>
 </ul>
 <p><strong>Additive model:</strong> X<sub>t</sub> = T<sub>t</sub> + S<sub>t</sub> + C<sub>t</sub> + R<sub>t</sub> — used when seasonal amplitude is constant. <strong>Multiplicative model:</strong> X<sub>t</sub> = T<sub>t</sub> × S<sub>t</sub> × C<sub>t</sub> × R<sub>t</sub> — used when seasonal amplitude grows proportionally with the trend level.</p>
 
 <h3>Stationarity</h3>
-<p>A time series is <strong>stationary</strong> if its statistical properties (mean, variance, autocorrelation structure) are constant over time. Most forecasting models (AR, MA, ARIMA) assume stationarity. Non-stationary series with trend can be made stationary by differencing: ΔX<sub>t</sub> = X<sub>t</sub> − X<sub>t−1</sub>. The Augmented Dickey-Fuller (ADF) test tests the null hypothesis that the series has a unit root (is non-stationary); rejecting the null indicates stationarity.</p>
+<p>A <strong>weakly stationary</strong> series has a constant mean and variance and autocovariance that depends on lag, not calendar time. ARMA models typically assume stationarity; ARIMA applies differencing, ΔX<sub>t</sub> = X<sub>t</sub> − X<sub>t−1</sub>, to address some kinds of non-stationarity. The Augmented Dickey–Fuller (ADF) test has a unit-root null; rejecting it provides evidence against a unit root, not proof that every stationary-model assumption holds.</p>
 
 <h3>Autocorrelation and Partial Autocorrelation</h3>
-<p><strong>Autocorrelation Function (ACF)</strong>: ACF(k) = correlation between X<sub>t</sub> and X<sub>t−k</sub>. Measures how much the series correlates with itself at lag k. Used to identify the MA order q (ACF cuts off after lag q). <strong>Partial Autocorrelation Function (PACF)</strong>: PACF(k) = correlation between X<sub>t</sub> and X<sub>t−k</sub> after removing the linear influence of intermediate lags 1, ..., k−1. Used to identify the AR order p (PACF cuts off after lag p).</p>
+<p><strong>Autocorrelation Function (ACF)</strong>: ACF(k) = correlation between X<sub>t</sub> and X<sub>t−k</sub>. Measures how much the series correlates with itself at lag k. For an ideal stationary pure MA(q) process, the ACF cuts off after lag q (a useful diagnostic, not a guarantee). <strong>Partial Autocorrelation Function (PACF)</strong>: PACF(k) = correlation between X<sub>t</sub> and X<sub>t−k</sub> after removing the linear influence of intermediate lags 1, ..., k−1. For an ideal stationary pure AR(p) process, the PACF cuts off after lag p.</p>
 
 <h3>Linear Time Series Models</h3>
 
@@ -458,11 +488,11 @@
 <p>Combines AR(p), d-order differencing (for stationarity), and MA(q). The Box-Jenkins methodology guides model selection:</p>
 <ol>
     <li><strong>Identification:</strong> Plot the series; check stationarity with ADF test; apply differencing (d times) until stationary; plot ACF and PACF to select p and q.</li>
-    <li><strong>Estimation:</strong> Estimate parameters using maximum likelihood or OLS.</li>
+    <li><strong>Estimation:</strong> Estimate parameters, often by likelihood-based methods (implementation depends on model).</li>
     <li><strong>Diagnostic checking:</strong> Examine residuals — should be white noise (no autocorrelation, verified by Ljung-Box test). If residuals show patterns, revise model.</li>
     <li><strong>Forecasting:</strong> Use the validated model to forecast h steps ahead, with prediction intervals that widen with the forecast horizon.</li>
 </ol>
-<p>Model selection criterion: AIC (Akaike Information Criterion) = 2k − 2ln(L) and BIC (Bayesian Information Criterion) = k·ln(n) − 2ln(L), where k = number of parameters, L = likelihood. Lower is better; BIC penalizes more strongly for additional parameters.</p>
+<p>Model selection criterion: AIC (Akaike Information Criterion) = 2k − 2ln(L) and BIC (Bayesian Information Criterion) = k·ln(n) − 2ln(L), where k = number of parameters, L = likelihood. When comparing models on the same data, lower is preferred; BIC usually penalizes extra parameters more strongly than AIC for sufficiently large n.</p>
 
 <h4>5.4 SARIMA(p,d,q)(P,D,Q)[m] — Seasonal ARIMA</h4>
 <p>Extends ARIMA with seasonal AR and MA components at lag m (the season length: m=12 for monthly data, m=4 for quarterly, m=7 for daily with weekly seasonality). SARIMA handles both non-seasonal and seasonal patterns in a single unified model.</p>
@@ -470,10 +500,32 @@
 <h3>Nonlinear Time Series Models</h3>
 
 <h4>ARCH / GARCH — Volatility Modeling</h4>
-<p>ARCH(q) (Autoregressive Conditional Heteroscedasticity): models the variance of the error term as a function of past squared errors: σ<sub>t</sub>² = α<sub>0</sub> + α<sub>1</sub>ε<sub>t−1</sub>² + ... + α<sub>q</sub>ε<sub>t−q</sub>². This captures <em>volatility clustering</em> — periods of high volatility tend to follow each other. GARCH(p,q) additionally includes past variances: σ<sub>t</sub>² = α<sub>0</sub> + Σα<sub>i</sub>ε<sub>t−i</sub>² + Σβ<sub>j</sub>σ<sub>t−j</sub>². GARCH is the standard model for financial return volatility and is fundamental to option pricing and Value-at-Risk calculation.</p>
+<p>ARCH(q) (Autoregressive Conditional Heteroscedasticity): models the variance of the error term as a function of past squared errors: σ<sub>t</sub>² = α<sub>0</sub> + α<sub>1</sub>ε<sub>t−1</sub>² + ... + α<sub>q</sub>ε<sub>t−q</sub>². This captures <em>volatility clustering</em> — periods of high volatility tend to follow each other. GARCH(p,q) additionally includes past variances: σ<sub>t</sub>² = α<sub>0</sub> + Σα<sub>i</sub>ε<sub>t−i</sub>² + Σβ<sub>j</sub>σ<sub>t−j</sub>². GARCH is commonly used to model financial-return volatility and can inform risk estimates; results depend on model fit and distributional assumptions.</p>
 
 <h4>LSTM — Long Short-Term Memory Networks</h4>
-<p>LSTMs are recurrent neural networks with a specialized memory cell that selectively stores, updates, and forgets information over many time steps via three gates: the forget gate (decides what information to discard), the input gate (decides what new information to store), and the output gate (decides what to output). LSTMs capture long-range temporal dependencies — patterns spanning hundreds of time steps — that ARIMA models cannot, making them state-of-the-art for complex nonlinear time series (energy demand, traffic flow, financial time series).</p>
+<p>LSTMs are recurrent neural networks with a specialized memory cell that selectively stores, updates, and forgets information over many time steps via three gates: the forget gate (decides what information to discard), the input gate (decides what new information to store), and the output gate (decides what to output). LSTMs can learn nonlinear temporal dependencies, though long-range learning is not guaranteed. Compare them against seasonal or linear baselines using time-ordered validation; model choice depends on the data, not a universal performance ranking.</p>
+
+<h3>Linear Systems Analysis vs Nonlinear Dynamics</h3>
+<p>A <strong>linear system</strong> combines past observations or shocks with fixed coefficients: for example, X<sub>t</sub> = 0.7X<sub>t−1</sub> + ε<sub>t</sub> is an AR(1) model. A one-unit change in the previous value changes the conditional prediction by 0.7 units at every level. ARMA models combine such lagged terms and shocks; check residual autocorrelation and forecast error on later time periods.</p>
+<p><strong>Nonlinear dynamics</strong> use a state-dependent update. For example, the illustrative logistic map X<sub>t+1</sub> = rX<sub>t</sub>(1 − X<sub>t</sub>) (for states between 0 and 1) has a quadratic feedback term. Its response to the same change in X<sub>t</sub> depends on the current state; depending on r, it can settle, oscillate or behave chaotically. Chaos means sensitivity to initial conditions in a deterministic model, <em>not</em> simply random noise. GARCH instead models nonlinear conditional variance, while LSTMs learn nonlinear update functions from training data; these are different notions of nonlinearity.</p>
+<figure>
+    <div class="diagram-wrap">
+        <svg width="600" height="180" viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ts-dynamics-title ts-dynamics-desc">
+            <title id="ts-dynamics-title">Linear lag model and nonlinear state update</title>
+            <desc id="ts-dynamics-desc">Left: the previous observation enters a fixed-weight linear update plus a shock. Right: the current state enters a quadratic feedback update, so the effect varies with state.</desc>
+            <rect x="10" y="15" width="275" height="135" rx="6" fill="#f5eeee" stroke="#7b1f2e"/>
+            <text x="25" y="42" font-family="system-ui,sans-serif" font-size="15" fill="#7b1f2e">Linear: AR(1)</text>
+            <text x="25" y="78" font-family="system-ui,sans-serif" font-size="15" fill="#333">X(t−1) → 0.7 × X(t−1)</text>
+            <text x="25" y="109" font-family="system-ui,sans-serif" font-size="15" fill="#333">+ shock ε(t) → X(t)</text>
+            <rect x="315" y="15" width="275" height="135" rx="6" fill="#f5eeee" stroke="#7b1f2e"/>
+            <text x="330" y="42" font-family="system-ui,sans-serif" font-size="15" fill="#7b1f2e">Nonlinear: logistic map</text>
+            <text x="330" y="78" font-family="system-ui,sans-serif" font-size="15" fill="#333">X(t) → r × X(t) × (1 − X(t))</text>
+            <text x="330" y="109" font-family="system-ui,sans-serif" font-size="15" fill="#333">→ X(t+1), state-dependent</text>
+        </svg>
+    </div>
+    <figcaption class="diagram-caption">Figure 4a: Two illustrative update rules. The linear model adds a shock to a fixed weighted lag; the nonlinear map multiplies the state by a function of itself. Neither shape alone guarantees a better forecast.</figcaption>
+</figure>
+<p><strong>Worked choice:</strong> For monthly sales, first plot trend and seasonality, fit a seasonal linear baseline on earlier months and inspect later-month errors. If residuals retain systematic state-dependent patterns, test an appropriate nonlinear model on the same held-out period. A curving plot by itself is not proof of chaos.</p>
 
 <div class="diagram-wrap">
     <!-- SVG: Time series decomposition — OWN marker ID "arrowTS" -->
@@ -524,12 +576,14 @@
                   fill="none" stroke="#555" stroke-width="1.2"/>
     </svg>
 </div>
-<p class="diagram-caption">Figure 4: Time series decomposition into four panels: (1) Original series = trend + seasonal + cyclical + residual. (2) Trend component — the smooth long-term direction. (3) Seasonal component — regular periodic pattern with fixed amplitude. (4) Residual — random noise remaining after removing all structured components.</p>
+<p class="diagram-caption">Figure 4: Schematic four-panel time series: observed trend and repeating seasonal pattern, a smooth trend estimate, a seasonal pattern and small irregular residuals. A separate cyclical panel is not drawn; cycles need not occur in every series. Panels are illustrative rather than a numerically exact decomposition.</p>
 
 <!-- =====================================================================
      6. RULE INDUCTION
      ===================================================================== -->
-<h2>6. Rule Induction</h2>
+<h2 id="rule-induction">6. Rule Induction</h2>
+<p class="section-intro">Turn data into readable IF–THEN conditions; check both how often a rule applies and how often its conclusion is correct.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q13">Q13 · rule example</a> · <a href="long-answers.html#q30">Q30 · concepts and types</a>.</p>
 
 <h3>Definition</h3>
 <p>Rule induction is a supervised machine learning technique that automatically extracts a set of IF-THEN (antecedent → consequent) rules from labeled training data. Each rule describes a condition on input features and a predicted class or outcome. Unlike black-box models, rules are directly human-interpretable and can be validated, overridden, and explained to domain experts.</p>
@@ -539,7 +593,7 @@
     <li><strong>Antecedent:</strong> A conjunction of attribute conditions that define when the rule fires. Example: <code>age &lt; 30 AND income &gt; 50000</code></li>
     <li><strong>Consequent:</strong> The predicted class or action. Example: <code>THEN credit_risk = LOW</code></li>
     <li><strong>Coverage:</strong> The proportion of training examples that satisfy the antecedent. Low coverage = the rule applies to few cases.</li>
-    <li><strong>Accuracy (Confidence):</strong> The proportion of examples that satisfy the antecedent AND have the predicted consequent. Low accuracy = the rule fires but is often wrong.</li>
+    <li><strong>Accuracy (Confidence):</strong> Among examples that satisfy the antecedent, the proportion that also have the predicted consequent: P(consequent | antecedent). Low confidence means the rule often fires incorrectly.</li>
     <li><strong>Support:</strong> The proportion of all training examples that satisfy both antecedent and consequent.</li>
     <li><strong>Lift:</strong> Confidence / P(consequent). Lift &gt; 1 means the antecedent positively predicts the consequent beyond the base rate.</li>
 </ul>
@@ -561,17 +615,20 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
 <p>An <strong>ordered decision list</strong> fires rules in sequence — the first rule whose antecedent matches classifies the instance; no further rules are checked. An <strong>unordered rule set</strong> allows multiple rules to fire simultaneously; conflicts are resolved by confidence weighting or voting. Decision lists are more predictable; rule sets can capture multiple overlapping patterns.</p>
 
 <h3>RIPPER Algorithm — Overview</h3>
-<p>RIPPER (Cohen, 1995) builds an ordered rule set through repeated cycles: (1) For each class (ordered by frequency, rarest first), use a greedy covering algorithm to grow a rule that correctly classifies as many positive examples as possible. (2) Prune the rule using a validation set (MDL-based pruning) to prevent overfitting. (3) Add the rule to the rule set; remove covered positive examples from the training set. (4) Repeat until stopping criterion (no more positive examples, or rule accuracy too low). (5) Optimize the rule set globally.</p>
+<p>RIPPER (Cohen, 1995) builds classification rules by repeatedly growing a rule to cover positive cases, pruning it against separate data to reduce overfitting, removing covered examples and repeating until a stopping criterion is reached. It then revisits rules to improve the set. A default rule handles cases not covered by earlier rules; evaluate the resulting list on held-out examples.</p>
 
 <!-- =====================================================================
      7. NEURAL NETWORKS
      ===================================================================== -->
-<h2>7. Neural Networks</h2>
+<h2 id="neural-networks">7. Neural Networks</h2>
+<p class="section-intro">Separate supervised weight updates and generalization from unsupervised competitive learning, where neurons specialize without labels.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q10">Q10 · competitive learning</a> · <a href="long-answers.html#q28">Q28 · SVM vs networks</a> · <a href="long-answers.html#q40">Q40 · learning and generalization</a>.</p>
 
 <h3>Definition</h3>
-<p>An artificial neural network (ANN) is a layered computational model that learns a mapping from inputs to outputs by adjusting connection weights through iterative training. Inspired by biological neural circuits, ANNs can approximate arbitrarily complex functions given sufficient depth (layers) and width (neurons per layer) — the Universal Approximation Theorem (Hornik, 1989).</p>
+<p>An artificial neural network (ANN) is a layered computational model that learns a mapping from inputs to outputs by adjusting connection weights through iterative training. With suitable nonlinear activations and sufficient capacity, some feedforward networks can approximate continuous functions on bounded domains; approximation alone does not guarantee learning or generalization.</p>
 
 <h3>Architecture and Components</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Component</th><th>Description</th><th>Details</th></tr>
@@ -595,7 +652,7 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
         <tr>
             <td>Weights (w)</td>
             <td>Learnable parameters on connections</td>
-            <td>Initialized randomly; updated via backpropagation. A network with n layers and average width k has O(k²n) total parameters.</td>
+            <td>Usually initialized and updated using gradients computed by backpropagation; parameter count depends on actual layer sizes and connections.</td>
         </tr>
         <tr>
             <td>Biases (b)</td>
@@ -614,8 +671,10 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
         </tr>
     </tbody>
 </table>
+</div>
 
 <h3>Activation Functions — Comparison</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Function</th><th>Formula</th><th>Output Range</th><th>Pros</th><th>Cons</th></tr>
@@ -628,6 +687,7 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
         <tr><td>GELU</td><td>x · Φ(x) (Φ = normal CDF)</td><td>(≈−0.17, ∞)</td><td>Smooth; used in Transformers (GPT, BERT)</td><td>Slightly more expensive to compute</td></tr>
     </tbody>
 </table>
+</div>
 
 <h3>Backpropagation — The Learning Algorithm</h3>
 <p><strong>Forward pass:</strong> Input is propagated layer by layer. Each neuron computes z = w·x + b, then applies activation a = f(z). The output layer produces a prediction ŷ.</p>
@@ -637,20 +697,20 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
 <h3>Generalization — Preventing Overfitting</h3>
 <p>Overfitting occurs when the network memorizes training examples rather than learning the underlying input-output mapping. Techniques to improve generalization:</p>
 <ul>
-    <li><strong>Dropout:</strong> During each training step, randomly zero out a fraction p (typically 0.2–0.5) of neuron outputs. This prevents co-adaptation and forces the network to learn redundant representations.</li>
+    <li><strong>Dropout:</strong> During training, randomly zero out a chosen fraction p of neuron outputs. This prevents co-adaptation and forces the network to learn redundant representations.</li>
     <li><strong>L2 Regularization (Weight Decay):</strong> Add λ||w||² to the loss. Penalizes large weights, encouraging simpler models.</li>
     <li><strong>Early Stopping:</strong> Monitor validation loss; stop training when validation loss begins increasing even though training loss is still decreasing.</li>
     <li><strong>Data Augmentation:</strong> Artificially expand the training set via random transformations (rotation, flipping, cropping for images; synonym replacement for text).</li>
-    <li><strong>Batch Normalization:</strong> Normalize each layer's input distribution to zero mean, unit variance — reduces internal covariate shift, enables higher learning rates, and acts as a mild regularizer.</li>
+    <li><strong>Batch Normalization:</strong> Normalize mini-batch activations using batch statistics and learnable scale/shift parameters. It can stabilize optimization; any regularization effect is task-dependent.</li>
 </ul>
 
 <h3>Specialized Architectures</h3>
 
 <h4>Convolutional Neural Network (CNN)</h4>
-<p>Designed for grid-structured data (images, video). Key innovation: the <strong>convolutional layer</strong>, which applies a small learnable filter (kernel) across the entire input using shared weights. This dramatically reduces parameters vs a fully-connected layer and captures local spatial patterns (edges, textures) that are translation-invariant. Architecture: Input → [Conv + ReLU + Pooling]× N → Flatten → Fully-Connected → Output. Pooling (max pooling, average pooling) reduces spatial dimensions, building hierarchical abstractions from local to global features. Applications: image classification (ResNet, VGG), object detection (YOLO), medical imaging.</p>
+<p>Designed for grid-structured data (images, video). Key innovation: the <strong>convolutional layer</strong>, which applies a small learnable filter (kernel) across the entire input using shared weights. This dramatically reduces parameters vs a fully-connected layer and captures local spatial patterns (edges, textures) that can be detected across positions (translation equivariance; pooling can add some invariance). Architecture: Input → [Conv + ReLU + Pooling]× N → Flatten → Fully-Connected → Output. Pooling (max pooling, average pooling) reduces spatial dimensions, building hierarchical abstractions from local to global features. Applications: image classification (ResNet, VGG), object detection (YOLO), medical imaging.</p>
 
 <h4>Recurrent Neural Network (RNN) / LSTM</h4>
-<p>Designed for sequential data (time series, text, audio). RNNs maintain a hidden state h<sub>t</sub> that is updated at each time step: h<sub>t</sub> = f(W·h<sub>t−1</sub> + U·x<sub>t</sub> + b). Vanilla RNNs suffer from the vanishing gradient problem for long sequences. <strong>LSTM</strong> (Long Short-Term Memory) solves this with gating mechanisms — a cell state C<sub>t</sub> that flows through time with only multiplicative interactions (forget gate × previous cell) rather than additive transformations, preserving gradients over many time steps.</p>
+<p>Designed for sequential data (time series, text, audio). RNNs maintain a hidden state h<sub>t</sub> that is updated at each time step: h<sub>t</sub> = f(W·h<sub>t−1</sub> + U·x<sub>t</sub> + b). Vanilla RNNs suffer from the vanishing gradient problem for long sequences. <strong>LSTM</strong> (Long Short-Term Memory) uses input, forget and output gates and an additive cell-state update to help retain useful information across steps; it mitigates, but does not eliminate, long-range learning difficulties.</p>
 
 <div class="diagram-wrap">
     <!-- SVG: Neural Network — OWN marker ID "arrowNN" -->
@@ -751,16 +811,41 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
         <text x="255" y="265" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#666">Backpropagation (gradient flows backward)</text>
     </svg>
 </div>
-<p class="diagram-caption">Figure 5: Four-layer feedforward neural network (3-4-3-2 architecture). Light-bordered circles = learnable neurons with activation function f(w·x+b). Filled circles (output layer) = predictions. Gray lines = weighted connections (each has its own learnable weight). Bottom: the solid forward pass arrow shows input-to-prediction direction; the dashed backpropagation arrow shows gradient flow during training.</p>
+<p class="diagram-caption">Figure 5: Four-layer feedforward neural network (3-4-3-2 architecture). Light-bordered hidden circles compute activations f(w·x+b); input circles represent features, not learned neurons. Filled circles (output layer) = predictions. Gray lines = weighted connections (each has its own learnable weight). Bottom: the solid forward pass arrow shows input-to-prediction direction; the dashed backpropagation arrow shows gradient flow during training.</p>
 
 <h3>Competitive Learning</h3>
 <p>Competitive learning is an unsupervised learning paradigm where output neurons compete to represent each input. Only the "winning" neuron (with weights closest to the input, measured by Euclidean distance) updates its weights: <strong>w<sub>winner</sub> = w<sub>winner</sub> + η(x − w<sub>winner</sub>)</strong>. Over many inputs, different neurons specialize in representing different regions of the input distribution.</p>
-<p><strong>Self-Organizing Map (SOM / Kohonen Network):</strong> Extends competitive learning by organizing neurons on a 2D grid and updating not just the winner but also its topological neighbors (with decreasing influence further from the winner). The neighborhood radius shrinks over training. The result is a 2D map that preserves the topological structure of the input space — nearby inputs map to nearby neurons. Used for: unsupervised data visualization, clustering, anomaly detection, and dimensionality reduction for qualitative interpretation.</p>
+<p><strong>Worked update:</strong> For x = (2, 3), prototype weights w<sub>A</sub> = (1, 3) and w<sub>B</sub> = (5, 5), A wins because its Euclidean distance to x is 1 versus √13 for B. At learning rate η = 0.2, update A to (1, 3) + 0.2((2, 3) − (1, 3)) = (1.2, 3); B stays at (5, 5). Repeated inputs near A draw its prototype toward that region. Unlike backpropagation, this winner-take-all step requires no target labels.</p>
+<figure>
+    <div class="diagram-wrap">
+        <svg width="460" height="195" viewBox="0 0 460 195" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="competitive-title competitive-desc">
+            <title id="competitive-title">One winner-take-all competitive learning step</title>
+            <desc id="competitive-desc">Input x at coordinates 2,3 is closer to prototype A at 1,3 than prototype B at 5,5. A moves toward the input to 1.2,3, while B remains unchanged.</desc>
+            <line x1="45" y1="158" x2="425" y2="158" stroke="#333" stroke-width="2"/>
+            <line x1="45" y1="158" x2="45" y2="15" stroke="#333" stroke-width="2"/>
+            <text x="425" y="177" font-family="system-ui,sans-serif" font-size="12" fill="#333">feature 1</text>
+            <text x="48" y="14" font-family="system-ui,sans-serif" font-size="12" fill="#333">feature 2</text>
+            <line x1="120" y1="98" x2="195" y2="98" stroke="#7b1f2e" stroke-width="2" stroke-dasharray="5,4"/>
+            <circle cx="120" cy="98" r="7" fill="#7b1f2e"/>
+            <circle cx="135" cy="98" r="7" fill="#f5eeee" stroke="#7b1f2e" stroke-width="2"/>
+            <circle cx="195" cy="98" r="7" fill="#333"/>
+            <circle cx="420" cy="38" r="7" fill="none" stroke="#333" stroke-width="2"/>
+            <text x="80" y="85" font-family="system-ui,sans-serif" font-size="12" fill="#333">A (1, 3)</text>
+            <text x="105" y="125" font-family="system-ui,sans-serif" font-size="12" fill="#7b1f2e">A′ (1.2, 3)</text>
+            <text x="193" y="87" font-family="system-ui,sans-serif" font-size="12" fill="#333">x (2, 3)</text>
+            <text x="335" y="27" font-family="system-ui,sans-serif" font-size="12" fill="#333">B (5, 5)</text>
+        </svg>
+    </div>
+    <figcaption class="diagram-caption">Figure 5a: Schematic feature-space positions, with one unit drawn as 75 SVG pixels horizontally and 30 vertically. A is the nearest prototype and shifts from (1, 3) to (1.2, 3); B does not update. Distances in the worked example use the feature coordinates, not on-screen pixel lengths.</figcaption>
+</figure>
+<p><strong>Self-Organizing Map (SOM / Kohonen Network):</strong> Extends competitive learning by organizing neurons on a 2D grid and updating not just the winner but also its topological neighbors (with decreasing influence further from the winner). The neighborhood radius shrinks over training. The goal is a 2D map that approximately preserves neighborhood relationships, though topology preservation is not guaranteed. Used for: unsupervised data visualization, clustering, anomaly detection, and dimensionality reduction for qualitative interpretation.</p>
 
 <!-- =====================================================================
      8. PRINCIPAL COMPONENT ANALYSIS (PCA)
      ===================================================================== -->
-<h2>8. Principal Component Analysis (PCA)</h2>
+<h2 id="pca">8. Principal Component Analysis (PCA)</h2>
+<p class="section-intro">PCA rotates centered data onto variance-ranked orthogonal directions; compare its linear representation with learned neural-network bottlenecks.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q11">Q11 · PCA definition</a> · <a href="long-answers.html#q20">Q20 · steps and example</a> · <a href="long-answers.html#q33">Q33 · PCA in a pipeline</a>.</p>
 
 <h3>Definition and Purpose</h3>
 <p>PCA is an unsupervised dimensionality reduction technique that transforms a dataset with p correlated variables into k ≤ p uncorrelated linear combinations called <strong>principal components (PCs)</strong>. PCs are ordered by the proportion of total variance they explain (PC1 captures the most). PCA is used to: eliminate multicollinearity, reduce storage and computation costs, enable 2D/3D visualization of high-dimensional data, and extract latent structure.</p>
@@ -771,9 +856,38 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
     <li><strong>Compute the covariance matrix C:</strong> The p×p symmetric matrix where C<sub>ij</sub> = cov(feature i, feature j). C = (1/(n−1)) × ZᵀZ where Z is the standardized data matrix.</li>
     <li><strong>Eigendecompose C:</strong> Solve C·v = λ·v. Each eigenvector v defines a direction in feature space (a PC direction); the eigenvalue λ is the variance of the data projected onto that direction.</li>
     <li><strong>Sort by eigenvalue (descending):</strong> PC1 corresponds to the largest eigenvalue (captures maximum variance); PC2 has the second-largest eigenvalue and is orthogonal to PC1; etc.</li>
-    <li><strong>Select top k components:</strong> Choose k such that the cumulative explained variance ratio ≥ threshold (commonly 95%). Explained variance ratio of PC<sub>i</sub> = λ<sub>i</sub> / Σλ<sub>j</sub>. Alternatively, use the Kaiser criterion: keep only PCs with eigenvalue &gt; 1 (they explain more variance than a single original variable).</li>
-    <li><strong>Project:</strong> Multiply the standardized data matrix by the k×p loading matrix (rows = selected eigenvectors). The result is the n×k score matrix — the dataset in the new reduced coordinate system.</li>
+    <li><strong>Select top k components:</strong> Choose k from a scree plot or a cumulative explained-variance target appropriate to the task. Explained variance ratio of PC<sub>i</sub> = λ<sub>i</sub> / Σλ<sub>j</sub>. For standardized features, the eigenvalue-greater-than-1 (Kaiser) rule is one heuristic, not a guarantee of useful components.</li>
+    <li><strong>Project:</strong> Arrange the selected eigenvectors as columns of a p×k loading matrix V<sub>k</sub>. Multiply the centered (and, if chosen, standardized) n×p data matrix Z by V<sub>k</sub> to get the n×k score matrix.</li>
 </ol>
+
+<h3>Worked PCA Example and Neural-Network Connection</h3>
+<p>Take two same-scale measurements for three cases: (1,1), (2,2), (3,3). Centering gives (−1,−1), (0,0), (1,1). The covariance matrix is [1 1; 1 1], with eigenvalues 2 and 0. PC1 points along (1,1)/√2; projecting onto it gives scores −√2, 0, √2. Here one component preserves all <em>sample variance</em> because the two measurements duplicate one another. In real data, high variance need not be predictive of a particular label.</p>
+<p>A linear autoencoder trained on centered data with a one-dimensional bottleneck and squared reconstruction loss can learn the same <em>principal subspace</em> as PCA at a suitable global optimum; its individual weights need not equal PCA's axes. Nonlinear activations allow curved representations, but no longer imply PCA. PCA and autoencoders learn from inputs without labels; a supervised neural classifier instead optimizes prediction against labels.</p>
+<figure>
+    <div class="diagram-wrap">
+        <svg width="580" height="180" viewBox="0 0 580 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pca-nn-title pca-nn-desc">
+            <title id="pca-nn-title">PCA projection and linear autoencoder bottleneck</title>
+            <desc id="pca-nn-desc">Centered two-feature data projects onto a single principal-component score for PCA; a linear autoencoder also compresses to one bottleneck value and reconstructs two features by minimizing squared error.</desc>
+            <text x="15" y="28" font-family="system-ui,sans-serif" font-size="15" fill="#333">PCA</text>
+            <rect x="15" y="45" width="120" height="55" rx="5" fill="#f5eeee" stroke="#7b1f2e"/>
+            <text x="25" y="77" font-family="system-ui,sans-serif" font-size="13" fill="#333">centered x₁, x₂</text>
+            <text x="142" y="77" font-family="system-ui,sans-serif" font-size="15" fill="#333">→</text>
+            <rect x="170" y="45" width="120" height="55" rx="5" fill="#f5eeee" stroke="#7b1f2e"/>
+            <text x="180" y="77" font-family="system-ui,sans-serif" font-size="13" fill="#333">PC1 score</text>
+            <text x="310" y="28" font-family="system-ui,sans-serif" font-size="15" fill="#333">Linear autoencoder</text>
+            <rect x="310" y="45" width="80" height="55" rx="5" fill="#f5eeee" stroke="#7b1f2e"/>
+            <text x="322" y="77" font-family="system-ui,sans-serif" font-size="13" fill="#333">x₁, x₂</text>
+            <text x="396" y="77" font-family="system-ui,sans-serif" font-size="15" fill="#333">→</text>
+            <rect x="420" y="45" width="62" height="55" rx="5" fill="#f5eeee" stroke="#7b1f2e"/>
+            <text x="437" y="77" font-family="system-ui,sans-serif" font-size="13" fill="#333">z</text>
+            <text x="487" y="77" font-family="system-ui,sans-serif" font-size="15" fill="#333">→</text>
+            <rect x="510" y="45" width="63" height="55" rx="5" fill="#f5eeee" stroke="#7b1f2e"/>
+            <text x="515" y="77" font-family="system-ui,sans-serif" font-size="13" fill="#333">x̂₁, x̂₂</text>
+            <text x="17" y="140" font-family="system-ui,sans-serif" font-size="13" fill="#333">Both compress 2 inputs to 1 number; the autoencoder jointly learns encoder and decoder.</text>
+        </svg>
+    </div>
+    <figcaption class="diagram-caption">Figure 6a: One-dimensional linear compression. PCA selects the direction with maximum retained variance; the linear autoencoder minimizes reconstruction error. Under the stated conditions their optimal one-dimensional subspaces coincide.</figcaption>
+</figure>
 
 <div class="diagram-wrap">
     <!-- SVG: PCA scatter — redrawn with OWN marker ID "arrowPCA" -->
@@ -827,15 +941,11 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
         <text x="362" y="102" text-anchor="start" font-family="system-ui,sans-serif" font-size="10" fill="#7b1f2e">Max variance</text>
         <text x="362" y="114" text-anchor="start" font-family="system-ui,sans-serif" font-size="10" fill="#7b1f2e">λ₁ = 3.42</text>
 
-        <!-- PC2 axis: perpendicular to PC1, through center, shorter -->
-        <!-- PC1 direction vector: (268, -136), unit = (268/L, -136/L). Perpendicular: (136/L, 268/L) -->
-        <!-- So PC2 goes from (220-50*(136/300), 160-50*(-268/300)) = (220-22.7, 160+44.7) = (197,205) -->
-        <!-- to (220+50*(136/300), 160+50*(-268/300)) = (220+22.7, 160-44.7) = (243,115) -->
-        <!-- Simplified: from (200,205) to (245,112) roughly -->
-        <line x1="200" y1="207" x2="244" y2="113" stroke="#555" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrowPCA)"/>
-        <text x="248" y="108" text-anchor="start" font-family="system-ui,sans-serif" font-size="13" font-weight="bold" fill="#555">PC2</text>
-        <text x="248" y="122" text-anchor="start" font-family="system-ui,sans-serif" font-size="10" fill="#555">⊥ to PC1</text>
-        <text x="248" y="134" text-anchor="start" font-family="system-ui,sans-serif" font-size="10" fill="#555">λ₂ = 0.58</text>
+        <!-- PC2 is perpendicular to PC1: (48,94) dot (268,-136) is approximately zero. -->
+        <line x1="196" y1="113" x2="244" y2="207" stroke="#555" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrowPCA)"/>
+        <text x="248" y="209" text-anchor="start" font-family="system-ui,sans-serif" font-size="13" font-weight="bold" fill="#555">PC2</text>
+        <text x="248" y="223" text-anchor="start" font-family="system-ui,sans-serif" font-size="10" fill="#555">⊥ to PC1</text>
+        <text x="248" y="235" text-anchor="start" font-family="system-ui,sans-serif" font-size="10" fill="#555">λ₂ = 0.58</text>
 
         <!-- Center point -->
         <circle cx="220" cy="160" r="5" fill="#7b1f2e"/>
@@ -848,7 +958,7 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
         <text x="35" y="68" font-family="system-ui,sans-serif" font-size="10" fill="#333">Together: 100% (2D data here)</text>
     </svg>
 </div>
-<p class="diagram-caption">Figure 6: PCA scatter plot. Data points (circles) form an elongated elliptical cloud. PC1 (maroon solid arrow, through the centroid) points in the direction of maximum variance (λ₁ = 3.42, explaining 85.5%). PC2 (gray dashed arrow, perpendicular to PC1) captures the remaining variance (λ₂ = 0.58, explaining 14.5%). Projecting all points onto PC1 alone retains 85.5% of the total information while reducing from 2D to 1D.</p>
+<p class="diagram-caption">Figure 6: PCA scatter plot. Data points (circles) form an elongated elliptical cloud. PC1 (maroon solid arrow, through the centroid) points in the direction of maximum variance (λ₁ = 3.42, explaining 85.5%). PC2 (gray dashed arrow, perpendicular to PC1) captures the remaining variance (λ₂ = 0.58, explaining 14.5%). In this illustrative two-variable example, projecting onto PC1 retains 85.5% of sample variance, not necessarily 85.5% of task-relevant information.</p>
 
 <h3>Scree Plot and Component Selection</h3>
 <div class="diagram-wrap">
@@ -865,27 +975,18 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
         <text x="200" y="218" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="#333">Principal Component</text>
         <text x="14" y="108" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="#333" transform="rotate(-90,14,108)">Eigenvalue (Variance)</text>
 
-        <!-- Eigenvalue data points: PC1=4.5, PC2=2.0, PC3=1.2, PC4=0.5, PC5=0.4, PC6=0.3, PC7=0.1 -->
-        <!-- y scale: 0→190, 5→30. y_pixel = 190 - eigenvalue * 32 -->
-        <!-- x positions: 80, 130, 180, 230, 280, 310, 340 -->
-        <!-- PC1: y=190-4.5*32=190-144=46 -->
-        <!-- PC2: y=190-2.0*32=190-64=126 -->
-        <!-- PC3: y=190-1.2*32=190-38=152 -->
-        <!-- PC4: y=190-0.5*32=190-16=174 -->
-        <!-- PC5: y=190-0.4*32=190-12.8=177 -->
-        <!-- PC6: y=190-0.3*32=190-9.6=180 -->
-        <!-- PC7: y=190-0.1*32=190-3.2=187 -->
-
+        <!-- Illustrative eigenvalues for seven standardized variables; sum = 7. -->
+        <!-- PC1–PC7: 3.2, 1.4, 1.1, 0.5, 0.4, 0.25, 0.15; y = 190 − 32 × eigenvalue. -->
         <!-- Y-axis ticks and labels -->
-        <line x1="51" y1="46"  x2="59" y2="46"  stroke="#333" stroke-width="1.5"/>
-        <text x="46" y="50"  text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#555">4.5</text>
-        <line x1="51" y1="126" x2="59" y2="126" stroke="#333" stroke-width="1.5"/>
-        <text x="46" y="130" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#555">2.0</text>
-        <line x1="51" y1="152" x2="59" y2="152" stroke="#333" stroke-width="1.5"/>
-        <text x="46" y="156" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#555">1.2</text>
-        <!-- Kaiser criterion line at eigenvalue=1 -->
+        <line x1="51" y1="88" x2="59" y2="88" stroke="#333" stroke-width="1.5"/>
+        <text x="46" y="92" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#555">3.2</text>
+        <line x1="51" y1="145" x2="59" y2="145" stroke="#333" stroke-width="1.5"/>
+        <text x="46" y="149" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#555">1.4</text>
+        <line x1="51" y1="155" x2="59" y2="155" stroke="#333" stroke-width="1.5"/>
+        <text x="46" y="159" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#555">1.1</text>
+        <!-- Kaiser reference for standardized features -->
         <line x1="55" y1="158" x2="340" y2="158" stroke="#7b1f2e" stroke-width="1" stroke-dasharray="4,3"/>
-        <text x="345" y="162" font-family="system-ui,sans-serif" font-size="9" fill="#7b1f2e">Kaiser: λ=1</text>
+        <text x="265" y="151" font-family="system-ui,sans-serif" font-size="9" fill="#7b1f2e">λ = 1 reference</text>
 
         <!-- X-axis ticks -->
         <line x1="80"  y1="187" x2="80"  y2="193" stroke="#333" stroke-width="1.5"/>
@@ -904,53 +1005,56 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
         <text x="340" y="203" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#555">7</text>
 
         <!-- Scree line connecting eigenvalue points -->
-        <polyline points="80,46 130,126 180,152 230,174 280,177 310,180 340,187" fill="none" stroke="#7b1f2e" stroke-width="2"/>
+        <polyline points="80,88 130,145 180,155 230,174 280,177 310,182 340,185" fill="none" stroke="#7b1f2e" stroke-width="2"/>
 
         <!-- Eigenvalue circles -->
-        <circle cx="80"  cy="46"  r="5" fill="#7b1f2e"/>
-        <circle cx="130" cy="126" r="5" fill="#7b1f2e"/>
-        <circle cx="180" cy="152" r="5" fill="#7b1f2e"/>
+        <circle cx="80" cy="88" r="5" fill="#7b1f2e"/>
+        <circle cx="130" cy="145" r="5" fill="#7b1f2e"/>
+        <circle cx="180" cy="155" r="5" fill="#7b1f2e"/>
         <circle cx="230" cy="174" r="5" fill="#555"/>
         <circle cx="280" cy="177" r="5" fill="#555"/>
-        <circle cx="310" cy="180" r="5" fill="#555"/>
-        <circle cx="340" cy="187" r="5" fill="#555"/>
+        <circle cx="310" cy="182" r="5" fill="#555"/>
+        <circle cx="340" cy="185" r="5" fill="#555"/>
 
         <!-- Elbow annotation -->
-        <line x1="180" y1="152" x2="195" y2="130" stroke="#333" stroke-width="1" stroke-dasharray="3,2"/>
+        <line x1="180" y1="155" x2="195" y2="130" stroke="#333" stroke-width="1" stroke-dasharray="3,2"/>
         <text x="198" y="128" font-family="system-ui,sans-serif" font-size="9" fill="#333">Elbow at PC3</text>
         <text x="198" y="140" font-family="system-ui,sans-serif" font-size="9" fill="#333">Select k=3</text>
     </svg>
 </div>
-<p class="diagram-caption">Figure 7: Scree plot. X-axis = principal component number; Y-axis = eigenvalue (variance captured by that PC). The steep drop from PC1 to PC2 to PC3, followed by a flattening ("elbow") at PC4, suggests retaining 3 components. The dashed horizontal line at eigenvalue = 1 is the Kaiser criterion — only PCs above this line (PC1, PC2, PC3 here) explain more variance than any single original variable and should be retained.</p>
+<p class="diagram-caption">Figure 7: Scree plot. X-axis = principal component number; Y-axis = eigenvalue (variance captured by that PC). For seven standardized variables, the seven illustrated eigenvalues sum to 7; the drop followed by smaller changes around PC3–PC4 suggests testing 3 components. The dashed horizontal line at eigenvalue = 1 is the Kaiser criterion — for standardized features, PCs above this line (PC1–PC3 here) exceed the variance of one standardized original variable; selection still depends on the task.</p>
 
 <h3>PCA Limitations</h3>
 <ul>
     <li>PCA captures only linear relationships — it cannot discover nonlinear structure (use Kernel PCA or t-SNE/UMAP for nonlinear dimensionality reduction).</li>
     <li>PCA components are linear combinations of all original features — they may lack direct interpretability (unlike the original variables).</li>
     <li>PCA is sensitive to outliers — a single extreme outlier can distort the direction of the first principal component. Robust PCA methods (PCP) address this.</li>
-    <li>Standardization is critical: if features are not standardized, PCA is dominated by features with large numerical scales, regardless of their actual informativeness.</li>
+    <li>Choose centering and scaling deliberately: without standardization, variables with larger numerical variance can dominate PCA even if their units are arbitrary; standardization is not always desirable when scales are already meaningful.</li>
 </ul>
 
 <!-- =====================================================================
      9. FUZZY LOGIC
      ===================================================================== -->
-<h2>9. Fuzzy Logic</h2>
+<h2 id="fuzzy-logic">9. Fuzzy Logic</h2>
+<p class="section-intro">Fuzzy membership expresses graded category fit; learn how to derive membership functions and interpretable rules or trees from observations.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q8">Q8 · fuzzy-logic short note</a> · <a href="long-answers.html#q30">Q30 · compare crisp rule induction</a>.</p>
 
 <h3>Definition</h3>
-<p>Fuzzy logic (Lotfi Zadeh, 1965) extends classical binary logic by allowing truth values in the continuous range [0, 1] rather than only {0, 1}. It mathematically models vague, linguistic concepts — "hot," "fast," "tall," "slightly above average" — using membership functions that assign a degree of membership between 0 (completely outside the set) and 1 (fully inside the set). Fuzzy logic enables reasoning under imprecision and uncertainty.</p>
+<p>Fuzzy logic (Lotfi Zadeh, 1965) extends classical binary logic by allowing truth values in the continuous range [0, 1] rather than only {0, 1}. It mathematically models vague, linguistic concepts — "hot," "fast," "tall," "slightly above average" — using membership functions that assign a degree of membership between 0 (completely outside the set) and 1 (fully inside the set). Fuzzy logic reasons about graded categories; a membership degree is not automatically a probability of an event.</p>
 
 <h3>Crisp Sets vs Fuzzy Sets</h3>
 <p>In a <strong>crisp (classical) set</strong>, an element either belongs to the set (membership = 1) or does not (membership = 0). A person 179 cm tall: NOT tall (if the threshold is 180 cm). In a <strong>fuzzy set</strong>, the same person has membership 0.8 in the "tall" set — "mostly tall." This gradual membership is more faithful to human perception and natural language.</p>
 
 <h3>Four Steps of a Fuzzy Logic System</h3>
 <ol>
-    <li><strong>Fuzzification:</strong> Convert a crisp input value into fuzzy membership degrees across all relevant fuzzy sets. Example: temperature = 26°C → membership 0.80 in "warm," 0.20 in "cold."</li>
+    <li><strong>Fuzzification:</strong> Convert a crisp input value into fuzzy membership degrees across all relevant fuzzy sets. Example using Figure 8's membership functions: at 26°C, membership in "warm" is about 0.67, while "cold" and "hot" are both 0.</li>
     <li><strong>Rule Evaluation:</strong> Apply IF-THEN linguistic rules using fuzzy operators. AND = min(memberships), OR = max(memberships), NOT = 1 − membership. Example: IF temperature IS warm AND humidity IS high THEN fan_speed IS medium.</li>
     <li><strong>Aggregation:</strong> Combine the fuzzy output sets from all rules that fired into a single combined output fuzzy set.</li>
-    <li><strong>Defuzzification:</strong> Convert the combined fuzzy output set back to a single crisp value. Common method: <strong>Centroid</strong> (center of area of the output fuzzy set) — the most commonly used, producing a smooth, continuous crisp output.</li>
+    <li><strong>Defuzzification:</strong> Convert the combined fuzzy output set back to a single crisp value. One common method is the <strong>centroid</strong> (center of area of the output fuzzy set), which can produce a smoothly varying crisp output.</li>
 </ol>
 
 <h3>Membership Function Types</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Shape</th><th>Parameters</th><th>Used When</th></tr>
@@ -963,6 +1067,7 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
         <tr><td>Bell-shaped</td><td>a, b, c (three-parameter generalized bell)</td><td>Wider flat top than Gaussian; used in ANFIS</td></tr>
     </tbody>
 </table>
+</div>
 
 <div class="diagram-wrap">
     <!-- SVG: Fuzzy membership functions — FIXED hot function coordinates, OWN marker "arrowFUZ" -->
@@ -1038,10 +1143,42 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
         <text x="310" y="205" font-family="system-ui,sans-serif" font-size="9" fill="#555">μ(cold)=0, μ(hot)=0</text>
     </svg>
 </div>
-<p class="diagram-caption">Figure 8: Fuzzy membership functions for "Cold," "Warm," and "Hot" temperature sets (0–40°C). For a crisp input of T=26°C (vertical dashed line), the system computes: μ(Cold) = 0, μ(Warm) = 0.67, μ(Hot) = 0. The input belongs 67% to "Warm" — a richer representation than crisp binary classification. Note the Hot function correctly starts rising at 28°C and reaches full membership at 38°C.</p>
+<p class="diagram-caption">Figure 8: Fuzzy membership functions for "Cold," "Warm," and "Hot" temperature sets (0–40°C). For a crisp input of T=26°C (vertical dashed line), the system computes: μ(Cold) = 0, μ(Warm) = 0.67, μ(Hot) = 0. The input has degree 0.67 in "Warm" — a graded description, not a 67% probability of being warm. Note the Hot function correctly starts rising at 28°C and reaches full membership at 38°C.</p>
+
+<h3>Extracting Fuzzy Models from Data</h3>
+<p>Instead of hand-writing every linguistic rule, use measured input–output pairs to learn a fuzzy model. For temperature and observed fan speed: (1) inspect the input range and define overlapping terms such as Cool, Warm and Hot; (2) initialize membership shapes from domain knowledge or clusters of observations; (3) form candidate IF–THEN rules, such as <em>IF temperature is Hot THEN fan speed is High</em>, and estimate output values from matching cases; (4) tune membership parameters and rule outputs to reduce prediction error; (5) simplify redundant rules and test on held-out readings. A fitted rule can describe an association in these data without establishing a causal mechanism.</p>
+<h3>Fuzzy Decision Trees</h3>
+<p>A crisp decision tree sends an input down exactly one branch at each split. A <strong>fuzzy tree</strong> can send it down multiple branches with different membership strengths: a reading of 32°C in Figure 8 has Warm membership (34 − 32)/12 ≈ 0.17 and Hot membership (32 − 28)/10 = 0.40. Each branch evaluates its consequent (for example, Medium or High fan speed); a model-specific weighting and normalization scheme combines leaf outputs. The memberships need not sum to 1 before normalization. Fuzzy splits soften abrupt threshold changes, but too many overlapping rules can make the tree hard to interpret or overfit.</p>
+<figure>
+    <div class="diagram-wrap">
+        <svg width="570" height="225" viewBox="0 0 570 225" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fuzzy-tree-title fuzzy-tree-desc">
+            <title id="fuzzy-tree-title">Data-derived fuzzy model and fuzzy tree routing</title>
+            <desc id="fuzzy-tree-desc">Observed temperatures and fan speeds are used to fit overlapping Warm and Hot membership functions and output rules. At 32 degrees the reading follows both the Warm branch with degree 0.17 and the Hot branch with degree 0.40; weighted outputs are combined.</desc>
+            <rect x="10" y="12" width="155" height="45" rx="5" fill="#f5eeee" stroke="#7b1f2e"/>
+            <text x="20" y="40" font-family="system-ui,sans-serif" font-size="13" fill="#333">Observed input, output</text>
+            <text x="173" y="40" font-family="system-ui,sans-serif" font-size="18" fill="#333">→</text>
+            <rect x="200" y="12" width="180" height="45" rx="5" fill="#f5eeee" stroke="#7b1f2e"/>
+            <text x="211" y="40" font-family="system-ui,sans-serif" font-size="13" fill="#333">Fit sets and IF–THEN rules</text>
+            <text x="388" y="40" font-family="system-ui,sans-serif" font-size="18" fill="#333">→</text>
+            <rect x="415" y="12" width="142" height="45" rx="5" fill="#f5eeee" stroke="#7b1f2e"/>
+            <text x="427" y="40" font-family="system-ui,sans-serif" font-size="13" fill="#333">Validate on new data</text>
+            <rect x="188" y="86" width="182" height="40" rx="5" fill="#7b1f2e"/>
+            <text x="200" y="111" font-family="system-ui,sans-serif" font-size="13" fill="#fff">Temperature = 32°C</text>
+            <line x1="245" y1="126" x2="125" y2="157" stroke="#333" stroke-width="2"/>
+            <line x1="315" y1="126" x2="435" y2="157" stroke="#333" stroke-width="2"/>
+            <text x="102" y="150" font-family="system-ui,sans-serif" font-size="12" fill="#333">Warm ≈ 0.17</text>
+            <text x="384" y="150" font-family="system-ui,sans-serif" font-size="12" fill="#333">Hot = 0.40</text>
+            <rect x="25" y="164" width="210" height="42" rx="5" fill="#f5eeee" stroke="#7b1f2e"/>
+            <text x="34" y="190" font-family="system-ui,sans-serif" font-size="13" fill="#333">Medium fan rule (weighted)</text>
+            <rect x="333" y="164" width="220" height="42" rx="5" fill="#f5eeee" stroke="#7b1f2e"/>
+            <text x="344" y="190" font-family="system-ui,sans-serif" font-size="13" fill="#333">High fan rule (weighted)</text>
+        </svg>
+    </div>
+    <figcaption class="diagram-caption">Figure 8a: Extraction fits membership functions and rules from observations, then checks them on unseen data. A fuzzy tree can route the same reading down both Warm and Hot branches before combining outputs; the two branch degrees are not probabilities.</figcaption>
+</figure>
 
 <h3>ANFIS — Adaptive Neuro-Fuzzy Inference System</h3>
-<p>ANFIS (Jang, 1993) combines fuzzy logic reasoning with neural network learning. It is a 5-layer network: Layer 1 computes membership degrees for each input (fuzzification); Layer 2 computes rule firing strengths (product of memberships); Layer 3 normalizes firing strengths; Layer 4 computes weighted consequents; Layer 5 aggregates to produce the crisp output (defuzzification). The membership function parameters are learned from data using backpropagation, making ANFIS a data-driven fuzzy system that combines interpretable rules with adaptive learning capability.</p>
+<p>ANFIS (Jang, 1993) combines fuzzy logic reasoning with neural network learning. It is a 5-layer network: Layer 1 computes membership degrees for each input (fuzzification); Layer 2 computes rule firing strengths (product of memberships); Layer 3 normalizes firing strengths; Layer 4 computes weighted consequents; Layer 5 combines weighted rule consequents into a crisp output (a Sugeno-style weighted result). Membership and consequent parameters can be learned from data by gradient-based and hybrid optimization; learned rules still require validation and may not always be easy to interpret.</p>
 
 <h3>Applications</h3>
 <ul>
@@ -1053,7 +1190,9 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
 <!-- =====================================================================
      10. STOCHASTIC SEARCH
      ===================================================================== -->
-<h2>10. Stochastic Search and Optimization</h2>
+<h2 id="stochastic-search">10. Stochastic Search and Optimization</h2>
+<p class="section-intro">When exhaustive or gradient-based search is impractical, use random proposals and an objective function to explore candidate solutions.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q15">Q15 · definition and application</a> · <a href="long-answers.html#q33">Q33 · choose methods for a dataset</a>.</p>
 
 <h3>Definition</h3>
 <p>Stochastic search is a class of metaheuristic optimization algorithms that use controlled randomness to explore complex, high-dimensional search spaces — particularly when the objective function is non-differentiable, multi-modal (many local optima), or so complex that gradient-based methods get trapped in local optima. Stochastic search sacrifices the guarantee of finding the global optimum for practical tractability in large search spaces.</p>
@@ -1066,12 +1205,12 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
 <ol>
     <li><strong>Selection:</strong> Evaluate each individual's fitness (objective function value). Select parents with probability proportional to fitness (better solutions are more likely to reproduce). Common methods: roulette wheel selection, tournament selection.</li>
     <li><strong>Crossover (Recombination):</strong> Combine two parent solutions to produce offspring. Single-point crossover: pick a random cut point; offspring 1 takes parent 1's genes before the cut and parent 2's genes after; vice versa for offspring 2.</li>
-    <li><strong>Mutation:</strong> Randomly alter a small number of genes in the offspring (with probability p<sub>mutation</sub> ≈ 0.01–0.05). This maintains diversity and prevents premature convergence to local optima.</li>
+    <li><strong>Mutation:</strong> Randomly alter genes in the offspring with a chosen mutation probability. This maintains diversity and prevents premature convergence to local optima.</li>
 </ol>
 <p>The algorithm iterates until a termination criterion is met (maximum generations, fitness threshold, no improvement for k generations).</p>
 
 <h4>GA Example — Binary Feature Selection</h4>
-<p>Problem: 10 features available; find the best subset that maximizes classification accuracy. Search space: 2¹⁰ = 1,024 possible subsets. Represent each candidate subset as a 10-bit binary string (1 = feature included, 0 = excluded). Fitness = cross-validation accuracy of a model trained with the selected features. After 50 generations of 50 individuals each, the GA identifies the 5-feature subset that maximizes accuracy without exhaustively evaluating all 1,024 possibilities.</p>
+<p>Problem: 10 features available; search for a subset with good validation performance. Search space: 2¹⁰ = 1,024 possible subsets. Encode each candidate as a 10-bit string (1 = included, 0 = excluded); score it using cross-validation on the training portion, optionally penalizing large subsets. Selection, crossover and mutation test new candidates. Keep a separate final test set: stochastic search does not guarantee the best subset and must not tune on test data.</p>
 
 <h3>Simulated Annealing (SA)</h3>
 <p>SA (Kirkpatrick, 1983) is inspired by the metallurgical annealing process — slowly cooling a material to minimize its energy. The algorithm:</p>
@@ -1080,15 +1219,16 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
     <li>Propose a small random modification s' of the current solution.</li>
     <li>If f(s') &lt; f(s) (improvement): accept s' unconditionally.</li>
     <li>If f(s') ≥ f(s) (worsening): accept s' with probability exp(−Δf / T), where Δf = f(s') − f(s). At high T, almost any worsening move is accepted (exploration). As T decreases, fewer worsening moves are accepted (exploitation).</li>
-    <li>Reduce T according to a cooling schedule (geometric: T<sub>k+1</sub> = α × T<sub>k</sub>, with α ≈ 0.95).</li>
+    <li>Reduce T according to a cooling schedule (geometric: T<sub>k+1</sub> = α × T<sub>k</sub>, with 0 &lt; α &lt; 1).</li>
     <li>Repeat until T → 0 or a stopping criterion is reached.</li>
 </ol>
-<p>SA is proved to converge to the global optimum given a sufficiently slow cooling schedule (though this may require exponential time). In practice, faster cooling schedules are used with near-optimal results.</p>
+<p>SA is proved to converge to the global optimum given a sufficiently slow cooling schedule (though this may require exponential time). Practical finite schedules trade computation for solution quality without a near-optimality guarantee.</p>
 
 <h3>Particle Swarm Optimization (PSO)</h3>
-<p>PSO (Kennedy &amp; Eberhart, 1995) simulates a swarm of particles flying through the search space. Each particle i has a position x<sub>i</sub> (candidate solution), velocity v<sub>i</sub>, and remembers its personal best position p<sub>i</sub>. The swarm collectively tracks the global best position g. At each iteration: v<sub>i</sub> ← w·v<sub>i</sub> + c<sub>1</sub>·r<sub>1</sub>·(p<sub>i</sub> − x<sub>i</sub>) + c<sub>2</sub>·r<sub>2</sub>·(g − x<sub>i</sub>); x<sub>i</sub> ← x<sub>i</sub> + v<sub>i</sub>. The inertia weight w balances exploration (high w) vs exploitation (low w). PSO is simple to implement, has few hyperparameters, and works well for continuous optimization problems.</p>
+<p>PSO (Kennedy &amp; Eberhart, 1995) simulates a swarm of particles flying through the search space. Each particle i has a position x<sub>i</sub> (candidate solution), velocity v<sub>i</sub>, and remembers its personal best position p<sub>i</sub>. The swarm collectively tracks the global best position g. At each iteration: v<sub>i</sub> ← w·v<sub>i</sub> + c<sub>1</sub>·r<sub>1</sub>·(p<sub>i</sub> − x<sub>i</sub>) + c<sub>2</sub>·r<sub>2</sub>·(g − x<sub>i</sub>); x<sub>i</sub> ← x<sub>i</sub> + v<sub>i</sub>. The inertia weight w balances exploration (high w) vs exploitation (low w). PSO is often used for continuous optimization, but its quality depends on the objective and parameter settings.</p>
 
 <h3>Comparison of Stochastic Search Methods</h3>
+<div class="table-scroll">
 <table>
     <thead>
         <tr><th>Method</th><th>Randomness Type</th><th>Population</th><th>Memory</th><th>Best Suited For</th></tr>
@@ -1098,9 +1238,10 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
         <tr><td>Simulated Annealing</td><td>Random walk with acceptance probability</td><td>No (single solution)</td><td>Current + best-so-far</td><td>Problems with a good neighbor function; scheduling; TSP</td></tr>
         <tr><td>Particle Swarm</td><td>Velocity update (exploration + exploitation)</td><td>Yes (swarm of particles)</td><td>Personal best + global best</td><td>Continuous optimization; neural network weight tuning</td></tr>
         <tr><td>Random Search</td><td>Uniform random sampling</td><td>No</td><td>Best-so-far</td><td>Hyperparameter search (surprisingly competitive per Bergstra &amp; Bengio, 2012)</td></tr>
-        <tr><td>Bayesian Optimization</td><td>Guided by surrogate model (Gaussian Process)</td><td>No (sequential)</td><td>Full history of evaluations</td><td>Expensive-to-evaluate objective functions; hyperparameter tuning with &lt;1000 evaluations</td></tr>
+        <tr><td>Bayesian Optimization</td><td>Guided by surrogate model (Gaussian Process)</td><td>No (sequential)</td><td>Full history of evaluations</td><td>Expensive-to-evaluate objectives, such as hyperparameter tuning</td></tr>
     </tbody>
 </table>
+</div>
 
 <h3>Application in Data Analysis</h3>
 <ul>
@@ -1109,6 +1250,27 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
     <li><strong>Neural network architecture search (NAS):</strong> Evolutionary algorithms search the space of neural network architectures (number of layers, layer widths, connection patterns) to find architectures that maximize accuracy on a target task.</li>
     <li><strong>Clustering:</strong> K-means uses random initialization of centroids; multiple restarts with different initializations avoid poor local optima.</li>
 </ul>
+
+<section class="study-check" aria-labelledby="unit2-check-title">
+    <h2 id="unit2-check-title">End-of-unit study checklist</h2>
+    <p>Try each task without looking at the answers; revisit the linked section when a step is unclear.</p>
+    <ul>
+        <li>Explain simple vs multiple regression and the difference between prediction, association and causal claims; distinguish univariate and multivariate analysis.</li>
+        <li>Use a prior and likelihood to update a posterior; identify nodes, directed dependencies and conditional tables in a Bayesian network.</li>
+        <li>Draw an SVM margin, mark true support vectors and explain how a kernel creates a nonlinear input-space boundary.</li>
+        <li>Separate trend, seasonality and residuals; contrast a linear lag equation with state-dependent nonlinear dynamics and evaluate forecasts in time order.</li>
+        <li>Write an IF–THEN rule and calculate its coverage, confidence and support from counts.</li>
+        <li>Describe forward pass, backpropagation and generalization; work through a winner-take-all prototype update and explain how a SOM differs.</li>
+        <li>Center a small dataset, identify PC1 and explained variance, and compare PCA with a linear autoencoder.</li>
+        <li>Read overlapping fuzzy memberships, outline data-driven fuzzy-rule extraction and explain fuzzy-tree branching.</li>
+        <li>Contrast genetic algorithms, simulated annealing and particle swarm optimization; describe how to validate a feature-search result.</li>
+    </ul>
+</section>
+<footer class="chapter-footer">
+    <h2>Continue studying</h2>
+    <p>Apply these ideas to <a href="short-answers.html#q8">Unit II short-answer practice (start with Q8)</a> and <a href="long-answers.html#q20">worked long-answer practice (start with Q20)</a>. For the data and lifecycle foundations, return to <a href="unit1.html">Unit I</a>; or <a href="#regression">review Unit II from the beginning</a>.</p>
+</footer>
+</main>
 
 <script src="shared.js"></script>
 </body>

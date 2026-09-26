@@ -3,154 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IDAV ST-1 Exam Guide — Introduction to Data Analytics and Visualization. Full syllabus coverage for Units I–V with question bank answers.">
-    <title>IDAV Exam Guide — Home</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Merriweather:wght@400;700&family=Outfit:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=Space+Grotesk:wght@400;700&display=swap">
+    <meta name="description" content="Study Units I and II of Introduction to Data Analytics and Visualization. Detailed notes, diagrams and all 40 ST-1 question-bank answers in one place.">
+    <title>IDAV Study Guide | Units I &amp; II</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-<nav>
+<body class="home-page">
+<nav aria-label="Primary navigation">
     <ul>
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html" aria-current="page">Overview</a></li>
         <li><a href="unit1.html">Unit I</a></li>
         <li><a href="unit2.html">Unit II</a></li>
-        <li><a href="unit3.html">Unit III</a></li>
-        <li><a href="unit4.html">Unit IV</a></li>
-        <li><a href="unit5.html">Unit V</a></li>
-        <li><a href="short-answers.html">Short Answers</a></li>
-        <li><a href="long-answers.html">Long Answers</a></li>
+        <li><a href="short-answers.html">2-mark answers</a></li>
+        <li><a href="long-answers.html">7-mark answers</a></li>
     </ul>
 </nav>
+<main id="top">
+    <header class="home-hero">
+        <div class="hero-copy">
+            <p class="eyebrow">Introduction to Data Analytics &amp; Visualization <span aria-hidden="true">/</span> ST-1 guide</p>
+            <h1>Learn the ideas.<br>Answer the questions.</h1>
+            <p class="hero-lede">A focused study guide for the two units in your ST-1 question bank. Work through the theory, inspect the diagrams, then practise the exact questions you were given.</p>
+            <div class="hero-actions">
+                <a class="button button-primary" href="unit1.html">Start with Unit I <span aria-hidden="true">↗</span></a>
+                <a class="button button-quiet" href="#study-path">Explore the study path <span aria-hidden="true">↓</span></a>
+            </div>
+        </div>
+        <aside class="hero-aside" aria-label="Guide at a glance">
+            <p class="aside-label">At a glance</p>
+            <div class="aside-stat"><strong>02</strong><span>units in focus</span></div>
+            <div class="aside-stat"><strong>40</strong><span>supplied questions, answered</span></div>
+            <div class="aside-stat"><strong>16 / 24</strong><span>short / long answers</span></div>
+            <p class="aside-footnote">Unit I: foundations and lifecycle.<br>Unit II: methods and models.</p>
+        </aside>
+    </header>
 
-<div class="page-header">
-    <h1>IDAV Exam Guide — ST-1</h1>
-    <p>Introduction to Data Analytics and Visualization &nbsp;|&nbsp; CO1 &amp; CO2 Question Bank Coverage</p>
-</div>
+    <section class="home-section" id="study-path" aria-labelledby="study-heading">
+        <div class="section-heading">
+            <div><p class="eyebrow">01 / Learn the material</p><h2 id="study-heading">Two units. One clear path.</h2></div>
+            <p>Follow the syllabus order, or jump straight to the topic you need. Every chapter includes diagrams, examples and links into the question bank.</p>
+        </div>
+        <div class="unit-grid">
+            <article class="unit-card">
+                <div class="card-topline"><span>Unit I</span><span>08 lectures · 11 topics</span></div>
+                <h3><a href="unit1.html">Data analytics &amp; lifecycle <span aria-hidden="true">↗</span></a></h3>
+                <p>Understand where data comes from, what makes it useful, how platforms handle scale, and how an analytics project moves from discovery to delivery.</p>
+                <p class="card-label">Start with</p>
+                <ul class="topic-links">
+                    <li><a href="unit1.html#classification-of-data">Data types &amp; classification <span aria-hidden="true">↗</span></a></li>
+                    <li><a href="unit1.html#five-vs">The 5Vs &amp; Big Data <span aria-hidden="true">↗</span></a></li>
+                    <li><a href="unit1.html#analysis-vs-reporting">Analysis vs reporting <span aria-hidden="true">↗</span></a></li>
+                    <li><a href="unit1.html#analytics-lifecycle">The six-phase lifecycle <span aria-hidden="true">↗</span></a></li>
+                </ul>
+                <a class="card-cta" href="unit1.html">Read Unit I <span aria-hidden="true">→</span></a>
+            </article>
+            <article class="unit-card">
+                <div class="card-topline"><span>Unit II</span><span>08 lectures · 10 topics</span></div>
+                <h3><a href="unit2.html">Data analysis &amp; methods <span aria-hidden="true">↗</span></a></h3>
+                <p>Learn to choose, explain and compare analytical methods: regression, Bayesian inference, SVMs, time series, neural networks, PCA and more.</p>
+                <p class="card-label">Start with</p>
+                <ul class="topic-links">
+                    <li><a href="unit2.html#regression">Regression &amp; multivariate analysis <span aria-hidden="true">↗</span></a></li>
+                    <li><a href="unit2.html#svm">SVM &amp; kernel methods <span aria-hidden="true">↗</span></a></li>
+                    <li><a href="unit2.html#time-series">Time series &amp; dynamics <span aria-hidden="true">↗</span></a></li>
+                    <li><a href="unit2.html#pca">PCA &amp; neural networks <span aria-hidden="true">↗</span></a></li>
+                </ul>
+                <a class="card-cta" href="unit2.html">Read Unit II <span aria-hidden="true">→</span></a>
+            </article>
+        </div>
+    </section>
 
-<div class="note-banner">
-    <strong>Question Bank Coverage Notice</strong>
-    The ST-1 question bank (40 questions, CO1 and CO2) covers <strong>Unit I</strong> and <strong>Unit II only</strong>.
-    Units III, IV, and V are included as full reference pages for complete syllabus coverage, but carry no ST-1 exam questions.
-</div>
+    <section class="home-section practice-section" id="practice" aria-labelledby="practice-heading">
+        <div class="section-heading">
+            <div><p class="eyebrow">02 / Test your understanding</p><h2 id="practice-heading">Practise the actual questions.</h2></div>
+            <p>The supplied ST-1 bank is for Units I and II only. Questions retain their original numbers so you can find an answer without hunting through a new numbering system.</p>
+        </div>
+        <div class="practice-grid">
+            <a class="practice-card" href="short-answers.html">
+                <span class="practice-number">16 answers <span aria-hidden="true">↗</span></span>
+                <strong>Short answers</strong>
+                <span>Definitions, lists and compact explanations. Q1–4, Q6–17.</span>
+                <span class="practice-link">Browse 2-mark answers →</span>
+            </a>
+            <a class="practice-card" href="long-answers.html">
+                <span class="practice-number">24 answers <span aria-hidden="true">↗</span></span>
+                <strong>Long answers</strong>
+                <span>Structured explanations, comparisons, examples and diagrams. Q5, Q18–40.</span>
+                <span class="practice-link">Browse 7-mark answers →</span>
+            </a>
+        </div>
+        <div class="question-shortcuts" aria-label="Popular question shortcuts">
+            <span>Go straight to</span>
+            <a href="long-answers.html#q38">Q38 · Lifecycle</a>
+            <a href="long-answers.html#q36">Q36 · Big Data</a>
+            <a href="long-answers.html#q20">Q20 · PCA</a>
+            <a href="long-answers.html#q39">Q39 · SVM</a>
+            <a href="long-answers.html#q40">Q40 · Neural networks</a>
+        </div>
+    </section>
 
-<h2>Full Syllabus</h2>
-
-<table>
-    <thead>
-        <tr>
-            <th>Unit</th>
-            <th>Title</th>
-            <th>Lectures</th>
-            <th>Key Topics</th>
-            <th>ST-1 Coverage</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>I</td>
-            <td>Introduction to Data Analytics &amp; Lifecycle</td>
-            <td>08</td>
-            <td>Sources of data, classification, Big Data, need of analytics, evolution, analysis vs reporting, tools, lifecycle phases, key roles</td>
-            <td><span class="coverage-badge">Q1–7, Q17–19, Q23, Q24, Q34–38</span></td>
-        </tr>
-        <tr>
-            <td>II</td>
-            <td>Data Analysis</td>
-            <td>08</td>
-            <td>Regression, multivariate analysis, Bayesian modeling, SVM, kernel methods, time series, rule induction, neural networks, PCA, fuzzy logic, stochastic search</td>
-            <td><span class="coverage-badge">Q8–16, Q20–22, Q25–33, Q39–40</span></td>
-        </tr>
-        <tr>
-            <td>III</td>
-            <td>Mining Data Streams</td>
-            <td>08</td>
-            <td>Stream concepts, sampling, filtering, counting distinct elements, moments, RTAP, case studies</td>
-            <td><span class="coverage-badge none">None</span></td>
-        </tr>
-        <tr>
-            <td>IV</td>
-            <td>Frequent Itemsets and Clustering</td>
-            <td>08</td>
-            <td>Apriori, market basket, large datasets, stream itemsets, K-means, hierarchical clustering, CLIQUE, ProCLUS</td>
-            <td><span class="coverage-badge none">None</span></td>
-        </tr>
-        <tr>
-            <td>V</td>
-            <td>Data Visualization</td>
-            <td>08</td>
-            <td>Visualization stages, human vision, display space, rendering time, design, navigation links, visual/data objects</td>
-            <td><span class="coverage-badge none">None</span></td>
-        </tr>
-    </tbody>
-</table>
-
-<h2>Question Bank Summary</h2>
-<p>The bank contains 40 questions for CO1 (Unit I) and CO2 (Unit II). The table below maps each question to its unit and type.</p>
-
-<table>
-    <thead>
-        <tr>
-            <th>Q#</th>
-            <th>Question (abbreviated)</th>
-            <th>Unit</th>
-            <th>Type</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr><td>1</td><td>Define data analytics and its importance</td><td>I</td><td>Short</td></tr>
-        <tr><td>2</td><td>List any 5 data visualization tools and libraries</td><td>I</td><td>Short</td></tr>
-        <tr><td>3</td><td>List key roles required for successful analytic projects</td><td>I</td><td>Short</td></tr>
-        <tr><td>4</td><td>Describe the role of a Big Data platform</td><td>I</td><td>Short</td></tr>
-        <tr><td>5</td><td>Describe the major phases of Data Analytics Lifecycle</td><td>I</td><td>Long</td></tr>
-        <tr><td>6</td><td>Explain why data analytics is needed in modern organizations</td><td>I</td><td>Short</td></tr>
-        <tr><td>7</td><td>List any 4 sources of data used in data analytics</td><td>I</td><td>Short</td></tr>
-        <tr><td>8</td><td>Write short notes on Fuzzy Logic</td><td>II</td><td>Short</td></tr>
-        <tr><td>9</td><td>Explain multivariate analysis and its importance</td><td>II</td><td>Short/Long</td></tr>
-        <tr><td>10</td><td>Define competitive learning in neural networks</td><td>II</td><td>Short</td></tr>
-        <tr><td>11</td><td>Explain Principal Component Analysis (PCA)</td><td>II</td><td>Short/Long</td></tr>
-        <tr><td>12</td><td>Explain time series analysis for time-dependent data</td><td>II</td><td>Short/Long</td></tr>
-        <tr><td>13</td><td>Explain rule induction; give one example</td><td>II</td><td>Short</td></tr>
-        <tr><td>14</td><td>How a kernel function is applied in SVM</td><td>II</td><td>Short</td></tr>
-        <tr><td>15</td><td>Explain stochastic search; mention one application</td><td>II</td><td>Short</td></tr>
-        <tr><td>16</td><td>Explain Bayesian Network; state main components</td><td>II</td><td>Short</td></tr>
-        <tr><td>17</td><td>Define regression analysis; mention two applications</td><td>I/II</td><td>Short</td></tr>
-        <tr><td>18</td><td>Need of data analytics in modern business; evolution</td><td>I</td><td>Long</td></tr>
-        <tr><td>19</td><td>Compare analysis and reporting; role in decision-making</td><td>I</td><td>Long</td></tr>
-        <tr><td>20</td><td>PCA — main steps with simple example</td><td>II</td><td>Long</td></tr>
-        <tr><td>21</td><td>Five differences: supervised vs unsupervised learning</td><td>II</td><td>Long</td></tr>
-        <tr><td>22</td><td>Regression models used in data analysis; applications</td><td>II</td><td>Long</td></tr>
-        <tr><td>23</td><td>Evolution of analytic scalability</td><td>I</td><td>Long</td></tr>
-        <tr><td>24</td><td>Classification of data — all categories with examples</td><td>I</td><td>Long</td></tr>
-        <tr><td>25</td><td>Bayesian modeling and Bayesian networks in detail</td><td>II</td><td>Long</td></tr>
-        <tr><td>26</td><td>Linear systems analysis and nonlinear dynamics in time series</td><td>II</td><td>Long</td></tr>
-        <tr><td>27</td><td>Regression modeling; multivariate regression with examples</td><td>II</td><td>Long</td></tr>
-        <tr><td>28</td><td>Evaluate suitability of SVM and neural networks for classification</td><td>II</td><td>Long</td></tr>
-        <tr><td>29</td><td>Explain kernel method; list commonly used kernel functions</td><td>II</td><td>Long</td></tr>
-        <tr><td>30</td><td>Define rule induction; basic concepts and types</td><td>II</td><td>Long</td></tr>
-        <tr><td>31</td><td>Define neural networks; major components and applications</td><td>II</td><td>Long</td></tr>
-        <tr><td>32</td><td>Define univariate and multivariate analysis; characteristics</td><td>II</td><td>Long</td></tr>
-        <tr><td>33</td><td>Design a data analysis approach for multi-variable, time-dependent dataset</td><td>II</td><td>Long</td></tr>
-        <tr><td>34</td><td>Sources and nature of data; classification with examples</td><td>I</td><td>Long</td></tr>
-        <tr><td>35</td><td>Compare analysis and reporting; predictive vs descriptive</td><td>I</td><td>Long</td></tr>
-        <tr><td>36</td><td>Big Data characteristics (5Vs); need for platforms</td><td>I</td><td>Long</td></tr>
-        <tr><td>37</td><td>Big Data concept; challenges; Volume, Velocity, Variety, Veracity impact</td><td>I</td><td>Long</td></tr>
-        <tr><td>38</td><td>Phases of Data Analytics Lifecycle in detail</td><td>I</td><td>Long</td></tr>
-        <tr><td>39</td><td>SVM and kernel methods; linear vs nonlinear kernels</td><td>II</td><td>Long</td></tr>
-        <tr><td>40</td><td>Neural networks; learning, generalization, competitive learning</td><td>II</td><td>Long</td></tr>
-    </tbody>
-</table>
-
-<h2>How to Use This Guide</h2>
-<ul>
-    <li>Use <a href="unit1.html">Unit I</a> and <a href="unit2.html">Unit II</a> pages as your primary theory reference — each topic has a definition, explanation, diagram, and real-world example.</li>
-    <li>Use <a href="short-answers.html">Short Answers</a> to practise 2-mark responses — each answer is 3–6 lines, exam-ready.</li>
-    <li>Use <a href="long-answers.html">Long Answers</a> to prepare for 7-mark questions — structured with sub-headings, diagrams, examples, and comparison tables.</li>
-    <li><a href="unit3.html">Units III</a>, <a href="unit4.html">IV</a>, and <a href="unit5.html">V</a> provide full topic coverage for completeness; no ST-1 exam questions are attached.</li>
-</ul>
-
+    <section class="home-section study-method" aria-labelledby="method-heading">
+        <div><p class="eyebrow">03 / A useful way to revise</p><h2 id="method-heading">Read. Draw. Explain.</h2></div>
+        <ol>
+            <li><strong>Understand the topic.</strong> Read the definition, the assumptions and a worked example in the unit notes.</li>
+            <li><strong>Recreate the diagram.</strong> Use the labelled figures to explain the process or model in your own words.</li>
+            <li><strong>Answer from memory.</strong> Open the linked short or long answer and compare it with your attempt.</li>
+        </ol>
+    </section>
+</main>
+<footer class="site-footer">
+    <span>IDAV / ST-1 study guide</span>
+    <span>Based on the supplied <a href="syllabus.md">syllabus</a> and <a href="questions.md">question bank</a>.</span>
+    <details><summary>Other units (outside this question bank)</summary><a href="unit3.html">Unit III</a> · <a href="unit4.html">Unit IV</a> · <a href="unit5.html">Unit V</a></details>
+</footer>
 <script src="shared.js"></script>
 </body>
 </html>

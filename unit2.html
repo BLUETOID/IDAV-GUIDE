@@ -36,16 +36,17 @@
     <nav class="chapter-map" aria-label="Unit II topic contents">
         <h2>Topic contents</h2>
         <ol>
-            <li><a href="#regression">Regression models</a></li>
-            <li><a href="#multivariate">Multivariate analysis</a></li>
-            <li><a href="#bayesian">Bayesian modeling, inference and networks</a></li>
-            <li><a href="#svm">Support vector machines and kernels</a></li>
-            <li><a href="#time-series">Time series: linear systems and nonlinear dynamics</a></li>
-            <li><a href="#rule-induction">Rule induction</a></li>
-            <li><a href="#neural-networks">Neural networks and competitive learning</a></li>
-            <li><a href="#pca">PCA and neural networks</a></li>
-            <li><a href="#fuzzy-logic">Fuzzy logic, model extraction and fuzzy trees</a></li>
-            <li><a href="#stochastic-search">Stochastic search</a></li>
+            <li><a href="#regression">Regression models</a> — simple, multiple, multivariate, OLS derivation &amp; diagnostics. <span class="chapter-links">Practise: <a href="short-answers.html#q17">Q17</a>, <a href="long-answers.html#q22">Q22</a>, <a href="long-answers.html#q27">Q27</a></span></li>
+            <li><a href="#multivariate">Multivariate analysis</a> — univariate, bivariate &amp; multivariate characteristics and matrix operations. <span class="chapter-links">Practise: <a href="short-answers.html#q9">Q9</a>, <a href="long-answers.html#q32">Q32</a></span></li>
+            <li><a href="#bayesian">Bayesian modeling, inference and networks</a> — Bayes' theorem, CPTs, DAGs &amp; belief networks. <span class="chapter-links">Practise: <a href="short-answers.html#q16">Q16</a>, <a href="long-answers.html#q25">Q25</a></span></li>
+            <li><a href="#svm">Support vector machines and kernels</a> — maximum margin, kernel trick, Mercer's condition &amp; nonlinear boundaries. <span class="chapter-links">Practise: <a href="short-answers.html#q14">Q14</a>, <a href="long-answers.html#q29">Q29</a>, <a href="long-answers.html#q39">Q39</a></span></li>
+            <li><a href="#time-series">Time series: linear systems and nonlinear dynamics</a> — ARIMA, ACF/PACF, chaos &amp; delay embedding. <span class="chapter-links">Practise: <a href="short-answers.html#q12">Q12</a>, <a href="long-answers.html#q26">Q26</a></span></li>
+            <li><a href="#rule-induction">Rule induction</a> — IF-THEN rules, sequential covering, coverage/accuracy &amp; RIPPER. <span class="chapter-links">Practise: <a href="short-answers.html#q13">Q13</a>, <a href="long-answers.html#q30">Q30</a></span></li>
+            <li><a href="#neural-networks">Neural networks and competitive learning</a> — backpropagation, generalization, SOMs &amp; SVM vs NN evaluation. <span class="chapter-links">Practise: <a href="short-answers.html#q10">Q10</a>, <a href="long-answers.html#q28">Q28</a>, <a href="long-answers.html#q31">Q31</a>, <a href="long-answers.html#q40">Q40</a></span></li>
+            <li><a href="#pca">PCA and neural networks</a> — eigendecomposition, scree plot &amp; autoencoder connection. <span class="chapter-links">Practise: <a href="short-answers.html#q11">Q11</a>, <a href="long-answers.html#q20">Q20</a></span></li>
+            <li><a href="#fuzzy-logic">Fuzzy logic, model extraction and fuzzy trees</a> — membership functions, 4-stage FIS, Wang-Mendel &amp; ANFIS. <span class="chapter-links">Practise: <a href="short-answers.html#q8">Q8</a></span></li>
+            <li><a href="#stochastic-search">Stochastic search</a> — No Free Lunch, GA, Simulated Annealing &amp; PSO optimization. <span class="chapter-links">Practise: <a href="short-answers.html#q15">Q15</a></span></li>
+            <li><a href="#integrated-approach">Integrated analytical architecture</a> — designing solutions for multi-variable, time-dependent datasets. <span class="chapter-links">Practise: <a href="long-answers.html#q33">Q33</a></span></li>
         </ol>
     </nav>
 </header>
@@ -221,21 +222,68 @@
 <h3>Correlation Matrix</h3>
 <p>A correlation matrix shows the pairwise Pearson correlation coefficients between all pairs of variables. Each entry r<sub>ij</sub> ∈ [−1, +1]: r = +1 means perfect positive linear relationship; r = 0 means no linear relationship; r = −1 means perfect negative relationship. The strength of a correlation depends on the domain and measurement context; these coefficients do not measure nonlinear dependence. The correlation matrix is the starting point for PCA, factor analysis, and multicollinearity detection in regression.</p>
 
-<h3>Univariate vs Multivariate — Comparison</h3>
+<h3>Univariate, Bivariate, and Multivariate Analysis</h3>
+<p class="section-intro">Statistical inquiry progresses from understanding single features in isolation to modeling complex joint distributions across multiple dimensions.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q9">Q9 · Multivariate Analysis &amp; Importance</a> · <a href="long-answers.html#q32">Q32 · Univariate vs Multivariate Analysis Characteristics</a>.</p>
+
 <div class="table-scroll">
 <table>
     <thead>
-        <tr><th>Aspect</th><th>Univariate</th><th>Multivariate</th></tr>
+        <tr><th>Dimension</th><th>Univariate Analysis</th><th>Bivariate Analysis</th><th>Multivariate Analysis</th></tr>
     </thead>
     <tbody>
-        <tr><td>Variables analyzed</td><td>One at a time</td><td>Two or more simultaneously</td></tr>
-        <tr><td>Captures interactions</td><td>No</td><td>Yes — joint patterns and correlations</td></tr>
-        <tr><td>Techniques</td><td>Mean, median, histogram, boxplot, frequency table</td><td>Correlation matrix, PCA, clustering, regression, MANOVA</td></tr>
-        <tr><td>Computational cost</td><td>Low</td><td>High — matrix operations, eigendecomposition</td></tr>
-        <tr><td>Information</td><td>Marginal distribution of one variable only</td><td>Relationships and inter-variable structure (depending on method)</td></tr>
+        <tr>
+            <td><strong>Variables Analyzed</strong></td>
+            <td>Single variable (<em>X</em>) in isolation</td>
+            <td>Two variables (<em>X</em><sub>1</sub>, <em>X</em><sub>2</sub>) simultaneously</td>
+            <td>Three or more variables (<em>X</em><sub>1</sub>, <em>X</em><sub>2</sub>, …, <em>X</em><sub><em>p</em></sub>) simultaneously</td>
+        </tr>
+        <tr>
+            <td><strong>Primary Objective</strong></td>
+            <td>Describe and summarize the marginal distribution, central tendency, and dispersion of a single attribute.</td>
+            <td>Determine whether a statistical relationship, correlation, or dependency exists between two specific features.</td>
+            <td>Model joint distributions, capture inter-variable interactions, uncover latent dimensions, and predict complex outcomes.</td>
+        </tr>
+        <tr>
+            <td><strong>Mathematical Measures</strong></td>
+            <td>Mean, Median, Mode, Standard Deviation, Variance, Interquartile Range (IQR), Skewness, Kurtosis.</td>
+            <td>Pearson's <em>r</em>, Spearman's rank correlation (<em>ρ</em>), Covariance Cov(<em>X</em><sub>1</sub>, <em>X</em><sub>2</sub>), Chi-Square (<em>χ</em><sup>2</sup>), Odds Ratio.</td>
+            <td>Covariance Matrix (<strong>Σ</strong>), Correlation Matrix (<strong>R</strong>), Eigenvalues/Eigenvectors, Mahalanobis distance, Partial <em>F</em>-statistics.</td>
+        </tr>
+        <tr>
+            <td><strong>Visualization Tools</strong></td>
+            <td>Histograms, Box Plots, Density plots, Cumulative Distribution Function (CDF), Bar charts.</td>
+            <td>Scatter plots, Contingency cross-tab tables, Bivariate contour plots, Dual line charts.</td>
+            <td>Scatter plot matrices (SPLOM), PCA Biplots, Heatmaps with hierarchical clustering, Parallel Coordinates plots, Radar charts.</td>
+        </tr>
+        <tr>
+            <td><strong>Core Techniques</strong></td>
+            <td>Summary statistics, one-sample <em>t</em>-test, Shapiro-Wilk normality test.</td>
+            <td>Simple Linear Regression, Independent samples <em>t</em>-test, Pearson correlation, ANOVA.</td>
+            <td>Multiple Regression, Multivariate Regression, PCA, Factor Analysis, MANOVA, Cluster Analysis, Discriminant Analysis.</td>
+        </tr>
+        <tr>
+            <td><strong>Handles Interactions &amp; Confounders?</strong></td>
+            <td><strong>No:</strong> Completely blind to interactions, correlations, and confounding factors.</td>
+            <td><strong>Partial:</strong> Shows pairwise association, but vulnerable to Simpson's paradox and omitted-variable bias.</td>
+            <td><strong>Yes:</strong> Explicitly accounts for cross-variable correlations, multi-way interactions, and controls for confounding covariates.</td>
+        </tr>
+        <tr>
+            <td><strong>Concrete Example</strong></td>
+            <td>Inspecting the salary distribution of all software engineers in an enterprise (Mean = $110,000, Skewness = +1.4).</td>
+            <td>Evaluating the correlation between years of experience and salary (<em>r</em> = +0.78, <em>p</em> &lt; 0.001).</td>
+            <td>Predicting salary simultaneously from years of experience, education level, city cost-of-living index, and technical test scores while controlling for department.</td>
+        </tr>
     </tbody>
 </table>
 </div>
+
+<h4>Why Multivariate Analysis is Essential in Data Science</h4>
+<ul>
+    <li><strong>Mitigating Simpson's Paradox:</strong> In observational datasets, a trend observed in univariate or bivariate views can completely reverse when data is analyzed across subgroups or controlling for confounding variables. Multivariate techniques prevent erroneous strategic decisions.</li>
+    <li><strong>Managing Multicollinearity:</strong> Predictor variables often share variance (e.g., household income, home value, and spending). Multivariate analysis identifies collinearity via Variance Inflation Factors (VIF) and resolves it through regularization or dimensionality reduction (PCA).</li>
+    <li><strong>Realistic Pattern Recognition:</strong> Real-world phenomena (e.g., customer churn, financial market shifts, disease etiology) never depend on a single isolated variable. Modeling joint dependencies is strictly necessary for accurate risk prediction.</li>
+</ul>
 
 <!-- =====================================================================
      3. BAYESIAN MODELING AND NETWORKS
@@ -452,6 +500,63 @@
     <li><strong>One-vs-One (OvO):</strong> Train k(k-1)/2 binary SVMs, one for each pair of classes. Classify by majority vote. More classifiers but each trains on a smaller, balanced dataset. Accuracy depends on data and tuning; compare strategies on validation data.</li>
 </ul>
 
+<h3>How Kernel Functions Handle Non-Linear Decision Boundaries</h3>
+<p class="section-intro">When data is not linearly separable in the original input space, the kernel trick maps inputs into a higher-dimensional space where a linear hyperplane separates the classes.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q14">Q14 · Kernel Function for Non-linear Data</a> · <a href="long-answers.html#q29">Q29 · Kernel Methods &amp; Functions</a> · <a href="long-answers.html#q39">Q39 · SVM Linear vs Nonlinear Kernels</a>.</p>
+
+<h4>1. Mercer's Theorem &amp; The Kernel Trick</h4>
+<p>In the SVM dual formulation, the optimization objective depends strictly on pairwise dot products: ∑ α<sub><em>i</em></sub> − ½ ∑ α<sub><em>i</em></sub> α<sub><em>j</em></sub> <em>y</em><sub><em>i</em></sub> <em>y</em><sub><em>j</em></sub> (<strong>x</strong><sub><em>i</em></sub> · <strong>x</strong><sub><em>j</em></sub>). The <strong>kernel trick</strong> replaces every inner product with a kernel function <em>K</em>(<strong>x</strong><sub><em>i</em></sub>, <strong>x</strong><sub><em>j</em></sub>) = ⟨Φ(<strong>x</strong><sub><em>i</em></sub>), Φ(<strong>x</strong><sub><em>j</em></sub>)⟩. By <strong>Mercer's Theorem</strong>, any continuous, symmetric function that produces a positive semi-definite Gram matrix corresponds to an inner product in some high-dimensional (or infinite-dimensional) Hilbert space ℋ. Crucially, <em>K</em>(<strong>x</strong><sub><em>i</em></sub>, <strong>x</strong><sub><em>j</em></sub>) is evaluated directly in the low-dimensional input space without ever explicitly calculating the expensive or infinite coordinate mapping Φ(<strong>x</strong>).</p>
+
+<h4>2. Linear vs. Nonlinear Kernels — Deep Comparison</h4>
+<div class="table-scroll">
+<table>
+    <thead>
+        <tr><th>Dimension</th><th>Linear Kernel (<em>K</em> = <strong>x</strong><sub><em>i</em></sub><sup>T</sup> <strong>x</strong><sub><em>j</em></sub>)</th><th>RBF / Gaussian Kernel (<em>K</em> = exp(−γ ∥<strong>x</strong><sub><em>i</em></sub> − <strong>x</strong><sub><em>j</em></sub>∥<sup>2</sup>))</th><th>Polynomial Kernel (<em>K</em> = (γ <strong>x</strong><sub><em>i</em></sub><sup>T</sup> <strong>x</strong><sub><em>j</em></sub> + <em>r</em>)<sup><em>d</em></sup>)</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Feature Space Dimension</strong></td>
+            <td>Identical to input dimension (<em>d</em>)</td>
+            <td><strong>Infinite-dimensional</strong> Hilbert space</td>
+            <td>Finite: <em>C</em>(<em>d</em>+<em>m</em>, <em>m</em>) dimensional interaction space</td>
+        </tr>
+        <tr>
+            <td><strong>Decision Boundary in Input Space</strong></td>
+            <td>Strictly linear flat hyperplane</td>
+            <td>Smooth, highly flexible non-linear curves / closed contours</td>
+            <td>Polynomial curved surfaces of degree <em>d</em></td>
+        </tr>
+        <tr>
+            <td><strong>Hyperparameters</strong></td>
+            <td>Only penalty parameter <em>C</em></td>
+            <td>Penalty <em>C</em> and bandwidth γ = 1 / (2σ<sup>2</sup>)</td>
+            <td>Penalty <em>C</em>, degree <em>d</em>, coefficient γ, intercept <em>r</em></td>
+        </tr>
+        <tr>
+            <td><strong>Computational Complexity</strong></td>
+            <td>Fastest (<em>O</em>(<em>n</em> · <em>d</em>) prediction time); weight vector <strong>w</strong> can be precalculated directly.</td>
+            <td>Moderate-to-high: requires computing kernel distance against all support vectors for every prediction.</td>
+            <td>High: risk of numerical overflow or underflow for degrees <em>d</em> ≥ 4.</td>
+        </tr>
+        <tr>
+            <td><strong>Overfitting Risk</strong></td>
+            <td>Low (high bias, low variance)</td>
+            <td>High if γ is set too large (each sample becomes its own island)</td>
+            <td>High if degree <em>d</em> is set too high</td>
+        </tr>
+        <tr>
+            <td><strong>Ideal Application</strong></td>
+            <td>High-dimensional sparse text data (TF-IDF spam classification), genomics with <em>d</em> ≫ <em>n</em>.</td>
+            <td>Non-linearly distributed numeric datasets, image features, general non-linear classification.</td>
+            <td>Computer vision and natural language processing with known structural feature interactions.</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<h4>3. Visualizing Non-Linear Transformation: Concentric Circles Example</h4>
+<p>Consider 2D concentric data where Class +1 is a circular core (<em>x</em><sub>1</sub><sup>2</sup> + <em>x</em><sub>2</sub><sup>2</sup> ≤ 1) and Class −1 is an outer ring (<em>x</em><sub>1</sub><sup>2</sup> + <em>x</em><sub>2</sub><sup>2</sup> &gt; 1). In 2D (<em>x</em><sub>1</sub>, <em>x</em><sub>2</sub>), no straight line can separate them. Applying the non-linear mapping Φ(<em>x</em><sub>1</sub>, <em>x</em><sub>2</sub>) = (<em>x</em><sub>1</sub><sup>2</sup>, √2 <em>x</em><sub>1</sub><em>x</em><sub>2</sub>, <em>x</em><sub>2</sub><sup>2</sup>) projects points into 3D. In this 3D space, the inner points map to low <em>z</em>-values, while outer points map to high <em>z</em>-values. A flat 2D cutting plane <em>z</em><sub>1</sub> + <em>z</em><sub>3</sub> = threshold easily linearly separates the two classes. Projecting this flat plane back into the original 2D space yields the circular decision boundary <em>x</em><sub>1</sub><sup>2</sup> + <em>x</em><sub>2</sub><sup>2</sup> = threshold.</p>
+
 <!-- =====================================================================
      5. TIME SERIES ANALYSIS
      ===================================================================== -->
@@ -626,7 +731,7 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
      ===================================================================== -->
 <h2 id="neural-networks">7. Neural Networks</h2>
 <p class="section-intro">Separate supervised weight updates and generalization from unsupervised competitive learning, where neurons specialize without labels.</p>
-<p class="chapter-links">Practice: <a href="short-answers.html#q10">Q10 · competitive learning</a> · <a href="long-answers.html#q28">Q28 · SVM vs networks</a> · <a href="long-answers.html#q40">Q40 · learning and generalization</a>.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q10">Q10 · competitive learning</a> · <a href="long-answers.html#q28">Q28 · SVM vs networks</a> · <a href="long-answers.html#q40">Q40 · learning and generalization</a> · <a href="long-answers.html#q46">Q46 · Generalization &amp; Overfitting Factors</a> · <a href="long-answers.html#q50">Q50 · 3 NN Learning Paradigms</a>.</p>
 
 <h3>Definition</h3>
 <p>An artificial neural network (ANN) is a layered computational model that learns a mapping from inputs to outputs by adjusting connection weights through iterative training. With suitable nonlinear activations and sufficient capacity, some feedforward networks can approximate continuous functions on bounded domains; approximation alone does not guarantee learning or generalization.</p>
@@ -844,12 +949,78 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
 </figure>
 <p><strong>Self-Organizing Map (SOM / Kohonen Network):</strong> Extends competitive learning by organizing neurons on a 2D grid and updating not just the winner but also its topological neighbors (with decreasing influence further from the winner). The neighborhood radius shrinks over training. The goal is a 2D map that approximately preserves neighborhood relationships, though topology preservation is not guaranteed. Used for: unsupervised data visualization, clustering, anomaly detection, and dimensionality reduction for qualitative interpretation.</p>
 
+<h4>Real-Life Applications of Competitive Learning</h4>
+<ul>
+    <li><strong>Customer Behavioral Profiling:</strong> A commercial bank feeds customer financial transaction vectors (average monthly spend, balance volatility, ATM withdrawal frequency, international wire volume) into a 10×10 SOM grid. Through competitive learning, the 100 output neurons self-organize without any supervision: one corner clusters high-net-worth wealth clients, another clusters student debit accounts, and an anomalous peripheral node isolates potential money-laundering patterns.</li>
+    <li><strong>Phonetic Speech Recognition:</strong> Continuous speech audio spectrograms (formant frequencies) are streamed into a competitive neural network. Winner-take-all dynamics cluster similar phonetic vowel sounds together onto adjacent topographical map coordinates, providing an unsupervised acoustic feature extractor for downstream speech-to-text systems.</li>
+</ul>
+
+<h3>Comparative Evaluation: SVM vs. Neural Networks for Data Classification</h3>
+<p class="section-intro">Both Support Vector Machines and Artificial Neural Networks are foundational supervised learning classifiers, but their mathematical foundations, optimization landscapes, and practical trade-offs differ significantly.</p>
+<p class="chapter-links">Practice: <a href="long-answers.html#q28">Q28 · Suitability of SVM vs Neural Networks for Classification</a> · <a href="long-answers.html#q39">Q39 · SVM &amp; Kernels</a> · <a href="long-answers.html#q40">Q40 · Neural Networks Learning &amp; Generalization</a>.</p>
+
+<div class="table-scroll">
+<table>
+    <thead>
+        <tr><th>Evaluation Criterion</th><th>Support Vector Machines (SVM)</th><th>Artificial Neural Networks (ANN / Deep Learning)</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>1. Theoretical Foundation</strong></td>
+            <td><strong>Structural Risk Minimization (SRM):</strong> Maximizes the geometric margin between classes, mathematically upper-bounding the generalization error via Vapnik-Chervonenkis (VC) dimension theory.</td>
+            <td><strong>Empirical Risk Minimization (ERM):</strong> Minimizes a chosen loss function (e.g., cross-entropy) over training instances via iterative gradient descent; universal approximation theorem guarantees capacity.</td>
+        </tr>
+        <tr>
+            <td><strong>2. Optimization Landscape</strong></td>
+            <td><strong>Convex Quadratic Programming:</strong> Possesses a single, unique global minimum. Training is deterministic and never gets trapped in suboptimal local minima.</td>
+            <td><strong>Non-Convex Optimization:</strong> Objective surface contains many local minima, saddle points, and plateaus. Sensitive to weight initialization, learning rate schedules, and optimizer choice.</td>
+        </tr>
+        <tr>
+            <td><strong>3. Dataset Sample Size (<em>n</em>)</strong></td>
+            <td>Superior on <strong>small-to-medium datasets</strong> (<em>n</em> &lt; 50,000). Quadratic/cubic computational complexity <em>O</em>(<em>n</em><sup>2</sup> ∼ <em>n</em><sup>3</sup>) makes training on millions of rows prohibitively slow.</td>
+            <td>Requires <strong>large datasets</strong> (<em>n</em> &gt; 100,000) to achieve high accuracy without overfitting. Scalable to billions of rows using mini-batch Stochastic Gradient Descent (SGD) on GPUs.</td>
+        </tr>
+        <tr>
+            <td><strong>4. Input Dimensionality (<em>p</em>)</strong></td>
+            <td><strong>Exceptional on high-dimensional data (<em>p</em> ≫ <em>n</em>):</strong> Effective in genomics, microarray data, and TF-IDF text categorization where features vastly outnumber samples.</td>
+            <td>Vulnerable to the curse of dimensionality and overfitting unless vast amounts of training data or strong inductive biases (e.g., weight sharing in CNNs) are applied.</td>
+        </tr>
+        <tr>
+            <td><strong>5. Feature Engineering</strong></td>
+            <td>Requires domain-curated, pre-engineered tabular features. Kernel functions implicitly map inputs, but raw perceptual signals (raw pixels, audio waves) require manual feature engineering.</td>
+            <td><strong>Automated Representation Learning:</strong> Hidden layers automatically extract hierarchical feature representations directly from raw perceptual data (edges → textures → objects).</td>
+        </tr>
+        <tr>
+            <td><strong>6. Interpretability &amp; Sparsity</strong></td>
+            <td><strong>Moderate:</strong> Sparse solution defined strictly by support vectors. Outliers far from the margin have zero influence. Decision boundary can be inspected via support vectors.</td>
+            <td><strong>Low ("Black Box"):</strong> Predictions arise from millions of distributed non-linear matrix multiplications. Requires post-hoc explainability frameworks (SHAP, LIME, Integrated Gradients).</td>
+        </tr>
+        <tr>
+            <td><strong>7. Hyperparameter Sensitivity</strong></td>
+            <td>Few parameters: penalty parameter <em>C</em>, choice of kernel function, and kernel bandwidth γ. Systematic grid search or Bayesian optimization reliably finds optimal settings.</td>
+            <td>Extensive hyperparameter space: network depth, layer widths, activation functions, learning rates, weight decay, dropout rates, batch size, optimizer algorithms.</td>
+        </tr>
+        <tr>
+            <td><strong>8. Multi-Class Handling</strong></td>
+            <td>Inherently binary; requires multi-class reduction wrappers like One-vs-Rest (OvR) or One-vs-One (OvO).</td>
+            <td>Naturally handles arbitrary multi-class and multi-label problems directly using a Softmax output layer.</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<h4>Practitioner's Decision Rule for Data Classification</h4>
+<ul>
+    <li><strong>Choose SVM when:</strong> The dataset has fewer than 50,000 samples; the feature dimensionality is very high (e.g., text, bioinformatics); training must yield a guaranteed global optimum; or computational resources for large neural training runs are unavailable.</li>
+    <li><strong>Choose Neural Networks when:</strong> The dataset is large (hundreds of thousands of records); the data consists of raw, perceptual modalities (images, audio, unstructured free text); or complex hierarchical feature interactions must be discovered automatically.</li>
+</ul>
+
 <!-- =====================================================================
      8. PRINCIPAL COMPONENT ANALYSIS (PCA)
      ===================================================================== -->
 <h2 id="pca">8. Principal Component Analysis (PCA)</h2>
 <p class="section-intro">PCA rotates centered data onto variance-ranked orthogonal directions; compare its linear representation with learned neural-network bottlenecks.</p>
-<p class="chapter-links">Practice: <a href="short-answers.html#q11">Q11 · PCA definition</a> · <a href="long-answers.html#q20">Q20 · steps and example</a> · <a href="long-answers.html#q33">Q33 · PCA in a pipeline</a>.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q11">Q11 · PCA definition</a> · <a href="long-answers.html#q20">Q20 · steps and example</a> · <a href="long-answers.html#q33">Q33 · PCA in a pipeline</a> · <a href="long-answers.html#q47">Q47 · Relationship between PCA &amp; Neural Networks (Autoencoders &amp; GHA)</a>.</p>
 
 <h3>Definition and Purpose</h3>
 <p>PCA is an unsupervised dimensionality reduction technique that transforms a dataset with p correlated variables into k ≤ p uncorrelated linear combinations called <strong>principal components (PCs)</strong>. PCs are ordered by the proportion of total variance they explain (PC1 captures the most). PCA is used to: eliminate multicollinearity, reduce storage and computation costs, enable 2D/3D visualization of high-dimensional data, and extract latent structure.</p>
@@ -1041,7 +1212,7 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
      ===================================================================== -->
 <h2 id="fuzzy-logic">9. Fuzzy Logic</h2>
 <p class="section-intro">Fuzzy membership expresses graded category fit; learn how to derive membership functions and interpretable rules or trees from observations.</p>
-<p class="chapter-links">Practice: <a href="short-answers.html#q8">Q8 · fuzzy-logic short note</a> · <a href="long-answers.html#q30">Q30 · compare crisp rule induction</a>.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q8">Q8 · Fuzzy logic short note</a> · <a href="long-answers.html#q48">Q48 · Fuzzy Inference System (FIS) Architecture &amp; Worked Example</a> · <a href="long-answers.html#q49">Q49 · Extracting Fuzzy Models &amp; Crisp vs Fuzzy Trees</a> · <a href="long-answers.html#q30">Q30 · Compare crisp rule induction</a>.</p>
 
 <h3>Definition</h3>
 <p>Fuzzy logic (Lotfi Zadeh, 1965) extends classical binary logic by allowing truth values in the continuous range [0, 1] rather than only {0, 1}. It mathematically models vague, linguistic concepts — "hot," "fast," "tall," "slightly above average" — using membership functions that assign a degree of membership between 0 (completely outside the set) and 1 (fully inside the set). Fuzzy logic reasons about graded categories; a membership degree is not automatically a probability of an event.</p>
@@ -1196,7 +1367,7 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
      ===================================================================== -->
 <h2 id="stochastic-search">10. Stochastic Search and Optimization</h2>
 <p class="section-intro">When exhaustive or gradient-based search is impractical, use random proposals and an objective function to explore candidate solutions.</p>
-<p class="chapter-links">Practice: <a href="short-answers.html#q15">Q15 · definition and application</a> · <a href="long-answers.html#q33">Q33 · choose methods for a dataset</a>.</p>
+<p class="chapter-links">Practice: <a href="short-answers.html#q15">Q15 · definition and application</a> · <a href="short-answers.html#q45">Q45 · stochastic vs deterministic search</a> · <a href="long-answers.html#q33">Q33 · choose methods for a dataset</a>.</p>
 
 <h3>Definition</h3>
 <p>Stochastic search is a class of metaheuristic optimization algorithms that use controlled randomness to explore complex, high-dimensional search spaces — particularly when the objective function is non-differentiable, multi-modal (many local optima), or so complex that gradient-based methods get trapped in local optima. Stochastic search sacrifices the guarantee of finding the global optimum for practical tractability in large search spaces.</p>
@@ -1255,19 +1426,129 @@ OTHERWISE THEN credit_risk = MEDIUM</pre>
     <li><strong>Clustering:</strong> K-means uses random initialization of centroids; multiple restarts with different initializations avoid poor local optima.</li>
 </ul>
 
+<!-- =====================================================================
+     11. INTEGRATED ANALYTICAL ARCHITECTURE
+     ===================================================================== -->
+<h2 id="integrated-approach">11. Integrated Analytical Architecture: Multivariate &amp; Time-Dependent Datasets</h2>
+<p class="section-intro">Real-world data science problems rarely yield to a single algorithm. Modern predictive pipelines systematically synthesize Time Series Analysis, PCA, Regression, and SVM to solve complex multi-dimensional, longitudinal challenges.</p>
+<p class="chapter-links">Practice: <a href="long-answers.html#q33">Q33 · Designing Analysis Approach for Multi-Variable Time-Dependent Datasets</a>.</p>
+
+<h3>Problem Scenario</h3>
+<p>Consider an enterprise retail or financial analytics dataset containing monthly records for 50,000 customers over a 3-year period. Each observation contains:</p>
+<ul>
+    <li><strong>High-Dimensional Cross-Sectional Features:</strong> Customer age, income, credit rating, 15 product category spend ratios, web session duration, discount usage, mobile app logins, customer support calls (over 40 correlated variables).</li>
+    <li><strong>Time-Dependent Sequences:</strong> Monthly transaction volume, macro-economic interest rates, seasonal retail indices tracked chronologically across 36 consecutive months.</li>
+    <li><strong>Analytical Objectives:</strong> (1) Forecast aggregate monthly revenue for the upcoming quarter (continuous time series prediction); (2) Identify individual customers likely to churn next month (discrete non-linear classification).</li>
+</ul>
+
+<h3>The 4-Stage Integrated Methodology</h3>
+<div class="table-scroll">
+<table>
+    <thead>
+        <tr><th>Pipeline Stage</th><th>Selected Technique</th><th>Operational Role in the Architecture</th><th>Mathematical Rationale &amp; Justification</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Stage 1: Temporal Conditioning</strong></td>
+            <td><strong>Time Series Analysis (ARIMA / SARIMA Decomposition)</strong></td>
+            <td>Isolate seasonal retail cycles (<em>S</em><sub><em>t</em></sub>) and long-term economic trends (<em>T</em><sub><em>t</em></sub>) from stationary residuals (<em>I</em><sub><em>t</em></sub>). Test stationarity using the Augmented Dickey-Fuller (ADF) test and apply first-order differencing (Δ<em>Y</em><sub><em>t</em></sub>).</td>
+            <td><strong>Why Required:</strong> Cross-sectional algorithms assume Independent and Identically Distributed (i.i.d.) observations. Time series data violates this via temporal autocorrelation. Modeling trend and seasonality first prevents spurious correlations and decouples time dependencies.</td>
+        </tr>
+        <tr>
+            <td><strong>Stage 2: Dimensionality Reduction</strong></td>
+            <td><strong>Principal Component Analysis (PCA)</strong></td>
+            <td>Transform 40+ correlated customer behavioral attributes into <em>k</em> ≈ 6 orthogonal, uncorrelated Principal Components capturing ≥ 92% of total variance.</td>
+            <td><strong>Why Required:</strong> 40+ raw features suffer from extreme multicollinearity (e.g., spend across categories correlates strongly with income). High dimensionality degrades regression stability and causes SVM solvers to slow down. PCA eliminates collinearity and compresses dimensions.</td>
+        </tr>
+        <tr>
+            <td><strong>Stage 3: Baseline Relational Modeling</strong></td>
+            <td><strong>Multiple / Multivariate Regression</strong></td>
+            <td>Fit multiple linear regression modeling customer monthly expenditure (<em>Y</em>) as a function of the top principal components and temporal trend variables: <em>Y</em> = β<sub>0</sub> + ∑ β<sub><em>j</em></sub> PC<sub><em>j</em></sub> + β<sub><em>t</em></sub> <em>T</em><sub><em>t</em></sub> + ε.</td>
+            <td><strong>Why Required:</strong> Provides transparent, interpretable baseline coefficients for business stakeholders. Quantifies the marginal impact of macro-trends versus customer behavioral factors. Delivers the continuous financial revenue forecast.</td>
+        </tr>
+        <tr>
+            <td><strong>Stage 4: Nonlinear Predictive Classification</strong></td>
+            <td><strong>Support Vector Machines (SVM) with RBF Kernel</strong></td>
+            <td>Train an SVM classifier using RBF kernel on the principal components, recent spending velocity, and temporal difference features to predict the binary churn flag (Churn ∈ {0, 1}).</td>
+            <td><strong>Why Required:</strong> Churn dynamics exhibit complex non-linear interaction thresholds (e.g., high discount usage combined with a sudden drop in app visits triggers churn). Linear regression and linear classifiers fail on such non-separable decision boundaries. RBF SVM maps features into infinite Hilbert space, finding optimal maximum-margin boundaries without overfitting.</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<div class="diagram-wrap">
+    <svg width="680" height="240" viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" aria-label="Integrated analytics architecture flowchart combining Time Series, PCA, Regression, and SVM">
+        <defs>
+            <marker id="arrowArch" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#7b1f2e"/>
+            </marker>
+        </defs>
+
+        <!-- Input Data Box -->
+        <rect x="10" y="85" width="130" height="70" rx="4" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.8"/>
+        <text x="75" y="110" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#7b1f2e">Raw Dataset</text>
+        <text x="75" y="125" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">40+ Multi-Variables</text>
+        <text x="75" y="138" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">3-Yr Longitudinal Time</text>
+
+        <!-- Branch 1: Time Series Analysis -->
+        <line x1="140" y1="105" x2="185" y2="60" stroke="#7b1f2e" stroke-width="1.8" marker-end="url(#arrowArch)"/>
+        <rect x="190" y="25" width="145" height="70" rx="4" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+        <text x="262" y="48" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">1. Time Series Analysis</text>
+        <text x="262" y="63" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Decomposition (T, S, I)</text>
+        <text x="262" y="76" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">ADF Test &amp; Differencing</text>
+
+        <!-- Branch 2: PCA -->
+        <line x1="140" y1="135" x2="185" y2="180" stroke="#7b1f2e" stroke-width="1.8" marker-end="url(#arrowArch)"/>
+        <rect x="190" y="145" width="145" height="70" rx="4" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+        <text x="262" y="168" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">2. PCA Reduction</text>
+        <text x="262" y="183" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Standardize 40+ Features</text>
+        <text x="262" y="196" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Extract Top 6 PCs (92% Var)</text>
+
+        <!-- Middle to Regression -->
+        <line x1="335" y1="60" x2="385" y2="85" stroke="#7b1f2e" stroke-width="1.8" marker-end="url(#arrowArch)"/>
+        <line x1="335" y1="175" x2="385" y2="105" stroke="#7b1f2e" stroke-width="1.8" marker-end="url(#arrowArch)"/>
+        <rect x="390" y="65" width="140" height="70" rx="4" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+        <text x="460" y="88" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">3. Regression Model</text>
+        <text x="460" y="103" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Linear Baseline &amp; Trends</text>
+        <text x="460" y="116" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Continuous Spend Forecast</text>
+
+        <!-- To SVM Classifier -->
+        <line x1="335" y1="185" x2="385" y2="185" stroke="#7b1f2e" stroke-width="1.8" marker-end="url(#arrowArch)"/>
+        <line x1="460" y1="135" x2="460" y2="155" stroke="#7b1f2e" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrowArch)"/>
+        <rect x="390" y="155" width="140" height="70" rx="4" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
+        <text x="460" y="178" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">4. Nonlinear SVM</text>
+        <text x="460" y="193" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">RBF Kernel Decision Boundary</text>
+        <text x="460" y="206" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Binary Churn Prediction</text>
+
+        <!-- Final Outcomes -->
+        <line x1="530" y1="100" x2="575" y2="100" stroke="#7b1f2e" stroke-width="1.8" marker-end="url(#arrowArch)"/>
+        <line x1="530" y1="190" x2="575" y2="190" stroke="#7b1f2e" stroke-width="1.8" marker-end="url(#arrowArch)"/>
+        <rect x="580" y="75" width="95" height="50" rx="4" fill="#7b1f2e"/>
+        <text x="627" y="97" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" font-weight="bold" fill="#fff">Quarterly</text>
+        <text x="627" y="111" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" font-weight="bold" fill="#fff">Revenue Forecast</text>
+
+        <rect x="580" y="165" width="95" height="50" rx="4" fill="#7b1f2e"/>
+        <text x="627" y="187" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" font-weight="bold" fill="#fff">30-Day Churn</text>
+        <text x="627" y="201" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" font-weight="bold" fill="#fff">Risk Scoring</text>
+    </svg>
+</div>
+<p class="diagram-caption">Figure 6: Multi-Stage Integrated Analytic Pipeline for Longitudinal, Multi-Variable Data. Time series decomposition decouples temporal seasonality, PCA reduces cross-sectional dimensionality, Regression provides baseline forecasting, and RBF SVM captures non-linear classification thresholds.</p>
+
 <section class="study-check" aria-labelledby="unit2-check-title">
     <h2 id="unit2-check-title">End-of-unit study checklist</h2>
     <p>Try each task without looking at the answers; revisit the linked section when a step is unclear.</p>
     <ul>
-        <li>Explain simple vs multiple regression and the difference between prediction, association and causal claims; distinguish univariate and multivariate analysis.</li>
-        <li>Use a prior and likelihood to update a posterior; identify nodes, directed dependencies and conditional tables in a Bayesian network.</li>
-        <li>Draw an SVM margin, mark true support vectors and explain how a kernel creates a nonlinear input-space boundary.</li>
-        <li>Separate trend, seasonality and residuals; contrast a linear lag equation with state-dependent nonlinear dynamics and evaluate forecasts in time order.</li>
-        <li>Write an IF–THEN rule and calculate its coverage, confidence and support from counts.</li>
-        <li>Describe forward pass, backpropagation and generalization; work through a winner-take-all prototype update and explain how a SOM differs.</li>
-        <li>Center a small dataset, identify PC1 and explained variance, and compare PCA with a linear autoencoder.</li>
-        <li>Read overlapping fuzzy memberships, outline data-driven fuzzy-rule extraction and explain fuzzy-tree branching.</li>
-        <li>Contrast genetic algorithms, simulated annealing and particle swarm optimization; describe how to validate a feature-search result.</li>
+        <li>Explain simple vs multiple regression, Gauss-Markov BLUE assumptions, and distinguish univariate, bivariate, and multivariate analysis.</li>
+        <li>Use Bayes' theorem to compute posterior probability; identify DAG structure, conditional independence, and CPTs in a Bayesian network.</li>
+        <li>Draw an SVM margin, identify support vectors, state Mercer's theorem, and explain how the kernel trick creates non-linear boundaries.</li>
+        <li>Separate trend, seasonality, and residuals; explain stationarity and ADF testing; contrast linear AR/MA models with non-linear dynamics and chaos.</li>
+        <li>Write an IF–THEN rule, compute coverage and confidence, and describe the separate-and-conquer strategy in PRISM and RIPPER.</li>
+        <li>Describe forward propagation, backpropagation chain rule, and generalization techniques (dropout, regularization, early stopping).</li>
+        <li>Work through a winner-take-all competitive learning update, explain SOM topological maps, and evaluate SVM vs Neural Networks for classification.</li>
+        <li>Center a dataset, compute covariance matrix, sort eigenvalues, plot a scree plot, and explain the PCA-autoencoder equivalence.</li>
+        <li>Distinguish crisp vs fuzzy sets, trace the 4 stages of a Fuzzy Inference System (fuzzification, Mamdani rules, aggregation, centroid defuzzification), and explain ANFIS.</li>
+        <li>Contrast Genetic Algorithms, Simulated Annealing, and PSO; explain the No Free Lunch theorem and feature selection applications.</li>
+        <li>Design an integrated 4-stage pipeline (Time Series + PCA + Regression + SVM) for a complex multi-variable, longitudinal dataset.</li>
     </ul>
 </section>
 <footer class="chapter-footer">

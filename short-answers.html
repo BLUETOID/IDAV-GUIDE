@@ -27,11 +27,11 @@
 <header class="page-header chapter-intro">
     <p class="chapter-kicker">ST-1 Question Bank · Units I &amp; II</p>
     <h1>Short Answer Questions (2 Marks)</h1>
-    <p class="chapter-summary">Find all 16 short answers by unit. Use the question indexes to jump straight to an answer, or read the matching theory first.</p>
+    <p class="chapter-summary">Find all 17 short answers by unit. Use the question indexes to jump straight to an answer, or read the matching theory first.</p>
     <nav class="chapter-map" aria-label="Jump to a unit">
         <ul>
-            <li><a href="#unit1-questions">Unit I · Analytics foundations</a></li>
-            <li><a href="#unit2-questions">Unit II · Analytic methods</a></li>
+            <li><a href="#unit1-questions">Unit I · Analytics foundations (6 Questions)</a></li>
+            <li><a href="#unit2-questions">Unit II · Analytic methods (11 Questions)</a></li>
         </ul>
     </nav>
     <p class="chapter-links">Looking for the lifecycle question? <a href="long-answers.html#q5">Q5 is a long answer</a>.</p>
@@ -129,6 +129,7 @@
         <li><a href="#q15">Q15 · Stochastic search</a></li>
         <li><a href="#q16">Q16 · Bayesian networks</a></li>
         <li><a href="#q17">Q17 · Regression</a></li>
+        <li><a href="#q45">Q45 · Stochastic vs deterministic</a></li>
     </ul>
 </nav>
 
@@ -215,6 +216,28 @@
     <div class="answer-body">
         <p>Regression analysis is a statistical technique that models the relationship between a dependent variable (outcome) and one or more independent variables (predictors), producing an equation used to predict the dependent variable's value for new inputs. The simplest form is: Y = b0 + b1X + error, where b0 and b1 are estimated by minimizing the sum of squared residuals.</p>
         <p><strong>Applications:</strong> (1) <strong>Real estate pricing</strong> — predicting house prices from floor area, location, and number of rooms. (2) <strong>Demand forecasting</strong> — predicting next month's product sales from historical sales data, promotional spend, and seasonality indicators.</p>
+    </div>
+</div>
+
+<div class="qa-block" id="q45">
+    <div class="question-label">Q45 — Differentiate</div>
+    <div class="question-text">Differentiate between stochastic search methods and deterministic optimization techniques.</div>
+    <div class="answer-body">
+        <p><strong>Deterministic optimization</strong> follows a fixed, mathematically reproducible sequence of steps where the same starting point always yields the exact same trajectory and final solution (e.g., Gradient Descent, Newton-Raphson, Simplex algorithm). However, deterministic gradient methods easily become trapped in sub-optimal local minima when objective surfaces are non-convex, rugged, or non-differentiable.</p>
+        <p><strong>Stochastic search methods</strong> incorporate controlled probabilistic randomness into candidate solution generation and acceptance criteria (e.g., Simulated Annealing, Genetic Algorithms, Particle Swarm Optimization). This randomness allows the algorithm to explore beyond local barriers, occasionally accepting worse moves (e.g., via the Metropolis criterion) to escape local minima and locate global optima in complex, high-dimensional parameter spaces.</p>
+        <div class="table-scroll">
+        <table>
+            <thead>
+                <tr><th>Criterion</th><th>Deterministic Optimization</th><th>Stochastic Search</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Trajectory</strong></td><td>Strictly reproducible; fixed path from given initial point</td><td>Probabilistic; different runs explore different paths</td></tr>
+                <tr><td><strong>Gradient Dependency</strong></td><td>Requires smooth, differentiable objective functions (∇<em>f</em>(<em>x</em>))</td><td>Derivative-free; works on discontinuous, discrete, or black-box functions</td></tr>
+                <tr><td><strong>Local Minima</strong></td><td>Prone to getting trapped in the nearest local minimum</td><td>Escapes local minima via probabilistic exploration (e.g., temperature cooling)</td></tr>
+                <tr><td><strong>Key Examples</strong></td><td>Gradient Descent, L-BFGS, Nelder-Mead</td><td>Simulated Annealing, Genetic Algorithms, Particle Swarm</td></tr>
+            </tbody>
+        </table>
+        </div>
     </div>
 </div>
 </section>

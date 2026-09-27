@@ -27,14 +27,14 @@
 <header class="page-header chapter-intro">
     <p class="chapter-kicker">ST-1 Question Bank · Units I &amp; II</p>
     <h1>Long Answer Questions (7 Marks)</h1>
-    <p class="chapter-summary">Explore 24 detailed answers with examples, tables, and diagrams where useful. Choose a unit, then jump to a question from its index.</p>
+    <p class="chapter-summary">Explore 33 comprehensive 7-mark model answers with step-by-step mathematical derivations, comparison tables, architectures, and SVG diagrams. Choose a unit, then jump to a question from its index.</p>
     <nav class="chapter-map" aria-label="Jump to a unit">
         <ul>
-            <li><a href="#unit1-questions">Unit I · Analytics foundations</a></li>
-            <li><a href="#unit2-questions">Unit II · Analytic methods</a></li>
+            <li><a href="#unit1-questions">Unit I · Analytics foundations (15 Questions)</a></li>
+            <li><a href="#unit2-questions">Unit II · Analytic methods (19 Questions)</a></li>
         </ul>
     </nav>
-    <p class="chapter-links">Need a quick definition? <a href="short-answers.html">Browse the short answers</a>. Q5 (lifecycle) is on this page.</p>
+    <p class="chapter-links">Need a quick 2-mark definition? <a href="short-answers.html">Browse the short answers (17 Questions)</a>. Q5 (lifecycle) is on this page.</p>
 </header>
 
 <!-- =================== UNIT I =================== -->
@@ -46,6 +46,7 @@
         <li><a href="#q5">Q5 · Analytics lifecycle</a></li>
         <li><a href="#q18">Q18 · Why analytics matters</a></li>
         <li><a href="#q19">Q19 · Analysis vs reporting</a></li>
+        <li><a href="#q21">Q21 · Supervised vs unsupervised</a></li>
         <li><a href="#q23">Q23 · Analytic scalability</a></li>
         <li><a href="#q24">Q24 · Data classification</a></li>
         <li><a href="#q34">Q34 · Sources and nature of data</a></li>
@@ -53,6 +54,10 @@
         <li><a href="#q36">Q36 · 5Vs and platforms</a></li>
         <li><a href="#q37">Q37 · Big Data challenges</a></li>
         <li><a href="#q38">Q38 · Lifecycle in detail</a></li>
+        <li><a href="#q41">Q41 · Hadoop architecture</a></li>
+        <li><a href="#q42">Q42 · Real-world industry applications</a></li>
+        <li><a href="#q43">Q43 · Multi-source sales pipeline</a></li>
+        <li><a href="#q44">Q44 · Discovery &amp; operationalization</a></li>
     </ul>
 </nav>
 
@@ -469,6 +474,277 @@
     </div>
 </div>
 
+<!-- ===== Q41 ===== -->
+<div class="qa-block" id="q41">
+    <div class="question-label">Q41</div>
+    <div class="question-text">Analyse the Hadoop architecture in detail. Explain the functions and interaction of HDFS, YARN, and MapReduce with a suitable architecture diagram.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>Apache Hadoop is an open-source distributed computing framework designed for scalable, fault-tolerant processing of massive datasets across clusters of commodity hardware. Inspired by Google's GFS and MapReduce papers, Hadoop decouples <strong>storage (HDFS)</strong>, <strong>cluster resource management (YARN)</strong>, and <strong>parallel computation (MapReduce)</strong>, governed by the principle of <em>data locality</em> (moving compute code to data rather than shifting petabytes of data across the network).</p>
+
+        <div class="diagram-wrap">
+            <svg width="640" height="260" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" aria-label="Apache Hadoop Master-Slave Architecture Diagram showing HDFS, YARN, and MapReduce">
+                <defs>
+                    <marker id="arrowHadoop" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L8,3 z" fill="#7b1f2e"/>
+                    </marker>
+                    <marker id="arrowHeartbeat" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L8,3 z" fill="#666"/>
+                    </marker>
+                </defs>
+
+                <!-- Client Box -->
+                <rect x="15" y="95" width="90" height="65" rx="5" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.8"/>
+                <text x="60" y="122" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#7b1f2e">Client</text>
+                <text x="60" y="138" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Job Submit</text>
+
+                <!-- Submit Arrows -->
+                <line x1="105" y1="110" x2="155" y2="60" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowHadoop)"/>
+                <line x1="105" y1="145" x2="155" y2="190" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowHadoop)"/>
+
+                <!-- Master Layer (Middle) -->
+                <!-- YARN ResourceManager -->
+                <rect x="160" y="25" width="150" height="70" rx="4" fill="#7b1f2e"/>
+                <text x="235" y="48" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#fff">YARN ResourceManager</text>
+                <text x="235" y="64" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#fee">Pluggable Scheduler</text>
+                <text x="235" y="78" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#fee">ApplicationsManager</text>
+
+                <!-- HDFS NameNode -->
+                <rect x="160" y="160" width="150" height="70" rx="4" fill="#7b1f2e"/>
+                <text x="235" y="183" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#fff">HDFS NameNode (Master)</text>
+                <text x="235" y="199" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#fee">Metadata (fsimage + edits)</text>
+                <text x="235" y="213" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#fee">Block Location Mapping</text>
+
+                <!-- Connecting Arrows to Slaves -->
+                <line x1="310" y1="60" x2="365" y2="60" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowHadoop)"/>
+                <line x1="310" y1="195" x2="365" y2="195" stroke="#7b1f2e" stroke-width="1.5" marker-end="url(#arrowHadoop)"/>
+
+                <!-- Slave Layer: Worker Nodes 1, 2, 3 -->
+                <!-- Worker Node 1 -->
+                <rect x="370" y="15" width="255" height="68" rx="4" fill="#fdfbfb" stroke="#7b1f2e" stroke-width="1.2"/>
+                <text x="380" y="32" font-family="system-ui,sans-serif" font-size="9.5" font-weight="bold" fill="#7b1f2e">Worker Node 1</text>
+                <rect x="380" y="38" width="115" height="38" rx="3" fill="#f5eeee" stroke="#c0a0a6" stroke-width="1"/>
+                <text x="437" y="52" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" font-weight="bold" fill="#7b1f2e">NodeManager</text>
+                <text x="437" y="65" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7.5" fill="#555">AppMaster / Container</text>
+                <rect x="505" y="38" width="110" height="38" rx="3" fill="#f5eeee" stroke="#c0a0a6" stroke-width="1"/>
+                <text x="560" y="52" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" font-weight="bold" fill="#7b1f2e">DataNode (HDFS)</text>
+                <text x="560" y="65" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7.5" fill="#555">Blocks: [B1, B2]</text>
+
+                <!-- Worker Node 2 -->
+                <rect x="370" y="95" width="255" height="68" rx="4" fill="#fdfbfb" stroke="#7b1f2e" stroke-width="1.2"/>
+                <text x="380" y="112" font-family="system-ui,sans-serif" font-size="9.5" font-weight="bold" fill="#7b1f2e">Worker Node 2</text>
+                <rect x="380" y="118" width="115" height="38" rx="3" fill="#f5eeee" stroke="#c0a0a6" stroke-width="1"/>
+                <text x="437" y="132" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" font-weight="bold" fill="#7b1f2e">NodeManager</text>
+                <text x="437" y="145" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7.5" fill="#555">Map Container (Task 1)</text>
+                <rect x="505" y="118" width="110" height="38" rx="3" fill="#f5eeee" stroke="#c0a0a6" stroke-width="1"/>
+                <text x="560" y="132" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" font-weight="bold" fill="#7b1f2e">DataNode (HDFS)</text>
+                <text x="560" y="145" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7.5" fill="#555">Blocks: [B2, B3]</text>
+
+                <!-- Worker Node 3 -->
+                <rect x="370" y="175" width="255" height="68" rx="4" fill="#fdfbfb" stroke="#7b1f2e" stroke-width="1.2"/>
+                <text x="380" y="192" font-family="system-ui,sans-serif" font-size="9.5" font-weight="bold" fill="#7b1f2e">Worker Node 3</text>
+                <rect x="380" y="198" width="115" height="38" rx="3" fill="#f5eeee" stroke="#c0a0a6" stroke-width="1"/>
+                <text x="437" y="212" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" font-weight="bold" fill="#7b1f2e">NodeManager</text>
+                <text x="437" y="225" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7.5" fill="#555">Reduce Container</text>
+                <rect x="505" y="198" width="110" height="38" rx="3" fill="#f5eeee" stroke="#c0a0a6" stroke-width="1"/>
+                <text x="560" y="212" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" font-weight="bold" fill="#7b1f2e">DataNode (HDFS)</text>
+                <text x="560" y="225" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7.5" fill="#555">Blocks: [B1, B3]</text>
+            </svg>
+        </div>
+        <p class="diagram-caption">Figure: Apache Hadoop Architecture. Decoupled master-slave tiers for compute (YARN ResourceManager and NodeManagers) and storage (HDFS NameNode and DataNodes) coordinating distributed MapReduce execution with data locality.</p>
+
+        <h3>1. HDFS (Hadoop Distributed File System)</h3>
+        <p>HDFS is a user-space distributed file system optimized for streaming reads of massive files (gigabytes to terabytes) using a write-once, read-many access model.</p>
+        <ul>
+            <li><strong>Block-Structured Storage:</strong> Files are split into fixed contiguous chunks called blocks (default: 128 MB in modern Hadoop). Large block sizes amortize disk seek times and minimize NameNode metadata overhead.</li>
+            <li><strong>NameNode (Master):</strong> Maintains the complete file system directory tree and the location of each block across DataNodes in RAM for instant lookup. Persists state via a point-in-time snapshot (<code>fsimage</code>) and an append-only transaction log (<code>edits</code>). A Secondary NameNode periodically merges the edits log into the fsimage to prevent unbounded log growth.</li>
+            <li><strong>DataNodes (Slaves):</strong> Store physical block files on local disks. DataNodes send heartbeats (every 3 seconds) and block reports to the NameNode to confirm node health and block validity.</li>
+            <li><strong>Fault Tolerance &amp; Replication:</strong> Default replication factor is 3. Hadoop employs a <em>Rack-Aware Placement Policy</em>: Replica 1 is placed on the local node (or local rack); Replica 2 on a remote node in the same rack; Replica 3 on a node in a different rack. This balances cross-rack network bandwidth with rack-level survivability.</li>
+        </ul>
+
+        <h3>2. YARN (Yet Another Resource Negotiator)</h3>
+        <p>Introduced in Hadoop 2.0, YARN separates cluster resource management from the execution engine, enabling multiple processing frameworks (MapReduce, Apache Spark, Flink) to share the same physical cluster.</p>
+        <ul>
+            <li><strong>ResourceManager (Cluster Master):</strong> Arbitrates CPU, memory, and disk resources across all competing applications. Contains:
+                <ul>
+                    <li><em>Scheduler:</em> Pure resource allocator (FIFO, Capacity, or Fair Scheduler) enforcing queues and SLAs without monitoring task execution states.</li>
+                    <li><em>ApplicationsManager (Asm):</em> Accepts job submissions, negotiates the first container to launch the ApplicationMaster, and restarts the AM on failure.</li>
+                </ul>
+            </li>
+            <li><strong>NodeManager (Per-Node Slave Daemon):</strong> Tracks local hardware resource consumption (memory, CPU cores) and manages the lifecycle of resource <em>Containers</em> (enforced via Linux cgroups). Reports health heartbeats back to the ResourceManager.</li>
+            <li><strong>ApplicationMaster (AM):</strong> A framework-specific entity instantiated per running job inside a container. It negotiates additional worker containers from the ResourceManager Scheduler and collaborates with NodeManagers to execute and monitor tasks.</li>
+        </ul>
+
+        <h3>3. MapReduce Computational Model</h3>
+        <p>MapReduce provides a functional programming abstraction that parallelizes data processing across thousands of cluster nodes:</p>
+        <ol>
+            <li><strong>Input Splitting &amp; Data Locality:</strong> Logical splits of 128 MB are created without copying data. The ApplicationMaster requests containers on the specific DataNodes hosting the requested HDFS blocks (node-locality; falls back to rack-locality if node is saturated).</li>
+            <li><strong>Map Phase:</strong> Mappers read input records and apply user transformation logic, outputting key-value pairs:
+                <br><code>map(k1, v1) → list(k2, v2)</code>
+            </li>
+            <li><strong>Shuffle and Sort (Partitioning):</strong> Intermediate pairs are buffered in RAM, partitioned across target reducers using a hash function (<code>partition = hash(k2) % num_reducers</code>), spilled to disk, and transferred over the network. Reducers merge-sort received keys so that all values for a given key arrive sequentially.</li>
+            <li><strong>Reduce Phase:</strong> Reducers iterate through all values associated with each unique key, computing aggregations (sum, average, count) and writing final output blocks back to HDFS:
+                <br><code>reduce(k2, list(v2)) → list(k3, v3)</code>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<!-- ===== Q42 ===== -->
+<div class="qa-block" id="q42">
+    <div class="question-label">Q42</div>
+    <div class="question-text">Explain how data analytics is used in real-world applications such as healthcare, banking, e-commerce, education, and transportation.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>Data analytics transforms raw institutional operational data into predictive forecasts, operational automations, and strategic decision intelligence. Below is a detailed analysis of how analytics creates value across five critical industries.</p>
+
+        <h3>1. Healthcare</h3>
+        <ul>
+            <li><strong>Early Sepsis &amp; ICU Mortality Warning:</strong> Streaming patient vitals (heart rate, blood pressure, oxygen saturation) combined with electronic health records (EHR) feed gradient-boosted trees and LSTM networks to predict septic shock 4–6 hours before clinical manifestation, dramatically reducing mortality rates.</li>
+            <li><strong>Radiomic Medical Imaging:</strong> Deep Convolutional Neural Networks (CNNs) analyze radiological scans (CT, MRI, X-rays) to detect pulmonary nodules, diabetic retinopathy, and tumor boundaries with diagnostic sensitivity rivaling board-certified radiologists.</li>
+            <li><strong>30-Day Hospital Readmission Reduction:</strong> Classification models evaluate patient discharge summaries, medication adherence, and socioeconomic determinants of health to identify patients at high risk of relapse, triggering post-discharge nursing interventions that avoid Medicare readmission penalties.</li>
+        </ul>
+
+        <h3>2. Banking &amp; Financial Services</h3>
+        <ul>
+            <li><strong>Real-Time Credit Card Fraud Detection:</strong> Scoring transaction streams in sub-50 milliseconds using isolation forests, autoencoders, and graph neural networks to detect stolen credentials and synthetic identity theft before authorization.</li>
+            <li><strong>Credit Risk Scoring &amp; Default Prediction:</strong> Applying regularized logistic regression and XGBoost to customer credit histories, income volatility, and debt-to-income ratios to compute Probability of Default (PD) and Loss Given Default (LGD) under Basel III capital regulatory frameworks.</li>
+            <li><strong>Algorithmic High-Frequency Trading:</strong> Time series econometric models (GARCH, cointegration) and reinforcement learning agents execute automated statistical arbitrage and market-making strategies across equity and forex order books.</li>
+        </ul>
+
+        <h3>3. E-Commerce &amp; Retail</h3>
+        <ul>
+            <li><strong>Personalized Recommendation Engines:</strong> Hybrid collaborative filtering and neural matrix factorization algorithms process browsing history, cart additions, and co-purchase matrices to generate personalized product recommendations (responsible for 35% of Amazon's sales volume).</li>
+            <li><strong>Dynamic Algorithmic Pricing:</strong> Automated pricing models adjust product prices in real time based on competitor inventory, historical price elasticity, user demand surges, and delivery window capacity.</li>
+            <li><strong>Customer Churn &amp; Cart Abandonment Mitigation:</strong> Survival analysis and survival trees estimate customer lifetime value (CLV) and churn probability, automatically firing personalized discount codes or push notifications when abandonment likelihood exceeds calibrated thresholds.</li>
+        </ul>
+
+        <h3>4. Education</h3>
+        <ul>
+            <li><strong>Early Warning Dropout Prediction:</strong> Student engagement metrics from Learning Management Systems (LMS) — login frequencies, video watch ratios, forum interaction, and quiz submission timeliness — feed classification algorithms that identify at-risk students for academic advisory interventions.</li>
+            <li><strong>Adaptive Learning Pathways:</strong> Item Response Theory (IRT) and Bayesian Knowledge Tracing model student mastery of individual concepts in real time, dynamically calibrating the difficulty and topic sequence of subsequent assignments.</li>
+            <li><strong>Automated Assessment:</strong> Natural Language Processing (NLP) models evaluate semantic coherence and argumentation in student essays, providing rapid feedback while maintaining grading consistency across large student cohorts.</li>
+        </ul>
+
+        <h3>5. Transportation &amp; Logistics</h3>
+        <ul>
+            <li><strong>Dynamic Ride-Share Surge Pricing &amp; Dispatch:</strong> Spatial-temporal graph neural networks predict passenger demand and driver supply in 15-minute geographic hexagonal bins, routing empty vehicles toward expected demand hotspots and balancing pickup wait times.</li>
+            <li><strong>Fleet Route Optimization:</strong> Solving Capacitated Vehicle Routing Problems (CVRP) using genetic algorithms and Dijkstra's algorithm incorporated with real-time GPS traffic feeds, reducing fuel consumption and vehicle wear by 15–20%.</li>
+            <li><strong>Predictive Vehicle Maintenance:</strong> IoT telematics sensors monitoring engine temperatures, brake pad pressure, and vibration harmonics feed anomaly detection models, scheduling repairs before roadside catastrophic failure occurs.</li>
+        </ul>
+
+        <h3>Comparative Synthesis</h3>
+        <div class="table-scroll">
+        <table>
+            <thead>
+                <tr><th>Domain</th><th>Primary Data Sources</th><th>Core Analytics Technique</th><th>Target Business Metric</th><th>Measurable Outcome</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Healthcare</td><td>EHR records, telemetry ICU streams, DICOM scans</td><td>LSTMs, CNNs, Survival Analysis</td><td>Mortality rate, 30-day readmissions</td><td>4–6 hr early sepsis intervention</td></tr>
+                <tr><td>Banking</td><td>Transaction logs, credit bureau bureaus, swift wires</td><td>Graph Neural Networks, Isolation Forests</td><td>Fraud loss %, default rate</td><td>Sub-50ms transaction approval</td></tr>
+                <tr><td>E-Commerce</td><td>Clickstream events, purchase history, reviews</td><td>Collaborative Filtering, Elasticity Models</td><td>Conversion rate, Average Order Value (AOV)</td><td>Up to 35% sales from recommendations</td></tr>
+                <tr><td>Education</td><td>LMS clickstreams, quiz timings, assignment text</td><td>Bayesian Knowledge Tracing, NLP</td><td>Course completion rate, retention</td><td>Timely remediation before exam failure</td></tr>
+                <tr><td>Transportation</td><td>GPS telematics, traffic radar, engine sensors</td><td>Genetic Algorithms, Spatial-Temporal GNNs</td><td>Fuel per delivery mile, on-time delivery %</td><td>15–20% fleet operating cost reduction</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+<!-- ===== Q43 ===== -->
+<div class="qa-block" id="q43">
+    <div class="question-label">Q43</div>
+    <div class="question-text">A company has collected large volumes of sales data from different sources. Apply the analytics process and suitable tools to transform the raw data into meaningful insights.</div>
+    <div class="answer-body">
+        <h3>Scenario Context</h3>
+        <p>A multi-channel retail enterprise operates physical brick-and-mortar stores, an e-commerce web platform, and a mobile app. It captures 50M+ annual transaction records across heterogeneous sources: in-store Point-of-Sale (POS) relational databases, website Apache webserver clickstream logs, Salesforce CRM customer master tables, and warehouse inventory ERP logs. Below is the systematic, end-to-end analytical transformation pipeline applied to extract actionable commercial intelligence.</p>
+
+        <h3>Stage 1: Problem Definition &amp; Discovery</h3>
+        <ul>
+            <li><strong>Business Objective:</strong> Increase Customer Lifetime Value (CLV), identify cross-selling merchandise affinities, and reduce high-value customer churn by 15%.</li>
+            <li><strong>Hypotheses:</strong> (1) Customers purchasing across both in-store and online channels have 2.5× higher retention; (2) In-store purchases of specialty goods are preceded by online catalog browsing within 72 hours.</li>
+            <li><strong>Success Metrics:</strong> Model AUC-ROC &gt; 0.82 for churn prediction; minimum rule lift &gt; 2.0 for market basket cross-selling.</li>
+        </ul>
+
+        <h3>Stage 2: Multi-Source Data Ingestion &amp; Storage Architecture</h3>
+        <ul>
+            <li><strong>Streaming Ingestion:</strong> Apache Kafka captures real-time web and app clickstream events (page views, cart additions, search queries) in JSON format.</li>
+            <li><strong>Batch / CDC Ingestion:</strong> Debezium Change Data Capture (CDC) streams changes from transactional MySQL POS databases into the data lake without imposing read locks on checkout registers.</li>
+            <li><strong>Storage (Lakehouse):</strong> Raw streams and files are stored in an Amazon S3 / Delta Lake data lakehouse using Apache Parquet columnar formatting with ACID transaction support.</li>
+        </ul>
+
+        <h3>Stage 3: Data Cleaning, Preprocessing &amp; Reconciliation</h3>
+        <ul>
+            <li><strong>Entity Resolution:</strong> Join disparate records (online email, loyalty card number, credit card hash) into a Unified Customer 360 ID.</li>
+            <li><strong>Missing Data Imputation:</strong> Impute missing demographic fields using iterative MICE (Multivariate Imputation by Chained Equations); transactions with corrupted price totals are flagged and quarantined.</li>
+            <li><strong>Outlier &amp; Anomaly Filtering:</strong> Filter test transactions and bulk wholesale outliers using IQR fences (1.5 × IQR). Standardize UTC timestamps across all store locations.</li>
+            <li><strong>Tools Used:</strong> Apache Spark (PySpark) on Databricks for distributed data wrangling across millions of partitions.</li>
+        </ul>
+
+        <h3>Stage 4: Feature Engineering &amp; Exploratory Analysis</h3>
+        <ul>
+            <li><strong>RFM Construction:</strong> Derive Recency (days since last purchase), Frequency (orders per quarter), and Monetary Value (total spend).</li>
+            <li><strong>Temporal Features:</strong> Calculate rolling 30-day and 90-day spending trajectories, ratio of discount-driven purchases, and channel preference ratios (online vs in-store).</li>
+            <li><strong>Dimensionality Reduction:</strong> Apply Principal Component Analysis (PCA) to compress 45 customer browsing behavioral metrics into 5 orthogonal principal components capturing 88% of variance.</li>
+        </ul>
+
+        <h3>Stage 5: Analytical Modeling &amp; Pattern Extraction</h3>
+        <ol>
+            <li><strong>Market Basket Affinity (Association Rule Induction):</strong> Apply the <em>Apriori algorithm</em> and <em>FP-Growth</em> to basket transaction itemsets. Identify high-confidence rules:
+                <br><code>IF customer buys Specialty Coffee Machine THEN buys Artisan Whole-Bean Coffee (Support: 3.2%, Confidence: 74%, Lift: 3.8)</code>
+            </li>
+            <li><strong>Customer Churn Prediction (Supervised Classification):</strong> Train an <em>XGBoost</em> gradient-boosted decision tree on RFM and engagement trajectories to predict binary churn within the next 60 days. Evaluated with 5-fold stratified cross-validation yielding AUC-ROC = 0.86.</li>
+            <li><strong>Customer Behavioral Segmentation (Competitive Unsupervised Learning):</strong> Train a <em>Self-Organizing Map (SOM)</em> / K-Means algorithm to partition the active customer base into 4 distinct commercial clusters: High-Value Omnichannel Loyals, Deal-Seeking Bargain Shoppers, Seasonal Holiday Buyers, and Slipping Inactive Accounts.</li>
+        </ol>
+
+        <h3>Stage 6: Communicating Results &amp; Executive Operationalization</h3>
+        <ul>
+            <li><strong>Interactive Executive Dashboards:</strong> Build Tableau and Power BI visual dashboards connecting directly to Snowflake / Delta Lake, displaying store-by-store sales velocity, category margins, and regional churn risks.</li>
+            <li><strong>Automated Operational Microservices:</strong> Deploy the serialized churn and recommendation models as a Docker containerized FastAPI REST service hosted on Kubernetes. When a customer opens the mobile app, the service queries the model in &lt;30 ms, rendering personalized cross-sell recommendations directly at checkout.</li>
+            <li><strong>Continuous Retraining Loop:</strong> Implement MLflow and Evidently AI to track real-time feature drift and data quality degradation, triggering automated retraining pipelines when prediction accuracy declines below threshold.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ===== Q44 ===== -->
+<div class="qa-block" id="q44">
+    <div class="question-label">Q44</div>
+    <div class="question-text">Why is the Discovery phase crucial in the Data Analytics Lifecycle? Explain the role of Communicating Results and Operationalization in driving business value.</div>
+    <div class="answer-body">
+        <h3>Part 1: The Critical Importance of the Discovery Phase</h3>
+        <p>The Discovery phase (Phase 1) is the foundational planning stage of the Data Analytics Lifecycle. Industry benchmarks reveal that over 70% of enterprise analytics project failures originate not from mathematical or computational bugs, but from flawed, ambiguous discovery.</p>
+        <p>Key reasons why Discovery is indispensable:</p>
+        <ul>
+            <li><strong>Translating Vague Business Questions into Statistical Hypotheses:</strong> Executives routinely pose ambiguous prompts such as <em>"Why are profits down?"</em> or <em>"Improve customer engagement."</em> Discovery translates these into testable mathematical statements, such as: <em>"Hypothesis: Customers experiencing checkout latency &gt; 3 seconds exhibit a 40% higher cart abandonment rate than baseline."</em></li>
+            <li><strong>Data Auditing, Lineage &amp; Feasibility Assessment:</strong> Evaluates whether the required ground-truth labels and predictors actually exist. Teams frequently discover after weeks of work that critical historical data was never logged, corrupted by schema migrations, or legally restricted under GDPR/HIPAA regulations. Discovery identifies these roadblocks before budget is spent.</li>
+            <li><strong>Resource, Infrastructure &amp; Tooling Appraisal:</strong> Assesses compute cluster capacities, GPU availability, software licensing, and personnel skill sets required to execute the pipeline.</li>
+            <li><strong>Defining Explicit Success Criteria:</strong> Establishes clear baseline benchmarks (e.g., current manual heuristic yields 62% accuracy; the ML model must achieve &gt;75% precision with &lt;100ms inference latency to justify production replacement).</li>
+        </ul>
+
+        <h3>Part 2: The Role of Communicating Results (Phase 5)</h3>
+        <p>A mathematically sophisticated model generates zero enterprise value if operational stakeholders and non-technical executives fail to understand, trust, or act on its findings.</p>
+        <ul>
+            <li><strong>Bridging the Technical-Executive Communication Gap:</strong> Data scientists naturally focus on technical metrics: log-loss, AUC-ROC, F1-scores, and eigenvalue decompositions. Phase 5 translates these technical abstractions into commercial business impact: dollar revenue gained, hours of labor automated, customer retention rates, and risk avoidance.</li>
+            <li><strong>Explainable AI (XAI) &amp; Regulatory Compliance:</strong> Modern governance standards require transparency for models impacting consumer rights (credit approval, loan underwriting, medical triage). Phase 5 utilizes SHAP (Shapley Additive Explanations) and LIME to illustrate why a model made specific decisions, disarming executive skepticism.</li>
+            <li><strong>Scenario Simulation &amp; Decision Support:</strong> Presenting results not as fixed static reports, but as interactive "what-if" simulations allowing stakeholders to evaluate trade-offs (e.g., setting a stricter classification threshold reduces false positives but increases false negative churn).</li>
+        </ul>
+
+        <h3>Part 3: The Role of Operationalization (Phase 6)</h3>
+        <p>Operationalization transforms an offline experimental artifact (e.g., a Jupyter notebook) into a robust, scalable, self-healing production component integrated into enterprise workflows.</p>
+        <ul>
+            <li><strong>Overcoming the "Notebook Graveyard":</strong> A trained model living in a researcher's Python notebook creates no operational revenue. Operationalization encapsulates the preprocessing pipeline and weights into serialized artifacts (ONNX, Pickle, TensorRT) exposed via high-throughput REST or gRPC APIs.</li>
+            <li><strong>Handling Real-World Production Latency &amp; Concurrency:</strong> Production environments require horizontal scaling, thread pooling, and caching to serve thousands of concurrent requests with sub-50ms latency.</li>
+            <li><strong>Drift Monitoring &amp; Feedback Governance:</strong> Real-world distributions change over time. Operationalization deploys monitoring agents to track:
+                <ul>
+                    <li><em>Covariate Shift (Data Drift):</em> The input feature distribution <em>P</em>(<em>X</em>) changes (e.g., consumer purchasing patterns alter during rapid macroeconomic inflation).</li>
+                    <li><em>Concept Drift:</em> The underlying relationship <em>P</em>(<em>Y</em> | <em>X</em>) changes (e.g., fraudsters adapt tactics to bypass rule triggers).</li>
+                </ul>
+            </li>
+            <li><strong>Automated CI/CD Retraining Loops:</strong> Establishes automated data pipelines that ingest fresh production logs, test validation benchmarks against the champion model, and automatically deploy updated challenger models without downtime.</li>
+        </ul>
+    </div>
+</div>
+
 </section>
 
 <!-- =================== UNIT II =================== -->
@@ -491,6 +767,11 @@
         <li><a href="#q33">Q33 · Choosing an approach</a></li>
         <li><a href="#q39">Q39 · SVM and kernels</a></li>
         <li><a href="#q40">Q40 · Neural network learning</a></li>
+        <li><a href="#q46">Q46 · Generalization &amp; overfitting</a></li>
+        <li><a href="#q47">Q47 · PCA &amp; neural networks</a></li>
+        <li><a href="#q48">Q48 · Fuzzy inference system (FIS)</a></li>
+        <li><a href="#q49">Q49 · Fuzzy models &amp; decision trees</a></li>
+        <li><a href="#q50">Q50 · 3 NN learning paradigms</a></li>
     </ul>
 </nav>
 
@@ -546,14 +827,14 @@
 
                 <!-- Principal Component 1 (Major axis of variance) -->
                 <line x1="80" y1="175" x2="420" y2="35" stroke="#7b1f2e" stroke-width="2.5" marker-end="url(#arrowL_PCA)"/>
-                <text x="430" y="32" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#7b1f2e">PC1 (Max Variance, \lambda_1)</text>
+                <text x="430" y="32" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#7b1f2e">PC1 (Max Variance, λ₁)</text>
 
                 <!-- Principal Component 2 (Orthogonal axis) -->
-                <line x1="250" y1="105" x2="185" y2="40" stroke="#333" stroke-width="1.8" marker-end="url(#arrowL_PCA)"/>
-                <text x="180" y="30" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#333">PC2 (\lambda_2)</text>
+                <line x1="250" y1="105" x2="219" y2="29" stroke="#333" stroke-width="1.8" marker-end="url(#arrowL_PCA)"/>
+                <text x="215" y="20" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#333">PC2 (λ₂)</text>
 
-                <!-- Orthogonal angle indicator -->
-                <path d="M 235,90 L 245,80 L 255,95" fill="none" stroke="#333" stroke-width="1"/>
+                <!-- Orthogonal angle indicator (perpendicular to PC1) -->
+                <path d="M 239,81 L 253,75 L 264,99" fill="none" stroke="#333" stroke-width="1"/>
 
                 <!-- Projections onto PC1 -->
                 <line x1="170" y1="160" x2="190" y2="130" stroke="#7b1f2e" stroke-width="1" stroke-dasharray="2,2"/>
@@ -562,7 +843,7 @@
                 <text x="350" y="150" font-family="system-ui,sans-serif" font-size="9" fill="#7b1f2e">Dashed lines: projection onto PC1</text>
             </svg>
         </div>
-        <p class="diagram-caption">Figure: PCA transforms correlated axes (X1, X2) into orthogonal axes PC1 and PC2. PC1 aligns with the direction of maximum variance (\lambda_1); dimensionality reduction projects data points onto PC1 alone.</p>
+        <p class="diagram-caption">Figure: PCA transforms correlated axes (X1, X2) into orthogonal axes PC1 and PC2. PC1 aligns with the direction of maximum variance (λ₁); dimensionality reduction projects data points onto PC1 alone.</p>
 
         <h3>Simple Example</h3>
         <p>Dataset: 100 students, each described by 3 features — hours_studied (x1), assignment_score (x2), and exam_score (x3). These three are highly correlated (students who study more score higher on both). PCA reveals that one principal component (PC1) — a weighted combination of all three — captures 88% of the variance. This PC1 effectively measures "overall academic effort and performance." Reducing from 3 dimensions to 1 (PC1 alone) retains 88% of information, enabling simple 1D ranking of students.</p>
@@ -1129,7 +1410,7 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
                 <!-- Mapping arrow in center -->
                 <g transform="translate(255, 95)">
                     <line x1="0" y1="10" x2="65" y2="10" stroke="#7b1f2e" stroke-width="2" marker-end="url(#arrowL_SVM)"/>
-                    <text x="32" y="0" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" font-weight="bold" fill="#7b1f2e">\Phi(x)</text>
+                    <text x="32" y="0" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" font-weight="bold" fill="#7b1f2e">Φ(x)</text>
                     <text x="32" y="28" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Kernel Trick</text>
                 </g>
 
@@ -1140,7 +1421,7 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
 
                     <!-- Linear Hyperplane (w · x + b = 0) -->
                     <line x1="20" y1="160" x2="180" y2="30" stroke="#7b1f2e" stroke-width="2"/>
-                    <text x="105" y="80" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="bold" fill="#7b1f2e" transform="rotate(-38,105,80)">w·\Phi(x)+b = 0</text>
+                    <text x="105" y="80" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="bold" fill="#7b1f2e" transform="rotate(-38,105,80)">w·Φ(x)+b = 0</text>
 
                     <!-- Margin Lines -->
                     <line x1="5" y1="145" x2="165" y2="15" stroke="#999" stroke-width="1.2" stroke-dasharray="3,2"/>
@@ -1166,7 +1447,7 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
                 </g>
             </svg>
         </div>
-        <p class="diagram-caption">Figure: The SVM Kernel Trick. Non-linearly separable data in 2D input space is mapped via kernel \Phi(x) into high-dimensional feature space where a maximum-margin linear hyperplane w·\Phi(x)+b=0 cleanly separates the classes.</p>
+        <p class="diagram-caption">Figure: The SVM Kernel Trick. Non-linearly separable data in 2D input space is mapped via kernel Φ(x) into high-dimensional feature space where a maximum-margin linear hyperplane w·Φ(x)+b=0 cleanly separates the classes.</p>
 
         <h3>Linear vs Nonlinear Kernels — Comparison</h3>
         <div class="table-scroll">
@@ -1227,33 +1508,33 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
 
                 <!-- Input Nodes (x1, x2, x3) -->
                 <circle cx="80" cy="65" r="16" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
-                <text x="80" y="69" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">x_1</text>
+                <text x="80" y="69" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">x₁</text>
 
                 <circle cx="80" cy="120" r="16" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
-                <text x="80" y="124" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">x_2</text>
+                <text x="80" y="124" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">x₂</text>
 
                 <circle cx="80" cy="175" r="16" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
-                <text x="80" y="179" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">x_3</text>
+                <text x="80" y="179" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">x₃</text>
 
                 <!-- Hidden Nodes (h1, h2, h3, h4) -->
                 <circle cx="280" cy="50" r="16" fill="#7b1f2e"/>
-                <text x="280" y="54" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">h_1</text>
+                <text x="280" y="54" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">h₁</text>
 
                 <circle cx="280" cy="97" r="16" fill="#7b1f2e"/>
-                <text x="280" y="101" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">h_2</text>
+                <text x="280" y="101" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">h₂</text>
 
                 <circle cx="280" cy="143" r="16" fill="#7b1f2e"/>
-                <text x="280" y="147" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">h_3</text>
+                <text x="280" y="147" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">h₃</text>
 
                 <circle cx="280" cy="190" r="16" fill="#7b1f2e"/>
-                <text x="280" y="194" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">h_4</text>
+                <text x="280" y="194" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#fff">h₄</text>
 
                 <!-- Output Nodes (y1, y2) -->
                 <circle cx="480" cy="90" r="16" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
-                <text x="480" y="94" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">\hat{y}_1</text>
+                <text x="480" y="94" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">ŷ₁</text>
 
                 <circle cx="480" cy="150" r="16" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.5"/>
-                <text x="480" y="154" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">\hat{y}_2</text>
+                <text x="480" y="154" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="bold" fill="#7b1f2e">ŷ₂</text>
 
                 <!-- Connections Input to Hidden -->
                 <line x1="96" y1="65" x2="264" y2="50" stroke="#c0a0a6" stroke-width="1"/>
@@ -1287,7 +1568,7 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
 
                 <!-- Backward Pass Indicator (Bottom) -->
                 <line x1="430" y1="225" x2="130" y2="225" stroke="#555" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrowL_NN_back)"/>
-                <text x="280" y="235" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" font-weight="bold" fill="#555">← Backpropagation: Error Gradients \partial L / \partial w via Chain Rule</text>
+                <text x="280" y="235" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" font-weight="bold" fill="#555">← Backpropagation: Error Gradients ∂L / ∂w via Chain Rule</text>
             </svg>
         </div>
         <p class="diagram-caption">Figure: Multilayer Perceptron (MLP) architecture. Input activations propagate forward through hidden neurons to output predictions. Backpropagation transmits loss gradients backward to update connection weights.</p>
@@ -1319,10 +1600,374 @@ IF age &gt;= 60 AND debt_ratio &gt; 0.5 THEN credit_risk = HIGH (accuracy: 91%, 
         <p>Customer segmentation using a SOM: a financial institution feeds transaction behavior vectors (recency, frequency, monetary value, product diversity) into a 10×10 SOM. After training, the 100-neuron grid organizes into interpretable regions: one corner represents high-value frequent buyers, the opposite corner represents dormant low-value accounts, and intermediate neurons capture transitions between segments. The map is visualized as a 2D heatmap, enabling relationship managers to identify segment clusters without predefined labels.</p>
     </div>
 </div>
+
+<!-- ===== Q46 ===== -->
+<div class="qa-block" id="q46">
+    <div class="question-label">Q46</div>
+    <div class="question-text">Explain learning and generalisation in neural networks. Discuss overfitting, underfitting, and the factors affecting generalisation.</div>
+    <div class="answer-body">
+        <h3>1. Learning vs. Generalization in Neural Networks</h3>
+        <p>In artificial neural networks, <strong>learning</strong> and <strong>generalization</strong> represent two distinct mathematical objectives:</p>
+        <ul>
+            <li><strong>Learning (Empirical Risk Minimization):</strong> The optimization process of iteratively updating network connection weights <strong>W</strong> and biases <strong>b</strong> via gradient descent to minimize an empirical loss function <em>R̂</em>(<strong>W</strong>) over a finite training dataset <em>D</em><sub>train</sub> = {(<strong>x</strong><sub><em>i</em></sub>, <em>y</em><sub><em>i</em></sub>)}<sub><em>i</em>=1</sub><sup><em>N</em></sup>:
+                <div class="formula-block"><em>R̂</em>(<strong>W</strong>) = (1 / <em>N</em>) ∑<sub><em>i</em>=1</sub><sup><em>N</em></sup> <em>L</em>(<em>f</em>(<strong>x</strong><sub><em>i</em></sub>; <strong>W</strong>), <em>y</em><sub><em>i</em></sub>)</div>
+            </li>
+            <li><strong>Generalization (Expected Risk Minimization):</strong> The ability of the trained neural network to accurately predict correct targets for completely unseen inputs drawn from the true underlying data-generating distribution <em>P</em>(<strong>x</strong>, <em>y</em>):
+                <div class="formula-block"><em>R</em>(<strong>W</strong>) = E<sub>(<strong>x</strong>, <em>y</em>) ∼ <em>P</em></sub> [<em>L</em>(<em>f</em>(<strong>x</strong>; <strong>W</strong>), <em>y</em>)]</div>
+            </li>
+            <li><strong>The Generalization Gap:</strong> The discrepancy Δ = <em>R</em>(<strong>W</strong>) − <em>R̂</em>(<strong>W</strong>). A model with near-zero training error but high generalization gap has simply memorized training noise.</li>
+        </ul>
+
+        <h3>2. Underfitting, Overfitting, and the Bias-Variance Tradeoff</h3>
+        <div class="table-scroll">
+        <table>
+            <thead>
+                <tr><th>Regime</th><th>Statistical Property</th><th>Training Error</th><th>Validation / Test Error</th><th>Root Cause &amp; Physical Symptom</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Underfitting</strong></td>
+                    <td>High Bias (Low Variance)</td>
+                    <td>High</td>
+                    <td>High</td>
+                    <td>Model capacity is too weak (too shallow, overly constrained) to capture the true underlying functional manifold. Fails on both train and test data.</td>
+                </tr>
+                <tr>
+                    <td><strong>Optimal Fitting</strong></td>
+                    <td>Balanced Bias &amp; Variance</td>
+                    <td>Low</td>
+                    <td>Low (Near Training)</td>
+                    <td>Model extracts structural underlying patterns while ignoring sample-specific noise. Generalization gap Δ is minimized.</td>
+                </tr>
+                <tr>
+                    <td><strong>Overfitting</strong></td>
+                    <td>High Variance (Low Bias)</td>
+                    <td>Near Zero</td>
+                    <td>High (Diverging)</td>
+                    <td>Excessive parameter capacity allows the network to memorize idiosyncratic noise and outliers. Excels on train set; fails catastrophically in production.</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <p><strong>The Mathematical Decomposition:</strong> For squared error loss, expected prediction error decomposes into three irreducible terms:</p>
+        <div class="formula-block">E[(<em>y</em> − <em>f̂</em>(<strong>x</strong>))<sup>2</sup>] = Bias<sup>2</sup>(<em>f̂</em>(<strong>x</strong>)) + Var(<em>f̂</em>(<strong>x</strong>)) + σ<sup>2</sup></div>
+
+        <h3>3. Factors Affecting Generalization &amp; Engineering Mitigations</h3>
+        <ol>
+            <li><strong>Network Architectural Capacity:</strong> Deeper and wider networks have higher Vapnik-Chervonenkis (VC) dimension. If parameter count <em>P</em> ≫ <em>N</em> (training observations), unconstrained networks overfit. <em>Mitigation:</em> Pruning, bottleneck layers, and parameter sharing (e.g., convolutional weight tying).</li>
+            <li><strong>Explicit Weight Regularization (<em>L</em><sub>2</sub> Weight Decay &amp; <em>L</em><sub>1</sub> Sparsity):</strong> Adds a penalty on large weight magnitudes to the objective function:
+                <div class="formula-block"><em>L</em><sub>reg</sub>(<strong>W</strong>) = <em>L</em><sub>0</sub>(<strong>W</strong>) + (λ / 2) ∑ <em>w</em><sub><em>j</em></sub><sup>2</sup></div>
+                Weight decay forces connection weights toward zero, smoothing the decision boundary and suppressing high-frequency oscillations.</li>
+            <li><strong>Dropout (Stochastic Ensemble Thinning):</strong> During each training mini-batch, randomly deactivates each hidden neuron with probability <em>p</em> (typically <em>p</em> = 0.5). This prevents neurons from co-adapting to spurious noise and acts as an implicit ensemble average over 2<sup><em>B</em></sup> sub-architectures.</li>
+            <li><strong>Early Stopping:</strong> Continuously monitors loss on an independent validation set. While training loss monotonically decreases, validation loss exhibits a U-curve; training terminates at the minimum of the validation loss curve before over-parameterized memorization begins.</li>
+            <li><strong>Training Dataset Size &amp; Data Augmentation:</strong> Increasing sample size <em>N</em> contracts the empirical risk toward expected risk. Where labeled data is scarce, synthetic data augmentation (affine translations, noise injection, mixup) expands data volume.</li>
+            <li><strong>Batch Normalization:</strong> Normalizes layer inputs across mini-batches, stabilizing internal covariate shift and acting as a mild regularizer that eliminates dependence on hyper-sensitive weight initializations.</li>
+        </ol>
+    </div>
+</div>
+
+<!-- ===== Q47 ===== -->
+<div class="qa-block" id="q47">
+    <div class="question-label">Q47</div>
+    <div class="question-text">Discuss the relationship between Principal Component Analysis (PCA) and Neural Networks. Explain how Linear Autoencoders and Generalized Hebbian Learning achieve PCA.</div>
+    <div class="answer-body">
+        <h3>1. The Fundamental Equivalence: Linear Autoencoders and PCA</h3>
+        <p>A profound theoretical bridge connects classical spectral dimensionality reduction (PCA) with neural network representation learning. This was formally proven by <strong>Bourlard and Kamp (1988)</strong> and <strong>Baldi and Hornik (1989)</strong>:</p>
+        <p>Consider a three-layer autoencoder neural network with:</p>
+        <ul>
+            <li><em>p</em> linear input neurons: <strong>x</strong> ∈ ℝ<sup><em>p</em></sup> (assumed zero-mean, centered).</li>
+            <li>A single linear hidden bottleneck layer with <em>k</em> neurons (<em>k</em> &lt; <em>p</em>): <strong>z</strong> = <strong>W</strong><sub>1</sub> <strong>x</strong>.</li>
+            <li><em>p</em> linear output neurons: <strong>x̂</strong> = <strong>W</strong><sub>2</sub> <strong>z</strong> = <strong>W</strong><sub>2</sub> <strong>W</strong><sub>1</sub> <strong>x</strong>.</li>
+            <li>Training objective: Minimize mean squared reconstruction error:
+                <div class="formula-block"><em>L</em>(<strong>W</strong><sub>1</sub>, <strong>W</strong><sub>2</sub>) = (1 / <em>N</em>) ∑<sub><em>i</em>=1</sub><sup><em>N</em></sup> ∥<strong>x</strong><sub><em>i</em></sub> − <strong>W</strong><sub>2</sub> <strong>W</strong><sub>1</sub> <strong>x</strong><sub><em>i</em></sub>∥<sup>2</sup></div>
+            </li>
+        </ul>
+        <p><strong>The Equivalence Theorem:</strong> The global minimum of this autoencoder loss function occurs when the product transformation matrix <strong>P</strong> = <strong>W</strong><sub>2</sub> <strong>W</strong><sub>1</sub> is the orthogonal projection operator onto the subspace spanned by the <strong>first <em>k</em> principal eigenvectors</strong> of the sample covariance matrix <strong>Σ</strong> = (1 / <em>N</em>) <strong>X</strong><sup>T</sup> <strong>X</strong>.</p>
+
+        <h3>2. Key Differences Between PCA and Linear Autoencoders</h3>
+        <div class="table-scroll">
+        <table>
+            <thead>
+                <tr><th>Dimension</th><th>Principal Component Analysis (PCA)</th><th>Linear Autoencoder Neural Network</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Mathematical Approach</td><td>Closed-form analytical spectral decomposition of covariance matrix <strong>Σ</strong> = <strong>V</strong> <strong>Λ</strong> <strong>V</strong><sup>T</sup></td><td>Iterative numerical gradient descent / backpropagation minimizing squared reconstruction loss</td></tr>
+                <tr><td>Eigenvector Orthogonality</td><td>Principal components <strong>v</strong><sub>1</sub>, …, <strong>v</strong><sub><em>k</em></sub> are strictly orthogonal and uniquely ordered by descending eigenvalue variance λ<sub>1</sub> ≥ λ<sub>2</sub> ≥ … ≥ λ<sub><em>k</em></sub></td><td>Hidden unit weight vectors span the exact same <em>k</em>-dimensional subspace, but individual weights are arbitrary linear combinations (rotations) of the eigenvectors</td></tr>
+                <tr><td>Computational Complexity</td><td><em>O</em>(<em>p</em><sup>3</sup> + <em>N</em> <em>p</em><sup>2</sup>); becomes prohibitive when feature dimension <em>p</em> &gt; 50,000</td><td><em>O</em>(<em>N</em> · <em>k</em> · <em>p</em> · epochs); highly scalable to huge <em>p</em> and streaming online mini-batches on GPUs</td></tr>
+                <tr><td>Non-Linear Generalization</td><td>Kernel PCA (requires <em>O</em>(<em>N</em><sup>2</sup>) Gram matrix storage)</td><td>Deep Autoencoders with non-linear activation functions (ReLU, GELU) learn arbitrary non-linear curved manifolds</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <h3>3. Online PCA via Neural Networks: Sanger's Generalized Hebbian Algorithm (GHA)</h3>
+        <p>While autoencoders require two weight matrices, a single-layer feedforward neural network can learn exact, ordered, orthogonal PCA eigenvectors online using <strong>Sanger's Rule (Generalized Hebbian Algorithm, 1989)</strong> without ever computing the <em>p</em> × <em>p</em> covariance matrix:</p>
+        <p>For input vector <strong>x</strong> and linear output neurons <em>y</em><sub><em>i</em></sub> = ∑<sub><em>j</em>=1</sub><sup><em>p</em></sup> <em>w</em><sub><em>ij</em></sub> <em>x</em><sub><em>j</em></sub> (<em>i</em> = 1, …, <em>k</em>):</p>
+        <div class="formula-block">Δ<em>w</em><sub><em>ij</em></sub> = η <em>y</em><sub><em>i</em></sub> (<em>x</em><sub><em>j</em></sub> − ∑<sub><em>m</em>=1</sub><sup><em>i</em></sup> <em>y</em><sub><em>m</em></sub> <em>w</em><sub><em>mj</em></sub>)</div>
+        <ul>
+            <li>For the first neuron (<em>i</em> = 1): Δ<em>w</em><sub>1<em>j</em></sub> = η <em>y</em><sub>1</sub> (<em>x</em><sub><em>j</em></sub> − <em>y</em><sub>1</sub> <em>w</em><sub>1<em>j</em></sub>) (Oja's normalized Hebbian rule, converging directly to the first principal component <strong>v</strong><sub>1</sub>).</li>
+            <li>For subsequent neurons (<em>i</em> &gt; 1): The subtraction term ∑<sub><em>m</em>=1</sub><sup><em>i</em></sup> <em>y</em><sub><em>m</em></sub> <em>w</em><sub><em>mj</em></sub> applies an internal <em>Gram-Schmidt deflation</em>, stripping out the variance already captured by preceding components.</li>
+            <li>As iterations <em>t</em> → ∞, weight vectors <strong>w</strong><sub>1</sub>, <strong>w</strong><sub>2</sub>, …, <strong>w</strong><sub><em>k</em></sub> converge asymptotically to the exact first <em>k</em> eigenvectors of <strong>Σ</strong>.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ===== Q48 ===== -->
+<div class="qa-block" id="q48">
+    <div class="question-label">Q48</div>
+    <div class="question-text">Explain the different components of a Fuzzy Inference System (FIS). Describe the step-by-step working of an inference engine with a suitable example.</div>
+    <div class="answer-body">
+        <h3>1. Architecture and Components of a Fuzzy Inference System (FIS)</h3>
+        <p>A Fuzzy Inference System (FIS) is a mathematical framework that maps crisp numeric inputs to crisp numeric outputs using fuzzy set theory, linguistic variables, and approximate IF–THEN reasoning. Unlike Boolean logic (0 or 1), an FIS handles ambiguous, imprecise real-world operational domains.</p>
+
+        <div class="diagram-wrap">
+            <svg width="640" height="220" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" aria-label="Fuzzy Inference System Architecture Diagram showing Fuzzification, Knowledge Base, Inference Engine, and Defuzzification">
+                <defs>
+                    <marker id="arrowFIS" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L8,3 z" fill="#7b1f2e"/>
+                    </marker>
+                </defs>
+
+                <!-- Input -->
+                <text x="10" y="105" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#333">Crisp</text>
+                <text x="10" y="120" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#333">Inputs (x)</text>
+                <line x1="68" y1="110" x2="95" y2="110" stroke="#7b1f2e" stroke-width="2" marker-end="url(#arrowFIS)"/>
+
+                <!-- 1. Fuzzification Interface -->
+                <rect x="100" y="70" width="110" height="80" rx="4" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.8"/>
+                <text x="155" y="95" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Fuzzification</text>
+                <text x="155" y="112" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Triangular / Trap.</text>
+                <text x="155" y="125" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Crisp → μ ∈ [0,1]</text>
+
+                <!-- Arrow to Engine -->
+                <line x1="210" y1="110" x2="255" y2="110" stroke="#7b1f2e" stroke-width="2" marker-end="url(#arrowFIS)"/>
+
+                <!-- 2. Knowledge Base (Above) -->
+                <rect x="250" y="12" width="170" height="60" rx="4" fill="#fdfbfb" stroke="#7b1f2e" stroke-width="1.5"/>
+                <text x="335" y="32" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Knowledge Base</text>
+                <line x1="260" y1="38" x2="410" y2="38" stroke="#c0a0a6" stroke-width="1"/>
+                <text x="295" y="54" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#555">Database (MFs)</text>
+                <text x="375" y="54" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#555">Rule Base (IF-THEN)</text>
+                <!-- Arrow down from KB to Inference -->
+                <line x1="335" y1="72" x2="335" y2="92" stroke="#7b1f2e" stroke-width="1.8" marker-end="url(#arrowFIS)"/>
+
+                <!-- 3. Fuzzy Inference Engine (Middle) -->
+                <rect x="260" y="95" width="150" height="90" rx="4" fill="#7b1f2e"/>
+                <text x="335" y="120" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#fff">Inference Engine</text>
+                <text x="335" y="137" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#fee">Rule Evaluation (T-norm)</text>
+                <text x="335" y="152" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#fee">Implication (Clipping)</text>
+                <text x="335" y="167" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#fee">Aggregation (Union)</text>
+
+                <!-- Arrow to Defuzz -->
+                <line x1="410" y1="140" x2="455" y2="140" stroke="#7b1f2e" stroke-width="2" marker-end="url(#arrowFIS)"/>
+
+                <!-- 4. Defuzzification Interface -->
+                <rect x="460" y="100" width="110" height="80" rx="4" fill="#f5eeee" stroke="#7b1f2e" stroke-width="1.8"/>
+                <text x="515" y="125" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10.5" font-weight="bold" fill="#7b1f2e">Defuzzification</text>
+                <text x="515" y="142" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Centroid / MOM</text>
+                <text x="515" y="155" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#555">Fuzzy Set → y*</text>
+
+                <!-- Output -->
+                <line x1="570" y1="140" x2="595" y2="140" stroke="#7b1f2e" stroke-width="2" marker-end="url(#arrowFIS)"/>
+                <text x="602" y="135" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#333">Crisp</text>
+                <text x="602" y="150" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#333">Output (y*)</text>
+            </svg>
+        </div>
+        <p class="diagram-caption">Figure: Fuzzy Inference System (FIS) Architecture. Continuous crisp measurements undergo fuzzification, trigger approximate reasoning across the rule base in the inference engine, and are synthesized via defuzzification into a single deterministic output.</p>
+
+        <p>The four core architectural components are:</p>
+        <ol>
+            <li><strong>Fuzzification Interface:</strong> Converts crisp numerical sensor readings into degrees of membership μ<sub><em>A</em></sub>(<em>x</em>) ∈ [0, 1] across linguistic partitions (e.g., <em>Cold</em>, <em>Warm</em>, <em>Hot</em>).</li>
+            <li><strong>Knowledge Base:</strong>
+                <ul>
+                    <li><em>Database:</em> Contains definitions of universes of discourse, scaling factors, and geometric membership functions (triangular, trapezoidal, Gaussian).</li>
+                    <li><em>Rule Base:</em> A collection of linguistic IF–THEN statements constructed from expert domain knowledge or data induction.</li>
+                </ul>
+            </li>
+            <li><strong>Inference Engine:</strong> The core reasoning unit that evaluates rule antecedents, computes firing strengths via fuzzy logic operators, and applies fuzzy implication to determine qualified consequent sets.</li>
+            <li><strong>Defuzzification Interface:</strong> Integrates the aggregated output fuzzy set into a single actionable crisp scalar control action <em>y</em><sup>*</sup> (e.g., Centroid method).</li>
+        </ol>
+
+        <h3>2. Step-by-Step Working of an Inference Engine (Worked Example)</h3>
+        <p><strong>Problem:</strong> Determine restaurant gratuity (Tip %) given two continuous inputs: <code>Service Rating = 8 / 10</code> and <code>Food Quality = 7 / 10</code>.</p>
+        <p><strong>Rule Base:</strong></p>
+        <ul>
+            <li><em>Rule 1:</em> IF Service is Poor OR Food is Rancid THEN Tip is Cheap (5%).</li>
+            <li><em>Rule 2:</em> IF Service is Good THEN Tip is Average (15%).</li>
+            <li><em>Rule 3:</em> IF Service is Excellent OR Food is Delicious THEN Tip is Generous (25%).</li>
+        </ul>
+
+        <h4>Step 1: Fuzzification</h4>
+        <p>Evaluate crisp inputs against input membership functions:</p>
+        <ul>
+            <li>For Service = 8: μ<sub>Poor</sub>(8) = 0, μ<sub>Good</sub>(8) = 0.4, μ<sub>Excellent</sub>(8) = 0.6.</li>
+            <li>For Food = 7: μ<sub>Rancid</sub>(7) = 0, μ<sub>Delicious</sub>(7) = 0.7.</li>
+        </ul>
+
+        <h4>Step 2: Rule Antecedent Evaluation (Firing Strength)</h4>
+        <p>Apply fuzzy logic operators (OR uses maximum T-conorm: μ<sub><em>A</em> ∪ <em>B</em></sub> = max(μ<sub><em>A</em></sub>, μ<sub><em>B</em></sub>)):</p>
+        <ul>
+            <li><em>Rule 1 Strength:</em> <em>w</em><sub>1</sub> = max(μ<sub>Poor</sub>, μ<sub>Rancid</sub>) = max(0, 0) = 0.</li>
+            <li><em>Rule 2 Strength:</em> <em>w</em><sub>2</sub> = μ<sub>Good</sub> = 0.4.</li>
+            <li><em>Rule 3 Strength:</em> <em>w</em><sub>3</sub> = max(μ<sub>Excellent</sub>, μ<sub>Delicious</sub>) = max(0.6, 0.7) = 0.7.</li>
+        </ul>
+
+        <h4>Step 3: Consequent Implication</h4>
+        <p>In Mamdani inference, each rule's firing strength <em>w</em><sub><em>i</em></sub> clips (truncates via min) the corresponding output membership function:</p>
+        <ul>
+            <li>Rule 1 consequent (Cheap) is clipped at height 0 (inactive).</li>
+            <li>Rule 2 consequent (Average) is clipped at height 0.4.</li>
+            <li>Rule 3 consequent (Generous) is clipped at height 0.7.</li>
+        </ul>
+
+        <h4>Step 4: Fuzzy Aggregation</h4>
+        <p>Combine all clipped consequent sets into a single composite geometric fuzzy set using fuzzy maximum union:</p>
+        <div class="formula-block">μ<sub>agg</sub>(<em>z</em>) = max(μ<sub>clipped, 2</sub>(<em>z</em>), μ<sub>clipped, 3</sub>(<em>z</em>))</div>
+
+        <h4>Step 5: Defuzzification (Centroid Method)</h4>
+        <p>Compute the Center of Gravity (CoG) of the aggregated fuzzy shape:</p>
+        <div class="formula-block"><em>z</em><sup>*</sup> = (∫ <em>z</em> · μ<sub>agg</sub>(<em>z</em>) <em>dz</em>) / (∫ μ<sub>agg</sub>(<em>z</em>) <em>dz</em>)</div>
+        <p>Calculating the area and moments of the combined geometric trapezoids yields a deterministic crisp tip recommendation: <strong><em>z</em><sup>*</sup> = 18.2%</strong>.</p>
+    </div>
+</div>
+
+<!-- ===== Q49 ===== -->
+<div class="qa-block" id="q49">
+    <div class="question-label">Q49</div>
+    <div class="question-text">Analyse the process of extracting fuzzy models from data. Differentiate between conventional decision trees and fuzzy decision trees.</div>
+    <div class="answer-body">
+        <h3>1. Process of Extracting Fuzzy Models from Data</h3>
+        <p>When expert knowledge is unavailable, data-driven fuzzy modeling automatically constructs linguistic fuzzy rules and membership functions directly from numerical observation matrices <strong>X</strong> = [<strong>x</strong><sub>1</sub>, …, <strong>x</strong><sub><em>N</em></sub>] and outputs <strong>y</strong>.</p>
+        <p>The extraction process follows five rigorous stages:</p>
+        <ol>
+            <li><strong>Input-Output Space Partitioning:</strong>
+                <ul>
+                    <li><em>Grid Partitioning:</em> Divides each input variable into fixed equidistant linguistic intervals. Simple, but suffers from the curse of dimensionality (<em>M</em><sup><em>p</em></sup> rules for <em>p</em> variables with <em>M</em> terms).</li>
+                    <li><em>Fuzzy C-Means Clustering (FCM):</em> Partitions the joint input-output space into <em>C</em> overlapping clusters by minimizing objective function:
+                        <div class="formula-block"><em>J</em><sub><em>m</em></sub> = ∑<sub><em>i</em>=1</sub><sup><em>N</em></sup> ∑<sub><em>k</em>=1</sub><sup><em>C</em></sup> (μ<sub><em>ik</em></sub>)<sup><em>m</em></sup> ∥<strong>x</strong><sub><em>i</em></sub> − <strong>v</strong><sub><em>k</em></sub>∥<sup>2</sup></div>
+                        Natural data clusters directly dictate membership geometry without grid explosion.
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Membership Function Parameter Extraction:</strong> Projects multi-dimensional cluster centroids <strong>v</strong><sub><em>k</em></sub> and covariance matrices onto individual coordinate axes, fitting parameterized Gaussian functions:
+                <div class="formula-block">μ(<em>x</em>) = exp(−(<em>x</em> − <em>c</em>)<sup>2</sup> / (2σ<sup>2</sup>))</div>
+                or triangular membership functions.</li>
+            <li><strong>Rule Generation &amp; Premise Formulation:</strong> Translates each cluster center into an IF–THEN linguistic rule:
+                <br><code>Cluster k: IF x1 is Near(v_k1) AND x2 is Near(v_k2) THEN y is C_k</code>
+            </li>
+            <li><strong>Parameter Optimization via Neuro-Fuzzy Learning (ANFIS):</strong> Uses the Adaptive Neuro-Fuzzy Inference System architecture. In the forward pass, Least Squares Estimation (LSE) identifies optimal linear consequent parameters; in the backward pass, backpropagation gradient descent fine-tunes premise membership function coordinates.</li>
+            <li><strong>Rule Pruning &amp; Redundancy Reduction:</strong> Eliminates rules with negligible firing support, merges highly overlapping linguistic terms using fuzzy similarity measures, and resolves rule conflicts.</li>
+        </ol>
+
+        <h3>2. Conventional (Crisp) vs. Fuzzy Decision Trees</h3>
+        <div class="table-scroll">
+        <table>
+            <thead>
+                <tr><th>Comparison Dimension</th><th>Conventional (Crisp) Decision Tree (CART / C4.5)</th><th>Fuzzy Decision Tree (FID3 / Fuzzy CART)</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Splitting Logic</strong></td>
+                    <td>Hard Boolean partitioning (<em>x</em><sub><em>j</em></sub> ≤ θ vs <em>x</em><sub><em>j</em></sub> &gt; θ). Each node executes a knife-edge binary split.</td>
+                    <td>Soft linguistic partitioning based on fuzzy membership functions (μ<sub>Low</sub>(<em>x</em>), μ<sub>High</sub>(<em>x</em>) ∈ [0, 1]).</td>
+                </tr>
+                <tr>
+                    <td><strong>Sample Routing</strong></td>
+                    <td>An observation follows exactly <strong>one single deterministic branch</strong>, terminating in a single leaf node.</td>
+                    <td>An observation is propagated down <strong>multiple branches simultaneously</strong> with fractional membership weights.</td>
+                </tr>
+                <tr>
+                    <td><strong>Splitting Criterion</strong></td>
+                    <td>Crisp Information Gain (Shannon entropy) or Gini Impurity calculated on discrete subsets: <em>G</em> = 1 − ∑ <em>p</em><sub><em>i</em></sub><sup>2</sup>.</td>
+                    <td>Fuzzy Entropy / Fuzzy Gain Ratio calculated using continuous fuzzy membership integrals across partitions.</td>
+                </tr>
+                <tr>
+                    <td><strong>Boundary Sensitivity ("Cliff Effect")</strong></td>
+                    <td>Highly brittle: A minute measurement change from 49.9 to 50.1 can switch the routing branch and radically change the final class.</td>
+                    <td>Continuous and smooth: Small variations in input features produce smooth, gradual adjustments in output class probabilities.</td>
+                </tr>
+                <tr>
+                    <td><strong>Noise &amp; Measurement Tolerance</strong></td>
+                    <td>Prone to misclassification when sensor data contains noise or calibration drift near decision boundaries.</td>
+                    <td>High robustness to sensor noise, missing features, and measurement inaccuracies due to overlapping fuzzy sets.</td>
+                </tr>
+                <tr>
+                    <td><strong>Leaf Output Synthesis</strong></td>
+                    <td>Single discrete class label (majority vote) or local scalar average.</td>
+                    <td>Weighted combination: Output class probabilities are aggregated across all activated leaves weighted by their branch membership product.</td>
+                </tr>
+                <tr>
+                    <td><strong>Interpretability</strong></td>
+                    <td>Direct Boolean decision rules: <code>IF x &gt; 50 THEN Class A</code>. Simple, but rigid.</td>
+                    <td>Nuanced human-like linguistic rules: <code>IF Temp is Warm THEN Fan is Medium (weight: 0.72)</code>.</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+<!-- ===== Q50 ===== -->
+<div class="qa-block" id="q50">
+    <div class="question-label">Q50</div>
+    <div class="question-text">Discuss the three learning paradigms in neural networks: Supervised, Unsupervised (Competitive Learning), and Reinforcement Learning with real-life examples.</div>
+    <div class="answer-body">
+        <h3>Introduction</h3>
+        <p>Artificial neural networks extract representations and adapt connection weights across three foundational learning paradigms, distinguished by the nature of the environmental feedback signal provided during training.</p>
+
+        <h3>1. Supervised Learning</h3>
+        <ul>
+            <li><strong>Mechanism:</strong> Training data consists of explicit labeled pairs {(<strong>x</strong><sub><em>i</em></sub>, <strong>y</strong><sub><em>i</em></sub>)}<sub><em>i</em>=1</sub><sup><em>N</em></sup>. An external supervisor or ground-truth oracle provides the target response <strong>y</strong><sub><em>i</em></sub>. The network calculates prediction <strong>ŷ</strong><sub><em>i</em></sub> = <em>f</em>(<strong>x</strong><sub><em>i</em></sub>; <strong>W</strong>), evaluates an empirical error signal <em>L</em>(<strong>y</strong><sub><em>i</em></sub>, <strong>ŷ</strong><sub><em>i</em></sub>), and propagates loss gradients backward via the chain rule to update weights via gradient descent:
+                <div class="formula-block"><strong>W</strong> ← <strong>W</strong> − η ∇<sub><strong>W</strong></sub> <em>L</em></div>
+            </li>
+            <li><strong>Primary Architectures:</strong> Multilayer Perceptrons (MLPs), Convolutional Neural Networks (CNNs), Long Short-Term Memory (LSTM) recurrent networks.</li>
+            <li><strong>Real-Life Example:</strong> Credit scoring in retail banking. The model receives 20 customer financial features (income, debt-to-income ratio, missed payments) along with historical loan performance labels (0 = Repaid, 1 = Defaulted). The network optimizes cross-entropy loss to predict the Probability of Default on incoming loan applications.</li>
+        </ul>
+
+        <h3>2. Unsupervised / Competitive Learning</h3>
+        <ul>
+            <li><strong>Mechanism:</strong> No ground-truth targets or supervisory feedback are supplied (<em>D</em> = {<strong>x</strong><sub><em>i</em></sub>}<sub><em>i</em>=1</sub><sup><em>N</em></sup>). The network discovers intrinsic statistical regularities, topological manifolds, or natural clusters within the input distribution.</li>
+            <li><strong>Competitive Learning Dynamics:</strong> Neurons compete for the right to respond to input patterns via lateral inhibitory connections (Winner-Take-All / Kohonen learning). For input <strong>x</strong>, the winning neuron <em>c</em> has the weight vector closest in Euclidean distance:
+                <div class="formula-block"><em>c</em> = argmin<sub><em>k</em></sub> ∥<strong>x</strong> − <strong>w</strong><sub><em>k</em></sub>∥</div>
+                Only the winning neuron (and its spatial neighbors in SOMs) updates its weights toward the input vector:
+                <div class="formula-block">Δ<strong>w</strong><sub><em>c</em></sub> = η (<strong>x</strong> − <strong>w</strong><sub><em>c</em></sub>)</div>
+            </li>
+            <li><strong>Primary Architectures:</strong> Self-Organizing Maps (SOM), Restricted Boltzmann Machines (RBM), Linear/Deep Autoencoders.</li>
+            <li><strong>Real-Life Example:</strong> Unsupervised retail customer segmentation. An e-commerce platform feeds customer behavioral vectors (cart additions, discount responsiveness, browsing frequency) into a 10×10 SOM without predefined buyer tags. The competitive neurons self-organize into topological clusters, cleanly separating bargain hunters, luxury shoppers, and dormant users for targeted marketing campaigns.</li>
+        </ul>
+
+        <h3>3. Reinforcement Learning (RL)</h3>
+        <ul>
+            <li><strong>Mechanism:</strong> An autonomous agent learns through sequential trial-and-error interaction with a dynamic environment. The agent observes current state <em>s</em><sub><em>t</em></sub>, selects action <em>a</em><sub><em>t</em></sub> according to policy π<sub>θ</sub>(<em>a</em>|<em>s</em>), transitions to state <em>s</em><sub><em>t</em>+1</sub>, and receives a scalar evaluative feedback reward <em>r</em><sub><em>t</em>+1</sub> ∈ ℝ.</li>
+            <li><strong>Objective:</strong> Unlike supervised learning which matches instantaneous labels, RL maximizes the <em>expected cumulative discounted future return</em>:
+                <div class="formula-block"><em>G</em><sub><em>t</em></sub> = ∑<sub><em>k</em>=0</sub><sup>∞</sup> γ<sup><em>k</em></sup> <em>r</em><sub><em>t</em>+<em>k</em>+1</sub>,  γ ∈ [0, 1)</div>
+                Governed by the Bellman optimality equation and optimized via Deep Q-Networks (DQN) or Policy Gradient algorithms (PPO, Actor-Critic).</li>
+            <li><strong>Primary Architectures:</strong> Deep Q-Networks, Deep Deterministic Policy Gradients (DDPG), Proximal Policy Optimization (PPO).</li>
+            <li><strong>Real-Life Example:</strong> Automated algorithmic equity trade execution. An RL trading agent observes market order book states (bid-ask spreads, volume volatility) and executes micro-orders to liquidate a 500,000-share institutional block over 4 hours. The agent receives positive rewards for minimizing price slippage against the Volume-Weighted Average Price (VWAP) and penalties for market impact costs.</li>
+        </ul>
+
+        <h3>Comparative Synthesis Across the 3 Paradigms</h3>
+        <div class="table-scroll">
+        <table>
+            <thead>
+                <tr><th>Feature</th><th>Supervised Learning</th><th>Unsupervised / Competitive</th><th>Reinforcement Learning</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Supervisory Signal</strong></td><td>Explicit ground-truth target label <em>y</em> for every input</td><td>None (unlabeled input data only)</td><td>Delayed evaluative scalar reward <em>r</em></td></tr>
+                <tr><td><strong>Feedback Timing</strong></td><td>Instantaneous per training instance</td><td>None</td><td>Delayed across sequential time steps</td></tr>
+                <tr><td><strong>Mathematical Objective</strong></td><td>Minimize empirical risk ∑ <em>L</em>(<em>y</em><sub><em>i</em></sub>, <em>f</em>(<em>x</em><sub><em>i</em></sub>))</td><td>Minimize reconstruction error or intra-cluster quantization error</td><td>Maximize expected cumulative discounted return E[∑ γ<sup><em>t</em></sup> <em>r</em><sub><em>t</em></sub>]</td></tr>
+                <tr><td><strong>Data Interaction</strong></td><td>Passive, static dataset batching</td><td>Passive, static dataset batching</td><td>Active exploration vs exploitation in dynamic environment</td></tr>
+                <tr><td><strong>Representative Architectures</strong></td><td>MLP, ResNet, BERT, Transformer</td><td>SOM, Autoencoder, K-Means clustering</td><td>DQN, PPO, A3C, AlphaGo</td></tr>
+                <tr><td><strong>Industrial Example</strong></td><td>Medical imaging diagnosis, spam filtering</td><td>Customer RFM clustering, anomaly detection</td><td>Autonomous driving, algorithmic order execution</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
 </section>
 
 <footer class="chapter-footer">
-    <p>Keep studying: <a href="short-answers.html">Short answers (Q1–Q4, Q6–Q17)</a> · <a href="#unit1-questions">Unit I index</a> · <a href="#unit2-questions">Unit II index</a></p>
+    <p>Keep studying: <a href="short-answers.html">Short answers (17 questions: Q1–Q4, Q6–Q17, Q45)</a> · <a href="#unit1-questions">Unit I index</a> · <a href="#unit2-questions">Unit II index</a></p>
 </footer>
 </main>
 
